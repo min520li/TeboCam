@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="TeboCam.camButtons" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>bubble.cs</FileName>
+      <HashCode>AAAABAAAAgQAAABQJAEABAAIAAAAAAAAgAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.publishCams" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>bubble.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAkAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.AlertClass" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>bubble.cs</FileName>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.ImagePubArgs" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>bubble.cs</FileName>
+      <HashCode>AAAABAAAAAAAAAAIAAAAAAAIAgAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.config" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>bubble.cs</FileName>
+      <HashCode>AAAIAgCAAECAAAAAAAIAAAAAAEAAEAAAEAMQAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.configData" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>bubble.cs</FileName>
+      <HashCode>P2cnChY3ICC4e1CCFA1Zx9p3Cc4GgYKCLEYwCsWCc1I=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeboCam.bubble">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>bubble.cs</FileName>
+      <HashCode>v+cNOCkq7wwLlMOihqbwG9hgPVXn61bjXZe3rS86Oqs=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.calibrate" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>calibrate.cs</FileName>
+      <HashCode>QCBAJAABACAAABAACACAAQAGEBAACAAABAAIQABAAAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.MotionLevelArgs" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Camera.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.AlarmArgs" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Camera.cs</FileName>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.CamIdArgs" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Camera.cs</FileName>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.LevelArgs" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Camera.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.drawArgs" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Camera.cs</FileName>
+      <HashCode>AAAAAAAIAASAAAQAQAAAAAAAABAAAAAAAABgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.Camera" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Camera.cs</FileName>
+      <HashCode>gAEQBgQABCASAAwAQBAAAEgSAAAAAAAIoQBAAsAAAQI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.rigItem" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CameraRig.cs</FileName>
+      <HashCode>AAAABAAAAAABAAAIAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.info" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CameraRig.cs</FileName>
+      <HashCode>AAQAABAAAAAxAAAAAABAAAgQAAAAAJAAAAAAAEEAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.CameraRig" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CameraRig.cs</FileName>
+      <HashCode>QEAiAEAgAEQAg0gYCAAYggAAwAAYYACICAAAQgQAABA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.CameraWindow" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CameraWindow.cs</FileName>
+      <HashCode>AiDqoAACAiQAGCAAGVIggBIKQAACQGAaAAECEQAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.ImageSavedArgs" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CameraWindow.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAQAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.CaptureDeviceForm" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CaptureDeviceForm.cs</FileName>
+      <HashCode>AAECAAACACQAAhAAAACAAACCAAAAEAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.crypt" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>crypt.cs</FileName>
+      <HashCode>AQAAAAAQAAACAKQQAAAAAAAAAAABABICAEAAAAAAAAU=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.database" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>database.cs</FileName>
+      <HashCode>AAAAEAACAAIAEAAAAEAAAAAAAAAAoAAAAAAAAAAEAAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.pre262" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>fileManager.cs</FileName>
+      <HashCode>AAAAAAAAAAAxAAAAAABAAAgQAAAAAJAAAAAAAEEAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.FileManager" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>fileManager.cs</FileName>
+      <HashCode>gAAABQEAEAAAwAEAAAAAEAAEEABCAAACAAAACgAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.fileprefix" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>fileprefix.cs</FileName>
+      <HashCode>p6AMAAABACAQEAEACADAAUgDggBAAAEAICAAAAlBIEA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.News" Collapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Form1.cs</FileName>
+      <HashCode>AAAEAAAAACAAAAAAAACAAAACEQAAACCAQCAAAAAAgAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.ftp" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ftp.cs</FileName>
+      <HashCode>AAAAAIAAAAIAAAAAAAAAAAxAAAgAAAGCAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.graphHist" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Graph.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAQAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.Graph" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Graph.cs</FileName>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAQAQCQAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.versionInfo" Collapsed="true">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>html.cs</FileName>
+      <HashCode>AAAAACAAAgAAAAAAAAAAAAAAAQAIAAAARAAAAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.htmlInfo" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>html.cs</FileName>
+      <HashCode>AAAAACAAAgAAAAAAAAAAAAAAAQAIAAAAQAAAAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.html" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>html.cs</FileName>
+      <HashCode>AAAAAIAAIAQAAAAEAAAAAAAAAAAABAAAAAAAAAUAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.image" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>image.cs</FileName>
+      <HashCode>YAAAAIAhECAQABAACACAAAACAgAYAAAAAEBACgAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.ImageThumbs" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ImageThumbs.cs</FileName>
+      <HashCode>AAABBAAEAABggAAgABAAAIAAAAAAAAABAAAAAAAMAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.InputBoxDialog" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>InputBoxDialog.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAgAQACBAIACAQFJAEABQUAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.LeftRightMid" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>LeftRightMid.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAACACAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.licence" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>licence.cs</FileName>
+      <HashCode>AIACYgAAAIIAEAAAAAAAAAAAAAABAAAEBAQAAUgAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.mail" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>mail.cs</FileName>
+      <HashCode>AAAAAAAgAQAAAAAAAQAAAAAAABAAAAIAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.MotionDetector3Optimized" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MotionDetector3Optimized.cs</FileName>
+      <HashCode>QQAGCAAAwgAgBwQQYAJIAAAAQAAQAIEIAAGAAGMhAoA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeboCam.preferences" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>preferences.cs</FileName>
+      <HashCode>/3/9Z/9/svsf937fXvv7n9/73v2/////+/3f//z1xf8=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.regex" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>regex.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.schedule" Collapsed="true">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>schedule.cs</FileName>
+      <HashCode>AAAAAQAJWqIQgAEACACAAAACQAAAAAwAAAAAAAABADo=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.teboDebug" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>teboDebug.cs</FileName>
+      <HashCode>AIAQAAAAIAgAAAAoAAAAAAEAQAAAAEAAAUAAEQACAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.timestamp" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>timestamp.cs</FileName>
+      <HashCode>QEJAEAABACgQABAACAKEkQICAEQQAIAAgCAIAAYwBCA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.train" Collapsed="true">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>train.cs</FileName>
+      <HashCode>QABAIAABACAAABDkCACAIQAGAAAAAAAABAAAAAAAAAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.update" Collapsed="true">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>update.cs</FileName>
+      <HashCode>IAAAAAAAACAAABAAEACAAAACAAAIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.webcamConfig" Collapsed="true">
+    <Position X="12.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>webcamConfig.cs</FileName>
+      <HashCode>uBBKEkmVAChUA4CCbAKIAhUTQgw8JCAIgbhAkRRQgLI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.webPage" Collapsed="true">
+    <Position X="0.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>webPage.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboCam.Properties.Resources" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAQAAAAAABEAAAAQEgAAAAACAAAAAAAMA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeboWeb.Pulse" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Pulse.cs</FileName>
+      <HashCode>EAsAIBBAACAQACAAAEAgAAAgAAAAggAAIEAAAAIAAAg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VideoSource.ByteArrayUtils" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VideoSource\ByteArrayUtils.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VideoSource.CameraEventArgs" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VideoSource\CameraEvents.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAIAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VideoSource.CaptureDevice" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VideoSource\CaptureDevice.cs</FileName>
+      <HashCode>AAgABAQCACAAAAsAABAAAAQAAAAAAAAKIQAQAIAIAAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VideoSource.JPEGStream" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VideoSource\JPEGStream.cs</FileName>
+      <HashCode>AEgADAQAACAAEAsIABCAAAQAAQAAAAEKIUAQAoBIEAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VideoSource.MJPEGStream" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VideoSource\MJPEGStream.cs</FileName>
+      <HashCode>AEgATAQAACAAEAsIABCAAAQAAAAAAAAKIQAQAoAIEAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VideoSource.VideoFileSource" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VideoSource\VideoFileSource.cs</FileName>
+      <HashCode>AAgABAQAACAAAAsAABAAAAQAAAAAAAAKIQAQAIAIAAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VideoSource.VideoStream" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VideoSource\VideoStream.cs</FileName>
+      <HashCode>AAgABAQCACAAAAsAABAAAAQAAAAAAAAKIQAQAIAIAAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="TeboCam.IMotionDetector" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>IMotionDetector.cs</FileName>
+      <HashCode>AAAACAAAAAAgBAAAAAJAAAAAAAAQAIAAAAAAAEMhAoA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VideoSource.IVideoSource" Collapsed="true">
+    <Position X="2.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VideoSource\IVideoSource.cs</FileName>
+      <HashCode>AAAAAAQAACAAAAgAABAAAAAAAAAAAAAKIQAQAIAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="TeboCam.ImagePubEventHandler" Collapsed="true">
+    <Position X="7.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>bubble.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TeboCam.alarmEventHandler" Collapsed="true">
+    <Position X="0.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Camera.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TeboCam.motionLevelEventHandler" Collapsed="true">
+    <Position X="11" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Camera.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAQAAAAAAAAAABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TeboCam.drawEventHandler" Collapsed="true">
+    <Position X="4" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Camera.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TeboCam.ImageSavedEventHandler" Collapsed="true">
+    <Position X="9.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CameraWindow.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TeboCam.formDelegate" Collapsed="true">
+    <Position X="5.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>preferences.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="VideoSource.CameraEventHandler" Collapsed="true">
+    <Position X="2.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>VideoSource\CameraEvents.cs</FileName>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+</ClassDiagram>
