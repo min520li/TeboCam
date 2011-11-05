@@ -164,9 +164,9 @@ namespace TeboCam
             this.groupBox1.Controls.Add(this.bl);
             this.groupBox1.Controls.Add(this.tr);
             this.groupBox1.Controls.Add(this.tl);
-            this.groupBox1.Location = new System.Drawing.Point(286, 81);
+            this.groupBox1.Location = new System.Drawing.Point(286, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(121, 98);
+            this.groupBox1.Size = new System.Drawing.Size(121, 102);
             this.groupBox1.TabIndex = 68;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Text Position";
@@ -267,9 +267,9 @@ namespace TeboCam
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(244, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 18);
+            this.label1.Size = new System.Drawing.Size(97, 18);
             this.label1.TabIndex = 70;
-            this.label1.Text = "XXXXXXX";
+            this.label1.Text = "Apply To...";
             // 
             // groupBox3
             // 
