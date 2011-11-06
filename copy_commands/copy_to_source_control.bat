@@ -1,3 +1,4 @@
+copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam.sln" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\TeboCam.sln"
 copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\AssemblyInfo.cs" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\AssemblyInfo.cs"
 copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\bubble.cs" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\bubble.cs"
 copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\calibrate.cs" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\calibrate.cs"
