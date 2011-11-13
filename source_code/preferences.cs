@@ -4512,6 +4512,22 @@ namespace TeboCam
         }
 
 
+        private void publishRefresh(int button)
+        {
+
+            int pubButton = CameraRig.idxFromButton(button);
+
+            pubImage.Checked = Convert.ToBoolean( CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage").ToString());
+            pubTime.Text = CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubTime").ToString();
+            pubHours.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubHours").ToString());
+            pubMins.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubMins").ToString());
+            pubSecs.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs").ToString());
+            pubToWeb.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs").ToString());
+            pubToLocal.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs").ToString());
+            pubTimerOn.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage").ToString());
+
+        }
+
         private void pubcam(Button btn, int button)
         {
 
@@ -4520,6 +4536,7 @@ namespace TeboCam
 
                 int cam = CameraRig.idxFromButton(button);
 
+                publishRefresh(button);
 
                 //unpublish other cameras
                 camButtons.publishClearExcept(button);
@@ -5077,7 +5094,7 @@ namespace TeboCam
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubWeb", Convert.ToInt32(i[4]));
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubWeb", Convert.ToInt32(i[5]));
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubWeb", Convert.ToBoolean(i[6]));
-                
+
                 //config.getProfile(bubble.profileInUse).filenamePrefixPubWeb = i[1].ToString();
                 //config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb = Convert.ToInt32(i[2]);
                 //config.getProfile(bubble.profileInUse).startCyclePubWeb = Convert.ToInt32(i[3]);
@@ -5126,7 +5143,7 @@ namespace TeboCam
         {
 
             ArrayList i = new ArrayList();
-            
+
             int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
 
             i.Add("Publish Local");
@@ -5138,7 +5155,7 @@ namespace TeboCam
             i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubLoc"));
             i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc"));
             i.Add(true);
-            
+
 
             //i.Add("Publish Local");
             //i.Add(config.getProfile(bubble.profileInUse).toolTips);
