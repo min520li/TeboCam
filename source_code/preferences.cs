@@ -2897,20 +2897,20 @@ namespace TeboCam
             SSL.Checked = (bool)data.EnableSsl;
             updateNotify.Checked = data.updatesNotify;
 
-            pubImage.Checked = data.pubImage;
+            //pubImage.Checked = data.pubImage;
             if (decimal.Parse(data.profileVersion) < 2.6m)//m forces number to be interpreted as decimal
             {
                 data.publishWeb = data.pubImage;
             }
-            pubHours.Checked = data.pubHours;
-            pubMins.Checked = data.pubMins;
-            pubSecs.Checked = data.pubSecs;
+            //pubHours.Checked = data.pubHours;
+            //pubMins.Checked = data.pubMins;
+            //pubSecs.Checked = data.pubSecs;
             pubFtpUser.Text = data.pubFtpUser;
             pubFtpPass.Text = data.pubFtpPass;
             pubFtpRoot.Text = data.pubFtpRoot;
-            pubTime.Text = data.pubTime.ToString();
-            pubToLocal.Checked = data.publishLocal;
-            pubToWeb.Checked = data.publishWeb;
+            //pubTime.Text = data.pubTime.ToString();
+            //pubToLocal.Checked = data.publishLocal;
+            //pubToWeb.Checked = data.publishWeb;
 
             if (data.motionLevel)
             {
@@ -3345,7 +3345,7 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubTimerOn", pubTimerOn.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "timerOn", pubTimerOn.Checked);
             }
 
             if (pubTimerOn.Checked)
@@ -4523,9 +4523,9 @@ namespace TeboCam
             pubHours.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubHours").ToString());
             pubMins.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubMins").ToString());
             pubSecs.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs").ToString());
-            pubToWeb.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs").ToString());
-            pubToLocal.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs").ToString());
-            pubTimerOn.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage").ToString());
+            pubToWeb.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishWeb").ToString());
+            pubToLocal.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishLocal").ToString());
+            pubTimerOn.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "timerOn").ToString());
 
         }
 

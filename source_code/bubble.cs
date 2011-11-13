@@ -2669,7 +2669,7 @@ namespace TeboCam
                                                                                    Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "stampAppendPubLoc").ToString()));
 
 
-                                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "currentCyclePubLoc",  Convert.ToInt32(tmpCycleLoc));
+                                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "currentCyclePubLoc", Convert.ToInt32(tmpCycleLoc));
 
                                         teboDebug.writeline(teboDebug.publishImageVal + 5);
                                         File.Copy(tmpFolder + "pubPicture.jpg", locFile, true);
@@ -2685,15 +2685,6 @@ namespace TeboCam
 
                                         long tmpCycleWeb = new long();
                                         tmpCycleWeb = Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "currentCyclePubWeb").ToString());
-
-                                        System.Diagnostics.Debug.WriteLine(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "filenamePrefixPubWeb").ToString());
-                                        System.Diagnostics.Debug.WriteLine(Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "cycleStampCheckedPubWeb").ToString()));
-                                        System.Diagnostics.Debug.WriteLine(Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "startCyclePubWeb").ToString()));
-                                        System.Diagnostics.Debug.WriteLine(Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "endCyclePubWeb").ToString()));
-                                        System.Diagnostics.Debug.WriteLine(tmpCycleWeb);
-                                        System.Diagnostics.Debug.WriteLine(Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "stampAppendPubWeb").ToString()));
-
-
 
                                         webFile = fileNameSet(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "filenamePrefixPubWeb").ToString(),
                                                               Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "cycleStampCheckedPubWeb").ToString()),
