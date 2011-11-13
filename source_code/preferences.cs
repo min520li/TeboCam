@@ -3591,6 +3591,7 @@ namespace TeboCam
                         cameraReconnectIfLost();//need to work on this for multicam
                     }
 
+                    teboDebug.writeline("workerProcess calling scheduler()");
                     scheduler();
                     teboDebug.writeline("workerProcess calling ping");
                     bubble.ping();
@@ -4306,7 +4307,7 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubToLocal", pubToLocal.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishLocal", pubToLocal.Checked);
             }
         }
 
@@ -4317,7 +4318,7 @@ namespace TeboCam
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubToWeb", pubToWeb.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishWeb", pubToWeb.Checked);
             }
 
         }

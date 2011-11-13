@@ -2596,9 +2596,157 @@ namespace TeboCam
         }
 
 
-
         public static void publishImage()
         {
+
+            if (keepPublishing)
+            {
+
+                foreach (rigItem item in CameraRig.rig)
+                {
+
+                    bool pubToWeb = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishWeb").ToString());
+                    bool pubToLocal = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishLocal").ToString());
+
+                    //publish from this camera
+                    if (pubToWeb || pubToLocal)
+                    {
+
+                        int timeMultiplier = 0;
+                        int PubInterval = 0;
+
+                        if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubSecs").ToString())) timeMultiplier = 1;
+                        if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubMins").ToString())) timeMultiplier = 60;
+                        if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubHours").ToString())) timeMultiplier = 3600;
+
+                        PubInterval = timeMultiplier * Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString());
+
+                        if (
+                            Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishFirst").ToString())
+                            || (time.secondsSinceStart() - Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "lastPublished").ToString())) >=
+                            Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString())
+                            )
+                        {
+
+                            pulseEvent(null, new EventArgs());
+
+                            CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "publishFirst", false);
+
+                            ImagePubArgs a = new ImagePubArgs();
+
+                            a.option = "pub";
+                            a.cam = item.cam.cam;
+
+                            try { pubPicture(null, a); }
+                            catch { }
+
+
+                            if (!pubError)
+                                try
+                                {
+
+                                    teboDebug.writeline(teboDebug.publishImageVal + 3);
+                                    pulseEvent(null, new EventArgs());
+
+                                    string pubFile = "";
+
+
+                                    if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishLocal").ToString()))
+                                    {
+
+                                        teboDebug.writeline(teboDebug.publishImageVal + 4);
+                                        string locFile = "";
+
+                                        long tmpCycleLoc = new long();
+                                        tmpCycleLoc = Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "currentCyclePubLoc").ToString());
+
+                                        locFile = bubble.imageFolder +
+                                                  fileNameSet(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "filenamePrefixPubLoc").ToString(),
+                                                                                   Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "cycleStampCheckedPubLoc").ToString()),
+                                                                                   Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "startCyclePubLoc").ToString()),
+                                                                                   Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "endCyclePubLoc").ToString()),
+                                                                                   ref tmpCycleLoc,
+                                                                                   Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "stampAppendPubLoc").ToString()));
+
+
+                                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "currentCyclePubLoc",  Convert.ToInt32(tmpCycleLoc));
+
+                                        teboDebug.writeline(teboDebug.publishImageVal + 5);
+                                        File.Copy(tmpFolder + "pubPicture.jpg", locFile, true);
+                                        pubFile = locFile;
+
+                                    }
+
+                                    if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishWeb").ToString()))
+                                    {
+                                        teboDebug.writeline(teboDebug.publishImageVal + 6);
+
+                                        string webFile = "";
+
+                                        long tmpCycleWeb = new long();
+                                        tmpCycleWeb = Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "currentCyclePubWeb").ToString());
+
+                                        System.Diagnostics.Debug.WriteLine(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "filenamePrefixPubWeb").ToString());
+                                        System.Diagnostics.Debug.WriteLine(Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "cycleStampCheckedPubWeb").ToString()));
+                                        System.Diagnostics.Debug.WriteLine(Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "startCyclePubWeb").ToString()));
+                                        System.Diagnostics.Debug.WriteLine(Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "endCyclePubWeb").ToString()));
+                                        System.Diagnostics.Debug.WriteLine(tmpCycleWeb);
+                                        System.Diagnostics.Debug.WriteLine(Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "stampAppendPubWeb").ToString()));
+
+
+
+                                        webFile = fileNameSet(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "filenamePrefixPubWeb").ToString(),
+                                                              Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "cycleStampCheckedPubWeb").ToString()),
+                                                              Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "startCyclePubWeb").ToString()),
+                                                              Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "endCyclePubWeb").ToString()),
+                                                              ref tmpCycleWeb,
+                                                              Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "stampAppendPubWeb").ToString()));
+
+
+                                        CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "currentCyclePubWeb", Convert.ToInt32(tmpCycleWeb));
+
+                                        File.Copy(tmpFolder + "pubPicture.jpg", tmpFolder + webFile, true);
+                                        ftp.DeleteFTP(webFile, config.getProfile(bubble.profileInUse).pubFtpRoot, config.getProfile(bubble.profileInUse).pubFtpUser, config.getProfile(bubble.profileInUse).pubFtpPass);
+                                        ftp.Upload(tmpFolder + webFile, config.getProfile(bubble.profileInUse).pubFtpRoot, config.getProfile(bubble.profileInUse).pubFtpUser, config.getProfile(bubble.profileInUse).pubFtpPass);
+                                        pubFile = webFile;
+
+                                    }
+
+                                    teboDebug.writeline(teboDebug.publishImageVal + 7);
+                                    File.Delete(tmpFolder + "pubPicture.jpg");
+                                    CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "lastPublished", time.secondsSinceStart());
+                                    logAddLine("Webcam image " + pubFile + " published.");
+
+                                    pulseEvent(null, new EventArgs());
+
+                                }
+
+
+
+                                catch
+                                {
+                                    teboDebug.writeline(teboDebug.publishImageVal + 8);
+                                    CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "lastPublished", time.secondsSinceStart());
+                                }
+
+
+
+                        }
+
+                    }//if (pubToWeb || pubToLocal)
+
+                }//foreach (rigItem item in CameraRig.rig)
+
+            }// if (keepPublishing)
+
+
+        }
+
+
+
+        public static void publishImageOLD()
+        {
+
 
             int pubButton = camButtons.publishingButton();
 

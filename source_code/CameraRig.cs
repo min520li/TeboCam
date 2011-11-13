@@ -63,6 +63,12 @@ namespace TeboCam
         //20111111 new publish additions
 
 
+        //for monitoring publishing - does not need to be saved to xml file
+        public bool publishFirst = false;
+        public int lastPublished = 0;
+        //for monitoring publishing - does not need to be saved to xml file        
+
+
     }
 
 
@@ -190,6 +196,9 @@ namespace TeboCam
                         if (infoType == "currentCyclePubLoc") { infoI.currentCyclePubLoc = (int)val; }
                         if (infoType == "stampAppendPubLoc") { infoI.stampAppendPubLoc = (bool)val; }
 
+                        if (infoType == "publishFirst") { infoI.publishFirst = (bool)val; }
+                        if (infoType == "lastPublished") { infoI.lastPublished = (int)val; }
+
                     }
 
                 }
@@ -251,7 +260,8 @@ namespace TeboCam
                         if (infoType == "currentCyclePubLoc") { infoI.currentCyclePubLoc = (int)val; }
                         if (infoType == "stampAppendPubLoc") { infoI.stampAppendPubLoc = (bool)val; }
 
-
+                        if (infoType == "publishFirst") { infoI.publishFirst = (bool)val; }
+                        if (infoType == "lastPublished") { infoI.lastPublished = (int)val; }
 
                     }
 
@@ -320,8 +330,8 @@ namespace TeboCam
             if (infoType == "currentCyclePubLoc") { camInfo[infoIdx].currentCyclePubLoc = (int)val; }
             if (infoType == "stampAppendPubLoc") { camInfo[infoIdx].stampAppendPubLoc = (bool)val; }
 
-
-
+            if (infoType == "publishFirst") { camInfo[infoIdx].publishFirst = (bool)val; }
+            if (infoType == "lastPublished") { camInfo[infoIdx].lastPublished = (int)val; }
 
         }
 
@@ -548,6 +558,10 @@ namespace TeboCam
                     if (property == "currentCyclePubLoc") return infoI.currentCyclePubLoc;
                     if (property == "stampAppendPubLoc") return infoI.stampAppendPubLoc;
 
+                    if (property == "publishFirst") return infoI.publishFirst;
+                    if (property == "lastPublished") return infoI.lastPublished;
+
+
                 }
 
             }
@@ -598,6 +612,9 @@ namespace TeboCam
                     if (property == "endCyclePubLoc") return infoI.endCyclePubLoc;
                     if (property == "currentCyclePubLoc") return infoI.currentCyclePubLoc;
                     if (property == "stampAppendPubLoc") return infoI.stampAppendPubLoc;
+
+                    if (property == "publishFirst") return infoI.publishFirst;
+                    if (property == "lastPublished") return infoI.lastPublished;
 
                 }
 
