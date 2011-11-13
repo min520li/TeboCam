@@ -26,6 +26,33 @@ namespace TeboCam
         public static int rectHeight = 0;
         public static int displayButton = 1;
         public static double movementVal = 0;
+
+        public static bool pubImage = false;
+        public static int pubTime = 2;
+        public static bool pubHours = false;
+        public static bool pubMins = true;
+        public static bool pubSecs = false;
+        public static bool publishWeb = false;
+        public static bool publishLocal = false;
+        public static bool timerOn = false;
+
+        public static string filenamePrefixPubWeb = "webcamPublish";
+        public static int cycleStampCheckedPubWeb = 1;
+        public static int startCyclePubWeb = 1;
+        public static int endCyclePubWeb = 999;
+        public static int currentCyclePubWeb = 1;
+        public static bool stampAppendPubWeb = false;
+
+        public static string filenamePrefixPubLoc = "webcamPublish";
+        public static int cycleStampCheckedPubLoc = 1;
+        public static int startCyclePubLoc = 1;
+        public static int endCyclePubLoc = 999;
+        public static int currentCyclePubLoc = 1;
+        public static bool stampAppendPubLoc = false;
+
+
+
+
     }
 
     class FileManager
@@ -435,6 +462,29 @@ namespace TeboCam
                                     CameraRig.addInfo("rectHeight", pre262.rectHeight);
                                     CameraRig.addInfo("movementVal", pre262.movementVal);
                                     CameraRig.addInfo("displayButton", pre262.displayButton);
+
+                                    CameraRig.addInfo("pubImage", pre262.pubImage);
+                                    CameraRig.addInfo("pubTime", pre262.pubTime);
+                                    CameraRig.addInfo("pubHours", pre262.pubHours);
+                                    CameraRig.addInfo("pubMins", pre262.pubMins);
+                                    CameraRig.addInfo("pubSecs", pre262.pubSecs);
+                                    CameraRig.addInfo("publishWeb", pre262.publishWeb);
+                                    CameraRig.addInfo("publishLocal", pre262.publishLocal);
+                                    CameraRig.addInfo("timerOn", pre262.timerOn);
+                                    CameraRig.addInfo("filenamePrefixPubWeb", pre262.filenamePrefixPubWeb);
+                                    CameraRig.addInfo("cycleStampCheckedPubWeb", pre262.cycleStampCheckedPubWeb);
+                                    CameraRig.addInfo("startCyclePubWeb", pre262.startCyclePubWeb);
+                                    CameraRig.addInfo("endCyclePubWeb", pre262.endCyclePubWeb);
+                                    CameraRig.addInfo("currentCyclePubWeb", pre262.currentCyclePubWeb);
+                                    CameraRig.addInfo("stampAppendPubWeb", pre262.stampAppendPubWeb);
+                                    CameraRig.addInfo("filenamePrefixPubLoc", pre262.filenamePrefixPubLoc);
+                                    CameraRig.addInfo("cycleStampCheckedPubLoc", pre262.cycleStampCheckedPubLoc);
+                                    CameraRig.addInfo("startCyclePubLoc", pre262.startCyclePubLoc);
+                                    CameraRig.addInfo("endCyclePubLoc", pre262.endCyclePubLoc);
+                                    CameraRig.addInfo("currentCyclePubLoc", pre262.currentCyclePubLoc);
+                                    CameraRig.addInfo("stampAppendPubLoc", pre262.stampAppendPubLoc);
+
+
                                 }
 
                                 //config.getProfile("##newProf##").newsSeq = bubble.newsSeq;
@@ -540,6 +590,93 @@ namespace TeboCam
                                     config.getProfile("##newProf##").movementVal = Convert.ToDouble(configData.ReadString());
                                     CameraRig.addInfo("movementVal", config.getProfile("##newProf##").movementVal);
                                 }
+
+
+
+                                if (configData.LocalName.Equals("pubImage"))
+                                {
+                                    CameraRig.addInfo("pubImage", Convert.ToBoolean(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("pubTime"))
+                                {
+                                    CameraRig.addInfo("pubTime", Convert.ToInt32(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("pubHours"))
+                                {
+                                    CameraRig.addInfo("pubHours", Convert.ToBoolean(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("pubMins"))
+                                {
+                                    CameraRig.addInfo("pubMins", Convert.ToBoolean(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("pubSecs"))
+                                {
+                                    CameraRig.addInfo("pubSecs", Convert.ToBoolean(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("publishWeb"))
+                                {
+                                    CameraRig.addInfo("publishWeb", Convert.ToBoolean(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("publishLocal"))
+                                {
+                                    CameraRig.addInfo("publishLocal", Convert.ToBoolean(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("timerOn"))
+                                {
+                                    CameraRig.addInfo("timerOn", Convert.ToBoolean(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("filenamePrefixPubWeb"))
+                                {
+                                    CameraRig.addInfo("filenamePrefixPubWeb", configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("cycleStampCheckedPubWeb"))
+                                {
+                                    CameraRig.addInfo("cycleStampCheckedPubWeb", Convert.ToInt32(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("startCyclePubWeb"))
+                                {
+                                    CameraRig.addInfo("startCyclePubWeb", Convert.ToInt32(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("endCyclePubWeb"))
+                                {
+                                    CameraRig.addInfo("endCyclePubWeb", Convert.ToInt32(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("currentCyclePubWeb"))
+                                {
+                                    CameraRig.addInfo("currentCyclePubWeb", Convert.ToInt32(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("stampAppendPubWeb"))
+                                {
+                                    CameraRig.addInfo("stampAppendPubWeb", Convert.ToBoolean(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("filenamePrefixPubLoc"))
+                                {
+                                    CameraRig.addInfo("filenamePrefixPubLoc", configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("cycleStampCheckedPubLoc"))
+                                {
+                                    CameraRig.addInfo("cycleStampCheckedPubLoc", Convert.ToInt32(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("startCyclePubLoc"))
+                                {
+                                    CameraRig.addInfo("startCyclePubLoc", Convert.ToInt32(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("endCyclePubLoc"))
+                                {
+                                    CameraRig.addInfo("endCyclePubLoc", Convert.ToInt32(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("currentCyclePubLoc"))
+                                {
+                                    CameraRig.addInfo("currentCyclePubLoc", Convert.ToInt32(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("stampAppendPubLoc"))
+                                {
+                                    CameraRig.addInfo("stampAppendPubLoc", Convert.ToBoolean(configData.ReadString()));
+                                }
+
+
+
+
                             }
                             else
                             {
@@ -587,6 +724,90 @@ namespace TeboCam
                                     config.getProfile("##newProf##").movementVal = Convert.ToDouble(configData.ReadString());
                                     pre262.movementVal = Convert.ToDouble(config.getProfile("##newProf##").movementVal);
                                 }
+
+
+                                if (configData.LocalName.Equals("pubImage"))
+                                {
+                                    pre262.pubImage = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("pubTime"))
+                                {
+                                    pre262.pubTime = Convert.ToInt32(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("pubHours"))
+                                {
+                                    pre262.pubHours = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("pubMins"))
+                                {
+                                    pre262.pubMins = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("pubSecs"))
+                                {
+                                    pre262.pubSecs = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("publishWeb"))
+                                {
+                                    pre262.publishWeb = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("publishLocal"))
+                                {
+                                    pre262.publishLocal = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("timerOn"))
+                                {
+                                    pre262.timerOn = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("filenamePrefixPubWeb"))
+                                {
+                                    pre262.filenamePrefixPubWeb = configData.ReadString();
+                                }
+                                if (configData.LocalName.Equals("cycleStampCheckedPubWeb"))
+                                {
+                                    pre262.cycleStampCheckedPubWeb = Convert.ToInt32(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("startCyclePubWeb"))
+                                {
+                                    pre262.startCyclePubWeb = Convert.ToInt32(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("endCyclePubWeb"))
+                                {
+                                    pre262.endCyclePubWeb = Convert.ToInt32(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("currentCyclePubWeb"))
+                                {
+                                    pre262.currentCyclePubWeb = Convert.ToInt32(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("stampAppendPubWeb"))
+                                {
+                                    pre262.stampAppendPubWeb = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("filenamePrefixPubLoc"))
+                                {
+                                    pre262.filenamePrefixPubLoc = configData.ReadString();
+                                }
+                                if (configData.LocalName.Equals("cycleStampCheckedPubLoc"))
+                                {
+                                    pre262.cycleStampCheckedPubLoc = Convert.ToInt32(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("startCyclePubLoc"))
+                                {
+                                    pre262.startCyclePubLoc = Convert.ToInt32(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("endCyclePubLoc"))
+                                {
+                                    pre262.endCyclePubLoc = Convert.ToInt32(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("currentCyclePubLoc"))
+                                {
+                                    pre262.currentCyclePubLoc = Convert.ToInt32(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("stampAppendPubLoc"))
+                                {
+                                    pre262.stampAppendPubLoc = Convert.ToBoolean(configData.ReadString());
+                                }
+
+
                             }
 
 
@@ -695,56 +916,56 @@ namespace TeboCam
                             }
 
 
-                            if (configData.LocalName.Equals("filenamePrefixPubWeb"))
-                            {
-                                config.getProfile("##newProf##").filenamePrefixPubWeb = configData.ReadString();
-                            }
-                            if (configData.LocalName.Equals("cycleStampCheckedPubWeb"))
-                            {
-                                config.getProfile("##newProf##").cycleStampCheckedPubWeb = Convert.ToInt32(configData.ReadString());
-                            }
-                            if (configData.LocalName.Equals("startCyclePubWeb"))
-                            {
-                                config.getProfile("##newProf##").startCyclePubWeb = Convert.ToInt64(configData.ReadString());
-                            }
-                            if (configData.LocalName.Equals("endCyclePubWeb"))
-                            {
-                                config.getProfile("##newProf##").endCyclePubWeb = Convert.ToInt32(configData.ReadString());
-                            }
-                            if (configData.LocalName.Equals("currentCyclePubWeb"))
-                            {
-                                config.getProfile("##newProf##").currentCyclePubWeb = Convert.ToInt64(configData.ReadString());
-                            }
-                            if (configData.LocalName.Equals("stampAppendPubWeb"))
-                            {
-                                config.getProfile("##newProf##").stampAppendPubWeb = Convert.ToBoolean(configData.ReadString());
-                            }
+                            //if (configData.LocalName.Equals("filenamePrefixPubWeb"))
+                            //{
+                            //    config.getProfile("##newProf##").filenamePrefixPubWeb = configData.ReadString();
+                            //}
+                            //if (configData.LocalName.Equals("cycleStampCheckedPubWeb"))
+                            //{
+                            //    config.getProfile("##newProf##").cycleStampCheckedPubWeb = Convert.ToInt32(configData.ReadString());
+                            //}
+                            //if (configData.LocalName.Equals("startCyclePubWeb"))
+                            //{
+                            //    config.getProfile("##newProf##").startCyclePubWeb = Convert.ToInt64(configData.ReadString());
+                            //}
+                            //if (configData.LocalName.Equals("endCyclePubWeb"))
+                            //{
+                            //    config.getProfile("##newProf##").endCyclePubWeb = Convert.ToInt32(configData.ReadString());
+                            //}
+                            //if (configData.LocalName.Equals("currentCyclePubWeb"))
+                            //{
+                            //    config.getProfile("##newProf##").currentCyclePubWeb = Convert.ToInt64(configData.ReadString());
+                            //}
+                            //if (configData.LocalName.Equals("stampAppendPubWeb"))
+                            //{
+                            //    config.getProfile("##newProf##").stampAppendPubWeb = Convert.ToBoolean(configData.ReadString());
+                            //}
 
 
-                            if (configData.LocalName.Equals("filenamePrefixPubLoc"))
-                            {
-                                config.getProfile("##newProf##").filenamePrefixPubLoc = configData.ReadString();
-                            }
-                            if (configData.LocalName.Equals("cycleStampCheckedPubLoc"))
-                            {
-                                config.getProfile("##newProf##").cycleStampCheckedPubLoc = Convert.ToInt32(configData.ReadString());
-                            }
-                            if (configData.LocalName.Equals("startCyclePubLoc"))
-                            {
-                                config.getProfile("##newProf##").startCyclePubLoc = Convert.ToInt64(configData.ReadString());
-                            }
-                            if (configData.LocalName.Equals("endCyclePubLoc"))
-                            {
-                                config.getProfile("##newProf##").endCyclePubLoc = Convert.ToInt64(configData.ReadString());
-                            }
-                            if (configData.LocalName.Equals("currentCyclePubLoc"))
-                            {
-                                config.getProfile("##newProf##").currentCyclePubLoc = Convert.ToInt64(configData.ReadString());
-                            }
-                            if (configData.LocalName.Equals("stampAppendPubLoc"))
-                            {
-                                config.getProfile("##newProf##").stampAppendPubLoc = Convert.ToBoolean(configData.ReadString());
-                            }
+                            //if (configData.LocalName.Equals("filenamePrefixPubLoc"))
+                            //{
+                            //    config.getProfile("##newProf##").filenamePrefixPubLoc = configData.ReadString();
+                            //}
+                            //if (configData.LocalName.Equals("cycleStampCheckedPubLoc"))
+                            //{
+                            //    config.getProfile("##newProf##").cycleStampCheckedPubLoc = Convert.ToInt32(configData.ReadString());
+                            //}
+                            //if (configData.LocalName.Equals("startCyclePubLoc"))
+                            //{
+                            //    config.getProfile("##newProf##").startCyclePubLoc = Convert.ToInt64(configData.ReadString());
+                            //}
+                            //if (configData.LocalName.Equals("endCyclePubLoc"))
+                            //{
+                            //    config.getProfile("##newProf##").endCyclePubLoc = Convert.ToInt64(configData.ReadString());
+                            //}
+                            //if (configData.LocalName.Equals("currentCyclePubLoc"))
+                            //{
+                            //    config.getProfile("##newProf##").currentCyclePubLoc = Convert.ToInt64(configData.ReadString());
+                            //}
+                            //if (configData.LocalName.Equals("stampAppendPubLoc"))
+                            //{
+                            //    config.getProfile("##newProf##").stampAppendPubLoc = Convert.ToBoolean(configData.ReadString());
+                            //}
 
 
                             if (configData.LocalName.Equals("emailNotifyInterval"))
@@ -803,25 +1024,28 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").ftpRoot = configData.ReadString();
                             }
-                            if (configData.LocalName.Equals("pubImage"))
-                            {
-                                config.getProfile("##newProf##").pubImage = Convert.ToBoolean(configData.ReadString());
-                            }
+                            
+                            //if (configData.LocalName.Equals("pubImage"))
+                            //{
+                            //    config.getProfile("##newProf##").pubImage = Convert.ToBoolean(configData.ReadString());
+                            //}
 
-                            if (configData.LocalName.Equals("pubHours"))
-                            {
-                                config.getProfile("##newProf##").pubHours = Convert.ToBoolean(configData.ReadString());
-                            }
+                            //if (configData.LocalName.Equals("pubHours"))
+                            //{
+                            //    config.getProfile("##newProf##").pubHours = Convert.ToBoolean(configData.ReadString());
+                            //}
 
-                            if (configData.LocalName.Equals("pubMins"))
-                            {
-                                config.getProfile("##newProf##").pubMins = Convert.ToBoolean(configData.ReadString());
-                            }
+                            //if (configData.LocalName.Equals("pubMins"))
+                            //{
+                            //    config.getProfile("##newProf##").pubMins = Convert.ToBoolean(configData.ReadString());
+                            //}
 
-                            if (configData.LocalName.Equals("pubSecs"))
-                            {
-                                config.getProfile("##newProf##").pubSecs = Convert.ToBoolean(configData.ReadString());
-                            }
+                            //if (configData.LocalName.Equals("pubSecs"))
+                            //{
+                            //    config.getProfile("##newProf##").pubSecs = Convert.ToBoolean(configData.ReadString());
+                            //}
+
+
                             if (configData.LocalName.Equals("pubFtpUser"))
                             {
                                 config.getProfile("##newProf##").pubFtpUser = configData.ReadString();
@@ -834,10 +1058,12 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").pubFtpRoot = configData.ReadString();
                             }
-                            if (configData.LocalName.Equals("pubTime"))
-                            {
-                                config.getProfile("##newProf##").pubTime = Convert.ToInt32(configData.ReadString());
-                            }
+
+                            //if (configData.LocalName.Equals("pubTime"))
+                            //{
+                            //    config.getProfile("##newProf##").pubTime = Convert.ToInt32(configData.ReadString());
+                            //}
+
                             //20101026 can be dropped after 201101 as variables should no longer be present
                             if (configData.LocalName.Equals("pubStamp"))
                             {
@@ -856,10 +1082,10 @@ namespace TeboCam
                                 config.getProfile("##newProf##").pubStampDateTime = Convert.ToBoolean(configData.ReadString());
                             }
                             //20101026 can be dropped after 201101 as variables should no longer be present
-                            if (configData.LocalName.Equals("timerOn"))
-                            {
-                                config.getProfile("##newProf##").timerOn = Convert.ToBoolean(configData.ReadString());
-                            }
+                            //if (configData.LocalName.Equals("timerOn"))
+                            //{
+                            //    config.getProfile("##newProf##").timerOn = Convert.ToBoolean(configData.ReadString());
+                            //}
                             if (configData.LocalName.Equals("timerStartPub"))
                             {
                                 config.getProfile("##newProf##").timerStartPub = configData.ReadString();
@@ -1060,14 +1286,14 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").onlineTimeStampRect = Convert.ToBoolean(configData.ReadString());
                             }
-                            if (configData.LocalName.Equals("publishLocal"))
-                            {
-                                config.getProfile("##newProf##").publishLocal = Convert.ToBoolean(configData.ReadString());
-                            }
-                            if (configData.LocalName.Equals("publishWeb"))
-                            {
-                                config.getProfile("##newProf##").publishWeb = Convert.ToBoolean(configData.ReadString());
-                            }
+                            //if (configData.LocalName.Equals("publishLocal"))
+                            //{
+                            //    config.getProfile("##newProf##").publishLocal = Convert.ToBoolean(configData.ReadString());
+                            //}
+                            //if (configData.LocalName.Equals("publishWeb"))
+                            //{
+                            //    config.getProfile("##newProf##").publishWeb = Convert.ToBoolean(configData.ReadString());
+                            //}
                             if (configData.LocalName.Equals("imageToframe"))
                             {
                                 config.getProfile("##newProf##").imageToframe = Convert.ToBoolean(configData.ReadString());
@@ -1522,6 +1748,88 @@ namespace TeboCam
                                 configData.WriteStartElement("", "movementVal", "");
                                 configData.WriteString(infoI.movementVal.ToString());
                                 configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "pubImage", "");
+                                configData.WriteString(infoI.pubImage.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "pubTime", "");
+                                configData.WriteString(infoI.pubTime.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "pubHours", "");
+                                configData.WriteString(infoI.pubHours.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "pubMins", "");
+                                configData.WriteString(infoI.pubMins.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "pubSecs", "");
+                                configData.WriteString(infoI.pubSecs.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "publishWeb", "");
+                                configData.WriteString(infoI.publishWeb.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "publishLocal", "");
+                                configData.WriteString(infoI.publishLocal.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "timerOn", "");
+                                configData.WriteString(infoI.timerOn.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "filenamePrefixPubWeb", "");
+                                configData.WriteString(infoI.filenamePrefixPubWeb.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "cycleStampCheckedPubWeb", "");
+                                configData.WriteString(infoI.cycleStampCheckedPubWeb.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "startCyclePubWeb", "");
+                                configData.WriteString(infoI.startCyclePubWeb.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "endCyclePubWeb", "");
+                                configData.WriteString(infoI.endCyclePubWeb.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "currentCyclePubWeb", "");
+                                configData.WriteString(infoI.currentCyclePubWeb.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "stampAppendPubWeb", "");
+                                configData.WriteString(infoI.stampAppendPubWeb.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "filenamePrefixPubLoc", "");
+                                configData.WriteString(infoI.filenamePrefixPubLoc.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "cycleStampCheckedPubLoc", "");
+                                configData.WriteString(infoI.cycleStampCheckedPubLoc.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "startCyclePubLoc", "");
+                                configData.WriteString(infoI.startCyclePubLoc.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "endCyclePubLoc", "");
+                                configData.WriteString(infoI.endCyclePubLoc.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "currentCyclePubLoc", "");
+                                configData.WriteString(infoI.currentCyclePubLoc.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "stampAppendPubLoc", "");
+                                configData.WriteString(infoI.stampAppendPubLoc.ToString());
+                                configData.WriteEndElement();
+
+
 
                                 configData.Indentation = 12;
 

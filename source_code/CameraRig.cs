@@ -28,12 +28,39 @@ namespace TeboCam
         public bool areaOffAtMotion = false;
         public bool alarmActive = false;
         public bool publishActive = false;
-        public int rectX = 0;
-        public int rectY = 0;
-        public int rectWidth = 0;
-        public int rectHeight = 0;
+        public int rectX = 20;
+        public int rectY = 20;
+        public int rectWidth = 80;
+        public int rectHeight = 80;
         public int displayButton = 1;
-        public double movementVal = 0;
+        public double movementVal = 0.99;
+
+        //20111111 new publish additions
+
+        public bool pubImage = false;
+        public int pubTime = 2;
+        public bool pubHours = false;
+        public bool pubMins = true;
+        public bool pubSecs = false;
+        public bool publishWeb = false;
+        public bool publishLocal = false;
+        public bool timerOn = false;
+
+        public string filenamePrefixPubWeb = "webcamPublish";
+        public int cycleStampCheckedPubWeb = 1;
+        public int startCyclePubWeb = 1;
+        public int endCyclePubWeb = 999;
+        public int currentCyclePubWeb = 1;
+        public bool stampAppendPubWeb = false;
+
+        public string filenamePrefixPubLoc = "webcamPublish";
+        public int cycleStampCheckedPubLoc = 1;
+        public int startCyclePubLoc = 1;
+        public int endCyclePubLoc = 999;
+        public int currentCyclePubLoc = 1;
+        public bool stampAppendPubLoc = false;
+
+        //20111111 new publish additions
 
 
     }
@@ -142,6 +169,27 @@ namespace TeboCam
                         if (infoType == "movementVal") { infoI.movementVal = (double)val; }
                         if (infoType == "displayButton") { infoI.displayButton = (int)val; }
 
+                        if (infoType == "pubImage") { infoI.pubImage = (bool)val; }
+                        if (infoType == "pubTime") { infoI.pubTime = (int)val; }
+                        if (infoType == "pubHours") { infoI.pubHours = (bool)val; }
+                        if (infoType == "pubMins") { infoI.pubMins = (bool)val; }
+                        if (infoType == "pubSecs") { infoI.pubSecs = (bool)val; }
+                        if (infoType == "publishWeb") { infoI.publishWeb = (bool)val; }
+                        if (infoType == "publishLocal") { infoI.publishLocal = (bool)val; }
+                        if (infoType == "timerOn") { infoI.timerOn = (bool)val; }
+                        if (infoType == "filenamePrefixPubWeb") { infoI.filenamePrefixPubWeb = (string)val; }
+                        if (infoType == "cycleStampCheckedPubWeb") { infoI.cycleStampCheckedPubWeb = (int)val; }
+                        if (infoType == "startCyclePubWeb") { infoI.startCyclePubWeb = (int)val; }
+                        if (infoType == "endCyclePubWeb") { infoI.endCyclePubWeb = (int)val; }
+                        if (infoType == "currentCyclePubWeb") { infoI.currentCyclePubWeb = (int)val; }
+                        if (infoType == "stampAppendPubWeb") { infoI.stampAppendPubWeb = (bool)val; }
+                        if (infoType == "filenamePrefixPubLoc") { infoI.filenamePrefixPubLoc = (string)val; }
+                        if (infoType == "cycleStampCheckedPubLoc") { infoI.cycleStampCheckedPubLoc = (int)val; }
+                        if (infoType == "startCyclePubLoc") { infoI.startCyclePubLoc = (int)val; }
+                        if (infoType == "endCyclePubLoc") { infoI.endCyclePubLoc = (int)val; }
+                        if (infoType == "currentCyclePubLoc") { infoI.currentCyclePubLoc = (int)val; }
+                        if (infoType == "stampAppendPubLoc") { infoI.stampAppendPubLoc = (bool)val; }
+
                     }
 
                 }
@@ -181,6 +229,30 @@ namespace TeboCam
                         if (infoType == "movementVal") { infoI.movementVal = (double)val; }
                         if (infoType == "displayButton") { infoI.displayButton = (int)val; }
 
+
+                        if (infoType == "pubImage") { infoI.pubImage = (bool)val; }
+                        if (infoType == "pubTime") { infoI.pubTime = (int)val; }
+                        if (infoType == "pubHours") { infoI.pubHours = (bool)val; }
+                        if (infoType == "pubMins") { infoI.pubMins = (bool)val; }
+                        if (infoType == "pubSecs") { infoI.pubSecs = (bool)val; }
+                        if (infoType == "publishWeb") { infoI.publishWeb = (bool)val; }
+                        if (infoType == "publishLocal") { infoI.publishLocal = (bool)val; }
+                        if (infoType == "timerOn") { infoI.timerOn = (bool)val; }
+                        if (infoType == "filenamePrefixPubWeb") { infoI.filenamePrefixPubWeb = (string)val; }
+                        if (infoType == "cycleStampCheckedPubWeb") { infoI.cycleStampCheckedPubWeb = (int)val; }
+                        if (infoType == "startCyclePubWeb") { infoI.startCyclePubWeb = (int)val; }
+                        if (infoType == "endCyclePubWeb") { infoI.endCyclePubWeb = (int)val; }
+                        if (infoType == "currentCyclePubWeb") { infoI.currentCyclePubWeb = (int)val; }
+                        if (infoType == "stampAppendPubWeb") { infoI.stampAppendPubWeb = (bool)val; }
+                        if (infoType == "filenamePrefixPubLoc") { infoI.filenamePrefixPubLoc = (string)val; }
+                        if (infoType == "cycleStampCheckedPubLoc") { infoI.cycleStampCheckedPubLoc = (int)val; }
+                        if (infoType == "startCyclePubLoc") { infoI.startCyclePubLoc = (int)val; }
+                        if (infoType == "endCyclePubLoc") { infoI.endCyclePubLoc = (int)val; }
+                        if (infoType == "currentCyclePubLoc") { infoI.currentCyclePubLoc = (int)val; }
+                        if (infoType == "stampAppendPubLoc") { infoI.stampAppendPubLoc = (bool)val; }
+
+
+
                     }
 
                 }
@@ -212,7 +284,7 @@ namespace TeboCam
 
             if (infoType == "alarmActive") { camInfo[infoIdx].alarmActive = (bool)val; }
             if (infoType == "publishActive") { camInfo[infoIdx].publishActive = (bool)val; }
-            
+
 
             //may be of use in future
             if (infoType == "areaOffAtMotion") { camInfo[infoIdx].areaOffAtMotion = (bool)val; }
@@ -224,6 +296,32 @@ namespace TeboCam
             if (infoType == "rectHeight") { camInfo[infoIdx].rectHeight = (int)val; }
             if (infoType == "movementVal") { camInfo[infoIdx].movementVal = (double)val; }
             if (infoType == "displayButton") { camInfo[infoIdx].displayButton = (int)val; }
+
+
+
+            if (infoType == "pubImage") { camInfo[infoIdx].pubImage = (bool)val; }
+            if (infoType == "pubTime") { camInfo[infoIdx].pubTime = (int)val; }
+            if (infoType == "pubHours") { camInfo[infoIdx].pubHours = (bool)val; }
+            if (infoType == "pubMins") { camInfo[infoIdx].pubMins = (bool)val; }
+            if (infoType == "pubSecs") { camInfo[infoIdx].pubSecs = (bool)val; }
+            if (infoType == "publishWeb") { camInfo[infoIdx].publishWeb = (bool)val; }
+            if (infoType == "publishLocal") { camInfo[infoIdx].publishLocal = (bool)val; }
+            if (infoType == "timerOn") { camInfo[infoIdx].timerOn = (bool)val; }
+            if (infoType == "filenamePrefixPubWeb") { camInfo[infoIdx].filenamePrefixPubWeb = (string)val; }
+            if (infoType == "cycleStampCheckedPubWeb") { camInfo[infoIdx].cycleStampCheckedPubWeb = (int)val; }
+            if (infoType == "startCyclePubWeb") { camInfo[infoIdx].startCyclePubWeb = (int)val; }
+            if (infoType == "endCyclePubWeb") { camInfo[infoIdx].endCyclePubWeb = (int)val; }
+            if (infoType == "currentCyclePubWeb") { camInfo[infoIdx].currentCyclePubWeb = (int)val; }
+            if (infoType == "stampAppendPubWeb") { camInfo[infoIdx].stampAppendPubWeb = (bool)val; }
+            if (infoType == "filenamePrefixPubLoc") { camInfo[infoIdx].filenamePrefixPubLoc = (string)val; }
+            if (infoType == "cycleStampCheckedPubLoc") { camInfo[infoIdx].cycleStampCheckedPubLoc = (int)val; }
+            if (infoType == "startCyclePubLoc") { camInfo[infoIdx].startCyclePubLoc = (int)val; }
+            if (infoType == "endCyclePubLoc") { camInfo[infoIdx].endCyclePubLoc = (int)val; }
+            if (infoType == "currentCyclePubLoc") { camInfo[infoIdx].currentCyclePubLoc = (int)val; }
+            if (infoType == "stampAppendPubLoc") { camInfo[infoIdx].stampAppendPubLoc = (bool)val; }
+
+
+
 
         }
 
@@ -360,7 +458,7 @@ namespace TeboCam
 
                     rig[id].cam.alarmActive = infoI.alarmActive;
                     rig[id].cam.publishActive = infoI.publishActive;
-                    
+
                     infoExists = true;
 
                     break;
@@ -376,27 +474,27 @@ namespace TeboCam
                 info infoI = new info();
 
                 infoI.profileName = profileName;
-                infoI.friendlyName = "";
+                //infoI.friendlyName = "";
                 infoI.webcam = rig[id].cameraName;
-                infoI.areaDetectionWithin = false;
-                infoI.areaDetection = false;
-                infoI.rectX = 20;
-                infoI.rectY = 20;
-                infoI.rectHeight = 80;
-                infoI.rectWidth = 80;
-                infoI.movementVal = 0.99;
-                infoI.displayButton = 1;
+                //infoI.areaDetectionWithin = false;
+                //infoI.areaDetection = false;
+                //infoI.rectX = 20;
+                //infoI.rectY = 20;
+                //infoI.rectHeight = 80;
+                //infoI.rectWidth = 80;
+                //infoI.movementVal = 0.99;
+                //infoI.displayButton = 1;
                 camInfo.Add(infoI);
 
-                rig[id].displayButton = 1;
+                rig[id].displayButton = infoI.displayButton;
 
-                rig[id].cam.MotionDetector.areaDetectionWithin = false;
-                rig[id].cam.MotionDetector.areaDetection = false;
-                rig[id].cam.MotionDetector.rectX = 20;
-                rig[id].cam.MotionDetector.rectY = 20;
-                rig[id].cam.MotionDetector.rectHeight = 80;
-                rig[id].cam.MotionDetector.rectWidth = 80;
-                rig[id].cam.movementVal = 0.99;
+                rig[id].cam.MotionDetector.areaDetectionWithin = infoI.areaDetectionWithin;
+                rig[id].cam.MotionDetector.areaDetection = infoI.areaDetection;
+                rig[id].cam.MotionDetector.rectX = infoI.rectX;
+                rig[id].cam.MotionDetector.rectY = infoI.rectY;
+                rig[id].cam.MotionDetector.rectHeight = infoI.rectHeight;
+                rig[id].cam.MotionDetector.rectWidth = infoI.rectWidth;
+                rig[id].cam.movementVal = infoI.movementVal;
 
 
             }
@@ -428,6 +526,28 @@ namespace TeboCam
                     if (property == "movementVal") return infoI.movementVal;
                     if (property == "alarmActive") return infoI.alarmActive;
                     if (property == "publishActive") return infoI.publishActive;
+
+                    if (property == "pubImage") return infoI.pubImage;
+                    if (property == "pubTime") return infoI.pubTime;
+                    if (property == "pubHours") return infoI.pubHours;
+                    if (property == "pubMins") return infoI.pubMins;
+                    if (property == "pubSecs") return infoI.pubSecs;
+                    if (property == "publishWeb") return infoI.publishWeb;
+                    if (property == "publishLocal") return infoI.publishLocal;
+                    if (property == "timerOn") return infoI.timerOn;
+                    if (property == "filenamePrefixPubWeb") return infoI.filenamePrefixPubWeb;
+                    if (property == "cycleStampCheckedPubWeb") return infoI.cycleStampCheckedPubWeb;
+                    if (property == "startCyclePubWeb") return infoI.startCyclePubWeb;
+                    if (property == "endCyclePubWeb") return infoI.endCyclePubWeb;
+                    if (property == "currentCyclePubWeb") return infoI.currentCyclePubWeb;
+                    if (property == "stampAppendPubWeb") return infoI.stampAppendPubWeb;
+                    if (property == "filenamePrefixPubLoc") return infoI.filenamePrefixPubLoc;
+                    if (property == "cycleStampCheckedPubLoc") return infoI.cycleStampCheckedPubLoc;
+                    if (property == "startCyclePubLoc") return infoI.startCyclePubLoc;
+                    if (property == "endCyclePubLoc") return infoI.endCyclePubLoc;
+                    if (property == "currentCyclePubLoc") return infoI.currentCyclePubLoc;
+                    if (property == "stampAppendPubLoc") return infoI.stampAppendPubLoc;
+
                 }
 
             }
@@ -457,6 +577,28 @@ namespace TeboCam
                     if (property == "movementVal") return infoI.movementVal;
                     if (property == "alarmActive") return infoI.alarmActive;
                     if (property == "publishActive") return infoI.publishActive;
+
+                    if (property == "pubImage") return infoI.pubImage;
+                    if (property == "pubTime") return infoI.pubTime;
+                    if (property == "pubHours") return infoI.pubHours;
+                    if (property == "pubMins") return infoI.pubMins;
+                    if (property == "pubSecs") return infoI.pubSecs;
+                    if (property == "publishWeb") return infoI.publishWeb;
+                    if (property == "publishLocal") return infoI.publishLocal;
+                    if (property == "timerOn") return infoI.timerOn;
+                    if (property == "filenamePrefixPubWeb") return infoI.filenamePrefixPubWeb;
+                    if (property == "cycleStampCheckedPubWeb") return infoI.cycleStampCheckedPubWeb;
+                    if (property == "startCyclePubWeb") return infoI.startCyclePubWeb;
+                    if (property == "endCyclePubWeb") return infoI.endCyclePubWeb;
+                    if (property == "currentCyclePubWeb") return infoI.currentCyclePubWeb;
+                    if (property == "stampAppendPubWeb") return infoI.stampAppendPubWeb;
+                    if (property == "filenamePrefixPubLoc") return infoI.filenamePrefixPubLoc;
+                    if (property == "cycleStampCheckedPubLoc") return infoI.cycleStampCheckedPubLoc;
+                    if (property == "startCyclePubLoc") return infoI.startCyclePubLoc;
+                    if (property == "endCyclePubLoc") return infoI.endCyclePubLoc;
+                    if (property == "currentCyclePubLoc") return infoI.currentCyclePubLoc;
+                    if (property == "stampAppendPubLoc") return infoI.stampAppendPubLoc;
+
                 }
 
             }
