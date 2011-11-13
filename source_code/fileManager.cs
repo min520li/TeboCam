@@ -1944,54 +1944,54 @@ namespace TeboCam
                         configData.WriteEndElement();
 
 
-                        configData.WriteStartElement("", "filenamePrefixPubWeb", "");
-                        configData.WriteString(config.getProfile().filenamePrefixPubWeb);
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "filenamePrefixPubWeb", "");
+                        //configData.WriteString(config.getProfile().filenamePrefixPubWeb);
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "cycleStampCheckedPubWeb", "");
-                        configData.WriteString(config.getProfile().cycleStampCheckedPubWeb.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "cycleStampCheckedPubWeb", "");
+                        //configData.WriteString(config.getProfile().cycleStampCheckedPubWeb.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "startCyclePubWeb", "");
-                        configData.WriteString(config.getProfile().startCyclePubWeb.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "startCyclePubWeb", "");
+                        //configData.WriteString(config.getProfile().startCyclePubWeb.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "endCyclePubWeb", "");
-                        configData.WriteString(config.getProfile().endCyclePubWeb.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "endCyclePubWeb", "");
+                        //configData.WriteString(config.getProfile().endCyclePubWeb.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "currentCyclePubWeb", "");
-                        configData.WriteString(config.getProfile().currentCyclePubWeb.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "currentCyclePubWeb", "");
+                        //configData.WriteString(config.getProfile().currentCyclePubWeb.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "stampAppendPubWeb", "");
-                        configData.WriteString(config.getProfile().stampAppendPubWeb.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "stampAppendPubWeb", "");
+                        //configData.WriteString(config.getProfile().stampAppendPubWeb.ToString());
+                        //configData.WriteEndElement();
 
 
-                        configData.WriteStartElement("", "filenamePrefixPubLoc", "");
-                        configData.WriteString(config.getProfile().filenamePrefixPubLoc);
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "filenamePrefixPubLoc", "");
+                        //configData.WriteString(config.getProfile().filenamePrefixPubLoc);
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "cycleStampCheckedPubLoc", "");
-                        configData.WriteString(config.getProfile().cycleStampCheckedPubLoc.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "cycleStampCheckedPubLoc", "");
+                        //configData.WriteString(config.getProfile().cycleStampCheckedPubLoc.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "startCyclePubLoc", "");
-                        configData.WriteString(config.getProfile().startCyclePubLoc.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "startCyclePubLoc", "");
+                        //configData.WriteString(config.getProfile().startCyclePubLoc.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "endCyclePubLoc", "");
-                        configData.WriteString(config.getProfile().endCyclePubLoc.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "endCyclePubLoc", "");
+                        //configData.WriteString(config.getProfile().endCyclePubLoc.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "currentCyclePubLoc", "");
-                        configData.WriteString(config.getProfile().currentCyclePubLoc.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "currentCyclePubLoc", "");
+                        //configData.WriteString(config.getProfile().currentCyclePubLoc.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "stampAppendPubLoc", "");
-                        configData.WriteString(config.getProfile().stampAppendPubLoc.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "stampAppendPubLoc", "");
+                        //configData.WriteString(config.getProfile().stampAppendPubLoc.ToString());
+                        //configData.WriteEndElement();
 
 
                         configData.WriteStartElement("", "emailNotifyInterval", "");
@@ -2050,21 +2050,21 @@ namespace TeboCam
                         configData.WriteString(config.getProfile().ftpRoot);
                         configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "pubImage", "");
-                        configData.WriteString(config.getProfile().pubImage.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "pubImage", "");
+                        //configData.WriteString(config.getProfile().pubImage.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "pubHours", "");
-                        configData.WriteString(config.getProfile().pubHours.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "pubHours", "");
+                        //configData.WriteString(config.getProfile().pubHours.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "pubMins", "");
-                        configData.WriteString(config.getProfile().pubMins.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "pubMins", "");
+                        //configData.WriteString(config.getProfile().pubMins.ToString());
+                        //configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "pubSecs", "");
-                        configData.WriteString(config.getProfile().pubSecs.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "pubSecs", "");
+                        //configData.WriteString(config.getProfile().pubSecs.ToString());
+                        //configData.WriteEndElement();
 
                         configData.WriteStartElement("", "pubFtpUser", "");
                         configData.WriteString(config.getProfile().pubFtpUser);

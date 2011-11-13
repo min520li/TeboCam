@@ -3212,6 +3212,13 @@ namespace TeboCam
 
         private void pubImage_CheckedChanged(object sender, EventArgs e)
         {
+
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage", pubImage.Checked);
+            }
+
             config.getProfile(bubble.profileInUse).pubImage = pubImage.Checked;
 
             if (pubImage.Checked)
@@ -3229,23 +3236,53 @@ namespace TeboCam
 
         private void pubTime_Leave(object sender, EventArgs e)
         {
+
             pubTime.Text = bubble.verifyInt(pubTime.Text.ToString(), 1, 99999, "1");
-            config.getProfile(bubble.profileInUse).pubTime = Convert.ToInt32(pubTime.Text.ToString());
+            config.getProfile(bubble.profileInUse).pubTime = Convert.ToInt32(pubTime.Text);
+
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubTime", Convert.ToInt32(pubTime.Text));
+            }
+
+
         }
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
             config.getProfile(bubble.profileInUse).pubHours = pubHours.Checked;
+
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubHours", pubHours.Checked);
+            }
+
         }
 
         private void pubMins_CheckedChanged(object sender, EventArgs e)
         {
             config.getProfile(bubble.profileInUse).pubMins = pubMins.Checked;
+
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubMins", pubMins.Checked);
+            }
+
         }
 
         private void pubSecs_CheckedChanged(object sender, EventArgs e)
         {
             config.getProfile(bubble.profileInUse).pubSecs = pubSecs.Checked;
+
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs", pubSecs.Checked);
+            }
+
         }
 
         private void pubFtpUser_TextChanged(object sender, EventArgs e)
@@ -3305,6 +3342,11 @@ namespace TeboCam
             //groupBox18.Enabled = !groupBox18.Enabled;
             config.getProfile(bubble.profileInUse).timerOn = pubTimerOn.Checked;
 
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubTimerOn", pubTimerOn.Checked);
+            }
 
             if (pubTimerOn.Checked)
             {
@@ -4109,7 +4151,7 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).publishTimeStampPosition = i[4].ToString();
                 config.getProfile(bubble.profileInUse).publishTimeStampRect = Convert.ToBoolean(i[5]);
             }
-             
+
             if (i[0].ToString() == "Ping")
             {
                 config.getProfile(bubble.profileInUse).pingTimeStamp = Convert.ToBoolean(i[1]);
@@ -4261,11 +4303,23 @@ namespace TeboCam
         private void pubLocal_CheckedChanged(object sender, EventArgs e)
         {
             config.getProfile(bubble.profileInUse).publishLocal = pubToLocal.Checked;
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubToLocal", pubToLocal.Checked);
+            }
         }
 
         private void pubWeb_CheckedChanged(object sender, EventArgs e)
         {
             config.getProfile(bubble.profileInUse).publishWeb = pubToWeb.Checked;
+
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubToWeb", pubToWeb.Checked);
+            }
+
         }
 
 
@@ -4977,43 +5031,129 @@ namespace TeboCam
 
             ArrayList i = new ArrayList();
 
+            int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+
             i.Add("Publish Web");
             i.Add(config.getProfile(bubble.profileInUse).toolTips);
-            i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubWeb);
-            i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb);
-            i.Add(config.getProfile(bubble.profileInUse).startCyclePubWeb);
-            i.Add(config.getProfile(bubble.profileInUse).endCyclePubWeb);
-            i.Add(config.getProfile(bubble.profileInUse).currentCyclePubWeb);
-            i.Add(config.getProfile(bubble.profileInUse).stampAppendPubWeb);
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "filenamePrefixPubWeb"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "cycleStampCheckedPubWeb"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "startCyclePubWeb"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubWeb"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubWeb"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubWeb"));
             i.Add(true);
+
+            //i.Add("Publish Web");
+            //i.Add(config.getProfile(bubble.profileInUse).toolTips);
+            //i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubWeb);
+            //i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb);
+            //i.Add(config.getProfile(bubble.profileInUse).startCyclePubWeb);
+            //i.Add(config.getProfile(bubble.profileInUse).endCyclePubWeb);
+            //i.Add(config.getProfile(bubble.profileInUse).currentCyclePubWeb);
+            //i.Add(config.getProfile(bubble.profileInUse).stampAppendPubWeb);
+            //i.Add(true);
 
 
             fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
             fileprefix.StartPosition = FormStartPosition.CenterScreen;
             fileprefix.ShowDialog();
 
+
         }
+
+
+
+        private void filePrefixSet(ArrayList i)
+        {
+
+            int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+
+            if (i[0].ToString() == "Publish Web")
+            {
+
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "filenamePrefixPubWeb", i[1].ToString());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "cycleStampCheckedPubWeb", Convert.ToInt32(i[2]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "startCyclePubWeb", Convert.ToInt32(i[3]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubWeb", Convert.ToInt32(i[4]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubWeb", Convert.ToInt32(i[5]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubWeb", Convert.ToBoolean(i[6]));
+                
+                //config.getProfile(bubble.profileInUse).filenamePrefixPubWeb = i[1].ToString();
+                //config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb = Convert.ToInt32(i[2]);
+                //config.getProfile(bubble.profileInUse).startCyclePubWeb = Convert.ToInt32(i[3]);
+                //config.getProfile(bubble.profileInUse).endCyclePubWeb = Convert.ToInt32(i[4]);
+                //config.getProfile(bubble.profileInUse).currentCyclePubWeb = Convert.ToInt32(i[5]);
+                //config.getProfile(bubble.profileInUse).stampAppendPubWeb = Convert.ToBoolean(i[6]);
+
+            }
+
+            if (i[0].ToString() == "Publish Local")
+            {
+
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "filenamePrefixPubLoc", i[1].ToString());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "cycleStampCheckedPubLoc", Convert.ToInt32(i[2]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "startCyclePubLoc", Convert.ToInt32(i[3]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubLoc", Convert.ToInt32(i[4]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubLoc", Convert.ToInt32(i[5]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc", Convert.ToBoolean(i[6]));
+
+                //config.getProfile(bubble.profileInUse).filenamePrefixPubLoc = i[1].ToString();
+                //config.getProfile(bubble.profileInUse).cycleStampCheckedPubLoc = Convert.ToInt32(i[2]);
+                //config.getProfile(bubble.profileInUse).startCyclePubLoc = Convert.ToInt32(i[3]);
+                //config.getProfile(bubble.profileInUse).endCyclePubLoc = Convert.ToInt32(i[4]);
+                //config.getProfile(bubble.profileInUse).currentCyclePubLoc = Convert.ToInt32(i[5]);
+                //config.getProfile(bubble.profileInUse).stampAppendPubLoc = Convert.ToBoolean(i[6]);
+
+            }
+
+            if (i[0].ToString() == "Alert")
+            {
+
+                config.getProfile(bubble.profileInUse).filenamePrefix = i[1].ToString();
+                config.getProfile(bubble.profileInUse).cycleStampChecked = Convert.ToInt32(i[2]);
+                config.getProfile(bubble.profileInUse).startCycle = Convert.ToInt32(i[3]);
+                config.getProfile(bubble.profileInUse).endCycle = Convert.ToInt32(i[4]);
+                config.getProfile(bubble.profileInUse).currentCycle = Convert.ToInt32(i[5]);
+
+                lblImgPref.Text = "Image Prefix: " + i[1].ToString() + "   e.g " + i[1].ToString() + "1" + bubble.ImgSuffix;
+
+            }
+
+        }
+
 
         private void button36_Click(object sender, EventArgs e)
         {
 
             ArrayList i = new ArrayList();
+            
+            int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
 
             i.Add("Publish Local");
             i.Add(config.getProfile(bubble.profileInUse).toolTips);
-            i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubLoc);
-            i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubLoc);
-            i.Add(config.getProfile(bubble.profileInUse).startCyclePubLoc);
-            i.Add(config.getProfile(bubble.profileInUse).endCyclePubLoc);
-            i.Add(config.getProfile(bubble.profileInUse).currentCyclePubLoc);
-            i.Add(config.getProfile(bubble.profileInUse).stampAppendPubLoc);
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "filenamePrefixPubLoc"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "cycleStampCheckedPubLoc"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "startCyclePubLoc"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubLoc"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubLoc"));
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc"));
             i.Add(true);
+            
+
+            //i.Add("Publish Local");
+            //i.Add(config.getProfile(bubble.profileInUse).toolTips);
+            //i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubLoc);
+            //i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubLoc);
+            //i.Add(config.getProfile(bubble.profileInUse).startCyclePubLoc);
+            //i.Add(config.getProfile(bubble.profileInUse).endCyclePubLoc);
+            //i.Add(config.getProfile(bubble.profileInUse).currentCyclePubLoc);
+            //i.Add(config.getProfile(bubble.profileInUse).stampAppendPubLoc);
+            //i.Add(true);
 
 
             fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
             fileprefix.StartPosition = FormStartPosition.CenterScreen;
             fileprefix.ShowDialog();
-
         }
 
 
@@ -5040,47 +5180,7 @@ namespace TeboCam
 
 
 
-        private void filePrefixSet(ArrayList i)
-        {
 
-            if (i[0].ToString() == "Publish Web")
-            {
-
-                config.getProfile(bubble.profileInUse).filenamePrefixPubWeb = i[1].ToString();
-                config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb = Convert.ToInt32(i[2]);
-                config.getProfile(bubble.profileInUse).startCyclePubWeb = Convert.ToInt32(i[3]);
-                config.getProfile(bubble.profileInUse).endCyclePubWeb = Convert.ToInt32(i[4]);
-                config.getProfile(bubble.profileInUse).currentCyclePubWeb = Convert.ToInt32(i[5]);
-                config.getProfile(bubble.profileInUse).stampAppendPubWeb = Convert.ToBoolean(i[6]);
-
-            }
-
-            if (i[0].ToString() == "Publish Local")
-            {
-
-                config.getProfile(bubble.profileInUse).filenamePrefixPubLoc = i[1].ToString();
-                config.getProfile(bubble.profileInUse).cycleStampCheckedPubLoc = Convert.ToInt32(i[2]);
-                config.getProfile(bubble.profileInUse).startCyclePubLoc = Convert.ToInt32(i[3]);
-                config.getProfile(bubble.profileInUse).endCyclePubLoc = Convert.ToInt32(i[4]);
-                config.getProfile(bubble.profileInUse).currentCyclePubLoc = Convert.ToInt32(i[5]);
-                config.getProfile(bubble.profileInUse).stampAppendPubLoc = Convert.ToBoolean(i[6]);
-
-            }
-
-            if (i[0].ToString() == "Alert")
-            {
-
-                config.getProfile(bubble.profileInUse).filenamePrefix = i[1].ToString();
-                config.getProfile(bubble.profileInUse).cycleStampChecked = Convert.ToInt32(i[2]);
-                config.getProfile(bubble.profileInUse).startCycle = Convert.ToInt32(i[3]);
-                config.getProfile(bubble.profileInUse).endCycle = Convert.ToInt32(i[4]);
-                config.getProfile(bubble.profileInUse).currentCycle = Convert.ToInt32(i[5]);
-
-                lblImgPref.Text = "Image Prefix: " + i[1].ToString() + "   e.g " + i[1].ToString() + "1" + bubble.ImgSuffix;
-
-            }
-
-        }
 
         private void button37_Click(object sender, EventArgs e)
         {
