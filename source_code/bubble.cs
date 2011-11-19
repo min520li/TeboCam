@@ -1439,8 +1439,6 @@ namespace TeboCam
         public static string ver = sensitiveInfo.ver;
         public const string versionDt = sensitiveInfo.versionDt;
         public static string version = Double.Parse(ver, new System.Globalization.CultureInfo("en-GB")).ToString();
-        public const string updateUrl = sensitiveInfo.updateUrl;
-        public const string updateUrlDev = sensitiveInfo.updateUrlDev;
         public const string tebowebUrl = sensitiveInfo.tebowebUrl;
         public const string product = sensitiveInfo.product;
         public const string thisProcess = product + ".exe";

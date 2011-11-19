@@ -4681,7 +4681,7 @@ namespace TeboCam
 
                     if (buttonCam)
                     {
-
+                                                
                         if (CameraRig.rig[CameraRig.idxFromButton(pubNum)].cam.publishActive)
                         {
                             ctrl.BackColor = Color.LawnGreen;
@@ -5064,35 +5064,39 @@ namespace TeboCam
         private void bttnSetPrefixPublish_Click(object sender, EventArgs e)
         {
 
-            ArrayList i = new ArrayList();
+            if (CameraRig.rig.Count > 0)
+            {
 
-            int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                ArrayList i = new ArrayList();
 
-            i.Add("Publish Web");
-            i.Add(config.getProfile(bubble.profileInUse).toolTips);
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "filenamePrefixPubWeb"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "cycleStampCheckedPubWeb"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "startCyclePubWeb"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubWeb"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubWeb"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubWeb"));
-            i.Add(true);
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
 
-            //i.Add("Publish Web");
-            //i.Add(config.getProfile(bubble.profileInUse).toolTips);
-            //i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubWeb);
-            //i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb);
-            //i.Add(config.getProfile(bubble.profileInUse).startCyclePubWeb);
-            //i.Add(config.getProfile(bubble.profileInUse).endCyclePubWeb);
-            //i.Add(config.getProfile(bubble.profileInUse).currentCyclePubWeb);
-            //i.Add(config.getProfile(bubble.profileInUse).stampAppendPubWeb);
-            //i.Add(true);
+                i.Add("Publish Web");
+                i.Add(config.getProfile(bubble.profileInUse).toolTips);
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "filenamePrefixPubWeb"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "cycleStampCheckedPubWeb"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "startCyclePubWeb"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubWeb"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubWeb"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubWeb"));
+                i.Add(true);
+
+                //i.Add("Publish Web");
+                //i.Add(config.getProfile(bubble.profileInUse).toolTips);
+                //i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubWeb);
+                //i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb);
+                //i.Add(config.getProfile(bubble.profileInUse).startCyclePubWeb);
+                //i.Add(config.getProfile(bubble.profileInUse).endCyclePubWeb);
+                //i.Add(config.getProfile(bubble.profileInUse).currentCyclePubWeb);
+                //i.Add(config.getProfile(bubble.profileInUse).stampAppendPubWeb);
+                //i.Add(true);
 
 
-            fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
-            fileprefix.StartPosition = FormStartPosition.CenterScreen;
-            fileprefix.ShowDialog();
+                fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
+                fileprefix.StartPosition = FormStartPosition.CenterScreen;
+                fileprefix.ShowDialog();
 
+            }
 
         }
 
@@ -5162,35 +5166,41 @@ namespace TeboCam
         private void button36_Click(object sender, EventArgs e)
         {
 
-            ArrayList i = new ArrayList();
+            if (CameraRig.rig.Count > 0)
+            {
 
-            int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                ArrayList i = new ArrayList();
 
-            i.Add("Publish Local");
-            i.Add(config.getProfile(bubble.profileInUse).toolTips);
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "filenamePrefixPubLoc"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "cycleStampCheckedPubLoc"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "startCyclePubLoc"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubLoc"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubLoc"));
-            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc"));
-            i.Add(true);
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
 
-
-            //i.Add("Publish Local");
-            //i.Add(config.getProfile(bubble.profileInUse).toolTips);
-            //i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubLoc);
-            //i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubLoc);
-            //i.Add(config.getProfile(bubble.profileInUse).startCyclePubLoc);
-            //i.Add(config.getProfile(bubble.profileInUse).endCyclePubLoc);
-            //i.Add(config.getProfile(bubble.profileInUse).currentCyclePubLoc);
-            //i.Add(config.getProfile(bubble.profileInUse).stampAppendPubLoc);
-            //i.Add(true);
+                i.Add("Publish Local");
+                i.Add(config.getProfile(bubble.profileInUse).toolTips);
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "filenamePrefixPubLoc"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "cycleStampCheckedPubLoc"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "startCyclePubLoc"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubLoc"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubLoc"));
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc"));
+                i.Add(true);
 
 
-            fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
-            fileprefix.StartPosition = FormStartPosition.CenterScreen;
-            fileprefix.ShowDialog();
+                //i.Add("Publish Local");
+                //i.Add(config.getProfile(bubble.profileInUse).toolTips);
+                //i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubLoc);
+                //i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubLoc);
+                //i.Add(config.getProfile(bubble.profileInUse).startCyclePubLoc);
+                //i.Add(config.getProfile(bubble.profileInUse).endCyclePubLoc);
+                //i.Add(config.getProfile(bubble.profileInUse).currentCyclePubLoc);
+                //i.Add(config.getProfile(bubble.profileInUse).stampAppendPubLoc);
+                //i.Add(true);
+
+
+                fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
+                fileprefix.StartPosition = FormStartPosition.CenterScreen;
+                fileprefix.ShowDialog();
+
+            }
+
         }
 
 
