@@ -2607,9 +2607,11 @@ namespace TeboCam
 
                     bool pubToWeb = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishWeb").ToString());
                     bool pubToLocal = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishLocal").ToString());
+                    bool pubThisOne = true;
+                    //bool pubThisOne = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubImage").ToString());
 
                     //publish from this camera
-                    if (pubToWeb || pubToLocal)
+                    if (pubThisOne && (pubToWeb || pubToLocal))
                     {
 
                         int timeMultiplier = 0;
@@ -2623,8 +2625,8 @@ namespace TeboCam
 
                         if (
                             Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishFirst").ToString())
-                            || (time.secondsSinceStart() - Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "lastPublished").ToString())) >=
-                            Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString())
+                            || (time.secondsSinceStart() - Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "lastPublished").ToString())) >= PubInterval
+                            //Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString())
                             )
                         {
 
@@ -2651,7 +2653,7 @@ namespace TeboCam
                                     string pubFile = "";
 
 
-                                    if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishLocal").ToString()))
+                                    if (pubToLocal)
                                     {
 
                                         teboDebug.writeline(teboDebug.publishImageVal + 4);
@@ -2677,7 +2679,7 @@ namespace TeboCam
 
                                     }
 
-                                    if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishWeb").ToString()))
+                                    if (pubToWeb)
                                     {
                                         teboDebug.writeline(teboDebug.publishImageVal + 6);
 

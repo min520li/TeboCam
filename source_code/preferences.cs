@@ -2897,7 +2897,7 @@ namespace TeboCam
             SSL.Checked = (bool)data.EnableSsl;
             updateNotify.Checked = data.updatesNotify;
 
-            //pubImage.Checked = data.pubImage;
+            pubImage.Checked = data.pubImage;
             if (decimal.Parse(data.profileVersion) < 2.6m)//m forces number to be interpreted as decimal
             {
                 data.publishWeb = data.pubImage;
@@ -3213,11 +3213,13 @@ namespace TeboCam
         private void pubImage_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (CameraRig.rig.Count > 0)
-            {
-                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage", pubImage.Checked);
-            }
+            //20111118 no-opped to be re-introduced at a later date
+            //if (CameraRig.rig.Count > 0)
+            //{
+            //    int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+            //    CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage", pubImage.Checked);
+            //}
+            //20111118 no-opped to be re-introduced at a later date
 
             config.getProfile(bubble.profileInUse).pubImage = pubImage.Checked;
 
@@ -3238,49 +3240,77 @@ namespace TeboCam
         {
 
             pubTime.Text = bubble.verifyInt(pubTime.Text.ToString(), 1, 99999, "1");
-            config.getProfile(bubble.profileInUse).pubTime = Convert.ToInt32(pubTime.Text);
+            //config.getProfile(bubble.profileInUse).pubTime = Convert.ToInt32(pubTime.Text);
 
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubTime", Convert.ToInt32(pubTime.Text));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishFirst", true);
             }
 
 
         }
 
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        private void pubHours_CheckedChanged(object sender, EventArgs e)
         {
-            config.getProfile(bubble.profileInUse).pubHours = pubHours.Checked;
+            //config.getProfile(bubble.profileInUse).pubHours = pubHours.Checked;
 
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubHours", pubHours.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishFirst", true);
             }
 
         }
 
         private void pubMins_CheckedChanged(object sender, EventArgs e)
         {
-            config.getProfile(bubble.profileInUse).pubMins = pubMins.Checked;
+            //config.getProfile(bubble.profileInUse).pubMins = pubMins.Checked;
 
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubMins", pubMins.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishFirst", true);
             }
 
         }
 
         private void pubSecs_CheckedChanged(object sender, EventArgs e)
         {
-            config.getProfile(bubble.profileInUse).pubSecs = pubSecs.Checked;
+            //config.getProfile(bubble.profileInUse).pubSecs = pubSecs.Checked;
 
             if (CameraRig.rig.Count > 0)
             {
                 int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs", pubSecs.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishFirst", true);
+            }
+
+        }
+
+        private void pubLocal_CheckedChanged(object sender, EventArgs e)
+        {
+            config.getProfile(bubble.profileInUse).publishLocal = pubToLocal.Checked;
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishLocal", pubToLocal.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishFirst", true);
+            }
+        }
+
+        private void pubWeb_CheckedChanged(object sender, EventArgs e)
+        {
+            config.getProfile(bubble.profileInUse).publishWeb = pubToWeb.Checked;
+
+            if (CameraRig.rig.Count > 0)
+            {
+                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishWeb", pubToWeb.Checked);
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishFirst", true);
             }
 
         }
@@ -4301,28 +4331,6 @@ namespace TeboCam
 
         }
 
-        private void pubLocal_CheckedChanged(object sender, EventArgs e)
-        {
-            config.getProfile(bubble.profileInUse).publishLocal = pubToLocal.Checked;
-            if (CameraRig.rig.Count > 0)
-            {
-                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishLocal", pubToLocal.Checked);
-            }
-        }
-
-        private void pubWeb_CheckedChanged(object sender, EventArgs e)
-        {
-            config.getProfile(bubble.profileInUse).publishWeb = pubToWeb.Checked;
-
-            if (CameraRig.rig.Count > 0)
-            {
-                int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishWeb", pubToWeb.Checked);
-            }
-
-        }
-
 
         private void cameraWindow_DoubleClick(object sender, EventArgs e)
         {
@@ -4518,14 +4526,23 @@ namespace TeboCam
 
             int pubButton = CameraRig.idxFromButton(button);
 
-            pubImage.Checked = Convert.ToBoolean( CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage").ToString());
+            //20111118 no-opped to be re-introduced at a later date
+            //pubImage.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage");
+            //20111118 no-opped to be re-introduced at a later date
+
             pubTime.Text = CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubTime").ToString();
-            pubHours.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubHours").ToString());
-            pubMins.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubMins").ToString());
-            pubSecs.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs").ToString());
-            pubToWeb.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishWeb").ToString());
-            pubToLocal.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishLocal").ToString());
-            pubTimerOn.Checked = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "timerOn").ToString());
+            pubHours.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubHours");
+            pubMins.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubMins");
+            pubSecs.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubSecs");
+            pubToWeb.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishWeb");
+            pubToLocal.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishLocal");
+            pubTimerOn.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "timerOn");
+
+            //pubImage.Invalidate();
+            //pubTime
+            //pubHours
+            //pubMins
+
 
         }
 
@@ -4536,8 +4553,6 @@ namespace TeboCam
             {
 
                 int cam = CameraRig.idxFromButton(button);
-
-                publishRefresh(button);
 
                 //unpublish other cameras
                 camButtons.publishClearExcept(button);
@@ -4572,6 +4587,8 @@ namespace TeboCam
 
 
                 camButtonSetColours();
+
+                publishRefresh(button);
 
             }
 
@@ -5085,6 +5102,8 @@ namespace TeboCam
         {
 
             int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
+
+            CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishFirst", true);
 
             if (i[0].ToString() == "Publish Web")
             {

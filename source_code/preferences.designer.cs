@@ -3614,7 +3614,7 @@ namespace TeboCam
             this.pubHours.TabIndex = 54;
             this.pubHours.Text = "Hours";
             this.pubHours.UseVisualStyleBackColor = true;
-            this.pubHours.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
+            this.pubHours.CheckedChanged += new System.EventHandler(this.pubHours_CheckedChanged);
             // 
             // pubFtpRoot
             // 

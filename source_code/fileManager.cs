@@ -1,5 +1,4 @@
 
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -593,10 +592,10 @@ namespace TeboCam
 
 
 
-                                if (configData.LocalName.Equals("pubImage"))
-                                {
-                                    CameraRig.addInfo("pubImage", Convert.ToBoolean(configData.ReadString()));
-                                }
+                                //if (configData.LocalName.Equals("pubImage"))
+                                //{
+                                //    CameraRig.addInfo("pubImage", Convert.ToBoolean(configData.ReadString()));
+                                //}
                                 if (configData.LocalName.Equals("pubTime"))
                                 {
                                     CameraRig.addInfo("pubTime", Convert.ToInt32(configData.ReadString()));
@@ -726,10 +725,10 @@ namespace TeboCam
                                 }
 
 
-                                if (configData.LocalName.Equals("pubImage"))
-                                {
-                                    pre262.pubImage = Convert.ToBoolean(configData.ReadString());
-                                }
+                                //if (configData.LocalName.Equals("pubImage"))
+                                //{
+                                //    pre262.pubImage = Convert.ToBoolean(configData.ReadString());
+                                //}
                                 if (configData.LocalName.Equals("pubTime"))
                                 {
                                     pre262.pubTime = Convert.ToInt32(configData.ReadString());
@@ -1024,11 +1023,11 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").ftpRoot = configData.ReadString();
                             }
-                            
-                            //if (configData.LocalName.Equals("pubImage"))
-                            //{
-                            //    config.getProfile("##newProf##").pubImage = Convert.ToBoolean(configData.ReadString());
-                            //}
+
+                            if (configData.LocalName.Equals("pubImage"))
+                            {
+                                config.getProfile("##newProf##").pubImage = Convert.ToBoolean(configData.ReadString());
+                            }
 
                             //if (configData.LocalName.Equals("pubHours"))
                             //{
@@ -2050,9 +2049,9 @@ namespace TeboCam
                         configData.WriteString(config.getProfile().ftpRoot);
                         configData.WriteEndElement();
 
-                        //configData.WriteStartElement("", "pubImage", "");
-                        //configData.WriteString(config.getProfile().pubImage.ToString());
-                        //configData.WriteEndElement();
+                        configData.WriteStartElement("", "pubImage", "");
+                        configData.WriteString(config.getProfile().pubImage.ToString());
+                        configData.WriteEndElement();
 
                         //configData.WriteStartElement("", "pubHours", "");
                         //configData.WriteString(config.getProfile().pubHours.ToString());
@@ -2078,9 +2077,9 @@ namespace TeboCam
                         configData.WriteString(config.getProfile().pubFtpRoot);
                         configData.WriteEndElement();
 
-                        configData.WriteStartElement("", "pubTime", "");
-                        configData.WriteString(config.getProfile().pubTime.ToString());
-                        configData.WriteEndElement();
+                        //configData.WriteStartElement("", "pubTime", "");
+                        //configData.WriteString(config.getProfile().pubTime.ToString());
+                        //configData.WriteEndElement();
 
                         //configData.WriteStartElement("", "pubStamp", "");
                         //configData.WriteString(config.getProfile().pubStamp.ToString());

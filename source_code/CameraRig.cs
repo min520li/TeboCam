@@ -64,7 +64,7 @@ namespace TeboCam
 
 
         //for monitoring publishing - does not need to be saved to xml file
-        public bool publishFirst = false;
+        public bool publishFirst = true;
         public int lastPublished = 0;
         //for monitoring publishing - does not need to be saved to xml file        
 
