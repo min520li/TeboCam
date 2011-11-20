@@ -1213,6 +1213,10 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").alertTimeStampFormat = configData.ReadString();
                             }
+                            if (configData.LocalName.Equals("alertStatsStamp"))
+                            {
+                                config.getProfile("##newProf##").alertStatsStamp = Convert.ToBoolean(configData.ReadString());
+                            }
                             if (configData.LocalName.Equals("alertTimeStampColour"))
                             {
                                 config.getProfile("##newProf##").alertTimeStampColour = configData.ReadString();
@@ -1232,6 +1236,10 @@ namespace TeboCam
                             if (configData.LocalName.Equals("publishTimeStampFormat"))
                             {
                                 config.getProfile("##newProf##").publishTimeStampFormat = configData.ReadString();
+                            }
+                            if (configData.LocalName.Equals("publishStatsStamp"))
+                            {
+                                config.getProfile("##newProf##").publishStatsStamp = Convert.ToBoolean(configData.ReadString());
                             }
                             if (configData.LocalName.Equals("publishTimeStampColour"))
                             {
@@ -1253,6 +1261,10 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").pingTimeStampFormat = configData.ReadString();
                             }
+                            if (configData.LocalName.Equals("pingStatsStamp"))
+                            {
+                                config.getProfile("##newProf##").pingStatsStamp = Convert.ToBoolean(configData.ReadString());
+                            }
                             if (configData.LocalName.Equals("pingTimeStampColour"))
                             {
                                 config.getProfile("##newProf##").pingTimeStampColour = configData.ReadString();
@@ -1273,7 +1285,11 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").onlineTimeStampFormat = configData.ReadString();
                             }
-                            if (configData.LocalName.Equals("onlineTimeStampColour"))
+                            if (configData.LocalName.Equals("onlineStatsStamp"))
+                            {
+                                config.getProfile("##newProf##").onlineStatsStamp = Convert.ToBoolean(configData.ReadString());
+                            }
+                           if (configData.LocalName.Equals("onlineTimeStampColour"))
                             {
                                 config.getProfile("##newProf##").onlineTimeStampColour = configData.ReadString();
                             }
@@ -2229,6 +2245,10 @@ namespace TeboCam
                         configData.WriteString(config.getProfile().alertTimeStampFormat);
                         configData.WriteEndElement();
 
+                        configData.WriteStartElement("", "alertStatsStamp", "");
+                        configData.WriteString(config.getProfile().alertStatsStamp.ToString());
+                        configData.WriteEndElement();
+
                         configData.WriteStartElement("", "alertTimeStampColour", "");
                         configData.WriteString(config.getProfile().alertTimeStampColour);
                         configData.WriteEndElement();
@@ -2247,6 +2267,10 @@ namespace TeboCam
 
                         configData.WriteStartElement("", "publishTimeStampFormat", "");
                         configData.WriteString(config.getProfile().publishTimeStampFormat);
+                        configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "publishStatsStamp", "");
+                        configData.WriteString(config.getProfile().publishStatsStamp.ToString());
                         configData.WriteEndElement();
 
                         configData.WriteStartElement("", "publishTimeStampColour", "");
@@ -2269,6 +2293,10 @@ namespace TeboCam
                         configData.WriteString(config.getProfile().pingTimeStampFormat);
                         configData.WriteEndElement();
 
+                        configData.WriteStartElement("", "pingStatsStamp", "");
+                        configData.WriteString(config.getProfile().pingStatsStamp.ToString());
+                        configData.WriteEndElement();
+
                         configData.WriteStartElement("", "pingTimeStampColour", "");
                         configData.WriteString(config.getProfile().pingTimeStampColour);
                         configData.WriteEndElement();
@@ -2287,6 +2315,10 @@ namespace TeboCam
 
                         configData.WriteStartElement("", "onlineTimeStampFormat", "");
                         configData.WriteString(config.getProfile().onlineTimeStampFormat);
+                        configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "onlineStatsStamp", "");
+                        configData.WriteString(config.getProfile().onlineStatsStamp.ToString());
                         configData.WriteEndElement();
 
                         configData.WriteStartElement("", "onlineTimeStampColour", "");

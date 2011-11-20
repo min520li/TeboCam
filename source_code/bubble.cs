@@ -1358,21 +1358,25 @@ namespace TeboCam
         public bool alertTimeStamp;
         public int onlineCompression;
         public string alertTimeStampFormat;
+        public bool alertStatsStamp;
         public string alertTimeStampColour;
         public string alertTimeStampPosition;
         public bool alertTimeStampRect;
         public bool publishTimeStamp;
         public string publishTimeStampFormat;
+        public bool publishStatsStamp;
         public string publishTimeStampColour;
         public string publishTimeStampPosition;
         public bool publishTimeStampRect;
         public bool pingTimeStamp;
         public string pingTimeStampFormat;
+        public bool pingStatsStamp;
         public string pingTimeStampColour;
         public string pingTimeStampPosition;
         public bool pingTimeStampRect;
         public bool onlineTimeStamp;
         public string onlineTimeStampFormat;
+        public bool onlineStatsStamp;
         public string onlineTimeStampColour;
         public string onlineTimeStampPosition;
         public bool onlineTimeStampRect;
@@ -1509,21 +1513,25 @@ namespace TeboCam
             onlineCompression = 100;
             alertTimeStamp = false;
             alertTimeStampFormat = "ddmmyy";
+            alertStatsStamp = false;
             alertTimeStampColour = "red";
             alertTimeStampPosition = "tl";
             alertTimeStampRect = false;
             publishTimeStamp = false;
             publishTimeStampFormat = "ddmmyy";
+            publishStatsStamp = false;
             publishTimeStampColour = "red";
             publishTimeStampPosition = "tl";
             publishTimeStampRect = false;
             pingTimeStamp = false;
             pingTimeStampFormat = "ddmmyy";
+            pingStatsStamp = false;
             pingTimeStampColour = "red";
             pingTimeStampPosition = "tl";
             pingTimeStampRect = false;
             onlineTimeStamp = false;
             onlineTimeStampFormat = "ddmmyy";
+            onlineStatsStamp = false;
             onlineTimeStampColour = "red";
             onlineTimeStampPosition = "tl";
             onlineTimeStampRect = false;
@@ -2741,10 +2749,13 @@ namespace TeboCam
 
                         int timeMultiplier = 0;
                         int PubInterval = 0;
+                        bool secs = (bool)CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubSecs");
+                        bool mins = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubMins").ToString());
+                        bool hrs = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubHours").ToString());
 
-                        if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubSecs").ToString())) timeMultiplier = 1;
-                        if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubMins").ToString())) timeMultiplier = 60;
-                        if (Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubHours").ToString())) timeMultiplier = 3600;
+                        if (secs) timeMultiplier = 1;
+                        if (mins) timeMultiplier = 60;
+                        if (hrs) timeMultiplier = 3600;
 
                         PubInterval = timeMultiplier * Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString());
 
@@ -2764,11 +2775,33 @@ namespace TeboCam
                             res = statistics.statsForCam(item.cam.cam, bubble.profileInUse);
 
                             List<string> lst = new List<string>();
-                            lst.Add(res.avgMvStart.ToString());
-                            lst.Add(res.avgMvLast.ToString());
-                            lst.Add(res.mvNow.ToString());
-                            lst.Add(item.cam.alarmActive ? "On" : "Off");
-                            lst.Add(PubInterval.ToString() + " Secs");
+
+                            if (config.getProfile(bubble.profileInUse).publishStatsStamp)
+                            {
+
+                                lst.Add(res.avgMvStart.ToString());
+                                lst.Add(res.avgMvLast.ToString());
+                                lst.Add(res.mvNow.ToString());
+                                lst.Add(item.cam.alarmActive ? "On" : "Off");
+
+                                switch (timeMultiplier)
+                                {
+                                    case 1:
+                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString() + " Secs");
+                                        break;
+                                    case 60:
+                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString() + " Mins");
+                                        break;
+                                    case 3600:
+                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString() + " Hours");
+                                        break;
+                                    default:
+                                        lst.Add(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString() + " Secs");
+                                        break;
+                                }
+
+
+                            }
 
                             ImagePubArgs a = new ImagePubArgs();
 
@@ -3478,7 +3511,7 @@ namespace TeboCam
 
                 graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y));
 
-                if (type == "Publish")
+                if (type == "Publish" && imageTxt.stats.Count > 0)
                 {
 
 
@@ -3490,12 +3523,12 @@ namespace TeboCam
 
                     }
 
-                    //remove that last comma
+                    //remove that last comma and space
                     formatStr = formatStr.Remove(formatStr.Length - 2);
-                    
+
                     Graphics graphicsObjStats;
                     graphicsObjStats = Graphics.FromImage(imageIn);
-                    graphicsObjStats.FillRectangle(rectBrush, x, y + 21, textWidth+30, 20);
+                    graphicsObjStats.FillRectangle(rectBrush, x, y + 21, textWidth + 30, 20);
                     graphicsObjStats.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y + 21));
 
                 }

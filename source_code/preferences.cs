@@ -4172,6 +4172,7 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).onlineTimeStampColour = i[3].ToString();
                 config.getProfile(bubble.profileInUse).onlineTimeStampPosition = i[4].ToString();
                 config.getProfile(bubble.profileInUse).onlineTimeStampRect = Convert.ToBoolean(i[5]);
+                config.getProfile(bubble.profileInUse).onlineStatsStamp = Convert.ToBoolean(i[6]);
             }
 
             if (i[0].ToString() == "Publish")
@@ -4181,6 +4182,7 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).publishTimeStampColour = i[3].ToString();
                 config.getProfile(bubble.profileInUse).publishTimeStampPosition = i[4].ToString();
                 config.getProfile(bubble.profileInUse).publishTimeStampRect = Convert.ToBoolean(i[5]);
+                config.getProfile(bubble.profileInUse).publishStatsStamp = Convert.ToBoolean(i[6]);
             }
 
             if (i[0].ToString() == "Ping")
@@ -4190,6 +4192,7 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).pingTimeStampColour = i[3].ToString();
                 config.getProfile(bubble.profileInUse).pingTimeStampPosition = i[4].ToString();
                 config.getProfile(bubble.profileInUse).pingTimeStampRect = Convert.ToBoolean(i[5]);
+                config.getProfile(bubble.profileInUse).pingStatsStamp = Convert.ToBoolean(i[6]);
             }
 
             if (i[0].ToString() == "Alert")
@@ -4199,6 +4202,7 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).alertTimeStampColour = i[3].ToString();
                 config.getProfile(bubble.profileInUse).alertTimeStampPosition = i[4].ToString();
                 config.getProfile(bubble.profileInUse).alertTimeStampRect = Convert.ToBoolean(i[5]);
+                config.getProfile(bubble.profileInUse).alertStatsStamp = Convert.ToBoolean(i[6]);
             }
 
             //System.Diagnostics.Debug.WriteLine(i[0]);
@@ -4293,6 +4297,8 @@ namespace TeboCam
                 i.Add(config.getProfile(bubble.profileInUse).alertTimeStampColour);
                 i.Add(config.getProfile(bubble.profileInUse).alertTimeStampPosition);
                 i.Add(config.getProfile(bubble.profileInUse).alertTimeStampRect);
+                i.Add(false);
+                i.Add(config.getProfile(bubble.profileInUse).alertStatsStamp);
             }
             if (rdPingts.Checked)
             {
@@ -4302,6 +4308,8 @@ namespace TeboCam
                 i.Add(config.getProfile(bubble.profileInUse).pingTimeStampColour);
                 i.Add(config.getProfile(bubble.profileInUse).pingTimeStampPosition);
                 i.Add(config.getProfile(bubble.profileInUse).pingTimeStampRect);
+                i.Add(false);
+                i.Add(config.getProfile(bubble.profileInUse).pingStatsStamp);
             }
             if (rdPublishts.Checked)
             {
@@ -4311,6 +4319,8 @@ namespace TeboCam
                 i.Add(config.getProfile(bubble.profileInUse).publishTimeStampColour);
                 i.Add(config.getProfile(bubble.profileInUse).publishTimeStampPosition);
                 i.Add(config.getProfile(bubble.profileInUse).publishTimeStampRect);
+                i.Add(true);
+                i.Add(config.getProfile(bubble.profileInUse).publishStatsStamp);
             }
             if (rdOnlinets.Checked)
             {
@@ -4320,9 +4330,9 @@ namespace TeboCam
                 i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampColour);
                 i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampPosition);
                 i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampRect);
+                i.Add(false);
+                i.Add(config.getProfile(bubble.profileInUse).onlineStatsStamp);
             }
-
-            i.Add(true);
 
             i.Add(config.getProfile(bubble.profileInUse).toolTips);
             timestamp timestamp = new timestamp(new formDelegate(timeStampMth), i);
@@ -4681,7 +4691,7 @@ namespace TeboCam
 
                     if (buttonCam)
                     {
-                                                
+
                         if (CameraRig.rig[CameraRig.idxFromButton(pubNum)].cam.publishActive)
                         {
                             ctrl.BackColor = Color.LawnGreen;

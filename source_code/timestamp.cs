@@ -20,6 +20,9 @@ namespace TeboCam
         private string inPosition;
         private bool txtRect;
         private bool toolTip;
+        private bool showStats;
+        private bool includeStats;
+
 
         public timestamp(formDelegate sender, ArrayList from)
         {
@@ -30,7 +33,9 @@ namespace TeboCam
             inColour = from[3].ToString();
             inPosition = from[4].ToString();
             txtRect = Convert.ToBoolean(from[5]);
-            toolTip = Convert.ToBoolean(from[6]);
+            showStats = Convert.ToBoolean(from[6]);
+            includeStats = Convert.ToBoolean(from[7]);
+            toolTip = Convert.ToBoolean(from[8]);
             InitializeComponent();
         }
 
@@ -56,6 +61,8 @@ namespace TeboCam
             if (br.Checked) i.Add("br");
             //i[5]
             i.Add(drawRect.Checked);
+            //i[6]
+            i.Add(statsChk.Checked);
 
             timestampDelegate(i);
             Close();
@@ -68,6 +75,8 @@ namespace TeboCam
 
         private void timestamp_Load(object sender, EventArgs e)
         {
+
+            statsBox.Enabled = showStats;
 
             label1.Text = fromString + " image";
 
@@ -91,6 +100,15 @@ namespace TeboCam
             br.Checked = inPosition == "br";
 
             drawRect.Checked = txtRect;
+
+            if (showStats)
+            {
+                statsChk.Checked = includeStats;
+            }
+            else
+            {
+                statsChk.Checked = false;
+            }
 
             toolTip1.Active = toolTip;
 

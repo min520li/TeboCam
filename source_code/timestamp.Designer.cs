@@ -51,10 +51,13 @@ namespace TeboCam
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.drawRect = new System.Windows.Forms.CheckBox();
+            this.statsBox = new System.Windows.Forms.GroupBox();
+            this.statsChk = new System.Windows.Forms.CheckBox();
             this.groupBox16.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.statsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // label32
@@ -73,7 +76,7 @@ namespace TeboCam
             this.apply.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.apply.Location = new System.Drawing.Point(169, 191);
             this.apply.Name = "apply";
-            this.apply.Size = new System.Drawing.Size(111, 42);
+            this.apply.Size = new System.Drawing.Size(111, 96);
             this.apply.TabIndex = 64;
             this.apply.Text = "Apply";
             this.apply.UseVisualStyleBackColor = true;
@@ -84,7 +87,7 @@ namespace TeboCam
             this.cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancel.Location = new System.Drawing.Point(286, 191);
             this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(121, 42);
+            this.cancel.Size = new System.Drawing.Size(121, 96);
             this.cancel.TabIndex = 65;
             this.cancel.Text = "Cancel";
             this.cancel.UseVisualStyleBackColor = true;
@@ -291,11 +294,32 @@ namespace TeboCam
             this.drawRect.Text = "Draw Rectangle";
             this.drawRect.UseVisualStyleBackColor = true;
             // 
+            // statsBox
+            // 
+            this.statsBox.Controls.Add(this.statsChk);
+            this.statsBox.Location = new System.Drawing.Point(12, 239);
+            this.statsBox.Name = "statsBox";
+            this.statsBox.Size = new System.Drawing.Size(145, 48);
+            this.statsBox.TabIndex = 73;
+            this.statsBox.TabStop = false;
+            this.statsBox.Text = "Publish timestamp Stats";
+            // 
+            // statsChk
+            // 
+            this.statsChk.AutoSize = true;
+            this.statsChk.Location = new System.Drawing.Point(6, 19);
+            this.statsChk.Name = "statsChk";
+            this.statsChk.Size = new System.Drawing.Size(106, 17);
+            this.statsChk.TabIndex = 72;
+            this.statsChk.Text = "Include Statistics";
+            this.statsChk.UseVisualStyleBackColor = true;
+            // 
             // timestamp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 243);
+            this.ClientSize = new System.Drawing.Size(417, 298);
+            this.Controls.Add(this.statsBox);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.addStamp);
@@ -319,6 +343,8 @@ namespace TeboCam
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.statsBox.ResumeLayout(false);
+            this.statsBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,5 +373,7 @@ namespace TeboCam
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox drawRect;
+        private System.Windows.Forms.GroupBox statsBox;
+        private System.Windows.Forms.CheckBox statsChk;
     }
 }
