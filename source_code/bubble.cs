@@ -19,6 +19,121 @@ using System.Net;
 namespace TeboCam
 {
 
+    public class imageText
+    {
+
+        public Bitmap bitmap;
+        public string type;
+        public bool backingRectablgle;
+        public List<string> stats;
+
+    }
+
+
+    public class statistics
+    {
+
+        private class movement
+        {
+
+            public int cameraId;
+            public int motionLevel;
+            public int secondsSinceStart;
+            public string profile;
+            public bool statReturned;
+
+        }
+
+        public class movementResults
+        {
+
+            public int avgMvStart;
+            public int avgMvLast;
+            public int mvNow;
+
+        }
+
+        private static List<movement> statList = new List<movement>();
+
+        public static void add(int icameraId, int imotionLevel, int isecondsSinceStart, string iprofile)
+        {
+
+            movement mv = new movement();
+            mv.cameraId = icameraId;
+            mv.motionLevel = imotionLevel;
+            mv.secondsSinceStart = isecondsSinceStart;
+            mv.profile = iprofile;
+
+            statList.Add(mv);
+
+        }
+
+        public static void clear()
+        {
+
+            statList.Clear();
+        }
+
+        public static movementResults statsForCam(int icameraId, string iprofile)
+        {
+
+            int firstCount = new int();
+            int firstSum = new int();
+            int lastCount = new int();
+            int lastSum = new int();
+            int currMv = new int();
+
+            firstCount = 0;
+            firstSum = 0;
+            lastCount = 0;
+            lastSum = 0;
+            currMv = 0;
+
+            foreach (movement mv in statList)
+            {
+
+                if (mv.cameraId == icameraId && mv.profile == iprofile)
+                {
+
+                    if (mv.statReturned)
+                    {
+
+                        firstCount++;
+                        firstSum += mv.motionLevel;
+
+                    }
+                    else
+                    {
+
+                        firstCount++;
+                        firstSum += mv.motionLevel;
+                        lastCount++;
+                        lastSum += mv.motionLevel;
+
+                    }
+
+                    currMv = mv.motionLevel;
+                    mv.statReturned = true;
+
+                }
+
+            }
+
+            movementResults mvR = new movementResults();
+            mvR.avgMvLast = (int)Math.Floor((double)lastSum / (double)lastCount);
+            mvR.avgMvStart = (int)Math.Floor((double)firstSum / (double)firstCount);
+            mvR.mvNow = currMv;
+
+            return mvR;
+
+        }
+
+
+
+
+    }
+
+
 
     public static class imagesFromMovement
     {
@@ -908,6 +1023,7 @@ namespace TeboCam
     {
         public string _option;
         public int _cam;
+        public List<string> _lst;
 
         public string option
         {
@@ -933,6 +1049,17 @@ namespace TeboCam
             }
         }
 
+        public List<string> lst
+        {
+            get
+            {
+                return _lst;
+            }
+            set
+            {
+                _lst = value;
+            }
+        }
 
     }
 
@@ -2632,10 +2759,22 @@ namespace TeboCam
 
                             CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "publishFirst", false);
 
+
+                            statistics.movementResults res = new statistics.movementResults();
+                            res = statistics.statsForCam(item.cam.cam, bubble.profileInUse);
+
+                            List<string> lst = new List<string>();
+                            lst.Add(res.avgMvStart.ToString());
+                            lst.Add(res.avgMvLast.ToString());
+                            lst.Add(res.mvNow.ToString());
+                            lst.Add(item.cam.alarmActive ? "On" : "Off");
+                            lst.Add(PubInterval.ToString() + " Secs");
+
                             ImagePubArgs a = new ImagePubArgs();
 
                             a.option = "pub";
                             a.cam = item.cam.cam;
+                            a.lst = lst;
 
                             try { pubPicture(null, a); }
                             catch { }
@@ -3072,7 +3211,21 @@ namespace TeboCam
         }
 
 
-        public static void levelLine(object sender, MotionLevelArgs a, CamIdArgs b)
+        public static void motionEvent(object sender, MotionLevelArgs a, CamIdArgs b)
+        {
+            levelLine(a, b);
+            motionStats(a, b);
+        }
+
+        public static void motionStats(MotionLevelArgs a, CamIdArgs b)
+        {
+
+            statistics.add(b.cam, Convert.ToInt32((int)Math.Floor(a.lvl * 100)), time.secondsSinceStart(), bubble.profileInUse);
+
+        }
+
+
+        public static void levelLine(MotionLevelArgs a, CamIdArgs b)
         {
 
             if (b.cam == CameraRig.activeCam)
@@ -3189,9 +3342,175 @@ namespace TeboCam
 
         }
 
+        public static Bitmap timeStampImage(imageText imageTxt)
+        {
+
+            Bitmap imageIn = imageTxt.bitmap;
+            string type = imageTxt.type;
+            bool backingRectangle = imageTxt.backingRectablgle;
+
+            string position = "";
+            string format = "";
+            string colour = "";
+            string formatStr = "";
+            Brush textBrush = Brushes.Black;
+            Brush rectBrush = Brushes.Black;
+            int time = 70;
+            int date = 80;
+            int full = 150;
+            int textWidth = 0;
 
 
-        public static Bitmap timeStampImage(Bitmap imageIn, string type, bool backingRectangle)
+            try
+            {
+
+                if (type == "Alert")
+                {
+                    if (!config.getProfile(bubble.profileInUse).alertTimeStamp) return imageIn;
+                    position = config.getProfile(bubble.profileInUse).alertTimeStampPosition;
+                    format = config.getProfile(bubble.profileInUse).alertTimeStampFormat;
+                    colour = config.getProfile(bubble.profileInUse).alertTimeStampColour;
+                }
+
+                if (type == "Ping")
+                {
+                    if (!config.getProfile(bubble.profileInUse).pingTimeStamp) return imageIn;
+                    position = config.getProfile(bubble.profileInUse).pingTimeStampPosition;
+                    format = config.getProfile(bubble.profileInUse).pingTimeStampFormat;
+                    colour = config.getProfile(bubble.profileInUse).pingTimeStampColour;
+                }
+
+                if (type == "Publish")
+                {
+                    if (!config.getProfile(bubble.profileInUse).publishTimeStamp) return imageIn;
+                    position = config.getProfile(bubble.profileInUse).publishTimeStampPosition;
+                    format = config.getProfile(bubble.profileInUse).publishTimeStampFormat;
+                    colour = config.getProfile(bubble.profileInUse).publishTimeStampColour;
+                }
+
+                if (type == "Online")
+                {
+                    if (!config.getProfile(bubble.profileInUse).onlineTimeStamp) return imageIn;
+                    position = config.getProfile(bubble.profileInUse).onlineTimeStampPosition;
+                    format = config.getProfile(bubble.profileInUse).onlineTimeStampFormat;
+                    colour = config.getProfile(bubble.profileInUse).onlineTimeStampColour;
+                }
+
+                switch (format)
+                {
+                    case "hhmm":
+                        formatStr = DateTime.Now.ToString("HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                        textWidth = time;
+                        break;
+                    case "ddmmyy":
+                        formatStr = DateTime.Now.ToString("dd-MMM-yy", System.Globalization.CultureInfo.InvariantCulture);
+                        textWidth = date;
+                        break;
+                    case "ddmmyyhhmm":
+                        formatStr = DateTime.Now.ToString("dd-MMM-yy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                        textWidth = full;
+                        break;
+                    default:
+                        formatStr = DateTime.Now.ToString("dd-MMM-yy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                        textWidth = full;
+                        break;
+                }
+
+                switch (colour)
+                {
+                    case "red":
+                        textBrush = Brushes.Red;
+                        rectBrush = Brushes.White;
+                        break;
+                    case "black":
+                        textBrush = Brushes.Black;
+                        rectBrush = Brushes.White;
+                        break;
+                    case "white":
+                        textBrush = Brushes.White;
+                        rectBrush = Brushes.Black;
+                        break;
+                    default:
+                        textBrush = Brushes.Black;
+                        rectBrush = Brushes.White;
+                        break;
+                }
+
+
+                int width = imageIn.Width;
+                int height = imageIn.Height;
+                int x = 0;
+                int y = 0;
+
+                switch (position)
+                {
+                    case "tl":
+                        x = 5;
+                        y = 5;
+                        break;
+                    case "tr":
+                        x = width - textWidth;
+                        y = 5;
+                        break;
+                    case "bl":
+                        x = 5;
+                        y = height - 20;
+                        break;
+                    case "br":
+                        x = width - textWidth;
+                        y = height - 20;
+                        break;
+                    default:
+                        x = 5;
+                        y = 5;
+                        break;
+                }
+
+                Graphics graphicsObj;
+                graphicsObj = Graphics.FromImage(imageIn);
+
+                if (backingRectangle)
+                {
+
+                    graphicsObj.FillRectangle(rectBrush, x, y, textWidth, 20);
+
+                }
+
+                graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y));
+
+                if (type == "Publish")
+                {
+
+
+                    formatStr = "";
+                    foreach (string str in imageTxt.stats)
+                    {
+
+                        formatStr += str + ", ";
+
+                    }
+
+                    //remove that last comma
+                    formatStr = formatStr.Remove(formatStr.Length - 2);
+                    
+                    Graphics graphicsObjStats;
+                    graphicsObjStats = Graphics.FromImage(imageIn);
+                    graphicsObjStats.FillRectangle(rectBrush, x, y + 21, textWidth+30, 20);
+                    graphicsObjStats.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y + 21));
+
+                }
+
+
+                //graphicsObj.Dispose();
+
+                return imageIn;
+            }
+            catch
+            { return imageIn; }
+        }
+
+
+        public static Bitmap timeStampImageOLD(Bitmap imageIn, string type, bool backingRectangle)
         {
 
             string position = "";
@@ -3605,7 +3924,12 @@ namespace TeboCam
 
                     Bitmap saveBmp = null;
 
-                    saveBmp = timeStampImage((Bitmap)CameraRig.rig[e.cam].cam.pubFrame.Clone(), "Alert", config.getProfile(profileInUse).alertTimeStampRect);
+                    imageText stampArgs = new imageText();
+                    stampArgs.bitmap = (Bitmap)CameraRig.rig[e.cam].cam.pubFrame.Clone();
+                    stampArgs.type = "Alert";
+                    stampArgs.backingRectablgle = config.getProfile(profileInUse).alertTimeStampRect;
+
+                    saveBmp = timeStampImage(stampArgs);
 
                     ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
                     System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
@@ -3677,14 +4001,28 @@ namespace TeboCam
                 {
                     fName = config.getProfile(bubble.profileInUse).webImageFileName + ".jpg";
 
-                    imgBmp = bubble.timeStampImage((Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone(), "Online", config.getProfile(profileInUse).onlineTimeStampRect);
+                    imageText stampArgs = new imageText();
+                    stampArgs.bitmap = (Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone();
+                    stampArgs.type = "Online";
+                    stampArgs.backingRectablgle = config.getProfile(profileInUse).onlineTimeStampRect;
+
+                    //imgBmp = bubble.timeStampImage((Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone(), "Online", config.getProfile(profileInUse).onlineTimeStampRect);
+                    imgBmp = bubble.timeStampImage(stampArgs);
                     compression = config.getProfile(bubble.profileInUse).onlineCompression;
                 }
 
                 if (publish)
                 {
                     fName = "pubPicture.jpg";
-                    imgBmp = bubble.timeStampImage((Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone(), "Publish", config.getProfile(profileInUse).publishTimeStampRect);
+
+                    imageText stampArgs = new imageText();
+                    stampArgs.bitmap = (Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone();
+                    stampArgs.type = "Publish";
+                    stampArgs.backingRectablgle = config.getProfile(profileInUse).publishTimeStampRect;
+                    stampArgs.stats = e.lst;
+
+                    //imgBmp = bubble.timeStampImage((Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone(), "Publish", config.getProfile(profileInUse).publishTimeStampRect);
+                    imgBmp = bubble.timeStampImage(stampArgs);
                     compression = config.getProfile(bubble.profileInUse).publishCompression;
                 }
 
@@ -3766,6 +4104,7 @@ namespace TeboCam
 
 
 }
+
 
 
 

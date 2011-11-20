@@ -109,7 +109,7 @@ namespace TeboCam
 
             Camera camera = rig[cam].cam;
 
-            camera.motionLevelEvent -= new motionLevelEventHandler(bubble.levelLine);
+            camera.motionLevelEvent -= new motionLevelEventHandler(bubble.motionEvent);
             camera.SignalToStop();
             camera.WaitForStop();
 

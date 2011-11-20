@@ -1173,8 +1173,8 @@ namespace TeboCam
             // create camera
             Camera camera = new Camera(source, detector);
 
-            camera.motionLevelEvent -= new motionLevelEventHandler(bubble.levelLine);
-            camera.motionLevelEvent += new motionLevelEventHandler(bubble.levelLine);
+            camera.motionLevelEvent -= new motionLevelEventHandler(bubble.motionEvent);
+            camera.motionLevelEvent += new motionLevelEventHandler(bubble.motionEvent);
 
 
             // start camera

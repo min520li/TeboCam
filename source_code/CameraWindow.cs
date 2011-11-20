@@ -436,8 +436,15 @@ namespace TeboCam
             try
             {
 
+                imageText stampArgs = new imageText();
+                stampArgs.bitmap = (Bitmap)camera.pubFrame.Clone();
+                stampArgs.type = "Ping";
+                stampArgs.backingRectablgle = config.getProfile(bubble.profileInUse).pingTimeStampRect;
+
+
                 //saveBmp = bubble.timeStampImage((Bitmap)CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Clone(), "Ping");
-                saveBmp = bubble.timeStampImage((Bitmap)camera.pubFrame.Clone(), "Ping", config.getProfile(bubble.profileInUse).pingTimeStampRect);
+                //saveBmp = bubble.timeStampImage((Bitmap)camera.pubFrame.Clone(), "Ping", config.getProfile(bubble.profileInUse).pingTimeStampRect);
+                saveBmp = bubble.timeStampImage(stampArgs);
 
                 //specify jpeg compression
                 //ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);

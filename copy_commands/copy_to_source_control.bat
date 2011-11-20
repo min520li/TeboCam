@@ -54,7 +54,6 @@ copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\regex.cs" "F:\Visual Studio
 copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\schedule.cs" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\schedule.cs"
 copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\schedule.Designer.cs" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\schedule.Designer.cs"
 copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\schedule.resx" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\schedule.resx"
-copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\sensitiveInfo.cs" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\sensitiveInfo.cs"
 copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\TeboCam.csproj" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\TeboCam.csproj"
 copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\TeboCam.csproj.user" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\TeboCam.csproj.user"
 copy "F:\Visual Studio 2005\Projects\TeboCam\TeboCam\TeboCam.ico" "F:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\TeboCam.ico"
