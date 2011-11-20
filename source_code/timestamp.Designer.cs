@@ -79,6 +79,7 @@ namespace TeboCam
             this.apply.Size = new System.Drawing.Size(111, 96);
             this.apply.TabIndex = 64;
             this.apply.Text = "Apply";
+            this.toolTip1.SetToolTip(this.apply, "Apply the changes");
             this.apply.UseVisualStyleBackColor = true;
             this.apply.Click += new System.EventHandler(this.apply_Click);
             // 
@@ -90,6 +91,7 @@ namespace TeboCam
             this.cancel.Size = new System.Drawing.Size(121, 96);
             this.cancel.TabIndex = 65;
             this.cancel.Text = "Cancel";
+            this.toolTip1.SetToolTip(this.cancel, "Do not apply the changes");
             this.cancel.UseVisualStyleBackColor = true;
             this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
@@ -181,6 +183,7 @@ namespace TeboCam
             this.br.Name = "br";
             this.br.Size = new System.Drawing.Size(14, 13);
             this.br.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.br, "Text at lower right");
             this.br.UseVisualStyleBackColor = true;
             // 
             // bl
@@ -190,6 +193,7 @@ namespace TeboCam
             this.bl.Name = "bl";
             this.bl.Size = new System.Drawing.Size(14, 13);
             this.bl.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.bl, "Text at lower left");
             this.bl.UseVisualStyleBackColor = true;
             // 
             // tr
@@ -199,6 +203,7 @@ namespace TeboCam
             this.tr.Name = "tr";
             this.tr.Size = new System.Drawing.Size(14, 13);
             this.tr.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.tr, "Text at top right");
             this.tr.UseVisualStyleBackColor = true;
             // 
             // tl
@@ -210,6 +215,7 @@ namespace TeboCam
             this.tl.Size = new System.Drawing.Size(14, 13);
             this.tl.TabIndex = 0;
             this.tl.TabStop = true;
+            this.toolTip1.SetToolTip(this.tl, "Text at top left");
             this.tl.UseVisualStyleBackColor = true;
             // 
             // groupBox2
@@ -235,6 +241,7 @@ namespace TeboCam
             this.white.TabIndex = 2;
             this.white.TabStop = true;
             this.white.Text = "White";
+            this.toolTip1.SetToolTip(this.white, "Text in white");
             this.white.UseVisualStyleBackColor = true;
             // 
             // black
@@ -247,6 +254,7 @@ namespace TeboCam
             this.black.TabIndex = 1;
             this.black.TabStop = true;
             this.black.Text = "Black";
+            this.toolTip1.SetToolTip(this.black, "Text in black");
             this.black.UseVisualStyleBackColor = true;
             // 
             // red
@@ -261,6 +269,7 @@ namespace TeboCam
             this.red.TabIndex = 0;
             this.red.TabStop = true;
             this.red.Text = "Red";
+            this.toolTip1.SetToolTip(this.red, "Text in red");
             this.red.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -292,6 +301,7 @@ namespace TeboCam
             this.drawRect.Size = new System.Drawing.Size(103, 17);
             this.drawRect.TabIndex = 72;
             this.drawRect.Text = "Draw Rectangle";
+            this.toolTip1.SetToolTip(this.drawRect, "Draw rectangle behind text");
             this.drawRect.UseVisualStyleBackColor = true;
             // 
             // statsBox
@@ -312,6 +322,7 @@ namespace TeboCam
             this.statsChk.Size = new System.Drawing.Size(106, 17);
             this.statsChk.TabIndex = 72;
             this.statsChk.Text = "Include Statistics";
+            this.toolTip1.SetToolTip(this.statsChk, resources.GetString("statsChk.ToolTip"));
             this.statsChk.UseVisualStyleBackColor = true;
             // 
             // timestamp

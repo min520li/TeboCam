@@ -3528,9 +3528,9 @@ namespace TeboCam
 
                     Graphics graphicsObjStats;
                     graphicsObjStats = Graphics.FromImage(imageIn);
-                    graphicsObjStats.FillRectangle(rectBrush, x, y + 21, textWidth + 30, 20);
+                    graphicsObjStats.FillRectangle(rectBrush, x, y + 21, graphicsObjStats.MeasureString(formatStr, new Font("Arial", 12, FontStyle.Regular)).Width, 20);
                     graphicsObjStats.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y + 21));
-
+                    
                 }
 
 

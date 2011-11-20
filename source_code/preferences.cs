@@ -522,29 +522,38 @@ namespace TeboCam
                 if (ctrl.Text != "")
                 {
 
-                    if (ctrl is Button)
+                    //if (ctrl is Button)
+                    //{
+                    //    System.Diagnostics.Debug.WriteLine("Button|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
+                    //}
+                    //if (ctrl is Label)
+                    //{
+                    //    System.Diagnostics.Debug.WriteLine("Label|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
+                    //}
+                    //if (ctrl is RadioButton)
+                    //{
+                    //    System.Diagnostics.Debug.WriteLine("RadioButton|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
+                    //}
+                    //if (ctrl is CheckBox)
+                    //{
+                    //    System.Diagnostics.Debug.WriteLine("CheckBox|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
+                    //}
+                    //if (ctrl is GroupBox)
+                    //{
+                    //    System.Diagnostics.Debug.WriteLine("GroupBox|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
+                    //}
+                    if (toolTip1.GetToolTip(ctrl) != "")
                     {
-                        System.Diagnostics.Debug.WriteLine("Button|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
-                    }
-                    if (ctrl is Label)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Label|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
-                    }
-                    if (ctrl is RadioButton)
-                    {
-                        System.Diagnostics.Debug.WriteLine("RadioButton|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
-                    }
-                    if (ctrl is CheckBox)
-                    {
-                        System.Diagnostics.Debug.WriteLine("CheckBox|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
-                    }
-                    if (ctrl is GroupBox)
-                    {
-                        System.Diagnostics.Debug.WriteLine("GroupBox|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
+                        System.Diagnostics.Debug.WriteLine("ToolTip|" + ctrl.Name + "|" + toolTip1.GetToolTip(ctrl) + "|" + toolTip1.GetToolTip(ctrl).Length);
                     }
 
                 }
             }
+
+
+
+
+
         }
 
 
@@ -4108,11 +4117,11 @@ namespace TeboCam
 
 
 
-        public static List<Control> controls(Control form)
+        public static List<Control> controls(Control ctrl)
         {
             List<Control> controlList = new List<Control>();
 
-            foreach (Control childControl in form.Controls)
+            foreach (Control childControl in ctrl.Controls)
             {
                 {
                     // Recurse child controls.
@@ -4122,7 +4131,6 @@ namespace TeboCam
             }
             return controlList;
         }
-
 
 
         private void button17_Click_1(object sender, EventArgs e)
