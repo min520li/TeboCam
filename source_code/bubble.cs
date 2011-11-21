@@ -40,7 +40,11 @@ namespace TeboCam
             public int motionLevel;
             public int secondsSinceStart;
             public string profile;
-            public bool statReturned;
+            public bool statReturnedPing;
+            public bool statReturnedPublish;
+            public bool statReturnedOnline;
+            public bool statReturnedAlert;
+
 
         }
 
@@ -74,7 +78,7 @@ namespace TeboCam
             statList.Clear();
         }
 
-        public static movementResults statsForCam(int icameraId, string iprofile)
+        public static movementResults statsForCam(int icameraId, string iprofile, string imageType)
         {
 
             int firstCount = new int();
@@ -89,13 +93,35 @@ namespace TeboCam
             lastSum = 0;
             currMv = 0;
 
+
             foreach (movement mv in statList)
             {
 
                 if (mv.cameraId == icameraId && mv.profile == iprofile)
                 {
 
-                    if (mv.statReturned)
+                    bool statsReturned = new bool();
+
+                    switch (imageType)
+                    {
+                        case "Publish":
+                            statsReturned = mv.statReturnedPublish;
+                            break;
+                        case "Online":
+                            statsReturned = mv.statReturnedOnline;
+                            break;
+                        case "Ping":
+                            statsReturned = mv.statReturnedPing;
+                            break;
+                        case "Alert":
+                            statsReturned = mv.statReturnedAlert;
+                            break;
+                        default:
+                            statsReturned = mv.statReturnedPublish;
+                            break;
+                    }
+
+                    if (statsReturned)
                     {
 
                         firstCount++;
@@ -113,7 +139,28 @@ namespace TeboCam
                     }
 
                     currMv = mv.motionLevel;
-                    mv.statReturned = true;
+
+                    switch (imageType)
+                    {
+                        case "Publish":
+                            mv.statReturnedPublish = true;
+                            break;
+                        case "Online":
+                            mv.statReturnedOnline = true;
+                            break;
+                        case "Ping":
+                            mv.statReturnedPing = true;
+                            break;
+                        case "Alert":
+                            mv.statReturnedAlert = true;
+                            break;
+                        default:
+                            mv.statReturnedPublish = true;
+                            break;
+                    }
+
+
+
 
                 }
 
@@ -2728,7 +2775,7 @@ namespace TeboCam
 
         }
 
-
+        
         public static void publishImage()
         {
 
@@ -2770,18 +2817,17 @@ namespace TeboCam
 
                             CameraRig.updateInfo(bubble.profileInUse, item.cameraName, "publishFirst", false);
 
-
-                            statistics.movementResults res = new statistics.movementResults();
-                            res = statistics.statsForCam(item.cam.cam, bubble.profileInUse);
-
                             List<string> lst = new List<string>();
 
                             if (config.getProfile(bubble.profileInUse).publishStatsStamp)
                             {
 
-                                lst.Add(res.avgMvStart.ToString());
-                                lst.Add(res.avgMvLast.ToString());
-                                lst.Add(res.mvNow.ToString());
+                                statistics.movementResults stats = new statistics.movementResults();
+                                stats = statistics.statsForCam(item.cam.cam, bubble.profileInUse, "Publish");
+
+                                lst.Add(stats.avgMvStart.ToString());
+                                lst.Add(stats.avgMvLast.ToString());
+                                lst.Add(stats.mvNow.ToString());
                                 lst.Add(item.cam.alarmActive ? "On" : "Off");
 
                                 switch (timeMultiplier)
@@ -2808,7 +2854,7 @@ namespace TeboCam
                             a.option = "pub";
                             a.cam = item.cam.cam;
                             a.lst = lst;
-
+                            
                             try { pubPicture(null, a); }
                             catch { }
 
@@ -3511,7 +3557,7 @@ namespace TeboCam
 
                 graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y));
 
-                if (type == "Publish" && imageTxt.stats.Count > 0)
+                if ((type == "Publish"||type == "Ping") && imageTxt.stats.Count > 0)
                 {
 
 
@@ -3530,7 +3576,7 @@ namespace TeboCam
                     graphicsObjStats = Graphics.FromImage(imageIn);
                     graphicsObjStats.FillRectangle(rectBrush, x, y + 21, graphicsObjStats.MeasureString(formatStr, new Font("Arial", 12, FontStyle.Regular)).Width, 20);
                     graphicsObjStats.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y + 21));
-                    
+
                 }
 
 

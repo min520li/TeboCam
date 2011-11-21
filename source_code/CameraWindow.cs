@@ -84,7 +84,7 @@ namespace TeboCam
         public static bool LeftButtonDown = false;
         public bool RectangleDrawn = false;
         public static bool ReadyToDrag = false;
-        
+
         public static Point ClickPoint = new Point();
         public static Point CurrentTopLeft = new Point();
         public static Point CurrentBottomRight = new Point();
@@ -184,7 +184,7 @@ namespace TeboCam
             this.MouseDown += new MouseEventHandler(mouse_Click);
             this.MouseMove -= new MouseEventHandler(mouse_Move);
             this.MouseMove += new MouseEventHandler(mouse_Move);
-            this.MouseUp -= new MouseEventHandler(mouse_Up); 
+            this.MouseUp -= new MouseEventHandler(mouse_Up);
             this.MouseUp += new MouseEventHandler(mouse_Up);
 
 
@@ -435,12 +435,28 @@ namespace TeboCam
             Bitmap saveBmp = null;
             try
             {
+                                
+                List<string> lst = new List<string>();
+
+                if (config.getProfile(bubble.profileInUse).pingStatsStamp)
+                {
+
+                    statistics.movementResults stats = new statistics.movementResults();
+                    stats = statistics.statsForCam(CameraRig.activeCam, bubble.profileInUse, "Ping");
+
+                    lst.Add(stats.avgMvStart.ToString());
+                    lst.Add(stats.avgMvLast.ToString());
+                    lst.Add(stats.mvNow.ToString());
+                    lst.Add(Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[CameraRig.activeCam].cameraName, "alarmActive")) ? "On" : "Off");
+                    lst.Add(config.getProfile(bubble.profileInUse).pingInterval.ToString() + " Mins");
+
+                }
 
                 imageText stampArgs = new imageText();
                 stampArgs.bitmap = (Bitmap)camera.pubFrame.Clone();
                 stampArgs.type = "Ping";
                 stampArgs.backingRectablgle = config.getProfile(bubble.profileInUse).pingTimeStampRect;
-
+                stampArgs.stats = lst;
 
                 //saveBmp = bubble.timeStampImage((Bitmap)CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Clone(), "Ping");
                 //saveBmp = bubble.timeStampImage((Bitmap)camera.pubFrame.Clone(), "Ping", config.getProfile(bubble.profileInUse).pingTimeStampRect);
@@ -501,9 +517,9 @@ namespace TeboCam
         }
 
 
-             
 
-   
+
+
         //****************************************************************************
         //****************************************************************************
         //****************************************************************************
@@ -640,7 +656,7 @@ namespace TeboCam
             LeftButtonDown = false;
             CurrentAction = ClickAction.NoClick;
 
-            
+
 
             CurrentTopLeft.X = CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectX;
             CurrentTopLeft.Y = CameraRig.rig[CameraRig.drawCam].cam.MotionDetector.rectY;

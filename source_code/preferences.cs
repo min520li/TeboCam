@@ -4316,7 +4316,7 @@ namespace TeboCam
                 i.Add(config.getProfile(bubble.profileInUse).pingTimeStampColour);
                 i.Add(config.getProfile(bubble.profileInUse).pingTimeStampPosition);
                 i.Add(config.getProfile(bubble.profileInUse).pingTimeStampRect);
-                i.Add(false);
+                i.Add(true);
                 i.Add(config.getProfile(bubble.profileInUse).pingStatsStamp);
             }
             if (rdPublishts.Checked)
