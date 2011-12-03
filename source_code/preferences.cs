@@ -3978,7 +3978,8 @@ namespace TeboCam
             {
                 string parent = dialog.SelectedPath;
 
-                if (LeftRightMid.Right(parent, 7) != @"\images")
+
+                if ((parent.Length < 7) || LeftRightMid.Right(parent, 7) != @"\images")
                 {
 
                     config.getProfile(bubble.profileInUse).imageParentFolderCust = parent + @"\images\";
