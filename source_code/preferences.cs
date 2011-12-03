@@ -270,7 +270,7 @@ namespace TeboCam
 
             CameraRig.camSelInit();
 
-            publishCams publishCams = new publishCams(licence.camsAllowed);
+            publishCams publishCams = new publishCams(9);
 
 
             bubble.devMachine = File.Exists(Application.StartupPath + bubble.devMachineFile);
@@ -278,7 +278,7 @@ namespace TeboCam
             bubble.databaseConnect = File.Exists(Application.StartupPath + bubble.dbaseConnectFile);
 
 
-            this.Text = this.Text + " - Webcams Licensed: " + licence.camsSuported().ToString();
+            this.Text = this.Text + " - Webcams Licensed: " + "9";
 
             if (bubble.devMachine)
             {
@@ -476,8 +476,6 @@ namespace TeboCam
 
             plSnd.Enabled = config.getProfile(bubble.profileInUse).soundAlert != "";
 
-            licenseInitialise();
-
             if (config.getProfile(bubble.profileInUse).freezeGuard)
             {
 
@@ -511,50 +509,6 @@ namespace TeboCam
 
         }
 
-        private void getControls()
-        {
-            List<Control> availControls = controls(this);
-
-            System.Diagnostics.Debug.WriteLine("Control|Name|Text|Length");
-
-            foreach (Control ctrl in availControls)
-            {
-                if (ctrl.Text != "")
-                {
-
-                    //if (ctrl is Button)
-                    //{
-                    //    System.Diagnostics.Debug.WriteLine("Button|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
-                    //}
-                    //if (ctrl is Label)
-                    //{
-                    //    System.Diagnostics.Debug.WriteLine("Label|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
-                    //}
-                    //if (ctrl is RadioButton)
-                    //{
-                    //    System.Diagnostics.Debug.WriteLine("RadioButton|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
-                    //}
-                    //if (ctrl is CheckBox)
-                    //{
-                    //    System.Diagnostics.Debug.WriteLine("CheckBox|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
-                    //}
-                    //if (ctrl is GroupBox)
-                    //{
-                    //    System.Diagnostics.Debug.WriteLine("GroupBox|" + ctrl.Name + "|" + ctrl.Text + "|" + ctrl.Text.Length);
-                    //}
-                    if (toolTip1.GetToolTip(ctrl) != "")
-                    {
-                        System.Diagnostics.Debug.WriteLine("ToolTip|" + ctrl.Name + "|" + toolTip1.GetToolTip(ctrl) + "|" + toolTip1.GetToolTip(ctrl).Length);
-                    }
-
-                }
-            }
-
-
-
-
-
-        }
 
 
         private void preferences_Loaded(object sender, EventArgs e)
@@ -622,7 +576,7 @@ namespace TeboCam
         private void waitForCam(object sender, DoWorkEventArgs e)
         {
 
-            camButtons.initialize(licence.camsAllowed);
+            camButtons.initialize(9);
 
 
             //wait for connection to selected webcam for two minutes
@@ -4133,12 +4087,6 @@ namespace TeboCam
         }
 
 
-        private void button17_Click_1(object sender, EventArgs e)
-        {
-            getControls();
-        }
-
-
         private void jPegSetCompression(ArrayList i)
         {
 
@@ -4839,73 +4787,8 @@ namespace TeboCam
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            int registered = 0;
-            int licencedResult = licence.versionLicenced("1234");
-
-            if (licencedResult == 1) MessageBox.Show("invalid licence key - contact teboweb");
-
-            if (licencedResult == 2) MessageBox.Show("licence key already registered");
-
-            if (licencedResult == 3)
-            {
-                registered = licence.registerLicence();
-                if (registered > 0)
-                {
-                    MessageBox.Show("licence registered successfully");
-                    FileManager.WriteFile("licenceKey");
-                }
-                else
-                { MessageBox.Show("licence registration error - contact teboweb"); }
-            }
 
 
-            //string tmpStr = licence.createLocalKey();
-
-            FileManager.readXmlFile("licenceKey", false);
-
-            if (licence.keyValid(licence.licenceKey))
-            { licence.camsAllowed = 9; }
-            else
-            { licence.camsAllowed = 1; }
-
-
-
-            //System.Diagnostics.Debug.WriteLine(licence.keyValid(licence.licenceKey).ToString());
-
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-
-            int result = licence.IsApplicationAlreadyRunning(bubble.thisProcess);
-
-            //#if (DEBUG)
-
-            //            imgPath = GetDirectoryName(Application.ExecutablePath);
-
-            //#else
-
-            //  imgPath = GetDirectoryName(Application.ExecutablePath) + "\\images\\";
-
-            //#endif
-
-
-            if (result == 1)
-            {
-                MessageBox.Show("more than one version running...");
-            }
-            if (result == 2)
-            {
-                MessageBox.Show("this version has been renamed must be named " + bubble.thisProcess);
-            }
-
-            //System.Diagnostics.Debug.WriteLine(publishCams.cams.Count);
-
-
-        }
 
 
         private void bttncam1pub_Click(object sender, EventArgs e)
@@ -4946,34 +4829,6 @@ namespace TeboCam
         }
 
 
-
-
-        public void licenseInitialise()
-        {
-
-            string publishBttnLicenced = "Select which camera to publish images from.\r\n\r\nAt present you may only publish fr" +
-            "om one camera - any attached camera. \r\nFuture versions (free upgrade) will allow" +
-            " you to publish from multiple cameras.";
-
-            string publishBttnNotLicenced = "Select which camera to publish images from.\r\n\r\nAs you have the non-licenced versi" +
-            "on you may only\r\npublish from the camera with the \"Alert On\" button selected\r\non" +
-            " the main \"Webcam\" screen.";
-
-            string pubtext = "";
-
-            if (licence.licenced)
-            {
-                pubtext = publishBttnLicenced;
-            }
-            else
-            {
-                pubtext = publishBttnNotLicenced;
-            }
-
-
-            toolTip1.SetToolTip(bttncam1pub, pubtext);
-
-        }
 
 
         public void cameraNewProfile()
@@ -5074,10 +4929,7 @@ namespace TeboCam
 
         }
 
-        private void button34_Click_1(object sender, EventArgs e)
-        {
 
-        }
 
         private void bttnSetPrefixPublish_Click(object sender, EventArgs e)
         {
@@ -5302,28 +5154,6 @@ namespace TeboCam
 
         }
 
-        private void button39_Click(object sender, EventArgs e)
-        {
-            int imageCount = 16;
-
-            for (int i = 1; i <= imageCount; i++)
-            {
-
-                string in_fName = bubble.imageParentFolder + @"test\" + i.ToString() + ".jpg";
-
-                mosaic.addToList(in_fName);
-
-            }
-
-            string out_fName = bubble.imageParentFolder + @"test\result.bmp";
-            mosaic.saveMosaicAsBmp(3, out_fName);
-
-            out_fName = bubble.imageParentFolder + @"test\result.jpg";
-            mosaic.saveMosaicAsJpg(3, out_fName, config.getProfile(bubble.profileInUse).alertCompression);
-
-
-
-        }
 
         private void mosaicImagesPerRow_Leave(object sender, EventArgs e)
         {
@@ -5374,6 +5204,8 @@ namespace TeboCam
             bubble.keepWorking = false;
             Close();
         }
+
+
 
 
 

@@ -312,12 +312,6 @@ namespace TeboCam
             this.sqlImageFilename = new System.Windows.Forms.TextBox();
             this.sqlImageRoot = new System.Windows.Forms.TextBox();
             this.Test = new System.Windows.Forms.TabPage();
-            this.cuteButton1 = new ctlCuteButton.cuteButton();
-            this.button39 = new System.Windows.Forms.Button();
-            this.button34 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
             this.stopRecording = new System.Windows.Forms.Button();
             this.startRecording = new System.Windows.Forms.Button();
             this.bttnToolTips = new System.Windows.Forms.Button();
@@ -1680,7 +1674,7 @@ namespace TeboCam
             this.picWindow.Location = new System.Drawing.Point(12, 433);
             this.picWindow.Maximum = 40;
             this.picWindow.Name = "picWindow";
-            this.picWindow.Size = new System.Drawing.Size(526, 42);
+            this.picWindow.Size = new System.Drawing.Size(526, 45);
             this.picWindow.TabIndex = 20;
             this.picWindow.ValueChanged += new System.EventHandler(this.picWindow_ValueChanged);
             // 
@@ -3926,12 +3920,6 @@ namespace TeboCam
             // 
             // Test
             // 
-            this.Test.Controls.Add(this.cuteButton1);
-            this.Test.Controls.Add(this.button39);
-            this.Test.Controls.Add(this.button34);
-            this.Test.Controls.Add(this.button8);
-            this.Test.Controls.Add(this.button3);
-            this.Test.Controls.Add(this.button17);
             this.Test.Controls.Add(this.stopRecording);
             this.Test.Controls.Add(this.startRecording);
             this.Test.Location = new System.Drawing.Point(4, 22);
@@ -3940,69 +3928,6 @@ namespace TeboCam
             this.Test.TabIndex = 7;
             this.Test.Text = "Test";
             this.Test.UseVisualStyleBackColor = true;
-            // 
-            // cuteButton1
-            // 
-            this.cuteButton1.cuteColor1 = System.Drawing.Color.LightGray;
-            this.cuteButton1.cuteColor2 = System.Drawing.Color.OrangeRed;
-            this.cuteButton1.cuteTransparent1 = 20;
-            this.cuteButton1.cuteTransparent2 = 100;
-            this.cuteButton1.Location = new System.Drawing.Point(339, 95);
-            this.cuteButton1.Name = "cuteButton1";
-            this.cuteButton1.Size = new System.Drawing.Size(142, 23);
-            this.cuteButton1.TabIndex = 88;
-            this.cuteButton1.Text = "cuteButton1";
-            this.cuteButton1.UseVisualStyleBackColor = true;
-            // 
-            // button39
-            // 
-            this.button39.Location = new System.Drawing.Point(19, 389);
-            this.button39.Name = "button39";
-            this.button39.Size = new System.Drawing.Size(128, 66);
-            this.button39.TabIndex = 87;
-            this.button39.Text = "mosaic";
-            this.button39.UseVisualStyleBackColor = true;
-            this.button39.Click += new System.EventHandler(this.button39_Click);
-            // 
-            // button34
-            // 
-            this.button34.Location = new System.Drawing.Point(19, 285);
-            this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(128, 76);
-            this.button34.TabIndex = 86;
-            this.button34.Text = "Check MySql Connection";
-            this.button34.UseVisualStyleBackColor = true;
-            this.button34.Click += new System.EventHandler(this.button34_Click_1);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(19, 196);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(128, 66);
-            this.button8.TabIndex = 85;
-            this.button8.Text = "Multiple Instances Running?";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(19, 143);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 23);
-            this.button3.TabIndex = 84;
-            this.button3.Text = "Licence";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(19, 95);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(128, 21);
-            this.button17.TabIndex = 83;
-            this.button17.Text = "Print Objects";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click_1);
             // 
             // stopRecording
             // 
@@ -4099,16 +4024,16 @@ namespace TeboCam
             this.statusStrip.BackColor = System.Drawing.SystemColors.Control;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 644);
+            this.statusStrip.Location = new System.Drawing.Point(0, 640);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(967, 22);
+            this.statusStrip.Size = new System.Drawing.Size(964, 22);
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 1;
             // 
             // StripStatusLabel
             // 
             this.StripStatusLabel.Name = "StripStatusLabel";
-            this.StripStatusLabel.Size = new System.Drawing.Size(109, 17);
+            this.StripStatusLabel.Size = new System.Drawing.Size(118, 17);
             this.StripStatusLabel.Text = "toolStripStatusLabel1";
             // 
             // StatusStripLabel
@@ -4135,40 +4060,40 @@ namespace TeboCam
             this.toolStripMenuItem3});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.ShowImageMargin = false;
-            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 114);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(154, 22);
             this.toolStripMenuItem2.Text = "Hide";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(154, 22);
             this.toolStripMenuItem1.Text = "Show";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(154, 22);
             this.toolStripMenuItem5.Text = "Activate Detection";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(154, 22);
             this.toolStripMenuItem4.Text = "Inactivate Detection";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(154, 22);
             this.toolStripMenuItem3.Text = "Exit";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
@@ -4177,7 +4102,7 @@ namespace TeboCam
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(967, 666);
+            this.ClientSize = new System.Drawing.Size(964, 662);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.bttnToolTips);
             this.Controls.Add(this.notConnected);
@@ -4518,7 +4443,6 @@ namespace TeboCam
         private System.Windows.Forms.TabPage Test;
         private System.Windows.Forms.Button stopRecording;
         private System.Windows.Forms.Button startRecording;
-        private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.RadioButton rdPublishjpg;
         private System.Windows.Forms.RadioButton rdAlertjpg;
@@ -4567,8 +4491,6 @@ namespace TeboCam
         private System.Windows.Forms.TextBox txtMess;
         private System.Windows.Forms.TextBox actCount;
         private System.Windows.Forms.Label lblCameraName;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button bttncam9pub;
         private System.Windows.Forms.Button bttncam7pub;
         private System.Windows.Forms.Button bttncam8pub;
@@ -4583,7 +4505,6 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton freezeGuardOn;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.CheckBox infoMode;
-        private System.Windows.Forms.Button button34;
         private System.Windows.Forms.Button bttnSetPrefixPublish;
         private System.Windows.Forms.Button button35;
         private System.Windows.Forms.Button button36;
@@ -4597,10 +4518,8 @@ namespace TeboCam
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox pulseFreq;
-        private System.Windows.Forms.Button button39;
         private System.Windows.Forms.CheckBox sendMosaic;
         private System.Windows.Forms.TextBox mosaicImagesPerRow;
-        private ctlCuteButton.cuteButton cuteButton1;
         private ctlCuteButton.cuteButton bttnUpdateFooter;
         private ctlCuteButton.cuteButton bttInstallUpdateAdmin;
     }

@@ -344,40 +344,7 @@ namespace TeboCam
             #endregion
             #region ::::::::::::::::::::::::Read Config::::::::::::::::::::::::
 
-            if (file == "licenceKey")
-            {
-
-                string fileName = path;
-
-                XmlTextReader licenceKey = new XmlTextReader(fileName);
-
-                try
-                {
-
-                    while (licenceKey.Read())
-                    {
-                        if (licenceKey.NodeType == XmlNodeType.Element)
-                        {
-                            if (licenceKey.LocalName.Equals("key"))
-                            {
-                                licence.licenceKey = licenceKey.ReadString();
-                                break;
-                            }
-                        }
-                    }
-                    licenceKey.Close();
-
-                }
-                catch (Exception e)
-                {
-                    licenceKey.Close();
-                    MessageBox.Show(e.ToString());
-                    return 0;
-                }
-
-            }
-
-
+            
             if (file == "config")
             {
                 string fileName = path;// bubble.xmlFolder + configFile + ".xml";
@@ -1616,34 +1583,7 @@ namespace TeboCam
 
 
             #region ::::::::::::::::::::::::Write Config::::::::::::::::::::::::
-
-            if (file == "licenceKey")
-            {
-                try
-                {
-                    string fileName = bubble.xmlFolder + keyFile + ".xml";
-                    XmlTextWriter keyData = new XmlTextWriter(fileName, null);
-
-                    keyData.Formatting = Formatting.Indented;
-                    keyData.Indentation = 4;
-                    keyData.Namespaces = false;
-                    keyData.WriteStartDocument();
-
-                    keyData.WriteStartElement("", "key", "");
-                    keyData.WriteString(licence.createLocalKey());
-                    keyData.WriteEndElement();
-
-                    keyData.WriteEndDocument();
-                    keyData.Flush();
-                    keyData.Close();
-
-                }
-                catch (Exception e)
-                {
-                    //MessageBox.Show(e.ToString());
-                }
-            }
-
+                     
 
 
             if (file == "config")
