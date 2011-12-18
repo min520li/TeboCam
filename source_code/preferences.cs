@@ -929,7 +929,12 @@ namespace TeboCam
                            config.getProfile(bubble.profileInUse).mailBody,
                            config.getProfile(bubble.profileInUse).replyTo,
                            bubble.attachments,
-                           time.secondsSinceStart());
+                           time.secondsSinceStart(),
+                           config.getProfile(bubble.profileInUse).emailUser,
+                           config.getProfile(bubble.profileInUse).emailPass,
+                           config.getProfile(bubble.profileInUse).smtpHost,
+                           config.getProfile(bubble.profileInUse).smtpPort,
+                           config.getProfile(bubble.profileInUse).EnableSsl);
         }
         private void Email_Click(object sender, EventArgs e)
         {
@@ -2301,7 +2306,12 @@ namespace TeboCam
                            "This is a test email from TeboCam",
                            config.getProfile(bubble.profileInUse).replyTo,
                            false,
-                           time.secondsSinceStart());
+                           time.secondsSinceStart(),
+                           config.getProfile(bubble.profileInUse).emailUser,
+                           config.getProfile(bubble.profileInUse).emailPass,
+                           config.getProfile(bubble.profileInUse).smtpHost,
+                           config.getProfile(bubble.profileInUse).smtpPort,
+                           config.getProfile(bubble.profileInUse).EnableSsl);
 
             while (bubble.emailTestOk == 9) { }
             if (bubble.emailTestOk == 1)
@@ -5206,6 +5216,8 @@ namespace TeboCam
             emailIntelPanel.Enabled = EmailIntelOn.Checked;
 
         }
+
+
 
 
 

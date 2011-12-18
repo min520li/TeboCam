@@ -152,12 +152,12 @@ namespace TeboCam
             this.Alerts = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.emailIntelPanel = new System.Windows.Forms.Panel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.EmailIntelMosaic = new System.Windows.Forms.RadioButton();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.emailIntelEmails = new System.Windows.Forms.TextBox();
+            this.EmailIntelStop = new System.Windows.Forms.RadioButton();
             this.label48 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.emailIntelMins = new System.Windows.Forms.TextBox();
             this.label56 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.EmailIntelOff = new System.Windows.Forms.RadioButton();
@@ -1893,18 +1893,18 @@ namespace TeboCam
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Location = new System.Drawing.Point(312, 209);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(443, 177);
+            this.groupBox4.Size = new System.Drawing.Size(418, 177);
             this.groupBox4.TabIndex = 59;
             this.groupBox4.TabStop = false;
             // 
             // emailIntelPanel
             // 
-            this.emailIntelPanel.Controls.Add(this.radioButton1);
+            this.emailIntelPanel.Controls.Add(this.EmailIntelMosaic);
             this.emailIntelPanel.Controls.Add(this.label16);
-            this.emailIntelPanel.Controls.Add(this.textBox1);
-            this.emailIntelPanel.Controls.Add(this.radioButton2);
+            this.emailIntelPanel.Controls.Add(this.emailIntelEmails);
+            this.emailIntelPanel.Controls.Add(this.EmailIntelStop);
             this.emailIntelPanel.Controls.Add(this.label48);
-            this.emailIntelPanel.Controls.Add(this.textBox3);
+            this.emailIntelPanel.Controls.Add(this.emailIntelMins);
             this.emailIntelPanel.Controls.Add(this.label56);
             this.emailIntelPanel.Controls.Add(this.label49);
             this.emailIntelPanel.Enabled = false;
@@ -1913,51 +1913,51 @@ namespace TeboCam
             this.emailIntelPanel.Size = new System.Drawing.Size(400, 117);
             this.emailIntelPanel.TabIndex = 65;
             // 
-            // radioButton1
+            // EmailIntelMosaic
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(14, 91);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(310, 17);
-            this.radioButton1.TabIndex = 70;
-            this.radioButton1.Text = "Increase Mosaic images to meet rule above";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.EmailIntelMosaic.AutoSize = true;
+            this.EmailIntelMosaic.Location = new System.Drawing.Point(15, 91);
+            this.EmailIntelMosaic.Name = "EmailIntelMosaic";
+            this.EmailIntelMosaic.Size = new System.Drawing.Size(342, 17);
+            this.EmailIntelMosaic.TabIndex = 70;
+            this.EmailIntelMosaic.Text = "Use/Increase Mosaic images to meet rule above";
+            this.EmailIntelMosaic.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(13, 16);
+            this.label16.Location = new System.Drawing.Point(15, 16);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(89, 13);
             this.label16.TabIndex = 33;
             this.label16.Text = "If more than";
             // 
-            // textBox1
+            // emailIntelEmails
             // 
-            this.textBox1.BackColor = System.Drawing.Color.LemonChiffon;
-            this.textBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox1.Location = new System.Drawing.Point(109, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(38, 21);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.Text = "2";
-            this.toolTip1.SetToolTip(this.textBox1, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
+            this.emailIntelEmails.BackColor = System.Drawing.Color.LemonChiffon;
+            this.emailIntelEmails.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailIntelEmails.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.emailIntelEmails.Location = new System.Drawing.Point(109, 12);
+            this.emailIntelEmails.Name = "emailIntelEmails";
+            this.emailIntelEmails.Size = new System.Drawing.Size(38, 21);
+            this.emailIntelEmails.TabIndex = 9;
+            this.emailIntelEmails.Text = "2";
+            this.toolTip1.SetToolTip(this.emailIntelEmails, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
                     "tions in seconds. \r\n");
             // 
-            // radioButton2
+            // EmailIntelStop
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(15, 68);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(373, 17);
-            this.radioButton2.TabIndex = 69;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Stop sending emails until rule above is no longer met";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.EmailIntelStop.AutoSize = true;
+            this.EmailIntelStop.Checked = true;
+            this.EmailIntelStop.Location = new System.Drawing.Point(15, 68);
+            this.EmailIntelStop.Name = "EmailIntelStop";
+            this.EmailIntelStop.Size = new System.Drawing.Size(373, 17);
+            this.EmailIntelStop.TabIndex = 69;
+            this.EmailIntelStop.TabStop = true;
+            this.EmailIntelStop.Text = "Stop sending emails until rule above is no longer met";
+            this.EmailIntelStop.UseVisualStyleBackColor = true;
             // 
             // label48
             // 
@@ -1970,17 +1970,17 @@ namespace TeboCam
             this.label48.TabIndex = 42;
             this.label48.Text = "emails";
             // 
-            // textBox3
+            // emailIntelMins
             // 
-            this.textBox3.BackColor = System.Drawing.Color.LemonChiffon;
-            this.textBox3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox3.Location = new System.Drawing.Point(161, 35);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(38, 21);
-            this.textBox3.TabIndex = 43;
-            this.textBox3.Text = "2";
-            this.toolTip1.SetToolTip(this.textBox3, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
+            this.emailIntelMins.BackColor = System.Drawing.Color.LemonChiffon;
+            this.emailIntelMins.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailIntelMins.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.emailIntelMins.Location = new System.Drawing.Point(161, 35);
+            this.emailIntelMins.Name = "emailIntelMins";
+            this.emailIntelMins.Size = new System.Drawing.Size(38, 21);
+            this.emailIntelMins.TabIndex = 43;
+            this.emailIntelMins.Text = "2";
+            this.toolTip1.SetToolTip(this.emailIntelMins, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
                     "tions in seconds. \r\n");
             // 
             // label56
@@ -1988,7 +1988,7 @@ namespace TeboCam
             this.label56.AutoSize = true;
             this.label56.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label56.ForeColor = System.Drawing.Color.Black;
-            this.label56.Location = new System.Drawing.Point(13, 40);
+            this.label56.Location = new System.Drawing.Point(15, 40);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(140, 13);
             this.label56.TabIndex = 45;
@@ -2046,7 +2046,7 @@ namespace TeboCam
             this.groupBox21.Controls.Add(this.radioButton10);
             this.groupBox21.Location = new System.Drawing.Point(307, 122);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(318, 81);
+            this.groupBox21.Size = new System.Drawing.Size(423, 81);
             this.groupBox21.TabIndex = 64;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "Images Saved Folder";
@@ -2054,7 +2054,7 @@ namespace TeboCam
             // radioButton11
             // 
             this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(5, 46);
+            this.radioButton11.Location = new System.Drawing.Point(15, 46);
             this.radioButton11.Name = "radioButton11";
             this.radioButton11.Size = new System.Drawing.Size(129, 17);
             this.radioButton11.TabIndex = 1;
@@ -2069,7 +2069,7 @@ namespace TeboCam
             // 
             this.button21.Enabled = false;
             this.button21.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button21.Location = new System.Drawing.Point(140, 46);
+            this.button21.Location = new System.Drawing.Point(156, 46);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(102, 21);
             this.button21.TabIndex = 61;
@@ -2081,7 +2081,7 @@ namespace TeboCam
             // 
             this.radioButton10.AutoSize = true;
             this.radioButton10.Checked = true;
-            this.radioButton10.Location = new System.Drawing.Point(6, 23);
+            this.radioButton10.Location = new System.Drawing.Point(15, 23);
             this.radioButton10.Name = "radioButton10";
             this.radioButton10.Size = new System.Drawing.Size(128, 17);
             this.radioButton10.TabIndex = 0;
@@ -2441,7 +2441,7 @@ namespace TeboCam
             this.groupBox6.Controls.Add(this.label12);
             this.groupBox6.Location = new System.Drawing.Point(307, 6);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(318, 110);
+            this.groupBox6.Size = new System.Drawing.Size(423, 110);
             this.groupBox6.TabIndex = 53;
             this.groupBox6.TabStop = false;
             // 
@@ -4670,15 +4670,15 @@ namespace TeboCam
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label56;
         private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox emailIntelMins;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox emailIntelEmails;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.RadioButton EmailIntelOff;
         private System.Windows.Forms.RadioButton EmailIntelOn;
         private System.Windows.Forms.Panel emailIntelPanel;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton EmailIntelMosaic;
+        private System.Windows.Forms.RadioButton EmailIntelStop;
     }
 }

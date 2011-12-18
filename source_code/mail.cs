@@ -52,13 +52,16 @@ namespace TeboCam
 
         }
 
-        public static void sendEmail(string by, string to, string subj, string body, string replyTo, bool hasAttachments,int curTime)
+        public static void sendEmail(string by, string to, string subj, string body,
+                                     string replyTo, bool hasAttachments, int curTime,
+                                     string emailUser, string emailPass, string smtpHost,
+                                     int smtpPort, bool EnableSsl)
         {
-            string emailUser = config.getProfile(bubble.profileInUse).emailUser;
-            string emailPass = config.getProfile(bubble.profileInUse).emailPass;
-            string smtpHost = config.getProfile(bubble.profileInUse).smtpHost;
-            int smtpPort = config.getProfile(bubble.profileInUse).smtpPort;
-            bool EnableSsl = config.getProfile(bubble.profileInUse).EnableSsl;
+            //string emailUser = config.getProfile(bubble.profileInUse).emailUser;
+            //string emailPass = config.getProfile(bubble.profileInUse).emailPass;
+            //string smtpHost = config.getProfile(bubble.profileInUse).smtpHost;
+            //int smtpPort = config.getProfile(bubble.profileInUse).smtpPort;
+            //bool EnableSsl = config.getProfile(bubble.profileInUse).EnableSsl;
 
 
             System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
@@ -131,6 +134,71 @@ namespace TeboCam
                 bubble.emailTestOk = 2;
                 bubble.logAddLine("Error in sending email.");
             }
+        }
+
+
+        public static int secondsBetweenEmails()
+        {
+
+            int startIdx = 0;
+            int total = 0;
+            int items = mail.emailTimeSent.Count - startIdx; ;
+            double avgFreq = 0;
+
+            for (int i = startIdx; i < mail.emailTimeSent.Count; i++)
+            {
+
+                if (i > startIdx)
+                {
+                    total = total + (mail.emailTimeSent[i] - mail.emailTimeSent[i - 1]);
+                }
+
+            }
+
+            return (int)Math.Round((double)total / (double)items, 0, MidpointRounding.AwayFromZero);
+
+
+        }
+
+
+        public static void deSpamifyReset(int currTime)
+        {
+
+            mail.emailTimeSent.Clear();
+            mail.emailTimeSent.Add(currTime);
+
+        }
+
+        public static bool deSpamify(int i_emails, int i_mins, bool i_ratioOn)
+        {
+
+            if (i_ratioOn)
+            {
+
+                double i_ratio = ((double)i_emails / (double)i_mins);
+                int minTime = mail.emailTimeSent[0];
+                int maxTime = mail.emailTimeSent[mail.emailTimeSent.Count];
+                int emails = mail.emailTimeSent.Count + 1;
+                int emailTime = maxTime - minTime;
+
+                //if the number of minutes elapsed since first email and 
+                //last email sent is less than the stipulated time in the ration calculation
+                //add on the difference to calculate if ratio is met
+                if (emailTime < (i_mins * 60))
+                {
+
+                    emailTime += (i_mins * 60) - emailTime;
+
+                }
+
+                double ratio = (double)emails / ((double)emailTime / 60);
+
+                return ratio > i_ratio;
+
+            }
+
+            return true;
+
         }
 
     }

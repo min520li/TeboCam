@@ -1641,7 +1641,7 @@ namespace TeboCam
         //installUpdate
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        public static List<string> emailTimeSent = new List<string>();
+        //public static List<string> emailTimeSent = new List<string>();
 
         public static string devMachineFile = sensitiveInfo.devMachineFile;
         public static string databaseTrialFile = sensitiveInfo.databaseTrialFile;
@@ -2152,12 +2152,17 @@ namespace TeboCam
                                            (config.getProfile(bubble.profileInUse).sendThumbnailImages ||
                                            config.getProfile(bubble.profileInUse).sendFullSizeImages ||
                                            config.getProfile(bubble.profileInUse).sendMosaicImages),
-                                           time.secondsSinceStart()
-                                          );
+                                           time.secondsSinceStart(),
+                                           config.getProfile(bubble.profileInUse).emailUser,
+                                           config.getProfile(bubble.profileInUse).emailPass,
+                                           config.getProfile(bubble.profileInUse).smtpHost,
+                                           config.getProfile(bubble.profileInUse).smtpPort,
+                                           config.getProfile(bubble.profileInUse).EnableSsl
+                                           );
 
                             string[] newdet = new string[2];
 
-                            emailTimeSent.Add(time.secondsSinceStart().ToString());
+                            //emailTimeSent.Add(time.secondsSinceStart().ToString());
 
                             emailToProcess = imagesFromMovement.emailToProcess();
                             imagesToEmail = emailToProcess;
@@ -2195,31 +2200,8 @@ namespace TeboCam
         }
 
 
-        public static int secondsBetweenEmails()
-        {
 
-            int startIdx = 0;
-            int total = 0;
-            int items = mail.emailTimeSent.Count - startIdx; ;
-            double avgFreq = 0;
-
-            for (int i = startIdx; i < mail.emailTimeSent.Count; i++)
-            {
-
-                if (i > startIdx)
-                {
-                    total = total + (mail.emailTimeSent[i] - mail.emailTimeSent[i - 1]);
-                }
-
-            }
-
-            return (int)Math.Round((double)total / (double)items, 0, MidpointRounding.AwayFromZero);
-
-
-        }
-
-
-
+     
 
         public static void webUpdate()
         {
@@ -2307,7 +2289,19 @@ namespace TeboCam
                     if (tmpStr != "NULL" && email == "1")
                     {
                         teboDebug.writeline(teboDebug.webUpdateVal + 6);
-                        mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy, config.getProfile(bubble.profileInUse).sendTo, "Online Request Confirmation", @"'" + tmpStr + @"'" + " being actioned.", config.getProfile(bubble.profileInUse).replyTo, false, time.secondsSinceStart());
+                        mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy, 
+                                       config.getProfile(bubble.profileInUse).sendTo, 
+                                       "Online Request Confirmation", 
+                                       @"'" + tmpStr + @"'" + " being actioned.", 
+                                       config.getProfile(bubble.profileInUse).replyTo, 
+                                       false, 
+                                       time.secondsSinceStart(),
+                                       config.getProfile(bubble.profileInUse).emailUser,
+                                       config.getProfile(bubble.profileInUse).emailPass,
+                                       config.getProfile(bubble.profileInUse).smtpHost,
+                                       config.getProfile(bubble.profileInUse).smtpPort,
+                                       config.getProfile(bubble.profileInUse).EnableSsl
+                                       );
                         bubble.logAddLine("Online Request Confirmation email sent.");
 
                     }
@@ -2727,7 +2721,19 @@ namespace TeboCam
                     mail.addAttachment(tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg");
                     File.Delete(tmpFolder + "pingPicture.jpg");
                     Thread.Sleep(2000);
-                    mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy, config.getProfile(bubble.profileInUse).sendTo, config.getProfile(bubble.profileInUse).pingSubject, "Log and graph attached." + "Next ping email will be sent in " + config.getProfile(bubble.profileInUse).pingInterval.ToString() + " minutes.", config.getProfile(bubble.profileInUse).replyTo, true, time.secondsSinceStart());
+                    mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy, 
+                                   config.getProfile(bubble.profileInUse).sendTo, 
+                                   config.getProfile(bubble.profileInUse).pingSubject, 
+                                   "Log and graph attached." + "Next ping email will be sent in " + config.getProfile(bubble.profileInUse).pingInterval.ToString() + " minutes.", 
+                                   config.getProfile(bubble.profileInUse).replyTo, 
+                                   true, 
+                                   time.secondsSinceStart(),
+                                   config.getProfile(bubble.profileInUse).emailUser,
+                                   config.getProfile(bubble.profileInUse).emailPass,
+                                   config.getProfile(bubble.profileInUse).smtpHost,
+                                   config.getProfile(bubble.profileInUse).smtpPort,
+                                   config.getProfile(bubble.profileInUse).EnableSsl
+                                   );
                     pingLast = time.secondsSinceStart();
                     Thread.Sleep(2000);
                     logAddLine("Ping email sent.");
@@ -2775,7 +2781,7 @@ namespace TeboCam
 
         }
 
-        
+
         public static void publishImage()
         {
 
@@ -2854,7 +2860,7 @@ namespace TeboCam
                             a.option = "pub";
                             a.cam = item.cam.cam;
                             a.lst = lst;
-                            
+
                             try { pubPicture(null, a); }
                             catch { }
 
@@ -3557,7 +3563,7 @@ namespace TeboCam
 
                 graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y));
 
-                if ((type == "Publish"||type == "Ping") && imageTxt.stats.Count > 0)
+                if ((type == "Publish" || type == "Ping") && imageTxt.stats.Count > 0)
                 {
 
 
