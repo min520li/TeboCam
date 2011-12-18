@@ -1986,6 +1986,15 @@ namespace TeboCam
                 )
             {
 
+                if (mail.spamStopped)
+                {
+
+
+                    mail.spamStopped = false;
+
+                }
+
+
                 teboDebug.writeline(teboDebug.movementPublishVal + 4);
                 logAddLine("Images to process: " + emailToProcess.ToString());
                 bubble.fileBusy = true;

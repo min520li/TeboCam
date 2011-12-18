@@ -11,6 +11,7 @@ namespace TeboCam
     public class mail
     {
 
+        public static bool spamStopped = false;
         public static ArrayList attachments = new ArrayList();
         public static List<int> emailTimeSent = new List<int>();
 
@@ -195,7 +196,7 @@ namespace TeboCam
                 }
 
 
-                int emails = mail.emailTimeSent.Count ;
+                int emails = mail.emailTimeSent.Count;
                 int emailTime = maxTime - minTime;
 
                 //if the number of minutes elapsed since first email and 
@@ -216,6 +217,15 @@ namespace TeboCam
                     deSpamifyReset(i_currTime);
 
                 }
+
+
+                if (ratio > i_ratio)
+                {
+
+                    spamStopped;
+
+                }
+
 
                 return ratio > i_ratio;
 
