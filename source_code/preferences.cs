@@ -2145,103 +2145,106 @@ namespace TeboCam
 
         private void preferences_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-            teboDebug.closeFile();
-
-            databaseUpdate(true);
-
-            tabControl1.SelectedIndex = 0;
-            Invalidate();
-
-            //if (bubble.drawMode) { cameraWindow.Camera.Unlock(); }
-
-            if (bubble.fileBusy)
+            try
             {
 
-                bubble.logAddLine("Waiting for file processing to finish before exiting...");
-                bubble.logAddLine("Application will remain frozen until exit...");
+                teboDebug.closeFile();
 
-                int tmpInt = 0;
+                databaseUpdate(true);
 
-                while (bubble.fileBusy)
+                tabControl1.SelectedIndex = 0;
+                Invalidate();
+
+                //if (bubble.drawMode) { cameraWindow.Camera.Unlock(); }
+
+                if (bubble.fileBusy)
                 {
-                    // bubble.logAddLine("Waiting for file processing to complete...");
-                    Thread.Sleep(500);
-                    Invalidate();
-                    tmpInt++;
-                    if (tmpInt > 20) break;
+
+                    bubble.logAddLine("Waiting for file processing to finish before exiting...");
+                    bubble.logAddLine("Application will remain frozen until exit...");
+
+                    int tmpInt = 0;
+
+                    while (bubble.fileBusy)
+                    {
+                        // bubble.logAddLine("Waiting for file processing to complete...");
+                        Thread.Sleep(500);
+                        Invalidate();
+                        tmpInt++;
+                        if (tmpInt > 20) break;
+                    }
+
+                }
+
+                bubble.keepWorking = false;
+                bubble.logAddLine("Stopping TeboCam");
+                Invalidate();
+                if (bttnMotionActive.Checked || bttnMotionAtStartup.Checked)
+                {
+                    bubble.Alert.on = true;
+                }
+
+                FileManager.WriteFile("config");
+                bubble.logAddLine("Config data saved.");
+                FileManager.WriteFile("graph");
+                bubble.logAddLine("Graph data saved.");
+                bubble.logAddLine("Saving log data and closing.");
+                FileManager.WriteFile("log");
+
+                bttnMotionInactive.Checked = true;
+                bttnMotionActive.Checked = false;
+                bttnMotionAtStartup.Checked = false;
+
+                Invalidate();
+                bubble.workInit(false);
+                CloseCamera();
+                bubble.logAddLine("Application will remain frozen until exit.");
+                Invalidate();
+
+                if (bubble.databaseConnect && bubble.DatabaseCredentialsCorrect && config.getProfile(bubble.profileInUse).webUpd)
+                {
+                    string user = config.getProfile(bubble.profileInUse).webUser;
+                    string instance = config.getProfile(bubble.profileInUse).webInstance;
+                    string update_result = "";
+
+                    update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "statusoff", bubble.logForSql()) + " records affected.";
+                    update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "log", bubble.logForSql()) + " records affected.";
+                    update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+                }
+
+
+                if (bubble.updaterInstall)
+                {
+                    bubble.logAddLine("Preparing for installation...");
+                }
+                Application.DoEvents();
+
+                int secs = time.secondsSinceStart();
+                pulse.stopCheck(bubble.pulseProcessName);
+                //killPulseCheck();
+                Thread.Sleep(6000);
+
+
+                if (bubble.updaterInstall)
+                {
+
+                    Application.DoEvents();
+                    //installUpdateOld();
+                    bubble.postProcessCommand = " /profile " + bubble.profileInUse;
+                    update.installUpdateRestart(bubble.upd_url,
+                                                bubble.upd_file,
+                                                bubble.destinationFolder,
+                                                bubble.processToEnd,
+                                                bubble.postProcess,
+                                                bubble.postProcessCommand,
+                                                bubble.updater,
+                                                true,
+                                                bubble.devMachine);
+
                 }
 
             }
-
-            bubble.keepWorking = false;
-            bubble.logAddLine("Stopping TeboCam");
-            Invalidate();
-            if (bttnMotionActive.Checked || bttnMotionAtStartup.Checked)
-            {
-                bubble.Alert.on = true;
-            }
-
-            FileManager.WriteFile("config");
-            bubble.logAddLine("Config data saved.");
-            FileManager.WriteFile("graph");
-            bubble.logAddLine("Graph data saved.");
-            bubble.logAddLine("Saving log data and closing.");
-            FileManager.WriteFile("log");
-
-            bttnMotionInactive.Checked = true;
-            bttnMotionActive.Checked = false;
-            bttnMotionAtStartup.Checked = false;
-
-            Invalidate();
-            bubble.workInit(false);
-            CloseCamera();
-            bubble.logAddLine("Application will remain frozen until exit.");
-            Invalidate();
-
-            if (bubble.databaseConnect && bubble.DatabaseCredentialsCorrect && config.getProfile(bubble.profileInUse).webUpd)
-            {
-                string user = config.getProfile(bubble.profileInUse).webUser;
-                string instance = config.getProfile(bubble.profileInUse).webInstance;
-                string update_result = "";
-
-                update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "statusoff", bubble.logForSql()) + " records affected.";
-                update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "log", bubble.logForSql()) + " records affected.";
-                update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
-            }
-
-
-            if (bubble.updaterInstall)
-            {
-                bubble.logAddLine("Preparing for installation...");
-            }
-            Application.DoEvents();
-
-            int secs = time.secondsSinceStart();
-            pulse.stopCheck(bubble.pulseProcessName);
-            //killPulseCheck();
-            Thread.Sleep(6000);
-
-
-            if (bubble.updaterInstall)
-            {
-
-                Application.DoEvents();
-                //installUpdateOld();
-                bubble.postProcessCommand = " /profile " + bubble.profileInUse;
-                update.installUpdateRestart(bubble.upd_url,
-                                            bubble.upd_file,
-                                            bubble.destinationFolder,
-                                            bubble.processToEnd,
-                                            bubble.postProcess,
-                                            bubble.postProcessCommand,
-                                            bubble.updater,
-                                            true,
-                                            bubble.devMachine);
-
-            }
-
-
+            catch { }
 
         }
 
@@ -4013,18 +4016,9 @@ namespace TeboCam
 
         }
 
-        private void button22_Click(object sender, EventArgs e)
-        {
-            //bubble.film = null;
-            bubble.film.Open(@"C:\testfilm.avi", cameraWindow.Camera.Width, cameraWindow.Camera.Height);
-            bubble.filming = true;
-        }
 
-        private void button23_Click(object sender, EventArgs e)
-        {
-            bubble.filming = false;
-            bubble.film.Close();
-        }
+
+
 
         private void button24_Click(object sender, EventArgs e)
         {
@@ -5205,6 +5199,15 @@ namespace TeboCam
             bubble.keepWorking = false;
             Close();
         }
+
+        private void EmailIntelOn_CheckedChanged(object sender, EventArgs e)
+        {
+
+            emailIntelPanel.Enabled = EmailIntelOn.Checked;
+
+        }
+
+
 
 
 

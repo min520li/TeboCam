@@ -1792,7 +1792,7 @@ namespace TeboCam
 
         public static bool connectedToInternet = false;
 
-        public static bool filming = false;
+
         public static AVIWriter film = new AVIWriter();
 
         static BackgroundWorker bw = new BackgroundWorker();

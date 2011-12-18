@@ -150,6 +150,19 @@ namespace TeboCam
             this.t34 = new System.Windows.Forms.PictureBox();
             this.t14 = new System.Windows.Forms.PictureBox();
             this.Alerts = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.emailIntelPanel = new System.Windows.Forms.Panel();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label48 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.EmailIntelOff = new System.Windows.Forms.RadioButton();
+            this.EmailIntelOn = new System.Windows.Forms.RadioButton();
+            this.label15 = new System.Windows.Forms.Label();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.radioButton11 = new System.Windows.Forms.RadioButton();
             this.button21 = new System.Windows.Forms.Button();
@@ -312,8 +325,6 @@ namespace TeboCam
             this.sqlImageFilename = new System.Windows.Forms.TextBox();
             this.sqlImageRoot = new System.Windows.Forms.TextBox();
             this.Test = new System.Windows.Forms.TabPage();
-            this.stopRecording = new System.Windows.Forms.Button();
-            this.startRecording = new System.Windows.Forms.Button();
             this.bttnToolTips = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button24 = new System.Windows.Forms.Button();
@@ -376,6 +387,8 @@ namespace TeboCam
             ((System.ComponentModel.ISupportInitialize)(this.t34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t14)).BeginInit();
             this.Alerts.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.emailIntelPanel.SuspendLayout();
             this.groupBox21.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -397,7 +410,6 @@ namespace TeboCam
             this.groupBox17.SuspendLayout();
             this.Online.SuspendLayout();
             this.groupBox20.SuspendLayout();
-            this.Test.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timer)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -419,7 +431,6 @@ namespace TeboCam
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(940, 595);
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.Click += new System.EventHandler(this.button23_Click);
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged_1);
             // 
             // Webcam
@@ -1860,6 +1871,7 @@ namespace TeboCam
             // 
             // Alerts
             // 
+            this.Alerts.Controls.Add(this.groupBox4);
             this.Alerts.Controls.Add(this.groupBox21);
             this.Alerts.Controls.Add(this.groupBox14);
             this.Alerts.Controls.Add(this.groupBox13);
@@ -1872,6 +1884,160 @@ namespace TeboCam
             this.Alerts.TabIndex = 2;
             this.Alerts.Text = "Alerts";
             this.Alerts.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.emailIntelPanel);
+            this.groupBox4.Controls.Add(this.EmailIntelOff);
+            this.groupBox4.Controls.Add(this.EmailIntelOn);
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Location = new System.Drawing.Point(312, 209);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(443, 177);
+            this.groupBox4.TabIndex = 59;
+            this.groupBox4.TabStop = false;
+            // 
+            // emailIntelPanel
+            // 
+            this.emailIntelPanel.Controls.Add(this.radioButton1);
+            this.emailIntelPanel.Controls.Add(this.label16);
+            this.emailIntelPanel.Controls.Add(this.textBox1);
+            this.emailIntelPanel.Controls.Add(this.radioButton2);
+            this.emailIntelPanel.Controls.Add(this.label48);
+            this.emailIntelPanel.Controls.Add(this.textBox3);
+            this.emailIntelPanel.Controls.Add(this.label56);
+            this.emailIntelPanel.Controls.Add(this.label49);
+            this.emailIntelPanel.Enabled = false;
+            this.emailIntelPanel.Location = new System.Drawing.Point(6, 43);
+            this.emailIntelPanel.Name = "emailIntelPanel";
+            this.emailIntelPanel.Size = new System.Drawing.Size(400, 117);
+            this.emailIntelPanel.TabIndex = 65;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(14, 91);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(310, 17);
+            this.radioButton1.TabIndex = 70;
+            this.radioButton1.Text = "Increase Mosaic images to meet rule above";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(13, 16);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(89, 13);
+            this.label16.TabIndex = 33;
+            this.label16.Text = "If more than";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.textBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBox1.Location = new System.Drawing.Point(109, 12);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(38, 21);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.Text = "2";
+            this.toolTip1.SetToolTip(this.textBox1, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
+                    "tions in seconds. \r\n");
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(15, 68);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(373, 17);
+            this.radioButton2.TabIndex = 69;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Stop sending emails until rule above is no longer met";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.ForeColor = System.Drawing.Color.Black;
+            this.label48.Location = new System.Drawing.Point(153, 16);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(50, 13);
+            this.label48.TabIndex = 42;
+            this.label48.Text = "emails";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.LemonChiffon;
+            this.textBox3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBox3.Location = new System.Drawing.Point(161, 35);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(38, 21);
+            this.textBox3.TabIndex = 43;
+            this.textBox3.Text = "2";
+            this.toolTip1.SetToolTip(this.textBox3, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
+                    "tions in seconds. \r\n");
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.ForeColor = System.Drawing.Color.Black;
+            this.label56.Location = new System.Drawing.Point(13, 40);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(140, 13);
+            this.label56.TabIndex = 45;
+            this.label56.Text = "are sent in less than";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.ForeColor = System.Drawing.Color.Black;
+            this.label49.Location = new System.Drawing.Point(205, 40);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(59, 13);
+            this.label49.TabIndex = 44;
+            this.label49.Text = "minutes";
+            // 
+            // EmailIntelOff
+            // 
+            this.EmailIntelOff.AutoSize = true;
+            this.EmailIntelOff.Checked = true;
+            this.EmailIntelOff.Location = new System.Drawing.Point(275, 20);
+            this.EmailIntelOff.Name = "EmailIntelOff";
+            this.EmailIntelOff.Size = new System.Drawing.Size(44, 17);
+            this.EmailIntelOff.TabIndex = 68;
+            this.EmailIntelOff.TabStop = true;
+            this.EmailIntelOff.Text = "Off";
+            this.EmailIntelOff.UseVisualStyleBackColor = true;
+            // 
+            // EmailIntelOn
+            // 
+            this.EmailIntelOn.AutoSize = true;
+            this.EmailIntelOn.Location = new System.Drawing.Point(227, 20);
+            this.EmailIntelOn.Name = "EmailIntelOn";
+            this.EmailIntelOn.Size = new System.Drawing.Size(42, 17);
+            this.EmailIntelOn.TabIndex = 67;
+            this.EmailIntelOn.Text = "On";
+            this.EmailIntelOn.UseVisualStyleBackColor = true;
+            this.EmailIntelOn.CheckedChanged += new System.EventHandler(this.EmailIntelOn_CheckedChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(16, 14);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(205, 23);
+            this.label15.TabIndex = 38;
+            this.label15.Text = "Email intelligence";
             // 
             // groupBox21
             // 
@@ -2543,8 +2709,8 @@ namespace TeboCam
             this.button1.Size = new System.Drawing.Size(57, 23);
             this.button1.TabIndex = 55;
             this.button1.Text = "Test";
-            this.toolTip1.SetToolTip(this.button1, "Click here once you have setup them\r\nEmail Host Settings.\r\n\r\nA test will be perfo" +
-                    "rmed and you will\r\nbe informed if it was successful.");
+            this.toolTip1.SetToolTip(this.button1, "Click here once you have setup the\r\nEmail Host Settings.\r\n\r\nA test will be perfor" +
+                    "med and you will\r\nbe informed if it was successful.");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -3920,34 +4086,12 @@ namespace TeboCam
             // 
             // Test
             // 
-            this.Test.Controls.Add(this.stopRecording);
-            this.Test.Controls.Add(this.startRecording);
             this.Test.Location = new System.Drawing.Point(4, 22);
             this.Test.Name = "Test";
             this.Test.Size = new System.Drawing.Size(932, 569);
             this.Test.TabIndex = 7;
             this.Test.Text = "Test";
             this.Test.UseVisualStyleBackColor = true;
-            // 
-            // stopRecording
-            // 
-            this.stopRecording.Location = new System.Drawing.Point(19, 57);
-            this.stopRecording.Name = "stopRecording";
-            this.stopRecording.Size = new System.Drawing.Size(128, 21);
-            this.stopRecording.TabIndex = 82;
-            this.stopRecording.Text = "stop recording";
-            this.stopRecording.UseVisualStyleBackColor = true;
-            this.stopRecording.Click += new System.EventHandler(this.button23_Click);
-            // 
-            // startRecording
-            // 
-            this.startRecording.Location = new System.Drawing.Point(19, 21);
-            this.startRecording.Name = "startRecording";
-            this.startRecording.Size = new System.Drawing.Size(128, 21);
-            this.startRecording.TabIndex = 81;
-            this.startRecording.Text = "start recording";
-            this.startRecording.UseVisualStyleBackColor = true;
-            this.startRecording.Click += new System.EventHandler(this.button22_Click);
             // 
             // bttnToolTips
             // 
@@ -4173,6 +4317,10 @@ namespace TeboCam
             ((System.ComponentModel.ISupportInitialize)(this.t34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t14)).EndInit();
             this.Alerts.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.emailIntelPanel.ResumeLayout(false);
+            this.emailIntelPanel.PerformLayout();
             this.groupBox21.ResumeLayout(false);
             this.groupBox21.PerformLayout();
             this.groupBox14.ResumeLayout(false);
@@ -4210,7 +4358,6 @@ namespace TeboCam
             this.Online.ResumeLayout(false);
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
-            this.Test.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.timer)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -4441,8 +4588,6 @@ namespace TeboCam
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button bttnToolTips;
         private System.Windows.Forms.TabPage Test;
-        private System.Windows.Forms.Button stopRecording;
-        private System.Windows.Forms.Button startRecording;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.RadioButton rdPublishjpg;
         private System.Windows.Forms.RadioButton rdAlertjpg;
@@ -4522,5 +4667,18 @@ namespace TeboCam
         private System.Windows.Forms.TextBox mosaicImagesPerRow;
         private ctlCuteButton.cuteButton bttnUpdateFooter;
         private ctlCuteButton.cuteButton bttInstallUpdateAdmin;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.RadioButton EmailIntelOff;
+        private System.Windows.Forms.RadioButton EmailIntelOn;
+        private System.Windows.Forms.Panel emailIntelPanel;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

@@ -338,8 +338,8 @@ namespace TeboCam
                 width = lastFrame.Width;
                 height = lastFrame.Height;
 
-                if (bubble.filming)
-                { bubble.film.AddFrame(pubFrame); }
+                //#ref5617
+
 
             }
             catch (Exception)
