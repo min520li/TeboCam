@@ -2931,6 +2931,11 @@ namespace TeboCam
             }
             //20101026 convert old publish timestamp to current object
 
+            EmailIntelOn.Checked = data.EmailIntelOn;
+            emailIntelEmails.Text = data.emailIntelEmails.ToString();
+            emailIntelMins.Text = data.emailIntelMins.ToString();
+            EmailIntelStop.Checked = data.EmailIntelStop;
+            EmailIntelMosaic.Checked = !data.EmailIntelStop;
 
             plSnd.Checked = data.soundAlertOn;
             logsKeep.Text = data.logsKeep.ToString();
@@ -5214,8 +5219,34 @@ namespace TeboCam
         {
 
             emailIntelPanel.Enabled = EmailIntelOn.Checked;
+            config.getProfile(bubble.profileInUse).EmailIntelOn = EmailIntelOn.Checked; ;
 
         }
+
+        private void emailIntelEmails_Leave(object sender, EventArgs e)
+        {
+
+            emailIntelEmails.Text = bubble.verifyInt(emailIntelEmails.Text, 1, 9999, "1");
+            config.getProfile(bubble.profileInUse).emailIntelEmails = Convert.ToInt32(emailIntelEmails.Text);
+
+        }
+
+        private void emailIntelMins_Leave(object sender, EventArgs e)
+        {
+
+            emailIntelMins.Text = bubble.verifyInt(emailIntelMins.Text, 1, 9999, "1");
+            config.getProfile(bubble.profileInUse).emailIntelMins = Convert.ToInt32(emailIntelMins.Text);
+
+        }
+
+        private void EmailIntelStop_CheckedChanged(object sender, EventArgs e)
+        {
+
+            config.getProfile(bubble.profileInUse).EmailIntelStop = EmailIntelStop.Checked;
+            
+        }
+
+
 
 
 

@@ -1448,6 +1448,10 @@ namespace TeboCam
         public long currentCyclePubLoc;
         public bool stampAppendPubLoc;
         public decimal pulseFreq;
+        public bool EmailIntelOn;
+        public int emailIntelEmails;
+        public int emailIntelMins;
+        public bool EmailIntelStop;
 
 
         public object Clone()
@@ -1603,6 +1607,11 @@ namespace TeboCam
             currentCyclePubLoc = 1;
             stampAppendPubLoc = false;
             pulseFreq = 0.5m;
+            EmailIntelOn = false;
+            emailIntelEmails = 2;
+            emailIntelMins = 1;
+            EmailIntelStop = false;
+
         }
 
     }
@@ -1967,7 +1976,13 @@ namespace TeboCam
             //or we have images to process and the email notify interval time has passed
             if (
                 config.getProfile(bubble.profileInUse).sendNotifyEmail &&
-                (emailToProcess >= config.getProfile(bubble.profileInUse).maxImagesToEmail || (emailToProcess > 0 && (time.secondsSinceStart() - lastProcessedTime) > config.getProfile(bubble.profileInUse).emailNotifyInterval))
+                (emailToProcess >= config.getProfile(bubble.profileInUse).maxImagesToEmail ||
+                (emailToProcess > 0 && (time.secondsSinceStart() - lastProcessedTime) >
+                config.getProfile(bubble.profileInUse).emailNotifyInterval))
+                && !mail.SpamAlert(config.getProfile(bubble.profileInUse).emailIntelEmails,
+                                   config.getProfile(bubble.profileInUse).emailIntelMins,
+                                   config.getProfile(bubble.profileInUse).EmailIntelOn,
+                                   time.secondsSinceStart())
                 )
             {
 
@@ -2201,7 +2216,7 @@ namespace TeboCam
 
 
 
-     
+
 
         public static void webUpdate()
         {
@@ -2289,12 +2304,12 @@ namespace TeboCam
                     if (tmpStr != "NULL" && email == "1")
                     {
                         teboDebug.writeline(teboDebug.webUpdateVal + 6);
-                        mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy, 
-                                       config.getProfile(bubble.profileInUse).sendTo, 
-                                       "Online Request Confirmation", 
-                                       @"'" + tmpStr + @"'" + " being actioned.", 
-                                       config.getProfile(bubble.profileInUse).replyTo, 
-                                       false, 
+                        mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy,
+                                       config.getProfile(bubble.profileInUse).sendTo,
+                                       "Online Request Confirmation",
+                                       @"'" + tmpStr + @"'" + " being actioned.",
+                                       config.getProfile(bubble.profileInUse).replyTo,
+                                       false,
                                        time.secondsSinceStart(),
                                        config.getProfile(bubble.profileInUse).emailUser,
                                        config.getProfile(bubble.profileInUse).emailPass,
@@ -2721,12 +2736,12 @@ namespace TeboCam
                     mail.addAttachment(tmpFolder + "pingPicture" + graphSeq.ToString() + ".jpg");
                     File.Delete(tmpFolder + "pingPicture.jpg");
                     Thread.Sleep(2000);
-                    mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy, 
-                                   config.getProfile(bubble.profileInUse).sendTo, 
-                                   config.getProfile(bubble.profileInUse).pingSubject, 
-                                   "Log and graph attached." + "Next ping email will be sent in " + config.getProfile(bubble.profileInUse).pingInterval.ToString() + " minutes.", 
-                                   config.getProfile(bubble.profileInUse).replyTo, 
-                                   true, 
+                    mail.sendEmail(config.getProfile(bubble.profileInUse).sentBy,
+                                   config.getProfile(bubble.profileInUse).sendTo,
+                                   config.getProfile(bubble.profileInUse).pingSubject,
+                                   "Log and graph attached." + "Next ping email will be sent in " + config.getProfile(bubble.profileInUse).pingInterval.ToString() + " minutes.",
+                                   config.getProfile(bubble.profileInUse).replyTo,
+                                   true,
                                    time.secondsSinceStart(),
                                    config.getProfile(bubble.profileInUse).emailUser,
                                    config.getProfile(bubble.profileInUse).emailPass,

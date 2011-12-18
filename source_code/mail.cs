@@ -161,24 +161,41 @@ namespace TeboCam
         }
 
 
-        public static void deSpamifyReset(int currTime)
+        private static void deSpamifyReset(int i_currTime)
         {
 
             mail.emailTimeSent.Clear();
-            mail.emailTimeSent.Add(currTime);
+            mail.emailTimeSent.Add(i_currTime);
 
         }
 
-        public static bool deSpamify(int i_emails, int i_mins, bool i_ratioOn)
+        public static bool SpamAlert(int i_emails, int i_mins, bool i_ratioOn, int i_currTime)
         {
 
             if (i_ratioOn)
             {
 
                 double i_ratio = ((double)i_emails / (double)i_mins);
-                int minTime = mail.emailTimeSent[0];
-                int maxTime = mail.emailTimeSent[mail.emailTimeSent.Count];
-                int emails = mail.emailTimeSent.Count + 1;
+                int minTime;
+                int maxTime;
+
+                if (mail.emailTimeSent.Count > 0)
+                {
+
+                    minTime = mail.emailTimeSent[0];
+                    //maxTime = mail.emailTimeSent[mail.emailTimeSent.Count-1];
+                    maxTime = i_currTime;
+
+                }
+                else
+                {
+
+                    return false;
+
+                }
+
+
+                int emails = mail.emailTimeSent.Count ;
                 int emailTime = maxTime - minTime;
 
                 //if the number of minutes elapsed since first email and 
@@ -193,11 +210,19 @@ namespace TeboCam
 
                 double ratio = (double)emails / ((double)emailTime / 60);
 
+                if (maxTime - minTime > (i_mins * 60) && ratio <= i_ratio)
+                {
+
+                    deSpamifyReset(i_currTime);
+
+                }
+
                 return ratio > i_ratio;
 
             }
 
-            return true;
+            deSpamifyReset(i_currTime);
+            return false;
 
         }
 

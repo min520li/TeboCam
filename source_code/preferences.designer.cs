@@ -1888,12 +1888,12 @@ namespace TeboCam
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.emailIntelPanel);
+            this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.EmailIntelOff);
             this.groupBox4.Controls.Add(this.EmailIntelOn);
-            this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Location = new System.Drawing.Point(312, 209);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(418, 177);
+            this.groupBox4.Size = new System.Drawing.Size(418, 194);
             this.groupBox4.TabIndex = 59;
             this.groupBox4.TabStop = false;
             // 
@@ -1908,7 +1908,7 @@ namespace TeboCam
             this.emailIntelPanel.Controls.Add(this.label56);
             this.emailIntelPanel.Controls.Add(this.label49);
             this.emailIntelPanel.Enabled = false;
-            this.emailIntelPanel.Location = new System.Drawing.Point(6, 43);
+            this.emailIntelPanel.Location = new System.Drawing.Point(6, 64);
             this.emailIntelPanel.Name = "emailIntelPanel";
             this.emailIntelPanel.Size = new System.Drawing.Size(400, 117);
             this.emailIntelPanel.TabIndex = 65;
@@ -1946,6 +1946,7 @@ namespace TeboCam
             this.emailIntelEmails.Text = "2";
             this.toolTip1.SetToolTip(this.emailIntelEmails, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
                     "tions in seconds. \r\n");
+            this.emailIntelEmails.Leave += new System.EventHandler(this.emailIntelEmails_Leave);
             // 
             // EmailIntelStop
             // 
@@ -1958,6 +1959,7 @@ namespace TeboCam
             this.EmailIntelStop.TabStop = true;
             this.EmailIntelStop.Text = "Stop sending emails until rule above is no longer met";
             this.EmailIntelStop.UseVisualStyleBackColor = true;
+            this.EmailIntelStop.CheckedChanged += new System.EventHandler(this.EmailIntelStop_CheckedChanged);
             // 
             // label48
             // 
@@ -1982,6 +1984,7 @@ namespace TeboCam
             this.emailIntelMins.Text = "2";
             this.toolTip1.SetToolTip(this.emailIntelMins, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
                     "tions in seconds. \r\n");
+            this.emailIntelMins.Leave += new System.EventHandler(this.emailIntelMins_Leave);
             // 
             // label56
             // 
@@ -2009,7 +2012,7 @@ namespace TeboCam
             // 
             this.EmailIntelOff.AutoSize = true;
             this.EmailIntelOff.Checked = true;
-            this.EmailIntelOff.Location = new System.Drawing.Point(275, 20);
+            this.EmailIntelOff.Location = new System.Drawing.Point(69, 40);
             this.EmailIntelOff.Name = "EmailIntelOff";
             this.EmailIntelOff.Size = new System.Drawing.Size(44, 17);
             this.EmailIntelOff.TabIndex = 68;
@@ -2020,7 +2023,7 @@ namespace TeboCam
             // EmailIntelOn
             // 
             this.EmailIntelOn.AutoSize = true;
-            this.EmailIntelOn.Location = new System.Drawing.Point(227, 20);
+            this.EmailIntelOn.Location = new System.Drawing.Point(21, 40);
             this.EmailIntelOn.Name = "EmailIntelOn";
             this.EmailIntelOn.Size = new System.Drawing.Size(42, 17);
             this.EmailIntelOn.TabIndex = 67;
@@ -2035,9 +2038,9 @@ namespace TeboCam
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(16, 14);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(205, 23);
+            this.label15.Size = new System.Drawing.Size(390, 23);
             this.label15.TabIndex = 38;
-            this.label15.Text = "Email intelligence";
+            this.label15.Text = "Email intelligence/De-spamificator";
             // 
             // groupBox21
             // 

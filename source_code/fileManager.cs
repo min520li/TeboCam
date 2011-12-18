@@ -1296,6 +1296,22 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").pulseFreq = Convert.ToDecimal(configData.ReadString());
                             }
+                            if (configData.LocalName.Equals("EmailIntelOn"))
+                            {
+                                config.getProfile("##newProf##").EmailIntelOn = Convert.ToBoolean(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("emailIntelEmails"))
+                            {
+                                config.getProfile("##newProf##").emailIntelEmails = Convert.ToInt32(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("emailIntelMins"))
+                            {
+                                config.getProfile("##newProf##").emailIntelMins = Convert.ToInt32(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("EmailIntelStop"))
+                            {
+                                config.getProfile("##newProf##").EmailIntelStop = Convert.ToBoolean(configData.ReadString());
+                            }
 
 
                         }
@@ -2300,6 +2316,23 @@ namespace TeboCam
                         configData.WriteStartElement("", "pulseFreq", "");
                         configData.WriteString(config.getProfile().pulseFreq.ToString());
                         configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "EmailIntelOn", "");
+                        configData.WriteString(config.getProfile().EmailIntelOn.ToString());
+                        configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "emailIntelEmails", "");
+                        configData.WriteString(config.getProfile().emailIntelEmails.ToString());
+                        configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "emailIntelMins", "");
+                        configData.WriteString(config.getProfile().emailIntelMins.ToString());
+                        configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "EmailIntelStop", "");
+                        configData.WriteString(config.getProfile().EmailIntelStop.ToString());
+                        configData.WriteEndElement();
+
 
 
                         //******************************
