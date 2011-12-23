@@ -160,9 +160,9 @@ namespace TeboCam
             this.emailIntelMins = new System.Windows.Forms.TextBox();
             this.label56 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.EmailIntelOff = new System.Windows.Forms.RadioButton();
             this.EmailIntelOn = new System.Windows.Forms.RadioButton();
-            this.label15 = new System.Windows.Forms.Label();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.radioButton11 = new System.Windows.Forms.RadioButton();
             this.button21 = new System.Windows.Forms.Button();
@@ -1921,6 +1921,9 @@ namespace TeboCam
             this.EmailIntelMosaic.Size = new System.Drawing.Size(342, 17);
             this.EmailIntelMosaic.TabIndex = 70;
             this.EmailIntelMosaic.Text = "Use/Increase Mosaic images to meet rule above";
+            this.toolTip1.SetToolTip(this.EmailIntelMosaic, "When a possibility of over-emailing is detected and the time has passed\r\nsend an " +
+                    "initial email with a mosaic for all the unsent images then\r\ncontinue sending ema" +
+                    "ils with the selected email settings.");
             this.EmailIntelMosaic.UseVisualStyleBackColor = true;
             // 
             // label16
@@ -1944,8 +1947,6 @@ namespace TeboCam
             this.emailIntelEmails.Size = new System.Drawing.Size(38, 21);
             this.emailIntelEmails.TabIndex = 9;
             this.emailIntelEmails.Text = "2";
-            this.toolTip1.SetToolTip(this.emailIntelEmails, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
-                    "tions in seconds. \r\n");
             this.emailIntelEmails.Leave += new System.EventHandler(this.emailIntelEmails_Leave);
             // 
             // EmailIntelStop
@@ -1958,6 +1959,8 @@ namespace TeboCam
             this.EmailIntelStop.TabIndex = 69;
             this.EmailIntelStop.TabStop = true;
             this.EmailIntelStop.Text = "Stop sending emails until rule above is no longer met";
+            this.toolTip1.SetToolTip(this.EmailIntelStop, "When a possibility of over-emailing is detected and the time has passed\r\nsend an " +
+                    "emails with the selected email settings.");
             this.EmailIntelStop.UseVisualStyleBackColor = true;
             this.EmailIntelStop.CheckedChanged += new System.EventHandler(this.EmailIntelStop_CheckedChanged);
             // 
@@ -1982,8 +1985,6 @@ namespace TeboCam
             this.emailIntelMins.Size = new System.Drawing.Size(38, 21);
             this.emailIntelMins.TabIndex = 43;
             this.emailIntelMins.Text = "2";
-            this.toolTip1.SetToolTip(this.emailIntelMins, "Once movement is detected this determines how \r\nfrequently to send email notifica" +
-                    "tions in seconds. \r\n");
             this.emailIntelMins.Leave += new System.EventHandler(this.emailIntelMins_Leave);
             // 
             // label56
@@ -2008,29 +2009,6 @@ namespace TeboCam
             this.label49.TabIndex = 44;
             this.label49.Text = "minutes";
             // 
-            // EmailIntelOff
-            // 
-            this.EmailIntelOff.AutoSize = true;
-            this.EmailIntelOff.Checked = true;
-            this.EmailIntelOff.Location = new System.Drawing.Point(69, 40);
-            this.EmailIntelOff.Name = "EmailIntelOff";
-            this.EmailIntelOff.Size = new System.Drawing.Size(44, 17);
-            this.EmailIntelOff.TabIndex = 68;
-            this.EmailIntelOff.TabStop = true;
-            this.EmailIntelOff.Text = "Off";
-            this.EmailIntelOff.UseVisualStyleBackColor = true;
-            // 
-            // EmailIntelOn
-            // 
-            this.EmailIntelOn.AutoSize = true;
-            this.EmailIntelOn.Location = new System.Drawing.Point(21, 40);
-            this.EmailIntelOn.Name = "EmailIntelOn";
-            this.EmailIntelOn.Size = new System.Drawing.Size(42, 17);
-            this.EmailIntelOn.TabIndex = 67;
-            this.EmailIntelOn.Text = "On";
-            this.EmailIntelOn.UseVisualStyleBackColor = true;
-            this.EmailIntelOn.CheckedChanged += new System.EventHandler(this.EmailIntelOn_CheckedChanged);
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -2041,6 +2019,35 @@ namespace TeboCam
             this.label15.Size = new System.Drawing.Size(390, 23);
             this.label15.TabIndex = 38;
             this.label15.Text = "Email intelligence/De-spamificator";
+            // 
+            // EmailIntelOff
+            // 
+            this.EmailIntelOff.AutoSize = true;
+            this.EmailIntelOff.Checked = true;
+            this.EmailIntelOff.Location = new System.Drawing.Point(69, 40);
+            this.EmailIntelOff.Name = "EmailIntelOff";
+            this.EmailIntelOff.Size = new System.Drawing.Size(44, 17);
+            this.EmailIntelOff.TabIndex = 68;
+            this.EmailIntelOff.TabStop = true;
+            this.EmailIntelOff.Text = "Off";
+            this.toolTip1.SetToolTip(this.EmailIntelOff, "The de-spamificator helps prevent you getting multiple emails \r\nover a short time" +
+                    " due to movement detection.\r\n\r\nYou get to set the number of emails and time limi" +
+                    "t.");
+            this.EmailIntelOff.UseVisualStyleBackColor = true;
+            // 
+            // EmailIntelOn
+            // 
+            this.EmailIntelOn.AutoSize = true;
+            this.EmailIntelOn.Location = new System.Drawing.Point(21, 40);
+            this.EmailIntelOn.Name = "EmailIntelOn";
+            this.EmailIntelOn.Size = new System.Drawing.Size(42, 17);
+            this.EmailIntelOn.TabIndex = 67;
+            this.EmailIntelOn.Text = "On";
+            this.toolTip1.SetToolTip(this.EmailIntelOn, "The de-spamificator helps prevent you getting multiple emails \r\nover a short time" +
+                    " due to movement detection.\r\n\r\nYou get to set the number of emails and time limi" +
+                    "t.");
+            this.EmailIntelOn.UseVisualStyleBackColor = true;
+            this.EmailIntelOn.CheckedChanged += new System.EventHandler(this.EmailIntelOn_CheckedChanged);
             // 
             // groupBox21
             // 
