@@ -209,9 +209,9 @@ namespace TeboCam
 
                 }
 
-                double ratio = (double)emails / ((double)emailTime / 60);
+                double calculatedRatio = (double)emails / ((double)emailTime / 60);
 
-                if (maxTime - minTime > (i_mins * 60) && ratio <= i_ratio)
+                if (maxTime - minTime > (i_mins * 60) && calculatedRatio <= i_ratio)
                 {
 
                     deSpamifyReset(i_currTime);
@@ -219,15 +219,15 @@ namespace TeboCam
                 }
 
 
-                if (ratio > i_ratio)
+                if (calculatedRatio > i_ratio)
                 {
 
-                    spamStopped;
+                    spamStopped = true;
 
                 }
 
 
-                return ratio > i_ratio;
+                return calculatedRatio > i_ratio;
 
             }
 

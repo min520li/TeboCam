@@ -1893,6 +1893,7 @@ namespace TeboCam
 
             int emailToProcess = new int();
             int ftpToProcess = new int();
+            bool spamStopEmail = false;
 
             emailToProcess = imagesFromMovement.emailToProcess();
             ftpToProcess = imagesFromMovement.ftpToProcess();
@@ -1986,11 +1987,13 @@ namespace TeboCam
                 )
             {
 
+
+
                 if (mail.spamStopped)
                 {
 
-
                     mail.spamStopped = false;
+                    spamStopEmail = true;
 
                 }
 
@@ -2020,7 +2023,8 @@ namespace TeboCam
                             mail.clearAttachments();
 
                             //the time trigger has caused these emails to be sent
-                            if (emailToProcess < config.getProfile(bubble.profileInUse).maxImagesToEmail)
+                            //or the despamificator has been switched on and the time has elapsed with the mosaic option selected
+                            if (emailToProcess < config.getProfile(bubble.profileInUse).maxImagesToEmail || (spamStopEmail && !config.getProfile(bubble.profileInUse).EmailIntelStop))
                             {
                                 teboDebug.writeline(teboDebug.movementPublishVal + 12);
 
@@ -2040,9 +2044,24 @@ namespace TeboCam
                                     string rand = new Random(time.secondsSinceStart()).Next(99999).ToString();
 
                                     pulseEvent(null, new EventArgs());
-                                    mosaic.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
-                                                                 thumbFolder + rand + mosaicFile,
-                                                                 config.getProfile(bubble.profileInUse).alertCompression);
+
+                                    if (!spamStopEmail)
+                                    {
+                                        
+                                        mosaic.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
+                                                                     thumbFolder + rand + mosaicFile,
+                                                                     config.getProfile(bubble.profileInUse).alertCompression);
+
+                                    }
+                                    else
+                                    {
+
+                                        mosaic.saveMosaicAsJpg(10,
+                                                               thumbFolder + rand + mosaicFile,
+                                                               config.getProfile(bubble.profileInUse).alertCompression);
+
+                                    }
+
 
                                     mosaic.clearList();
 
@@ -2210,6 +2229,12 @@ namespace TeboCam
                     bubble.fileBusy = false;
                     Thread.Sleep(500);
 
+                    if (spamStopEmail)
+                    {
+
+                        spamStopEmail = false;
+
+                    }
 
                 }
 
