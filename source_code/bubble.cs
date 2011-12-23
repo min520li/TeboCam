@@ -2029,7 +2029,7 @@ namespace TeboCam
                                 teboDebug.writeline(teboDebug.movementPublishVal + 12);
 
                                 //send mosaic
-                                if (config.getProfile(bubble.profileInUse).sendMosaicImages)
+                                if (config.getProfile(bubble.profileInUse).sendMosaicImages || (spamStopEmail && !config.getProfile(bubble.profileInUse).EmailIntelStop))
                                 {
                                     mosaic.clearList();
 
