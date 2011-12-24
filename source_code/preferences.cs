@@ -31,8 +31,7 @@ namespace TeboCam
     public partial class preferences : Form
     {
 
-        //public Pulse pulse = new Pulse(10, bubble.tmpFolder, "pulse.xml", bubble.processToEnd, bubble.postProcess, bubble.pulseApp);
-        //Pulse pulse = new Pulse(10, bubble.tmpFolder, "pulse.xml", bubble.processToEnd, bubble.postProcess, bubble.pulseApp, true);
+
         public Pulse pulse;
 
         public configData configInfo = new configData();
@@ -56,13 +55,9 @@ namespace TeboCam
         public int RectangleWidth = new int();
 
 
-        //public static htmlInfo updateInfo;
-        //public static versionInfo updateInfo;
-
         static BackgroundWorker bw = new BackgroundWorker();
         static BackgroundWorker cw = new BackgroundWorker();
         static BackgroundWorker ew = new BackgroundWorker();
-        //static BackgroundWorker tw = new BackgroundWorker();
         static BackgroundWorker worker = new BackgroundWorker();
 
         private bool showLevel = false;
@@ -74,8 +69,6 @@ namespace TeboCam
         private int statIndex = 0;
         private int[] statCount = new int[statLength];
 
-        //private IMotionDetector detector = new MotionDetector3Optimized();
-        //private IMotionDetector detector = new MotionDetector4();
         private int intervalsToSave = 0;
 
 
@@ -98,17 +91,17 @@ namespace TeboCam
 
         public preferences()
         {
+
             InitializeComponent();
-            //testAtStart();
+
         }
 
         private void testAtStart()
         {
-            //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fr-FR");
-            //bubble.configDataInit();
-            //System.Diagnostics.Debug.WriteLine(bubble.movementVal);
+
             config.addProfile();
             configData data = config.getProfile("main");
+
         }
 
 
@@ -144,8 +137,6 @@ namespace TeboCam
             // /profile daytime_monitor  
             //Example command line parameters
 
-
-            //System.Diagnostics.Debug.WriteLine("#commands#");
 
             string commandLine = "";
             bool activate = false;
@@ -225,24 +216,15 @@ namespace TeboCam
                         bttnSeconds.Checked = true;
                         activate = true;
 
-                        //config.getProfile(bubble.profileInUse).countdownNow = true;
-                        //bttnNow.Checked = true;
-                        //bttnTime.Checked = false;
-                        //bttnSeconds.Checked = false;
-
-                        //config.getProfile(bubble.profileInUse).AlertOnStartup = true;
-                        //bttnMotionActive.Checked = true;
-
-
-
                     }
 
                     if ((activate && (commandLine == "now" || commandLine == "activate")))
                     {
-                        //bttnMotionInactive.Checked = false;
+
                         bttnNow.Checked = true;
                         bttnTime.Checked = false;
                         bttnSeconds.Checked = false;
+
                     }
 
 
@@ -258,7 +240,6 @@ namespace TeboCam
                 bttnMotionActive.Checked = true;
             }
 
-            //System.Diagnostics.Debug.WriteLine("#commands#");
 
 
         }
@@ -274,7 +255,6 @@ namespace TeboCam
 
 
             bubble.devMachine = File.Exists(Application.StartupPath + bubble.devMachineFile);
-            //bubble.databaseTrial = File.Exists(Application.StartupPath + bubble.databaseTrialFile);
             bubble.databaseConnect = File.Exists(Application.StartupPath + bubble.dbaseConnectFile);
 
 
@@ -282,14 +262,9 @@ namespace TeboCam
 
             if (bubble.devMachine)
             {
+
                 bttInstallUpdateAdmin.Visible = true;
                 bttnUpdateFooter.Visible = true;
-
-
-                //20110501 nooppeddue to version on xml config file defaulting to 1 
-                //bubble.ver = "1";
-                //bubble.version = Double.Parse(bubble.ver, new System.Globalization.CultureInfo("en-GB")).ToString();
-                //20110501 nooppeddue to version on xml config file defaulting to 1 
 
             }
             else
@@ -299,13 +274,7 @@ namespace TeboCam
 
             if (!bubble.databaseConnect) tabControl1.TabPages.Remove(Online); ;
 
-
-            //bubble.connectedToInternet = bubble.connectionToInternet();
-            //notConnected.Visible = !bubble.connectedToInternet;
-
             updaterUpdate();
-
-            //time.setStart();
 
             ThumbsPrepare();
 
@@ -320,9 +289,6 @@ namespace TeboCam
             bubble.TimeChange += new EventHandler(time_change);
             publishSwitch += new EventHandler(publish_switch);
 
-            //html.htmlOk += new EventHandler(update_version_ok);
-            //html.htmlError += new EventHandler(update_version_error);
-
             bubble.redrawGraph += new EventHandler(drawGraph);
             bubble.pingGraph += new EventHandler(drawGraphPing);
             bubble.motionLevelChanged += new EventHandler(drawLevel);
@@ -330,7 +296,6 @@ namespace TeboCam
             bubble.motionDetectionActivate += new EventHandler(motionDetectionActivate);
             bubble.motionDetectionInactivate += new EventHandler(motionDetectionInactivate);
 
-            //installationClean();
             filesInit();
 
             if (FileManager.readXmlFile("config", false))
@@ -339,7 +304,6 @@ namespace TeboCam
             }
             else
             {
-                //bubble.configDataInit();
                 FileManager.readXmlFile("config", true);
             }
             if (FileManager.readXmlFile("log", false))
@@ -395,15 +359,11 @@ namespace TeboCam
 
             bubble.Loading = false;
 
-            //temp nooped 20101003 due to website issues
-            //htmlInfo updateInfo = check_for_updates();
-
             lblCurVer.Text = "This Version: " + bubble.version;
 
             List<string> updateDat = new List<string>();
 
             updateDat = check_for_updates();
-            //updateInfo = check_for_updates();
 
             if (decimal.Parse(updateDat[1]) == 0)
             { lblVerAvail.Text = "Unable to determine the most up-to-date version."; }
@@ -438,7 +398,6 @@ namespace TeboCam
 
             if (!config.getProfile(bubble.profileInUse).AlertOnStartup && config.getProfile(bubble.profileInUse).updatesNotify
                 && bubble.connectedToInternet
-                //&& bubble.updateInfoRetrieved
                 && Convert.ToDecimal(updateDat[1]) > Convert.ToDecimal(bubble.version)
                 && !config.getProfile(bubble.profileInUse).startTeboCamMinimized
                               )
@@ -454,17 +413,6 @@ namespace TeboCam
                 tmpStr += "box in the Admin tab.";
                 MessageBox.Show(tmpStr, "Update Available");
             }
-            //temp nooped 20101003 due to website issues
-
-
-            //temp nooped 20101003 due to website issues
-
-
-            //if (newsAvailable())
-            //{ newsInfo.BackColor = Color.Gold; }
-            //else
-            //{ newsInfo.BackColor = System.Drawing.SystemColors.Control; }
-            ////temp nooped 20101003 due to website issues
 
             plSnd.Enabled = config.getProfile(bubble.profileInUse).soundAlert != "";
 
@@ -489,15 +437,11 @@ namespace TeboCam
 
             }
 
-            //TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER 
+
             worker.WorkerSupportsCancellation = true;
             worker.DoWork -= new DoWorkEventHandler(workerProcess);
             worker.DoWork += new DoWorkEventHandler(workerProcess);
             worker.RunWorkerAsync();
-            //TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER 
-
-
-
 
         }
 
@@ -546,10 +490,8 @@ namespace TeboCam
 
         private void statusBarUpdate(object sender, ListArgs e)
         {
-            //htmlInfo updateInfo = check_for_updates();
-            //bubble.downloadUrl = updateInfo.url;
-            if (//bubble.updateInfoRetrieved &&
-                Convert.ToDecimal(e._list[0]) > Convert.ToDecimal(bubble.version))
+
+            if (Convert.ToDecimal(e._list[0]) > Convert.ToDecimal(bubble.version))
             {
                 statusStrip.BackColor = Color.LemonChiffon;
                 StatusStripLabel.ForeColor = Color.Black;
@@ -572,20 +514,12 @@ namespace TeboCam
             camButtons.initialize(9);
 
 
-            //wait for connection to selected webcam for two minutes
 
-            //int waited = 0;
             bool nocam;
-            //bool allCamsFound = false;
 
 
             List<string> camrigCams = new List<string>();
             camrigCams = CameraRig.camerasListedUnderProfile(bubble.profileInUse);
-
-
-            //20110516 noopped as it seems a bit of an overkill - if a camera is not found then it is not connected
-            //while (!allCamsFound && waited < 60)
-            //{
 
             nocam = false;
 
@@ -604,11 +538,9 @@ namespace TeboCam
             {
 
                 for (int i = 0; i < filters.Count; i++)
-                //for (int i = filters.Count - 1;i>= 0 ; i--)
                 {
 
                     for (int c = 0; c < camrigCams.Count; c++)
-                    //int c = 0;
                     {
 
                         if (filters[i].MonikerString == camrigCams[c])
@@ -616,10 +548,8 @@ namespace TeboCam
 
                             Thread.Sleep(1000);
                             VideoCaptureDevice localSource = new VideoCaptureDevice(camrigCams[c]);
-                            //localSource.VideoSource = camrigCams[c];
                             OpenVideoSource(localSource);
                             camrigCams.RemoveAt(c);
-                            //allCamsFound = true;
 
                         }
 
@@ -627,18 +557,7 @@ namespace TeboCam
 
                 }
 
-                //cameraSwitch(config.getProfile(bubble.profileInUse).selectedCam - 1, true);
-
-
             }
-
-            //allCamsFound = camrigCams.Count == 0;
-            //waited++;
-            //    Thread.Sleep(2000);
-            //20110516 noopped as it seems a bit of an overkill - if a camera is not found then it is not connected
-
-            //}
-
 
         }
 
@@ -729,11 +648,6 @@ namespace TeboCam
         private void smtpHost_TextChanged(object sender, EventArgs e)
         {
             config.getProfile(bubble.profileInUse).smtpHost = smtpHost.Text;
-        }
-
-        private void smtpPort_TextChanged(object sender, EventArgs e)
-        {
-            //config.getProfile(bubble.profileInUse).smtpPort = Convert.ToInt32(smtpPort.Text);
         }
 
         private void sendTo_TextChanged(object sender, EventArgs e)
@@ -975,7 +889,6 @@ namespace TeboCam
                     VideoCaptureDevice localSource = new VideoCaptureDevice(form.Device);
 
                     config.getProfile(bubble.profileInUse).webcam = form.Device;
-                    //localSource.VideoSource = form.Device;
 
                     // open it
                     OpenVideoSource(localSource);
@@ -1009,7 +922,7 @@ namespace TeboCam
             camera.Start();
 
             rigItem rig_it = new rigItem();
-            rig_it.cameraName = source.Source;// Convert.ToString(CameraRig.cameraCount() + 1);
+            rig_it.cameraName = source.Source;
             rig_it.cam = camera;
             rig_it.cam.cam = CameraRig.cameraCount();
             CameraRig.addCamera(rig_it);
@@ -1020,30 +933,8 @@ namespace TeboCam
 
             //populate or update rig info
             CameraRig.rigInfoPopulate(config.getProfile(bubble.profileInUse).profileName, curCam);
-            //populate or update rig info
-
 
             CameraRig.rig[curCam].cam.cam = curCam;
-
-            //int desiredButton = CameraRig.rig[curCam].displayButton;
-
-
-            //testing code 20110806
-            //foreach (info infoI in CameraRig.camInfo)
-            //{
-
-            //    //we have found this button is already assigned to another camera
-            //    if (infoI.profileName == bubble.profileInUse)
-            //    {
-
-            //        Debug.WriteLine(infoI.friendlyName);
-            //        Debug.WriteLine(infoI.displayButton);
-            //        Debug.WriteLine(desiredButton);
-
-            //    }
-
-            //}
-            //testing code 20110806
 
             //get desired button or first available button
             int desiredButton = CameraRig.rig[curCam].displayButton;
@@ -1051,14 +942,10 @@ namespace TeboCam
             int camButton = camButtons.availForClick(desiredButton, true);
             bool freeCamsExist = camButton != 999;
 
-            //no free camera buttons
+            //if a free camera button exists assign the camera
             if (freeCamsExist)
             {
                 CameraRig.rig[curCam].displayButton = camButton;
-            }
-            else
-            {
-                //don't assign camera
             }
 
             //update info for camera
@@ -1118,12 +1005,6 @@ namespace TeboCam
             CameraRig.rig[curCam].cam.motionAlarm -= new alarmEventHandler(bubble.camera_Alarm);
             CameraRig.rig[curCam].cam.motionAlarm += new alarmEventHandler(bubble.camera_Alarm);
 
-            // reset statistics
-            //statIndex = statReady = 0;
-
-            // start timer
-            //timer.Start();
-
             bubble.webcamAttached = true;
 
             SetButtonEnabled(button23, CameraRig.camerasAttached());
@@ -1151,8 +1032,7 @@ namespace TeboCam
 
                 if (camera.MotionDetector != null)
                     camera.MotionDetector.Reset();
-                //if (detector != null)
-                //    detector.Reset();
+
             }
 
             if (writer != null)
@@ -1241,7 +1121,6 @@ namespace TeboCam
                     FileManager.clearFiles(bubble.imageFolder);
 
                     lblAdminMes.Text = "Image computer files deleted";
-                    //bubble.messageInform("TeboCam image files on computer deleted.", "Files Deleted");
                     bubble.logAddLine("Image files on computer deleted.");
                 }
                 if (clrFtp.Checked)
@@ -1581,49 +1460,6 @@ namespace TeboCam
                             }
                         }
 
-                        //foreach (rigItem item in CameraRig.rig)
-                        //{
-
-                        //    //int cam = item.cam.cam + 1;
-                        //    int cam = item.displayButton;
-
-                        //    switch (cam)
-                        //    {
-
-                        //        case 1:
-                        //            selcam(this.bttncam1sel, 1);
-                        //            break;
-                        //        case 2:
-                        //            selcam(this.bttncam2sel, 2);
-                        //            break;
-                        //        case 3:
-                        //            selcam(this.bttncam3sel, 3);
-                        //            break;
-                        //        case 4:
-                        //            selcam(this.bttncam4sel, 4);
-                        //            break;
-                        //        case 5:
-                        //            selcam(this.bttncam5sel, 5);
-                        //            break;
-                        //        case 6:
-                        //            selcam(this.bttncam6sel, 6);
-                        //            break;
-                        //        case 7:
-                        //            selcam(this.bttncam7sel, 7);
-                        //            break;
-                        //        case 8:
-                        //            selcam(this.bttncam8sel, 8);
-                        //            break;
-                        //        case 9:
-                        //            selcam(this.bttncam9sel, 9);
-                        //            break;
-
-                        //    }
-
-
-                        //}
-
-
                     }
 
                     actCount.Visible = true;
@@ -1701,7 +1537,6 @@ namespace TeboCam
                 sensePerc = 100;
             }
 
-            //sensePerc = (int)Math.Floor(config.getProfile(bubble.profileInUse).movementVal * (double)100);
             lineLen = levelbox.Size.Height;
             lineWid = levelbox.Size.Width;
             onePct = (double)lineLen / (double)100;
@@ -1840,29 +1675,9 @@ namespace TeboCam
 
 
 
-
-
-
-                        //switch (val)
-                        //{
-                        //    case "low":
-                        //        lineHeight = lowHt;
-                        //        startY = startY + lineLength - lowHt;
-                        //        break;
-                        //    case "mid":
-                        //        lineHeight = midHt;
-                        //        startY = startY + lineLength - midHt;
-                        //        break;
-                        //    case "top":
-                        //        lineHeight = topHt;
-                        //        startY = startY + lineLength - topHt;
-                        //        break;
-                        //}
-
                         if (val != "nil")
                         {
 
-                            //201009**********************************/
                             int maxVal = 0;
                             int lastV = 0;
                             int regVals = 0;
@@ -1888,7 +1703,6 @@ namespace TeboCam
                             int gVal = (int)graphData[cellIdx];
                             lineHeight = Convert.ToInt32(Math.Floor((double)gVal * heightMod));
                             startY = startY + lineLength - lineHeight;
-                            //201009**********************************/
 
 
                             movement = true;
@@ -2004,8 +1818,6 @@ namespace TeboCam
                 tabControl1.SelectedIndex = 0;
                 Invalidate();
 
-                //if (bubble.drawMode) { cameraWindow.Camera.Unlock(); }
-
                 if (bubble.fileBusy)
                 {
 
@@ -2016,7 +1828,6 @@ namespace TeboCam
 
                     while (bubble.fileBusy)
                     {
-                        // bubble.logAddLine("Waiting for file processing to complete...");
                         Thread.Sleep(500);
                         Invalidate();
                         tmpInt++;
@@ -2419,23 +2230,6 @@ namespace TeboCam
         }
 
 
-
-
-        //private void button8_Click(object sender, EventArgs e)
-        //{
-        //    if (button8.Text == "Show Level")
-        //    {
-        //        showLevel = true;
-        //        button8.Text = "Hide Level";
-        //    }
-        //    else
-        //    {
-        //        showLevel = false;
-        //        button8.Text = "Show Level";
-        //        levelDraw(0);
-        //    }
-        //}
-
         private void installationClean()
         {
             //Create folders if they do not exist
@@ -2484,11 +2278,6 @@ namespace TeboCam
             }
 
 
-
-            //if (!Directory.Exists(bubble.imageFolder))
-            //{
-            //    Directory.CreateDirectory(bubble.imageFolder);
-            //}
             if (!Directory.Exists(bubble.tmpFolder))
             {
                 Directory.CreateDirectory(bubble.tmpFolder);
@@ -2583,9 +2372,6 @@ namespace TeboCam
 
 
             actCountdown.Text = data.activatecountdown.ToString();
-            //!!!!!!!!!!!!!!!!!
-            //bubble.activatecountdownTime = data.activatecountdown.ToString();
-            //!!!!!!!!!!!!!!!!!
 
             bool cmdLine = false;
             foreach (string arg in Environment.GetCommandLineArgs())
@@ -2622,9 +2408,7 @@ namespace TeboCam
             emailNotifInterval.Text = data.emailNotifyInterval.ToString();
             emailPass.Text = data.emailPass;
             emailUser.Text = data.emailUser;
-            //!!!!!!!!!!!!!!!!!
-            //bubble.filenamePrefix = data.filenamePrefix;
-            //!!!!!!!!!!!!!!!!!
+
             ftpPass.Text = data.ftpPass;
             ftpRoot.Text = data.ftpRoot;
             ftpUser.Text = data.ftpUser;
@@ -2632,18 +2416,13 @@ namespace TeboCam
             lblImgPref.Text = "Image Prefix: " + data.filenamePrefix + "   e.g " + data.filenamePrefix + "1" + bubble.ImgSuffix;
             loadToFtp.Checked = data.loadImagesToFtp;
             mailBody.Text = data.mailBody;
-            //!!!!!!!!!!!!!!!!!
-            //bubble.mailBody = data.mailBody;
-            //!!!!!!!!!!!!!!!!!
+
             mailSubject.Text = data.mailSubject;
             maxImagesToEmail.Text = data.maxImagesToEmail.ToString();
-            //!!!!!!!!!!!!!!!!!
-            //bubble.maxImagesToEmail =  Convert.ToInt64(data.maxImagesToEmail.ToString());
-            //!!!!!!!!!!!!!!!!!
+
             numericUpDown1.Value = Convert.ToDecimal(LeftRightMid.Left(data.activatecountdownTime, 2));
             numericUpDown2.Value = Convert.ToDecimal(LeftRightMid.Right(data.activatecountdownTime, 2));
 
-            //TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER 
 
             pubTimerOn.Checked = data.timerOn;
 
@@ -2670,9 +2449,6 @@ namespace TeboCam
                 lblstartmov.ForeColor = System.Drawing.SystemColors.Control;
                 lblendmov.ForeColor = System.Drawing.SystemColors.Control;
             }
-
-
-            //TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER 
 
 
 
@@ -2721,15 +2497,9 @@ namespace TeboCam
             {
                 data.publishWeb = data.pubImage;
             }
-            //pubHours.Checked = data.pubHours;
-            //pubMins.Checked = data.pubMins;
-            //pubSecs.Checked = data.pubSecs;
             pubFtpUser.Text = data.pubFtpUser;
             pubFtpPass.Text = data.pubFtpPass;
             pubFtpRoot.Text = data.pubFtpRoot;
-            //pubTime.Text = data.pubTime.ToString();
-            //pubToLocal.Checked = data.publishLocal;
-            //pubToWeb.Checked = data.publishWeb;
 
             if (data.motionLevel)
             {
@@ -2754,13 +2524,6 @@ namespace TeboCam
             sqlImageFilename.Text = data.webImageFileName;
             SqlFtpUser.Text = data.webFtpUser;
             SqlFtpPwd.Text = data.webFtpPass;
-
-            //checkBox1.Checked = data.pubStamp;
-            //button22.Enabled = data.pubStamp;
-
-            //radioButton5.Checked = data.pubStampDate;
-            //radioButton6.Checked = data.pubStampTime;
-            //radioButton9.Checked = data.pubStampDateTime;
 
             //20101026 convert old publish timestamp to current object
             if (data.pubStamp) data.publishTimeStamp = true;
@@ -2788,7 +2551,6 @@ namespace TeboCam
 
             radioButton11.Checked = data.imageLocCust;
 
-            //chkImageToFrame.Checked = data.imageToframe;
             if (data.imageToframe)
             {
                 imageInFrame.Image = TeboCam.Properties.Resources.arrowOut;
@@ -3037,14 +2799,6 @@ namespace TeboCam
         private void pubImage_CheckedChanged(object sender, EventArgs e)
         {
 
-            //20111118 no-opped to be re-introduced at a later date
-            //if (CameraRig.rig.Count > 0)
-            //{
-            //    int pubButton = CameraRig.idxFromButton(camButtons.publishingButton());
-            //    CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage", pubImage.Checked);
-            //}
-            //20111118 no-opped to be re-introduced at a later date
-
             config.getProfile(bubble.profileInUse).pubImage = pubImage.Checked;
 
             if (pubImage.Checked)
@@ -3064,7 +2818,6 @@ namespace TeboCam
         {
 
             pubTime.Text = bubble.verifyInt(pubTime.Text.ToString(), 1, 99999, "1");
-            //config.getProfile(bubble.profileInUse).pubTime = Convert.ToInt32(pubTime.Text);
 
             if (CameraRig.rig.Count > 0)
             {
@@ -3078,7 +2831,6 @@ namespace TeboCam
 
         private void pubHours_CheckedChanged(object sender, EventArgs e)
         {
-            //config.getProfile(bubble.profileInUse).pubHours = pubHours.Checked;
 
             if (CameraRig.rig.Count > 0)
             {
@@ -3091,7 +2843,6 @@ namespace TeboCam
 
         private void pubMins_CheckedChanged(object sender, EventArgs e)
         {
-            //config.getProfile(bubble.profileInUse).pubMins = pubMins.Checked;
 
             if (CameraRig.rig.Count > 0)
             {
@@ -3104,7 +2855,6 @@ namespace TeboCam
 
         private void pubSecs_CheckedChanged(object sender, EventArgs e)
         {
-            //config.getProfile(bubble.profileInUse).pubSecs = pubSecs.Checked;
 
             if (CameraRig.rig.Count > 0)
             {
@@ -3186,14 +2936,8 @@ namespace TeboCam
             ew.RunWorkerAsync();
         }
 
-
-
-        //TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER 
-
-
         private void pubTimerOn_CheckedChanged(object sender, EventArgs e)
         {
-            //groupBox18.Enabled = !groupBox18.Enabled;
             config.getProfile(bubble.profileInUse).timerOn = pubTimerOn.Checked;
 
             if (CameraRig.rig.Count > 0)
@@ -3240,8 +2984,6 @@ namespace TeboCam
         {
             bool oldCamPresent = false;
 
-            //System.Diagnostics.Debug.WriteLine(frameCount);
-            //System.Diagnostics.Debug.WriteLine(frameDateTime);
 
             //camera has been lost
             if (!bubble.drawMode && frameCount > 0 && frameCount == framePrevious)
@@ -3272,7 +3014,6 @@ namespace TeboCam
                 if (oldCamPresent)
                 {
                     VideoCaptureDevice localSource = new VideoCaptureDevice(config.getProfile(bubble.profileInUse).webcam);
-                    //localSource.VideoSource = config.getProfile(bubble.profileInUse).webcam;
                     OpenVideoSource(localSource);
                     Thread.Sleep(2000);
                 }
@@ -3403,9 +3144,6 @@ namespace TeboCam
         private void workerProcess(object sender, DoWorkEventArgs e)
         {
 
-            //pulse = new Pulse(1, bubble.tmpFolder, "pulse.xml", bubble.processToEnd, bubble.postProcess, bubble.pulseApp, bubble.logFolder, bubble.pulseRestart);
-            //pulse = new Pulse(1, bubble.tmpFolder, "pulse.xml", bubble.processToEnd, bubble.postProcess, bubble.pulseApp, bubble.logFolder, true);
-
             pulseEvent -= new EventHandler(pulseProcess);
             pulseEvent += new EventHandler(pulseProcess);
             bubble.pulseEvent -= new EventHandler(pulseProcess);
@@ -3417,7 +3155,6 @@ namespace TeboCam
             pulseStartEvent += new EventHandler(pulseStart);
 
             pulseEvent(null, new EventArgs());
-            //pulse.Beat();
 
             bubble.pingLast = time.secondsSinceStart();
 
@@ -3523,8 +3260,6 @@ namespace TeboCam
                 bubble.webUpdLastChecked = 0;
                 bubble.webFirstTimeThru = true;
 
-                //System.Diagnostics.Debug.WriteLine(crypt.HashString(sqlPwd.Text));
-
             }
         }
 
@@ -3603,35 +3338,6 @@ namespace TeboCam
         }
 
 
-        //private void button15_Click(object sender, EventArgs e)
-        //{
-        //    FileManager.WriteFile("config");
-        //    bubble.logAddLine("Config data saved.");
-        //}
-
-        //private void button16_Click(object sender, EventArgs e)
-        //{
-        //    FileManager.WriteFile("config");
-        //    bubble.logAddLine("Config data saved.");
-        //}
-
-        //private void button17_Click(object sender, EventArgs e)
-        //{
-        //    FileManager.WriteFile("config");
-        //    bubble.logAddLine("Config data saved.");
-        //}
-
-        //private void button18_Click(object sender, EventArgs e)
-        //{
-        //    FileManager.WriteFile("config");
-        //    bubble.logAddLine("Config data saved.");
-        //}
-
-        //private void button19_Click(object sender, EventArgs e)
-        //{
-        //    FileManager.WriteFile("config");
-        //    bubble.logAddLine("Config data saved.");
-        //}
 
         private void plSnd_CheckedChanged(object sender, EventArgs e)
         {
@@ -3677,23 +3383,6 @@ namespace TeboCam
             }
 
         }
-
-        //private static bool newsAvailable()
-        //{
-
-        //    try
-        //    {
-        //        ArrayList newsTmp = html.getHtmlPage(bubble.newsURL);
-
-        //        int newsSeq = 0;
-        //        newsSeq = Convert.ToInt32(newsTmp[0].ToString().Trim());
-
-        //        return newsSeq > config.getProfile(bubble.profileInUse).newsSeq;
-        //    }
-        //    catch { return false; }
-        //}
-
-
 
         private ArrayList readTextFileintoArrayList(string file)
         {
@@ -3852,8 +3541,6 @@ namespace TeboCam
                     bubble.thumbFolder = config.getProfile(bubble.profileInUse).thumbFolderCust;
 
 
-                    //System.Diagnostics.Debug.WriteLine(config.getProfile(bubble.profileInUse).imageParentFolderCust);
-
                     if (!Directory.Exists(config.getProfile(bubble.profileInUse).imageParentFolderCust))
                     {
                         Directory.CreateDirectory(config.getProfile(bubble.profileInUse).imageParentFolderCust);
@@ -3967,8 +3654,6 @@ namespace TeboCam
                 SetLabel(onlineVal, i[1].ToString());
             }
 
-            //Invalidate();
-
         }
 
         private void timeStampMth(ArrayList i)
@@ -4014,50 +3699,7 @@ namespace TeboCam
                 config.getProfile(bubble.profileInUse).alertStatsStamp = Convert.ToBoolean(i[6]);
             }
 
-            //System.Diagnostics.Debug.WriteLine(i[0]);
-            //System.Diagnostics.Debug.WriteLine(i[1]);
-            //System.Diagnostics.Debug.WriteLine(i[2]);
-            //System.Diagnostics.Debug.WriteLine(i[3]);
-            //System.Diagnostics.Debug.WriteLine(i[4]);
-
         }
-
-
-        //private void button18_Click_1(object sender, EventArgs e)
-        //{
-        //    ArrayList i = new ArrayList();
-        //    i.Add("Alert");
-        //    i.Add(config.getProfile(bubble.profileInUse).alertCompression);
-        //    i.Add(config.getProfile(bubble.profileInUse).toolTips);
-
-        //    image image = new image(new formDelegate(jPegSetCompression), i);
-        //    image.StartPosition = FormStartPosition.CenterScreen;
-        //    image.ShowDialog();
-        //}
-
-        //private void button15_Click_1(object sender, EventArgs e)
-        //{
-        //    ArrayList i = new ArrayList();
-        //    i.Add("Publish");
-        //    i.Add(config.getProfile(bubble.profileInUse).publishCompression);
-        //    i.Add(config.getProfile(bubble.profileInUse).toolTips);
-
-        //    image image = new image(new formDelegate(jPegSetCompression), i);
-        //    image.StartPosition = FormStartPosition.CenterScreen;
-        //    image.ShowDialog();
-        //}
-
-        //private void button19_Click_1(object sender, EventArgs e)
-        //{
-        //    ArrayList i = new ArrayList();
-        //    i.Add("Ping");
-        //    i.Add(config.getProfile(bubble.profileInUse).pingCompression);
-        //    i.Add(config.getProfile(bubble.profileInUse).toolTips);
-
-        //    image image = new image(new formDelegate(jPegSetCompression), i);
-        //    image.StartPosition = FormStartPosition.CenterScreen;
-        //    image.ShowDialog();
-        //}
 
 
         private void button16_Click_1(object sender, EventArgs e)
@@ -4153,7 +3795,6 @@ namespace TeboCam
 
         private void cameraWindow_DoubleClick(object sender, EventArgs e)
         {
-            //if (!bubble.drawMode) chkImageToFrame.Checked = !chkImageToFrame.Checked;
 
             if (!bubble.drawMode)
             {
@@ -4163,13 +3804,6 @@ namespace TeboCam
 
         }
 
-
-        private void chkImageToFrame_CheckedChanged_1(object sender, EventArgs e)
-        {
-            //panel1.AutoScroll = !chkImageToFrame.Checked;
-            //config.getProfile(bubble.profileInUse).imageToframe = chkImageToFrame.Checked;
-            //cameraWindow.imageToFrame = chkImageToFrame.Checked;
-        }
 
         private void imageInFrame_Click(object sender, EventArgs e)
         {
@@ -4296,7 +3930,6 @@ namespace TeboCam
                     if (refresh) cameraWindow.Refresh();
 
                     camButtonSetColours();
-                    //camControl(button);
 
                 }
 
@@ -4345,10 +3978,6 @@ namespace TeboCam
 
             int pubButton = CameraRig.idxFromButton(button);
 
-            //20111118 no-opped to be re-introduced at a later date
-            //pubImage.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubImage");
-            //20111118 no-opped to be re-introduced at a later date
-
             pubTime.Text = CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubTime").ToString();
             pubHours.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubHours");
             pubMins.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "pubMins");
@@ -4356,12 +3985,6 @@ namespace TeboCam
             pubToWeb.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishWeb");
             pubToLocal.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "publishLocal");
             pubTimerOn.Checked = (bool)CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "timerOn");
-
-            //pubImage.Invalidate();
-            //pubTime
-            //pubHours
-            //pubMins
-
 
         }
 
@@ -4434,11 +4057,6 @@ namespace TeboCam
                 }
 
             }
-
-            //foreach (Control ctrl in availControls)
-            //{
-            //    Debug.Print(ctrl.Name);
-            //}
 
             foreach (Control ctrl in availControls)
             {
@@ -4565,9 +4183,7 @@ namespace TeboCam
 
         private void bttnCamProp_Click(object sender, EventArgs e)
         {
-            //VideoCaptureDevice localSource = new VideoCaptureDevice(config.getProfile(bubble.profileInUse).webcam);
             VideoCaptureDevice localSource = new VideoCaptureDevice(CameraRig.rig[CameraRig.activeCam].cameraName);
-            //localSource.DisplayPropertyPage(this.Handle); // modal dialog
             localSource.DisplayPropertyPage(IntPtr.Zero); // non-modal
         }
 
@@ -4621,10 +4237,7 @@ namespace TeboCam
                 //give the interface some time to refresh
                 Thread.Sleep(250);
                 //give the interface some time to refresh
-                //20110507 nooppped oat present - will need testing if it is re-enabled as more cameras
-                //20110507 were showing as present than were attachched
                 cameraSwitch(CameraRig.rig[CameraRig.drawCam].displayButton, true, true);
-                //cameraSwitch((int)i[0], true);
 
             }
 
@@ -4633,10 +4246,6 @@ namespace TeboCam
             bubble.motionLevelChanged += new EventHandler(drawLevel);
 
             camButtonSetColours();
-
-            //cameraWindow.Camera = CameraRig.rig[(int)i[0]].cam;
-            //CameraRig.rig[(int)i[0]].cam.MotionDetector.Reset();
-            //cameraWindow.Refresh();
 
         }
 
@@ -4701,55 +4310,9 @@ namespace TeboCam
 
             }
 
-            //    cw.DoWork -= new DoWorkEventHandler(waitForCam);
-            //    cw.DoWork += new DoWorkEventHandler(waitForCam);
-            //    cw.WorkerSupportsCancellation = true;
-            //    cw.RunWorkerAsync();
-
 
         }
 
-        //private static bool killPulseCheck()
-        //{
-
-        //    string processToEnd = "pulseCheck";
-        //    bool processKilled = false;
-        //    int attempts = 0;
-
-        //    try
-        //    {
-
-        //        while (processKilled == false && attempts < 10)
-        //        {
-
-        //            Process[] processes = Process.GetProcesses();
-
-        //            foreach (Process process in processes)
-        //            {
-        //                if (process.ProcessName == processToEnd)
-        //                {
-        //                    process.Kill();
-        //                    processKilled = true;
-        //                }
-
-        //            }
-
-        //            attempts++;
-        //            if (!processKilled) Thread.Sleep(1000);
-
-        //        }
-
-        //        return processKilled;
-
-        //    }
-        //    catch
-        //    {
-
-        //        return false;
-
-        //    }
-
-        //}
 
         private void button15_Click(object sender, EventArgs e)
         {
@@ -4804,17 +4367,6 @@ namespace TeboCam
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubWeb"));
                 i.Add(true);
 
-                //i.Add("Publish Web");
-                //i.Add(config.getProfile(bubble.profileInUse).toolTips);
-                //i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubWeb);
-                //i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb);
-                //i.Add(config.getProfile(bubble.profileInUse).startCyclePubWeb);
-                //i.Add(config.getProfile(bubble.profileInUse).endCyclePubWeb);
-                //i.Add(config.getProfile(bubble.profileInUse).currentCyclePubWeb);
-                //i.Add(config.getProfile(bubble.profileInUse).stampAppendPubWeb);
-                //i.Add(true);
-
-
                 fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
                 fileprefix.StartPosition = FormStartPosition.CenterScreen;
                 fileprefix.ShowDialog();
@@ -4842,13 +4394,6 @@ namespace TeboCam
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubWeb", Convert.ToInt32(i[5]));
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubWeb", Convert.ToBoolean(i[6]));
 
-                //config.getProfile(bubble.profileInUse).filenamePrefixPubWeb = i[1].ToString();
-                //config.getProfile(bubble.profileInUse).cycleStampCheckedPubWeb = Convert.ToInt32(i[2]);
-                //config.getProfile(bubble.profileInUse).startCyclePubWeb = Convert.ToInt32(i[3]);
-                //config.getProfile(bubble.profileInUse).endCyclePubWeb = Convert.ToInt32(i[4]);
-                //config.getProfile(bubble.profileInUse).currentCyclePubWeb = Convert.ToInt32(i[5]);
-                //config.getProfile(bubble.profileInUse).stampAppendPubWeb = Convert.ToBoolean(i[6]);
-
             }
 
             if (i[0].ToString() == "Publish Local")
@@ -4860,13 +4405,6 @@ namespace TeboCam
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubLoc", Convert.ToInt32(i[4]));
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubLoc", Convert.ToInt32(i[5]));
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc", Convert.ToBoolean(i[6]));
-
-                //config.getProfile(bubble.profileInUse).filenamePrefixPubLoc = i[1].ToString();
-                //config.getProfile(bubble.profileInUse).cycleStampCheckedPubLoc = Convert.ToInt32(i[2]);
-                //config.getProfile(bubble.profileInUse).startCyclePubLoc = Convert.ToInt32(i[3]);
-                //config.getProfile(bubble.profileInUse).endCyclePubLoc = Convert.ToInt32(i[4]);
-                //config.getProfile(bubble.profileInUse).currentCyclePubLoc = Convert.ToInt32(i[5]);
-                //config.getProfile(bubble.profileInUse).stampAppendPubLoc = Convert.ToBoolean(i[6]);
 
             }
 
@@ -4906,19 +4444,7 @@ namespace TeboCam
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc"));
                 i.Add(true);
 
-
-                //i.Add("Publish Local");
-                //i.Add(config.getProfile(bubble.profileInUse).toolTips);
-                //i.Add(config.getProfile(bubble.profileInUse).filenamePrefixPubLoc);
-                //i.Add(config.getProfile(bubble.profileInUse).cycleStampCheckedPubLoc);
-                //i.Add(config.getProfile(bubble.profileInUse).startCyclePubLoc);
-                //i.Add(config.getProfile(bubble.profileInUse).endCyclePubLoc);
-                //i.Add(config.getProfile(bubble.profileInUse).currentCyclePubLoc);
-                //i.Add(config.getProfile(bubble.profileInUse).stampAppendPubLoc);
-                //i.Add(true);
-
-
-                fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
+               fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
                 fileprefix.StartPosition = FormStartPosition.CenterScreen;
                 fileprefix.ShowDialog();
 
@@ -5090,32 +4616,7 @@ namespace TeboCam
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER TIMER 
-
-
     }
-
-
 
 
 }

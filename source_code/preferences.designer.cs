@@ -2818,7 +2818,6 @@ namespace TeboCam
             this.smtpPort.Size = new System.Drawing.Size(80, 21);
             this.smtpPort.TabIndex = 3;
             this.toolTip1.SetToolTip(this.smtpPort, "SMTP Port:\r\nConsult your email provider instructions.");
-            this.smtpPort.TextChanged += new System.EventHandler(this.smtpPort_TextChanged);
             this.smtpPort.Leave += new System.EventHandler(this.smtpPort_Leave);
             // 
             // emailPass
