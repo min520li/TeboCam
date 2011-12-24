@@ -417,10 +417,13 @@ namespace TeboCam
                     bttInstallUpdateAdmin.Visible = true;
                     bttnUpdateFooter.Visible = true;
                 }
+
+                bubble.upd_url = updateDat[2];
+                bubble.upd_file = updateDat[3];
+
             }
 
-            bubble.upd_url = updateDat[2];
-            bubble.upd_file = updateDat[3];
+
 
             //pass the version of the update available to statusUpdate
             ListArgs a = new ListArgs();
@@ -658,13 +661,15 @@ namespace TeboCam
             }
 
             //get the update information into a List
-            updateDat = update.getUpdateInfo(sensitiveInfo.downloadsURL, versionFile, Application.StartupPath + @"\", 1, true);
+            updateDat = update.getUpdateInfo(sensitiveInfo.downloadsURL, versionFile, bubble.resourceDownloadFolder, 1, true);
 
             if (updateDat == null)
             {
                 //error in update
-                updateDat[1] = "0";
-                return updateDat;
+                List<string> err = new List<string>();
+                err.Add("");
+                err.Add("0");
+                return err;
             }
             else
             {
@@ -2073,17 +2078,16 @@ namespace TeboCam
                 {
 
                     Application.DoEvents();
-                    //installUpdateOld();
                     bubble.postProcessCommand = " /profile " + bubble.profileInUse;
-                    //update.installUpdateRestart(bubble.upd_url,
-                    //                            bubble.upd_file,
-                    //                            bubble.destinationFolder,
-                    //                            bubble.processToEnd,
-                    //                            bubble.postProcess,
-                    //                            bubble.postProcessCommand,
-                    //                            bubble.updater,
-                    //                            true,
-                    //                            bubble.devMachine);
+
+                    update.installUpdateRestart(bubble.upd_url,
+                                                bubble.upd_file,
+                                                bubble.destinationFolder,
+                                                bubble.processToEnd,
+                                                bubble.postProcess,
+                                                bubble.postProcessCommand,
+                                                bubble.updater, true);
+
 
                 }
 
