@@ -445,7 +445,7 @@ namespace TeboCam
                 tmpStr += "This version: " + bubble.version + Environment.NewLine;
                 tmpStr += "Most recent version available: " + updateDat[1] + Environment.NewLine + Environment.NewLine;
                 tmpStr += "The most recent version can installed automatically" + Environment.NewLine;
-                tmpStr += "by clickiing on the update button on the Webcam or Admin tabs" + Environment.NewLine + Environment.NewLine + Environment.NewLine;
+                tmpStr += "by clicking on the update button at the bottom of the screen or on the Admin tab" + Environment.NewLine + Environment.NewLine + Environment.NewLine;
                 tmpStr += "To stop this message appearing in future" + Environment.NewLine;
                 tmpStr += "uncheck the 'Notify when updates are available'" + Environment.NewLine;
                 tmpStr += "box in the Admin tab.";
@@ -1650,22 +1650,6 @@ namespace TeboCam
         }
 
 
-        //private void update_version_ok(object sender, System.EventArgs e)
-        //{
-        //    bubble.logAddLine("Update information retrieved successfully.");
-        //    bubble.updateInfoRetrieved = true;
-        //}
-
-        //private void update_version_error(object sender, System.EventArgs e)
-        //{
-        //    bubble.logAddLine("Error in connecting to internet to get update information.");
-        //    bubble.updateInfoRetrieved = false;
-        //}
-
-
-
-
-
         private void actCountdown_TextChanged(object sender, EventArgs e)
         {
             if (bubble.IsNumeric(actCountdown.Text))
@@ -2091,15 +2075,15 @@ namespace TeboCam
                     Application.DoEvents();
                     //installUpdateOld();
                     bubble.postProcessCommand = " /profile " + bubble.profileInUse;
-                    update.installUpdateRestart(bubble.upd_url,
-                                                bubble.upd_file,
-                                                bubble.destinationFolder,
-                                                bubble.processToEnd,
-                                                bubble.postProcess,
-                                                bubble.postProcessCommand,
-                                                bubble.updater,
-                                                true,
-                                                bubble.devMachine);
+                    //update.installUpdateRestart(bubble.upd_url,
+                    //                            bubble.upd_file,
+                    //                            bubble.destinationFolder,
+                    //                            bubble.processToEnd,
+                    //                            bubble.postProcess,
+                    //                            bubble.postProcessCommand,
+                    //                            bubble.updater,
+                    //                            true,
+                    //                            bubble.devMachine);
 
                 }
 
