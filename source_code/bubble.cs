@@ -1679,7 +1679,7 @@ namespace TeboCam
         public static string postProcess = Application.StartupPath + @"\" + processToEnd + ".exe";
 
         //public static string downloadFile = "TeboCamUpd.Zip";
-        public static string newsFile = sensitiveInfo.newsFile;
+        //public static string newsFile = sensitiveInfo.newsFile;
         public static string versionFile = sensitiveInfo.versionFile;
         public static string downloadsURL = sensitiveInfo.downloadsURL;
         //public static string newsURL = "http://teboweb.com/tebocam/tebocamnews.txt";
@@ -1709,7 +1709,7 @@ namespace TeboCam
         public static string profileInUse = "main";
 
         public static bool exposeArea = false;
-        public static bool updateInfoRetrieved;
+        //public static bool updateInfoRetrieved;
 
         public static bool Loading;
         public static string lastTime = "00:00";

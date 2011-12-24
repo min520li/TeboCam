@@ -118,20 +118,20 @@ namespace teboweb
         /// <param name="startupCommand">Command line to be passed to the process to restart</param>
         /// <param name="updater"></param>
         /// <returns>Void</returns>
-        public static void installUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, bool webUpdate, bool debug)
+        public static void installUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, bool webUpdate)
         {
 
             string cmdLn = "";
 
-            cmdLn += "|debug|" + debug.ToString();
             cmdLn += "|webUpdate|" + webUpdate.ToString();
-            cmdLn += "|downloadFile|" + CommandLine.replaceSpacesWithCode(filename);
-            cmdLn += "|URL|" + CommandLine.replaceSpacesWithCode(downloadsURL);
-            cmdLn += "|destinationFolder|" + CommandLine.replaceSpacesWithCode(destinationFolder);
-            cmdLn += "|processToEnd|" + CommandLine.replaceSpacesWithCode(processToEnd);
-            cmdLn += "|postProcess|" + CommandLine.replaceSpacesWithCode(postProcess);
-            cmdLn += "|command|" + CommandLine.replaceSpacesWithCode(startupCommand);
+            cmdLn += "|downloadFile|" + filename;
+            cmdLn += "|URL|" + downloadsURL;
+            cmdLn += "|destinationFolder|" + destinationFolder;
+            cmdLn += "|processToEnd|" + processToEnd;
+            cmdLn += "|postProcess|" + postProcess;
+            cmdLn += "|command|" + @"/ " + startupCommand;
 
+            cmdLn = CommandLine.finaliseCommandLine(cmdLn);
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = updater;

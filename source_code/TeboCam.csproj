@@ -137,7 +137,6 @@
     </Compile>
     <Compile Include="ftp.cs" />
     <Compile Include="Graph.cs" />
-    <Compile Include="html.cs" />
     <Compile Include="image.cs">
       <SubType>Form</SubType>
     </Compile>

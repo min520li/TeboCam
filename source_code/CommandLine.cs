@@ -7,19 +7,78 @@ namespace teboweb
     class CommandLine
     {
 
-        public static string replaceSpacesWithCode(string val)
+        private static string i_spaceCode = "";
+
+        private static Random rand = new Random();
+        protected static int GetRandInt(int min, int max)
+        {
+            return rand.Next(min, max);
+        }
+
+        //add 3 character white space replacement code to the end of the string
+        //so that when we restore the white space we can ascertain the code to change to white space
+        public static string finaliseCommandLine(string val)
         {
 
-            string tmpStr = val;
-            return tmpStr.Replace(" ", "##~SpRepl~##");
+            spaceCode(val);
+
+            string tmpStr = val + i_spaceCode;
+            return tmpStr.Replace(" ", i_spaceCode);
 
         }
 
-        public static string replaceCodeWithSpaces(string val)
+        public static string prepareCommandLine(string val)
+        {
+            
+            if (val.Length > 3)
+            {
+
+                i_spaceCode = val.Substring(val.Length - 3, 3);
+                val.Remove(val.Length - 3, 3);
+                replaceCodeWithSpaces(val);
+
+            }
+
+            return val;
+
+        }
+
+        //replace white space with 3 character generated code
+        private static string replaceCodeWithSpaces(string val)
         {
 
             string tmpStr = val;
-            return tmpStr.Replace("##~SpRepl~##", " ");
+            return tmpStr.Replace(i_spaceCode, " ");
+
+        }
+
+        //we need to replace spaces with 3 characters
+        //in order to esnure that we are not using a combination in the character
+        //string we are changing we keep generating 3 characters until we hit a unique combination
+        private static void spaceCode(string commandStr)
+        {
+
+            string buildStr;
+
+            do
+            {
+
+                buildStr = "";
+                for (int i = 0; i < 3; i++)
+                {
+
+                    //we want characters between A-Z
+                    int ranNum = GetRandInt(65, 90);
+
+                    char c = (char)ranNum;
+
+                    buildStr += c.ToString();
+
+                }
+
+            } while (commandStr.IndexOf(buildStr) != -1);
+
+            i_spaceCode = buildStr;
 
         }
 

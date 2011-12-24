@@ -28,7 +28,6 @@ copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\Form1.Designer.cs" "E:\Visu
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\Form1.resx" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\Form1.resx"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\ftp.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\ftp.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\Graph.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\Graph.cs"
-copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\html.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\html.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\image.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\image.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\image.Designer.cs" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\image.Designer.cs"
 copy "E:\Visual Studio 2005\Projects\TeboCam\TeboCam\image.resx" "E:\Visual Studio 2005\Projects\TeboCam_OpenSource\source_code\image.resx"

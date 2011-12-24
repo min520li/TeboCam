@@ -320,8 +320,8 @@ namespace TeboCam
             bubble.TimeChange += new EventHandler(time_change);
             publishSwitch += new EventHandler(publish_switch);
 
-            html.htmlOk += new EventHandler(update_version_ok);
-            html.htmlError += new EventHandler(update_version_error);
+            //html.htmlOk += new EventHandler(update_version_ok);
+            //html.htmlError += new EventHandler(update_version_error);
 
             bubble.redrawGraph += new EventHandler(drawGraph);
             bubble.pingGraph += new EventHandler(drawGraphPing);
@@ -405,11 +405,11 @@ namespace TeboCam
             updateDat = check_for_updates();
             //updateInfo = check_for_updates();
 
-            if (Convert.ToDecimal(updateDat[1]) == 0)
+            if (decimal.Parse(updateDat[1]) == 0)
             { lblVerAvail.Text = "Unable to determine the most up-to-date version."; }
             else
             {
-                if (Convert.ToDecimal(bubble.version) >= Convert.ToDecimal(updateDat[1]))
+                if (decimal.Parse(bubble.version) >= decimal.Parse(updateDat[1]))
                 { lblVerAvail.Text = "You have the most up-to-date version."; }
                 else
                 {
@@ -419,34 +419,23 @@ namespace TeboCam
                 }
             }
 
-            //bubble.downloadUrl = updateInfo.url;
-            //bubble.downloadFile = updateInfo.file;
+            bubble.upd_url = updateDat[2];
+            bubble.upd_file = updateDat[3];
 
-
-            bubble.upd_url = updateDat[4];
-            bubble.upd_file = updateDat[5];
-
-            //bubble.upd_file = updateInfo.file;
-            //bubble.upd_url = updateInfo.url;
-
-
-            //temp nooped 20101003 due to website issues
-
-            //temp nooped 20101003 due to website issues
+            //pass the version of the update available to statusUpdate
             ListArgs a = new ListArgs();
             List<object> b = new List<object>();
             b.Add(updateDat[1]);
             a.list = b;
             statusUpdate(null, a);
-            //temp nooped 20101003 due to website issues
+
 
             if (config.getProfile(bubble.profileInUse).logsKeepChk) clearOldLogs();
 
 
-            //temp nooped 20101003 due to website issues
             if (!config.getProfile(bubble.profileInUse).AlertOnStartup && config.getProfile(bubble.profileInUse).updatesNotify
                 && bubble.connectedToInternet
-                && bubble.updateInfoRetrieved
+                //&& bubble.updateInfoRetrieved
                 && Convert.ToDecimal(updateDat[1]) > Convert.ToDecimal(bubble.version)
                 && !config.getProfile(bubble.profileInUse).startTeboCamMinimized
                               )
@@ -556,7 +545,8 @@ namespace TeboCam
         {
             //htmlInfo updateInfo = check_for_updates();
             //bubble.downloadUrl = updateInfo.url;
-            if (bubble.updateInfoRetrieved && Convert.ToDecimal(e._list[0]) > Convert.ToDecimal(bubble.version))
+            if (//bubble.updateInfoRetrieved &&
+                Convert.ToDecimal(e._list[0]) > Convert.ToDecimal(bubble.version))
             {
                 statusStrip.BackColor = Color.LemonChiffon;
                 StatusStripLabel.ForeColor = Color.Black;
@@ -654,8 +644,10 @@ namespace TeboCam
         {
 
             List<string> updateDat = new List<string>();
+
             string versionFile = "";
 
+            //set version file depending on machine installation
             if (!bubble.devMachine)
             {
                 versionFile = sensitiveInfo.versionFile;
@@ -665,196 +657,59 @@ namespace TeboCam
                 versionFile = sensitiveInfo.versionFileDev;
             }
 
+            //get the update information into a List
             updateDat = update.getUpdateInfo(sensitiveInfo.downloadsURL, versionFile, Application.StartupPath + @"\", 1, true);
 
-            newsInfo.BackColor = System.Drawing.SystemColors.Control;
-
-            if (Convert.ToInt32(updateDat[6]) > bubble.newsSeq)
+            if (updateDat == null)
+            {
+                //error in update
+                updateDat[1] = "0";
+                return updateDat;
+            }
+            else
             {
 
-                update.installUpdateNow("ddd", "ddd", bubble.resourceDownloadFolder, true);
-
-                try
+                //download the news information file if a new one is available
+                if (Int32.Parse(updateDat[4]) > bubble.newsSeq)
                 {
 
-                    DirectoryInfo di = new DirectoryInfo(bubble.resourceDownloadFolder);
-                    FileInfo[] files = di.GetFiles();
+                    update.installUpdateNow(updateDat[5], updateDat[6], bubble.resourceDownloadFolder, true);
 
-                    foreach (FileInfo fi in files)
+                    try
                     {
-                        if (fi.Name != bubble.newsFile) File.Copy(bubble.resourceDownloadFolder + fi.Name, bubble.resourceFolder + fi.Name, true);
+
+                        //move all the unzipped files out of the download folder into the parent resource folder
+                        //leave the zip file where it is to be deleted with the resource download folder
+                        DirectoryInfo di = new DirectoryInfo(bubble.resourceDownloadFolder);
+                        FileInfo[] files = di.GetFiles();
+
+                        foreach (FileInfo fi in files)
+                        {
+                            if (fi.Name != updateDat[6]) File.Copy(bubble.resourceDownloadFolder + fi.Name, bubble.resourceFolder + fi.Name, true);
+                        }
+
+                        bubble.newsSeq = Int32.Parse(updateDat[4]);
+                        newsInfo.BackColor = Color.Gold;
+                    }
+                    catch { return updateDat; }
+
+                    if (Directory.Exists(bubble.resourceDownloadFolder))
+                    {
+                        try
+                        {
+                            Directory.Delete(bubble.resourceDownloadFolder, true);
+                        }
+                        catch { return updateDat; }
                     }
 
-                    bubble.newsSeq = Convert.ToInt32(updateDat[5]);
-                    newsInfo.BackColor = Color.Gold;
                 }
-                catch { return updateDat; }
 
-
-            }
-
-            if (Directory.Exists(bubble.resourceDownloadFolder))
-            {
-                try
-                {
-                    Directory.Delete(bubble.resourceDownloadFolder, true);
-                }
-                catch { return updateDat; }
             }
 
             return updateDat;
 
         }
 
-
-
-        private versionInfo check_for_updatesOLD()
-        {
-            bool downloadSuccessful = false;
-            string fileVer = "";
-
-            //download the version information file
-            if (!Directory.Exists(bubble.resourceDownloadFolder)) Directory.CreateDirectory(bubble.resourceDownloadFolder);
-
-            downloadSuccessful = bubble.downloadFromWeb(bubble.downloadsURL, bubble.versionFile, bubble.resourceDownloadFolder);
-
-            versionInfo verInfo = new versionInfo("0", "1 Jan 2000", "N/A", "www/teboweb.com", "N/A", "N/A", "N/A");
-
-            //read through the version file getting various version information variables
-            if (downloadSuccessful)
-            {
-                File.Copy(bubble.resourceDownloadFolder + bubble.versionFile, bubble.resourceFolder + bubble.versionFile, true);
-
-                int ln;
-                int i;
-
-                ln = 0;
-
-                foreach (string line in File.ReadAllLines(bubble.resourceFolder + bubble.versionFile))
-                {
-                    i = 0;
-                    string[] parts = line.Split('|');
-                    foreach (string part in parts)
-                    {
-
-                        if (ln > 0)
-                        {
-                            switch (i)
-                            {
-                                case 0:
-                                    verInfo.product = part;
-                                    break;
-                                case 1:
-                                    verInfo.version = part;
-                                    break;
-                                case 2:
-                                    verInfo.released = part;
-                                    break;
-                                case 3:
-                                    verInfo.info = part;
-                                    break;
-                                case 4:
-                                    verInfo.url = part;
-                                    break;
-                                case 5:
-                                    verInfo.news = part;
-                                    break;
-                                case 6:
-                                    verInfo.file = part;
-                                    break;
-                            }
-
-                            i++;
-                        }
-                        else
-                        {
-                            fileVer = part;
-                        }
-                    }
-                    ln++;
-                }
-
-
-                newsInfo.BackColor = System.Drawing.SystemColors.Control;
-
-                //if there is some new news information download this and unzip it
-                if (Convert.ToInt32(verInfo.news) > bubble.newsSeq)
-                {
-                    downloadSuccessful = bubble.downloadFromWeb(bubble.downloadsURL, bubble.newsFile, bubble.resourceDownloadFolder);
-
-                    if (downloadSuccessful)
-                    {
-
-                        bool unzipSuccessful = bubble.unZip(bubble.resourceDownloadFolder + bubble.newsFile, bubble.resourceDownloadFolder);//,true);
-
-                        if (unzipSuccessful)
-                        {
-
-                            DirectoryInfo di = new DirectoryInfo(bubble.resourceDownloadFolder);
-                            FileInfo[] files = di.GetFiles();
-
-                            foreach (FileInfo fi in files)
-                            {
-                                if (fi.Name != bubble.newsFile) File.Copy(bubble.resourceDownloadFolder + fi.Name, bubble.resourceFolder + fi.Name, true);
-                            }
-
-                        }
-
-                        bubble.newsSeq = Convert.ToInt32(verInfo.news);
-                        newsInfo.BackColor = Color.Gold;
-
-                    }
-
-                }
-
-            }
-
-            if (Directory.Exists(bubble.resourceDownloadFolder))
-            {
-                try
-                {
-                    Directory.Delete(bubble.resourceDownloadFolder, true);
-                }
-                catch { }
-            }
-
-            return verInfo;
-
-        }
-
-        //private htmlInfo check_for_updatesOld()
-        //{
-
-        //    //check if we have the most up-to-date version
-
-        //    string tmpUrl = bubble.devMachine ? bubble.updateUrlDev : tmpUrl = bubble.updateUrl;
-
-        //    htmlInfo updateInfo = html.getUpdateInfo(tmpUrl, bubble.product);
-
-        //    lblCurVer.Text = "This Version: " + bubble.version;
-
-        //    if (html.htmlSuccess)
-        //    {
-
-        //        if (Convert.ToDecimal(bubble.version) >= Convert.ToDecimal(updateInfo.version))
-        //        { lblVerAvail.Text = "You have the most up-to-date version."; }
-        //        else
-        //        {
-        //            lblVerAvail.Text = "Most recent version available: " + updateInfo.version;
-        //            bttInstalUpdates.Visible = true;
-        //            bttnUpdate.Visible = true;
-        //        }
-
-        //        return updateInfo;
-        //    }
-
-        //    else
-        //    {
-        //        lblVerAvail.Text = "Unable to determine the most up-to-date version.";
-        //        return updateInfo;
-        //    }
-
-        //}
 
         private void emailUser_TextChanged(object sender, EventArgs e)
         {
@@ -1795,17 +1650,17 @@ namespace TeboCam
         }
 
 
-        private void update_version_ok(object sender, System.EventArgs e)
-        {
-            bubble.logAddLine("Update information retrieved successfully.");
-            bubble.updateInfoRetrieved = true;
-        }
+        //private void update_version_ok(object sender, System.EventArgs e)
+        //{
+        //    bubble.logAddLine("Update information retrieved successfully.");
+        //    bubble.updateInfoRetrieved = true;
+        //}
 
-        private void update_version_error(object sender, System.EventArgs e)
-        {
-            bubble.logAddLine("Error in connecting to internet to get update information.");
-            bubble.updateInfoRetrieved = false;
-        }
+        //private void update_version_error(object sender, System.EventArgs e)
+        //{
+        //    bubble.logAddLine("Error in connecting to internet to get update information.");
+        //    bubble.updateInfoRetrieved = false;
+        //}
 
 
 
@@ -5243,7 +5098,7 @@ namespace TeboCam
         {
 
             config.getProfile(bubble.profileInUse).EmailIntelStop = EmailIntelStop.Checked;
-            
+
         }
 
 
