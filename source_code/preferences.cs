@@ -1889,7 +1889,8 @@ namespace TeboCam
                 {
 
                     Application.DoEvents();
-                    bubble.postProcessCommand = " /profile " + bubble.profileInUse;
+                    //bubble.postProcessCommand = " /profile " + bubble.profileInUse;
+                    bubble.postProcessCommand = "profile " + bubble.profileInUse;
 
                     update.installUpdateRestart(bubble.upd_url,
                                                 bubble.upd_file,
@@ -1897,7 +1898,8 @@ namespace TeboCam
                                                 bubble.processToEnd,
                                                 bubble.postProcess,
                                                 bubble.postProcessCommand,
-                                                bubble.updater, true);
+                                                bubble.updater, 
+                                                true);
 
 
                 }

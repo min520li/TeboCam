@@ -35,7 +35,7 @@ namespace teboweb
 
                 i_spaceCode = val.Substring(val.Length - 3, 3);
                 val.Remove(val.Length - 3, 3);
-                replaceCodeWithSpaces(val);
+                val = replaceCodeWithSpaces(val);
 
             }
 
