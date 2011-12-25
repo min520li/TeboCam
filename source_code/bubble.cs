@@ -443,11 +443,6 @@ namespace TeboCam
         public static void clearList()
         {
             bitmaps.Clear();
-            //foreach (Bitmap img in bitmaps)
-            //{
-            //    img.Dispose();
-            //}
-
         }
 
         public static void addToList(Bitmap bitmap)
@@ -1028,9 +1023,6 @@ namespace TeboCam
     public class AlertClass
     {
         bool alert;
-
-        //public AlertClass(bool alert)
-        //{ this.alert = alert; }
 
         public bool on
         {
@@ -1633,7 +1625,6 @@ namespace TeboCam
         public const string tebowebUrl = sensitiveInfo.tebowebUrl;
         public const string product = sensitiveInfo.product;
         public const string thisProcess = product + ".exe";
-        //public static string downloadUrl = "";
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //                                                                   !  
         //Remember to update the http://www.teboweb.com/version.html site    ! 
@@ -1649,8 +1640,6 @@ namespace TeboCam
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //installUpdate
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        //public static List<string> emailTimeSent = new List<string>();
 
         public static string devMachineFile = sensitiveInfo.devMachineFile;
         public static string databaseTrialFile = sensitiveInfo.databaseTrialFile;
@@ -1675,18 +1664,10 @@ namespace TeboCam
         /// <updater parameters>
         public static string updater = Application.StartupPath + @"\update.exe";
         public static string processToEnd = sensitiveInfo.processToEnd;
-        //public static string postProcess = "\"" + Application.StartupPath + "\"" + @"\" + processToEnd + ".exe";
         public static string postProcess = Application.StartupPath + @"\" + processToEnd + ".exe";
 
-        //public static string downloadFile = "TeboCamUpd.Zip";
-        //public static string newsFile = sensitiveInfo.newsFile;
         public static string versionFile = sensitiveInfo.versionFile;
         public static string downloadsURL = sensitiveInfo.downloadsURL;
-        //public static string newsURL = "http://teboweb.com/tebocam/tebocamnews.txt";
-        //public static string infoURL = "http://teboweb.com/tebocam/tebocaminfo.txt";
-        //public static string whatsnewURL = "http://teboweb.com/tebocam/tebocamwhatsnew.txt";
-        //public static string licenseURL = "http://teboweb.com/tebocam/license.txt";
-        //public static string destinationFolder = "\"" + Application.StartupPath + "\"" + "\\";
         public static string destinationFolder = Application.StartupPath;
         public static string updateFolder = Application.StartupPath + @"\updates\";
         public static string postProcessCommand = "";
@@ -1709,7 +1690,7 @@ namespace TeboCam
         public static string profileInUse = "main";
 
         public static bool exposeArea = false;
-        //public static bool updateInfoRetrieved;
+
 
         public static bool Loading;
         public static string lastTime = "00:00";
@@ -1721,19 +1702,16 @@ namespace TeboCam
         public static string pingGraphDate;
         public static bool keepWorking;
         public static bool fileBusy = false;
-        //public static bool calibrating;
+
         public static int motionLevel = 0;
         public static int motionLevelprevious = 0;
         public static bool countingdown = false;
         public static bool countingdownstop = false;
         public static bool baselineSetting;
         public static bool movementSetting;
-        //public static int startday;
-        //public static int starttime;
         public static bool keepPublishing;
         public static bool publishFirst = true;
         public static bool pubError;
-        //public static bool waitingForCams = true;
 
         public static List<bool> publishCams = new List<bool>();
 
@@ -1744,7 +1722,6 @@ namespace TeboCam
         public static ArrayList testImagePublishData = new ArrayList();
 
 
-        //public static bool Alert;
         public static AlertClass Alert = new AlertClass();
 
 
@@ -1757,7 +1734,6 @@ namespace TeboCam
 
         public static ArrayList training = new ArrayList();
         public static ArrayList imagesSaved = new ArrayList();
-        //public static ArrayList imagesToProcess = new ArrayList();
         public static ArrayList log = new ArrayList();
         public static ArrayList movStats = new ArrayList();
         public static ArrayList movHist = new ArrayList();
@@ -1776,8 +1752,6 @@ namespace TeboCam
 
         public static string graphCurrentDate;
         public static bool attachments = false;
-        //public static long ticks;
-        //public static long secondsElapsed;
         public static int imageLastSaved = 0;
         public static long notificationLastSent;
         public static int lastPublished = 0;
@@ -1888,8 +1862,6 @@ namespace TeboCam
 
         public static void movementPublish()
         {
-            //if (!bubble.fileBusy)
-            //{
 
             int emailToProcess = new int();
             int ftpToProcess = new int();
@@ -2089,23 +2061,12 @@ namespace TeboCam
 
                                     imagesToEmail = 0;
 
-                                    //for (int i = 0; i < emailToProcess; i++)
-                                    //{
-
-                                    //    if (config.getProfile(bubble.profileInUse).sendThumbnailImages) imagesToProcess[i] = thumbFolder + tmbPrefix + imagesToProcess[i];
-                                    //    if (config.getProfile(bubble.profileInUse).sendFullSizeImages) imagesToProcess[i] = imageFolder + imagesToProcess[i];
-
-                                    //}
-
                                     pulseEvent(null, new EventArgs());
-                                    //mail.attachments.AddRange(imagesToProcess.GetRange(0, (imagesToProcess.Count)));
                                     mail.attachments.AddRange(emailArrList.GetRange(0, (emailArrList.Count)));
 
                                 }
 
                                 teboDebug.writeline(teboDebug.movementPublishVal + 14);
-
-                                //imagesToProcess.RemoveRange(0, (imagesToProcess.Count));
 
                             }
 
@@ -2164,7 +2125,6 @@ namespace TeboCam
 
                                 }
 
-                                //imagesToProcess.RemoveRange(0, (int)(config.getProfile(bubble.profileInUse).maxImagesToEmail));
                             }
 
                             try
@@ -2205,7 +2165,6 @@ namespace TeboCam
 
                             string[] newdet = new string[2];
 
-                            //emailTimeSent.Add(time.secondsSinceStart().ToString());
 
                             emailToProcess = imagesFromMovement.emailToProcess();
                             imagesToEmail = emailToProcess;
@@ -2245,7 +2204,7 @@ namespace TeboCam
 
             teboDebug.writeline(teboDebug.movementPublishVal + 22);
             Thread.Sleep(1000);
-            //}
+
         }
 
 
@@ -2254,7 +2213,6 @@ namespace TeboCam
 
         public static void webUpdate()
         {
-            //bool firstTimeThru = true;
 
             if (
                 bubble.databaseConnect && DatabaseCredChkCount < databaseTimeOutCount && config.getProfile(bubble.profileInUse).webUpd
@@ -2333,7 +2291,6 @@ namespace TeboCam
                     data_result = database.database_get_data(bubble.mysqlDriver, user, instance, "email");
                     string email = "";
                     if (data_result.Count >= 1) email = data_result[0].ToString().Trim();
-                    //System.Diagnostics.Debug.Print("Email: " + email);
 
                     if (tmpStr != "NULL" && email == "1")
                     {
@@ -2798,8 +2755,6 @@ namespace TeboCam
         public static void publishTestMotion(int testInterval, int cam)
         {
 
-            //int testInterval = 500;
-
             if (testImagePublishFirst)
             {
                 testImagePublishData.Clear();
@@ -2813,12 +2768,10 @@ namespace TeboCam
                 a.option = "tst" + "motionCalibration" + testImagePublishCount.ToString();
                 a.cam = cam;
 
-                //System.Diagnostics.Debug.WriteLine("bubble received: " + a.cam.ToString());
 
                 try { pubPicture(null, a); }
                 catch { }
                 testImagePublishData.Add(testImagePublishCount);
-                //testImagePublishData.Add(bubble.motionLevel);
                 testImagePublishData.Add(Convert.ToInt32((int)Math.Floor(CameraRig.getCam(cam).MotionDetector.MotionLevel * 100)));
 
 
@@ -2843,7 +2796,6 @@ namespace TeboCam
                     bool pubToWeb = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishWeb").ToString());
                     bool pubToLocal = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishLocal").ToString());
                     bool pubThisOne = true;
-                    //bool pubThisOne = Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubImage").ToString());
 
                     //publish from this camera
                     if (pubThisOne && (pubToWeb || pubToLocal))
@@ -2864,7 +2816,6 @@ namespace TeboCam
                         if (
                             Convert.ToBoolean(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "publishFirst").ToString())
                             || (time.secondsSinceStart() - Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "lastPublished").ToString())) >= PubInterval
-                            //Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "pubTime").ToString())
                             )
                         {
 
@@ -3046,7 +2997,6 @@ namespace TeboCam
 
                     a.option = "pub";
                     a.cam = pubCamera;
-                    //a.cam = CameraRig.activeCam;
 
                     try { pubPicture(null, a); }
                     catch { }
@@ -3127,8 +3077,7 @@ namespace TeboCam
         {
             if (start)
             {
-                //CameraWindow.ImageSaved -= new ImageSavedEventHandler(ImageSaved);
-                //CameraWindow.ImageSaved += new ImageSavedEventHandler(ImageSaved);
+
                 pubPicture -= new ImagePubEventHandler(take_picture_publish);
                 pubPicture += new ImagePubEventHandler(take_picture_publish);
 
@@ -3147,57 +3096,7 @@ namespace TeboCam
             imagesSaved.Add(e.image.ToString());
         }
 
-        private static void work(object sender, EventArgs e)
-        {
-            //CameraWindow.ImageSaved += new ImageSavedEventHandler(ImageSaved);
-
-            //pingLast = secondsSinceStart();
-
-            //logAddLine("Work process started.");
-            //logAddLine("KeepWorking value: " + keepWorking.ToString());
-
-            while (keepWorking)
-            {
-
-                //20100707 now in preferences.cs workerProcess
-                //changeTheTime();
-                //20100707 now in preferences.cs workerProcess
-
-                #region :::::::::::::::::::::::ping
-                //20100707 now in preferences.cs workerProcess
-                //ping();
-                //20100707 now in preferences.cs workerProcess
-                #endregion
-                //camera alarm has been activated
-
-                //if (lastUpdateSeq != updateSeq)
-                //{
-                //    int tmpInt = imagesSaved.Count;
-                //    imagesToProcess.AddRange(imagesSaved.GetRange(0, tmpInt));
-                //    imagesSaved.RemoveRange(0, tmpInt);
-                //    lastUpdateSeq = updateSeq;
-                //    ringMyBell(false);
-                //}
-
-                #region :::::::::::::::::::::::publishImage
-                //20100707 now in preferences.cs workerProcess
-                //publishImage();
-                //20100707 now in preferences.cs workerProcess
-                #endregion
-                #region::::::::::::::webUpdate
-                //20100707 now in preferences.cs workerProcess
-                //webUpdate();
-                //20100707 now in preferences.cs workerProcess
-                #endregion
-                #region::::::::::::::movementPublish
-                //20100707 now in preferences.cs workerProcess
-                //movementPublish();
-                //20100707 now in preferences.cs workerProcess
-                #endregion
-
-            }
-        }
-
+     
         //add most recent batch of movement images to arraylist
         public static void movementAddImages()
         {
@@ -3218,32 +3117,20 @@ namespace TeboCam
 
                     int tmpInt = imagesSaved.Count;
                     teboDebug.writeline(teboDebug.movementAddImagesVal + 2);
-                    //imagesToProcess.AddRange(imagesSaved.GetRange(lastStartSeq, (tmpInt - lastStartSeq)));
                     ArrayList tmpArrLst = new ArrayList(imagesSaved.GetRange(lastStartSeq, (tmpInt - lastStartSeq)));
                     imagesFromMovement.addImageRange(tmpArrLst);
 
                     lastStartSeq = tmpInt;
-                    //noopped 20100918 and lastStartSeq introduce as imagesSaved may get locked
-                    //imagesSaved.RemoveRange(0, tmpInt);
-                    //noopped 20100918 and lastStartSeq introduce as imagesSaved may get locked
                     lastUpdateSeq = updateSeq;
                     ringMyBell(false);
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-                //System.Diagnostics.Debug.WriteLine(ex); 
             }
         }
 
 
-
-        //public static void timeIncrement(long interval)
-        //{
-        //    ticks++;
-        //    secondsElapsed = (long)((double)ticks * ((double)interval / 1000));
-
-        //}
 
         public static bool imageSaveTime(bool update)
         {
@@ -3424,7 +3311,6 @@ namespace TeboCam
                         {
                             currCycle++;
                         }
-                        //cycleChanged(null, new EventArgs());
                         break;
                     case 2:
                         string stampA = DateTime.Now.ToString("yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
@@ -3633,9 +3519,6 @@ namespace TeboCam
                     graphicsObjStats.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y + 21));
 
                 }
-
-
-                //graphicsObj.Dispose();
 
                 return imageIn;
             }
@@ -3955,83 +3838,6 @@ namespace TeboCam
 
         }
 
-
-        public static bool downloadFromWeb(string URL, string file, string targetFolder)
-        {
-            try
-            {
-
-                byte[] downloadedData;
-
-
-                downloadedData = new byte[0];
-
-                ////Optional
-                //this.Text = "Connecting...";
-                //Application.DoEvents();
-
-                //Get a data stream from the url
-                WebRequest req = WebRequest.Create(URL + file);
-                WebResponse response = req.GetResponse();
-                Stream stream = response.GetResponseStream();
-
-                //Download in chuncks
-                byte[] buffer = new byte[1024];
-
-                //Get Total Size
-                int dataLength = (int)response.ContentLength;
-
-                //Application.DoEvents();
-
-                //Download to memory
-                //Note: adjust the streams here to download directly to the hard drive
-                MemoryStream memStream = new MemoryStream();
-                while (true)
-                {
-                    //Try to read the data
-                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
-
-                    if (bytesRead == 0)
-                    {
-                        //Finished downloading
-
-                        //Application.DoEvents();
-                        break;
-                    }
-                    else
-                    {
-                        //Write the downloaded data
-                        memStream.Write(buffer, 0, bytesRead);
-                    }
-                }
-
-                //Convert the downloaded stream to a byte array
-                downloadedData = memStream.ToArray();
-
-                //Clean up
-                stream.Close();
-                memStream.Close();
-
-                //Write the bytes to a file
-                FileStream newFile = new FileStream(targetFolder + file, FileMode.Create);
-                newFile.Write(downloadedData, 0, downloadedData.Length);
-                newFile.Close();
-
-                return true;
-
-            }
-
-            catch (Exception)
-            {
-                //May not be connected to the internet
-                //Or the URL might not exist
-                return false;
-            }
-
-        }
-
-
-
         public static void camera_Alarm(object sender, CamIdArgs e, LevelArgs l)
         {
 
@@ -4140,7 +3946,6 @@ namespace TeboCam
                     stampArgs.type = "Online";
                     stampArgs.backingRectablgle = config.getProfile(profileInUse).onlineTimeStampRect;
 
-                    //imgBmp = bubble.timeStampImage((Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone(), "Online", config.getProfile(profileInUse).onlineTimeStampRect);
                     imgBmp = bubble.timeStampImage(stampArgs);
                     compression = config.getProfile(bubble.profileInUse).onlineCompression;
                 }
@@ -4155,7 +3960,6 @@ namespace TeboCam
                     stampArgs.backingRectablgle = config.getProfile(profileInUse).publishTimeStampRect;
                     stampArgs.stats = e.lst;
 
-                    //imgBmp = bubble.timeStampImage((Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone(), "Publish", config.getProfile(profileInUse).publishTimeStampRect);
                     imgBmp = bubble.timeStampImage(stampArgs);
                     compression = config.getProfile(bubble.profileInUse).publishCompression;
                 }

@@ -274,7 +274,8 @@ namespace TeboCam
 
             if (!bubble.databaseConnect) tabControl1.TabPages.Remove(Online); ;
 
-            updaterUpdate();
+            //updaterUpdate();
+            update.updateMe(bubble.updaterPrefix, Application.StartupPath);
 
             ThumbsPrepare();
 
@@ -1898,7 +1899,7 @@ namespace TeboCam
                                                 bubble.processToEnd,
                                                 bubble.postProcess,
                                                 bubble.postProcessCommand,
-                                                bubble.updater, 
+                                                bubble.updater,
                                                 true);
 
 
@@ -2076,71 +2077,6 @@ namespace TeboCam
                 bubble.logAddLine("Unable to connect to download site.");
             }
         }
-
-
-
-        private void updaterUpdate()
-        {
-
-            //check if webPage have file namespace beginning with updaterPrefix
-            //then delete the corresponding files, if they exist
-            //then rename the updaterPrefix files removing the prefix
-
-
-            DirectoryInfo dInfo = new DirectoryInfo(Application.StartupPath);
-            FileInfo[] updaterFiles = dInfo.GetFiles(bubble.updaterPrefix + "*");
-            int fileCount = updaterFiles.Length;
-
-            foreach (FileInfo file in updaterFiles)
-            {
-                string newFile = Application.StartupPath + @"\" + file.Name;
-                string origFile = Application.StartupPath + @"\" + LeftRightMid.Mid(file.Name, bubble.updaterPrefix.Length, file.Name.Length - bubble.updaterPrefix.Length);
-
-                if (File.Exists(origFile)) { File.Delete(origFile); }
-
-                File.Move(newFile, origFile);
-
-            }
-
-
-
-
-        }
-
-        private void installUpdateOld()
-        {
-
-            //|processToEnd|TeboCam
-            //|downloadFile|TeboCam.Zip
-            //|URL|http://teboweb.com/Downloads/
-            //|destinationFolder|C:\Documents and Settings\HP_Administrator\My Documents\Visual Studio 2005\Projects\update\update\bin\Debug\appSimulation\
-            //|postProcess|C:\Documents and Settings\HP_Administrator\My Documents\Visual Studio 2005\Projects\TeboCam\TeboCam\bin\Release\TeboCam.exe
-            //|command|Alert Seconds 75
-
-            bubble.postProcessCommand = @" /profile " + bubble.profileInUse;
-
-            string cmdLn = "";
-
-            //cmdLn += @"""";
-            cmdLn += "|downloadFile|" + bubble.upd_file;
-            cmdLn += "|URL|" + bubble.upd_url;
-            cmdLn += "|destinationFolder|" + bubble.destinationFolder;
-            cmdLn += "|processToEnd|" + bubble.processToEnd;
-            cmdLn += "|postProcess|" + bubble.postProcess;
-            cmdLn += "|command|" + bubble.postProcessCommand;
-            //cmdLn += @"""";
-
-
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = bubble.updater;
-            startInfo.Arguments = cmdLn;
-            Process.Start(startInfo);
-
-        }
-
-
-
-
 
 
 
@@ -4446,7 +4382,7 @@ namespace TeboCam
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc"));
                 i.Add(true);
 
-               fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
+                fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
                 fileprefix.StartPosition = FormStartPosition.CenterScreen;
                 fileprefix.ShowDialog();
 
