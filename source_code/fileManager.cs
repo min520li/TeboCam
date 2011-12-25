@@ -786,6 +786,10 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").freezeGuard = Convert.ToBoolean(configData.ReadString());
                             }
+                            if (configData.LocalName.Equals("freezeGuardWindowShow"))
+                            {
+                                config.getProfile("##newProf##").freezeGuardWindowShow = Convert.ToBoolean(configData.ReadString());
+                            }
                             if (configData.LocalName.Equals("updatesNotify"))
                             {
                                 config.getProfile("##newProf##").updatesNotify = Convert.ToBoolean(configData.ReadString());
@@ -1816,6 +1820,10 @@ namespace TeboCam
 
                         configData.WriteStartElement("", "freezeGuard", "");
                         configData.WriteString(config.getProfile().freezeGuard.ToString());
+                        configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "freezeGuardWindowShow", "");
+                        configData.WriteString(config.getProfile().freezeGuardWindowShow.ToString());
                         configData.WriteEndElement();
 
                         configData.WriteStartElement("", "updatesNotify", "");

@@ -2485,6 +2485,7 @@ namespace TeboCam
             logsKeep.Text = data.logsKeep.ToString();
             logsKeepChk.Checked = data.logsKeepChk;
             freezeGuardOn.Checked = data.freezeGuard;
+            freezeGuardWindow.Checked = data.freezeGuardWindowShow;
             pulseFreq.Text = data.pulseFreq.ToString();
 
             radioButton11.Checked = data.imageLocCust;
@@ -3381,6 +3382,11 @@ namespace TeboCam
         private void freezeGuardOn_CheckedChanged(object sender, EventArgs e)
         {
             config.getProfile(bubble.profileInUse).freezeGuard = freezeGuardOn.Checked;
+        }
+
+        private void freezeGuardWindow_CheckedChanged(object sender, EventArgs e)
+        {
+            config.getProfile(bubble.profileInUse).freezeGuardWindowShow = freezeGuardWindow.Checked;
         }
 
         private void sqlImageRoot_Leave(object sender, EventArgs e)
@@ -4552,6 +4558,8 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).EmailIntelStop = EmailIntelStop.Checked;
 
         }
+
+
 
 
     }

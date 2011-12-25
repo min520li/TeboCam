@@ -62,7 +62,6 @@ namespace TeboCam
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCameraName = new System.Windows.Forms.Label();
-            this.cameraWindow = new TeboCam.CameraWindow();
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
@@ -341,6 +340,8 @@ namespace TeboCam
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraWindow = new TeboCam.CameraWindow();
+            this.freezeGuardWindow = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -813,7 +814,7 @@ namespace TeboCam
             // 
             // levelShow
             // 
-            this.levelShow.Image = global::TeboCam.Properties.Resources.level;
+            this.levelShow.Image = ((System.Drawing.Image)(resources.GetObject("levelShow.Image")));
             this.levelShow.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
             this.levelShow.Location = new System.Drawing.Point(94, 303);
             this.levelShow.Margin = new System.Windows.Forms.Padding(0);
@@ -839,7 +840,7 @@ namespace TeboCam
             // 
             // imageInFrame
             // 
-            this.imageInFrame.Image = global::TeboCam.Properties.Resources.arrowIn;
+            this.imageInFrame.Image = ((System.Drawing.Image)(resources.GetObject("imageInFrame.Image")));
             this.imageInFrame.ImageAlign = System.Drawing.ContentAlignment.BottomRight;
             this.imageInFrame.Location = new System.Drawing.Point(54, 303);
             this.imageInFrame.Margin = new System.Windows.Forms.Padding(0);
@@ -892,17 +893,6 @@ namespace TeboCam
             this.lblCameraName.TabIndex = 97;
             this.lblCameraName.Tag = "";
             this.lblCameraName.Text = "      ";
-            // 
-            // cameraWindow
-            // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            this.cameraWindow.Location = new System.Drawing.Point(3, 8);
-            this.cameraWindow.Name = "cameraWindow";
-            this.cameraWindow.Size = new System.Drawing.Size(322, 242);
-            this.cameraWindow.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.cameraWindow, "Image from the currently selected webcam.");
-            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // newsInfo
             // 
@@ -2985,6 +2975,7 @@ namespace TeboCam
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.freezeGuardWindow);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.pulseFreq);
@@ -4250,6 +4241,30 @@ namespace TeboCam
             this.toolStripMenuItem3.Text = "Exit";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            this.cameraWindow.Location = new System.Drawing.Point(3, 8);
+            this.cameraWindow.Name = "cameraWindow";
+            this.cameraWindow.Size = new System.Drawing.Size(322, 242);
+            this.cameraWindow.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.cameraWindow, "Image from the currently selected webcam.");
+            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
+            // 
+            // freezeGuardWindow
+            // 
+            this.freezeGuardWindow.AutoSize = true;
+            this.freezeGuardWindow.Location = new System.Drawing.Point(11, 115);
+            this.freezeGuardWindow.Name = "freezeGuardWindow";
+            this.freezeGuardWindow.Size = new System.Drawing.Size(202, 17);
+            this.freezeGuardWindow.TabIndex = 72;
+            this.freezeGuardWindow.Text = "Show FreezeGuard Window";
+            this.toolTip1.SetToolTip(this.freezeGuardWindow, "Show/Hide the FreezeGuard window.\r\n\r\nThis option requires a restart of TeboCam\r\ni" +
+                    "n order to show or hide the FreezeGuard window.");
+            this.freezeGuardWindow.UseVisualStyleBackColor = true;
+            this.freezeGuardWindow.CheckedChanged += new System.EventHandler(this.freezeGuardWindow_CheckedChanged);
+            // 
             // preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4689,5 +4704,6 @@ namespace TeboCam
         private System.Windows.Forms.Panel emailIntelPanel;
         private System.Windows.Forms.RadioButton EmailIntelMosaic;
         private System.Windows.Forms.RadioButton EmailIntelStop;
+        private System.Windows.Forms.CheckBox freezeGuardWindow;
     }
 }

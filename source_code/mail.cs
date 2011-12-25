@@ -106,7 +106,7 @@ namespace TeboCam
                         mail.Attachments.Add(new Attachment(file));
                     }
 
-                    catch (System.Exception ex)
+                    catch
                     {
                         bubble.logAddLine("Error adding file to email... " + tmpCnt.ToString());
                     }
@@ -137,101 +137,77 @@ namespace TeboCam
             }
         }
 
-
-        public static int secondsBetweenEmails()
+        private static int mailsSentOverTime(int i_timeSpan, int i_currTime)
         {
 
-            int startIdx = 0;
-            int total = 0;
-            int items = mail.emailTimeSent.Count - startIdx; ;
-            double avgFreq = 0;
+            int emailsSent = 0;
 
-            for (int i = startIdx; i < mail.emailTimeSent.Count; i++)
+            foreach (int time in mail.emailTimeSent)
             {
 
-                if (i > startIdx)
+                if (i_currTime - time <= i_timeSpan)
                 {
-                    total = total + (mail.emailTimeSent[i] - mail.emailTimeSent[i - 1]);
+
+                    emailsSent++;
+
                 }
 
             }
 
-            return (int)Math.Round((double)total / (double)items, 0, MidpointRounding.AwayFromZero);
+            //****************************
+            //20111225 this has been nooped as the user may
+            //change the time paremeter during a session and 
+            //information may consequently be lost
+            //****************************
+            ////just a little bit of housekeeping
+            ////clear out email time records that are no longer relevant
+            //if (mail.emailTimeSent.Count > 20)
+            //{
 
+            //    for (int i = 0; i < mail.emailTimeSent.Count; i++)
+            //    {
+
+            //        if (mail.emailTimeSent[i] < i_currTime - i_timeSpan)
+            //        {
+
+            //            mail.emailTimeSent.RemoveAt(i);
+
+            //        }
+
+            //    }
+
+            //}
+            //****************************
+            //20111225 this has been nooped as the user may
+            //change the time paremeter during a session and 
+            //information may consequently be lost
+            //****************************
+
+
+            return emailsSent;
 
         }
 
 
-        private static void deSpamifyReset(int i_currTime)
+        public static bool SpamAlert(int i_emails, int i_mins, bool i_deSpamify, int i_currTime)
         {
 
-            mail.emailTimeSent.Clear();
-            mail.emailTimeSent.Add(i_currTime);
-
-        }
-
-        public static bool SpamAlert(int i_emails, int i_mins, bool i_ratioOn, int i_currTime)
-        {
-
-            if (i_ratioOn)
+            if (i_deSpamify)
             {
 
-                double i_ratio = ((double)i_emails / (double)i_mins);
-                int minTime;
-                int maxTime;
+                int emailsSent = mailsSentOverTime(i_mins * 60, i_currTime);
 
-                if (mail.emailTimeSent.Count > 0)
-                {
-
-                    minTime = mail.emailTimeSent[0];
-                    //maxTime = mail.emailTimeSent[mail.emailTimeSent.Count-1];
-                    maxTime = i_currTime;
-
-                }
-                else
-                {
-
-                    return false;
-
-                }
-
-
-                int emails = mail.emailTimeSent.Count;
-                int emailTime = maxTime - minTime;
-
-                //if the number of minutes elapsed since first email and 
-                //last email sent is less than the stipulated time in the ration calculation
-                //add on the difference to calculate if ratio is met
-                if (emailTime < (i_mins * 60))
-                {
-
-                    emailTime += (i_mins * 60) - emailTime;
-
-                }
-
-                double calculatedRatio = (double)emails / ((double)emailTime / 60);
-
-                if (maxTime - minTime > (i_mins * 60) && calculatedRatio <= i_ratio)
-                {
-
-                    deSpamifyReset(i_currTime);
-
-                }
-
-
-                if (calculatedRatio > i_ratio)
+                if (emailsSent >= i_emails)
                 {
 
                     spamStopped = true;
 
                 }
 
-
-                return calculatedRatio > i_ratio;
+                return emailsSent >= i_emails;
 
             }
 
-            deSpamifyReset(i_currTime);
             return false;
 
         }

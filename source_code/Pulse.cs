@@ -80,7 +80,18 @@ namespace TeboWeb
                 startInfo.FileName = pulseAppLocation;
                 startInfo.Arguments = cmdLn;
                 //20111225 hidden freeguard window
-                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                if (config.getProfile(bubble.profileInUse).freezeGuardWindowShow)
+                {
+
+                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+
+                }
+                else
+                {
+
+                    startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+
+                }
                 //startInfo.UseShellExecute = false;
                 //20111225 hidden freeguard window
                 Process.Start(startInfo);

@@ -1426,6 +1426,7 @@ namespace TeboCam
         public bool cameraShow;
         public bool motionLevel;
         public bool freezeGuard;
+        public bool freezeGuardWindowShow;
         public string selectedCam;
         public string filenamePrefixPubWeb;
         public int cycleStampCheckedPubWeb;
@@ -1585,6 +1586,7 @@ namespace TeboCam
             cameraShow = true;
             motionLevel = true;
             freezeGuard = true;
+            freezeGuardWindowShow = false;
             selectedCam = "";
             filenamePrefixPubWeb = "webcamPublish";
             cycleStampCheckedPubWeb = 1;
@@ -4016,30 +4018,7 @@ namespace TeboCam
             return null;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
 
 }
 
