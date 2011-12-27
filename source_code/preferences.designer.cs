@@ -236,6 +236,7 @@ namespace TeboCam
             this.Admin = new System.Windows.Forms.TabPage();
             this.infoMode = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.freezeGuardWindow = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.pulseFreq = new System.Windows.Forms.TextBox();
@@ -341,7 +342,6 @@ namespace TeboCam
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.cameraWindow = new TeboCam.CameraWindow();
-            this.freezeGuardWindow = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -2989,6 +2989,19 @@ namespace TeboCam
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "FreezeGuard  Protection";
             // 
+            // freezeGuardWindow
+            // 
+            this.freezeGuardWindow.AutoSize = true;
+            this.freezeGuardWindow.Location = new System.Drawing.Point(11, 115);
+            this.freezeGuardWindow.Name = "freezeGuardWindow";
+            this.freezeGuardWindow.Size = new System.Drawing.Size(202, 17);
+            this.freezeGuardWindow.TabIndex = 72;
+            this.freezeGuardWindow.Text = "Show FreezeGuard Window";
+            this.toolTip1.SetToolTip(this.freezeGuardWindow, "Show/Hide the FreezeGuard window.\r\n\r\nThis option requires a restart of TeboCam\r\ni" +
+                    "n order to show or hide the FreezeGuard window.");
+            this.freezeGuardWindow.UseVisualStyleBackColor = true;
+            this.freezeGuardWindow.CheckedChanged += new System.EventHandler(this.freezeGuardWindow_CheckedChanged);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -3046,6 +3059,7 @@ namespace TeboCam
             this.freezeGuardOff.TabIndex = 1;
             this.freezeGuardOff.TabStop = true;
             this.freezeGuardOff.Text = "Off";
+            this.toolTip1.SetToolTip(this.freezeGuardOff, resources.GetString("freezeGuardOff.ToolTip"));
             this.freezeGuardOff.UseVisualStyleBackColor = true;
             // 
             // freezeGuardOn
@@ -3056,6 +3070,7 @@ namespace TeboCam
             this.freezeGuardOn.Size = new System.Drawing.Size(42, 17);
             this.freezeGuardOn.TabIndex = 0;
             this.freezeGuardOn.Text = "On";
+            this.toolTip1.SetToolTip(this.freezeGuardOn, resources.GetString("freezeGuardOn.ToolTip"));
             this.freezeGuardOn.UseVisualStyleBackColor = true;
             this.freezeGuardOn.CheckedChanged += new System.EventHandler(this.freezeGuardOn_CheckedChanged);
             // 
@@ -4252,19 +4267,6 @@ namespace TeboCam
             this.toolTip1.SetToolTip(this.cameraWindow, "Image from the currently selected webcam.");
             this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
-            // freezeGuardWindow
-            // 
-            this.freezeGuardWindow.AutoSize = true;
-            this.freezeGuardWindow.Location = new System.Drawing.Point(11, 115);
-            this.freezeGuardWindow.Name = "freezeGuardWindow";
-            this.freezeGuardWindow.Size = new System.Drawing.Size(202, 17);
-            this.freezeGuardWindow.TabIndex = 72;
-            this.freezeGuardWindow.Text = "Show FreezeGuard Window";
-            this.toolTip1.SetToolTip(this.freezeGuardWindow, "Show/Hide the FreezeGuard window.\r\n\r\nThis option requires a restart of TeboCam\r\ni" +
-                    "n order to show or hide the FreezeGuard window.");
-            this.freezeGuardWindow.UseVisualStyleBackColor = true;
-            this.freezeGuardWindow.CheckedChanged += new System.EventHandler(this.freezeGuardWindow_CheckedChanged);
-            // 
             // preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4281,7 +4283,7 @@ namespace TeboCam
             this.MaximumSize = new System.Drawing.Size(980, 700);
             this.Name = "preferences";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TeboCam Multicam";
+            this.Text = "TeboCam";
             this.Load += new System.EventHandler(this.preferences_Load);
             this.Shown += new System.EventHandler(this.preferences_Loaded);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.preferences_FormClosing);

@@ -257,9 +257,6 @@ namespace TeboCam
             bubble.devMachine = File.Exists(Application.StartupPath + bubble.devMachineFile);
             bubble.databaseConnect = File.Exists(Application.StartupPath + bubble.dbaseConnectFile);
 
-
-            this.Text = this.Text + " - Webcams Licensed: " + "9";
-
             if (bubble.devMachine)
             {
 
@@ -271,6 +268,8 @@ namespace TeboCam
             {
                 tabControl1.TabPages.Remove(Test);
             }
+
+
 
             if (!bubble.databaseConnect) tabControl1.TabPages.Remove(Online); ;
 
@@ -496,7 +495,7 @@ namespace TeboCam
             {
                 statusStrip.BackColor = Color.LemonChiffon;
                 StatusStripLabel.ForeColor = Color.Black;
-                StripStatusLabel.Text = "TeboCam - Version " + bubble.version + " - Copyright TeboWeb " + bubble.versionDt + " :::: Most recent version " + e._list[0].ToString() + " available as auto-install";
+                StripStatusLabel.Text = "TeboCam - Version " + bubble.version + " - TeboWeb " + bubble.versionDt + " :::: Most recent version " + e._list[0].ToString() + " available as auto-install";
 
             }
             else
