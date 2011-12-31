@@ -652,7 +652,7 @@ namespace TeboCam
                                 }
                                 if (configData.LocalName.Equals("areaDetection"))
                                 {
-                                    config.getProfile("##newProf##").areaDetection = Convert.ToBoolean(configData.ReadString());
+                                    config.getProfile("##newProf##").areaDetection = Boolean.Parse(configData.ReadString());
                                     pre262.areaDetection = Convert.ToBoolean(config.getProfile("##newProf##").areaDetection);
                                 }
                                 if (configData.LocalName.Equals("areaDetectionWithin"))

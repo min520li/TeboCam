@@ -437,6 +437,7 @@ namespace TeboCam
 
             }
 
+            cw = null;
 
             worker.WorkerSupportsCancellation = true;
             worker.DoWork -= new DoWorkEventHandler(workerProcess);
@@ -1857,7 +1858,7 @@ namespace TeboCam
 
                 Invalidate();
                 bubble.workInit(false);
-                CloseCamera();
+                closeAllCameras();
                 bubble.logAddLine("Application will remain frozen until exit.");
                 Invalidate();
 
@@ -1910,7 +1911,7 @@ namespace TeboCam
         }
 
 
-        private void CloseCamera()
+        private void closeAllCameras()
         {
 
             foreach (rigItem rigI in CameraRig.rig)
@@ -4239,18 +4240,21 @@ namespace TeboCam
         public void cameraNewProfile()
         {
 
-            CloseCamera();
+            closeAllCameras();
+            //camButtonSetColours();
             CameraRig.clear();
             camReset();
 
-            if (cw == null)
+            //check if cw is null as we may currently be loading the form 
+            //and cw may be in progress
+            if (config.getProfile(bubble.profileInUse).webcam != null && cw == null)
             {
-
-                cw.DoWork -= new DoWorkEventHandler(waitForCam);
-                cw.DoWork += new DoWorkEventHandler(waitForCam);
-                cw.WorkerSupportsCancellation = true;
-                cw.RunWorkerAsync();
-
+                BackgroundWorker profChWorker = new BackgroundWorker();
+                profChWorker.DoWork -= new DoWorkEventHandler(waitForCam);
+                profChWorker.DoWork += new DoWorkEventHandler(waitForCam);
+                profChWorker.WorkerSupportsCancellation = true;
+                profChWorker.RunWorkerAsync();
+                profChWorker = null;
             }
 
 
@@ -4557,6 +4561,7 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).EmailIntelStop = EmailIntelStop.Checked;
 
         }
+
 
 
 

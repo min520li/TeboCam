@@ -609,6 +609,10 @@ namespace TeboCam
         public static void initialize(int maximumCameras)
         {
 
+            cam.Clear();
+            mov.Clear();
+            pub.Clear();
+
             maxCams = maximumCameras;
 
             for (int i = 0; i < maxCams; i++)
@@ -4017,6 +4021,8 @@ namespace TeboCam
             }
             return null;
         }
+
+
 
     }
 
