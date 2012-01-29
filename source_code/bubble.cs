@@ -1266,6 +1266,7 @@ namespace TeboCam
                     if (data.profileName == profile)
                     {
                         data.profileName = NewName;
+                        CameraRig.renameProfile(profile, NewName);
                         break;
                     }
                 }
@@ -2025,7 +2026,7 @@ namespace TeboCam
 
                                     if (!spamStopEmail)
                                     {
-                                        
+
                                         mosaic.saveMosaicAsJpg(config.getProfile(bubble.profileInUse).mosaicImagesPerRow,
                                                                      thumbFolder + rand + mosaicFile,
                                                                      config.getProfile(bubble.profileInUse).alertCompression);
@@ -3102,7 +3103,7 @@ namespace TeboCam
             imagesSaved.Add(e.image.ToString());
         }
 
-     
+
         //add most recent batch of movement images to arraylist
         public static void movementAddImages()
         {
@@ -3131,7 +3132,7 @@ namespace TeboCam
                     ringMyBell(false);
                 }
             }
-            catch 
+            catch
             {
             }
         }

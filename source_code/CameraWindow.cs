@@ -277,6 +277,7 @@ namespace TeboCam
                     {
                         if (showCam)
                         {
+
                             // Create font and brush
                             Font drawFont = new Font("Arial", 12);
                             SolidBrush drawBrush = new SolidBrush(Color.White);
@@ -435,7 +436,7 @@ namespace TeboCam
             Bitmap saveBmp = null;
             try
             {
-                                
+
                 List<string> lst = new List<string>();
 
                 if (config.getProfile(bubble.profileInUse).pingStatsStamp)

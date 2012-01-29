@@ -247,6 +247,7 @@ namespace TeboCam
 
         private void preferences_Load(object sender, EventArgs e)
         {
+
             installationClean();
 
             CameraRig.camSelInit();
@@ -918,9 +919,9 @@ namespace TeboCam
             camera.motionLevelEvent -= new motionLevelEventHandler(bubble.motionEvent);
             camera.motionLevelEvent += new motionLevelEventHandler(bubble.motionEvent);
 
-
             // start camera
             camera.Start();
+
 
             rigItem rig_it = new rigItem();
             rig_it.cameraName = source.Source;
@@ -2187,11 +2188,12 @@ namespace TeboCam
             {
                 Directory.CreateDirectory(bubble.resourceFolder);
             }
-            if (!Directory.Exists(bubble.vaultFolder))
+
+            string configXml = bubble.xmlFolder + "config.xml";
+            if (!Directory.Exists(bubble.vaultFolder) && File.Exists(configXml))
             {
                 Directory.CreateDirectory(bubble.vaultFolder);
                 string configVlt = bubble.vaultFolder + "config262.xml";
-                string configXml = bubble.xmlFolder + "config.xml";
                 if (!File.Exists(configVlt))
                 {
                     File.Copy(configXml, configVlt, true);
@@ -2238,12 +2240,16 @@ namespace TeboCam
             {
                 Directory.CreateDirectory(bubble.xmlFolder);
                 DirectoryInfo diApp = new DirectoryInfo(Application.StartupPath);
-                FileInfo[] imageFilesApp = diApp.GetFiles("*.xml");
-                foreach (FileInfo fi in imageFilesApp)
+                FileInfo[] xmlFilesApp = diApp.GetFiles("*.xml");
+                foreach (FileInfo fi in xmlFilesApp)
                 {
+                    if (fi.FullName!="Ionic.Zip.xml")
+                    {
                     File.Move(fi.FullName, bubble.xmlFolder + fi.Name);
+                    }
                 }
             }
+
 
             if (File.Exists(bubble.xmlFolder + "processed.xml")) { File.Delete(bubble.xmlFolder + "processed.xml"); };
 
