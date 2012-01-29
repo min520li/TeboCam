@@ -291,8 +291,10 @@ namespace TeboCam
         public static void addInfo(string infoType, object val)
         {
 
-            if (camInfo.Count > 0)
-            {
+            //20120128 not saving confix attempt at fix
+            //if (camerasAttached())
+            //20120128 not saving confix attempt at fix
+            //{
 
 
                 if (infoType == "webcam")
@@ -305,55 +307,59 @@ namespace TeboCam
 
                 }
 
-                if (infoType == "profileName") { camInfo[infoIdx].profileName = (string)val; }
-                if (infoType == "friendlyName") { camInfo[infoIdx].friendlyName = (string)val; }
+                if (camInfo.Count > 0)
+                {
 
-                if (infoType == "areaDetection") { camInfo[infoIdx].areaDetection = (bool)val; }
-                if (infoType == "areaDetectionWithin") { camInfo[infoIdx].areaDetectionWithin = (bool)val; }
+                    if (infoType == "profileName") { camInfo[infoIdx].profileName = (string)val; }
+                    if (infoType == "friendlyName") { camInfo[infoIdx].friendlyName = (string)val; }
 
-
-                if (infoType == "alarmActive") { camInfo[infoIdx].alarmActive = (bool)val; }
-                if (infoType == "publishActive") { camInfo[infoIdx].publishActive = (bool)val; }
-
-
-                //may be of use in future
-                if (infoType == "areaOffAtMotion") { camInfo[infoIdx].areaOffAtMotion = (bool)val; }
-                //may be of use in future
-
-                if (infoType == "rectX") { camInfo[infoIdx].rectX = (int)val; }
-                if (infoType == "rectY") { camInfo[infoIdx].rectY = (int)val; }
-                if (infoType == "rectWidth") { camInfo[infoIdx].rectWidth = (int)val; }
-                if (infoType == "rectHeight") { camInfo[infoIdx].rectHeight = (int)val; }
-                if (infoType == "movementVal") { camInfo[infoIdx].movementVal = (double)val; }
-                if (infoType == "displayButton") { camInfo[infoIdx].displayButton = (int)val; }
+                    if (infoType == "areaDetection") { camInfo[infoIdx].areaDetection = (bool)val; }
+                    if (infoType == "areaDetectionWithin") { camInfo[infoIdx].areaDetectionWithin = (bool)val; }
 
 
+                    if (infoType == "alarmActive") { camInfo[infoIdx].alarmActive = (bool)val; }
+                    if (infoType == "publishActive") { camInfo[infoIdx].publishActive = (bool)val; }
 
-                if (infoType == "pubImage") { camInfo[infoIdx].pubImage = (bool)val; }
-                if (infoType == "pubTime") { camInfo[infoIdx].pubTime = (int)val; }
-                if (infoType == "pubHours") { camInfo[infoIdx].pubHours = (bool)val; }
-                if (infoType == "pubMins") { camInfo[infoIdx].pubMins = (bool)val; }
-                if (infoType == "pubSecs") { camInfo[infoIdx].pubSecs = (bool)val; }
-                if (infoType == "publishWeb") { camInfo[infoIdx].publishWeb = (bool)val; }
-                if (infoType == "publishLocal") { camInfo[infoIdx].publishLocal = (bool)val; }
-                if (infoType == "timerOn") { camInfo[infoIdx].timerOn = (bool)val; }
-                if (infoType == "filenamePrefixPubWeb") { camInfo[infoIdx].filenamePrefixPubWeb = (string)val; }
-                if (infoType == "cycleStampCheckedPubWeb") { camInfo[infoIdx].cycleStampCheckedPubWeb = (int)val; }
-                if (infoType == "startCyclePubWeb") { camInfo[infoIdx].startCyclePubWeb = (int)val; }
-                if (infoType == "endCyclePubWeb") { camInfo[infoIdx].endCyclePubWeb = (int)val; }
-                if (infoType == "currentCyclePubWeb") { camInfo[infoIdx].currentCyclePubWeb = (int)val; }
-                if (infoType == "stampAppendPubWeb") { camInfo[infoIdx].stampAppendPubWeb = (bool)val; }
-                if (infoType == "filenamePrefixPubLoc") { camInfo[infoIdx].filenamePrefixPubLoc = (string)val; }
-                if (infoType == "cycleStampCheckedPubLoc") { camInfo[infoIdx].cycleStampCheckedPubLoc = (int)val; }
-                if (infoType == "startCyclePubLoc") { camInfo[infoIdx].startCyclePubLoc = (int)val; }
-                if (infoType == "endCyclePubLoc") { camInfo[infoIdx].endCyclePubLoc = (int)val; }
-                if (infoType == "currentCyclePubLoc") { camInfo[infoIdx].currentCyclePubLoc = (int)val; }
-                if (infoType == "stampAppendPubLoc") { camInfo[infoIdx].stampAppendPubLoc = (bool)val; }
 
-                if (infoType == "publishFirst") { camInfo[infoIdx].publishFirst = (bool)val; }
-                if (infoType == "lastPublished") { camInfo[infoIdx].lastPublished = (int)val; }
+                    //may be of use in future
+                    if (infoType == "areaOffAtMotion") { camInfo[infoIdx].areaOffAtMotion = (bool)val; }
+                    //may be of use in future
 
-            }
+                    if (infoType == "rectX") { camInfo[infoIdx].rectX = (int)val; }
+                    if (infoType == "rectY") { camInfo[infoIdx].rectY = (int)val; }
+                    if (infoType == "rectWidth") { camInfo[infoIdx].rectWidth = (int)val; }
+                    if (infoType == "rectHeight") { camInfo[infoIdx].rectHeight = (int)val; }
+                    if (infoType == "movementVal") { camInfo[infoIdx].movementVal = (double)val; }
+                    if (infoType == "displayButton") { camInfo[infoIdx].displayButton = (int)val; }
+
+
+
+                    if (infoType == "pubImage") { camInfo[infoIdx].pubImage = (bool)val; }
+                    if (infoType == "pubTime") { camInfo[infoIdx].pubTime = (int)val; }
+                    if (infoType == "pubHours") { camInfo[infoIdx].pubHours = (bool)val; }
+                    if (infoType == "pubMins") { camInfo[infoIdx].pubMins = (bool)val; }
+                    if (infoType == "pubSecs") { camInfo[infoIdx].pubSecs = (bool)val; }
+                    if (infoType == "publishWeb") { camInfo[infoIdx].publishWeb = (bool)val; }
+                    if (infoType == "publishLocal") { camInfo[infoIdx].publishLocal = (bool)val; }
+                    if (infoType == "timerOn") { camInfo[infoIdx].timerOn = (bool)val; }
+                    if (infoType == "filenamePrefixPubWeb") { camInfo[infoIdx].filenamePrefixPubWeb = (string)val; }
+                    if (infoType == "cycleStampCheckedPubWeb") { camInfo[infoIdx].cycleStampCheckedPubWeb = (int)val; }
+                    if (infoType == "startCyclePubWeb") { camInfo[infoIdx].startCyclePubWeb = (int)val; }
+                    if (infoType == "endCyclePubWeb") { camInfo[infoIdx].endCyclePubWeb = (int)val; }
+                    if (infoType == "currentCyclePubWeb") { camInfo[infoIdx].currentCyclePubWeb = (int)val; }
+                    if (infoType == "stampAppendPubWeb") { camInfo[infoIdx].stampAppendPubWeb = (bool)val; }
+                    if (infoType == "filenamePrefixPubLoc") { camInfo[infoIdx].filenamePrefixPubLoc = (string)val; }
+                    if (infoType == "cycleStampCheckedPubLoc") { camInfo[infoIdx].cycleStampCheckedPubLoc = (int)val; }
+                    if (infoType == "startCyclePubLoc") { camInfo[infoIdx].startCyclePubLoc = (int)val; }
+                    if (infoType == "endCyclePubLoc") { camInfo[infoIdx].endCyclePubLoc = (int)val; }
+                    if (infoType == "currentCyclePubLoc") { camInfo[infoIdx].currentCyclePubLoc = (int)val; }
+                    if (infoType == "stampAppendPubLoc") { camInfo[infoIdx].stampAppendPubLoc = (bool)val; }
+
+                    if (infoType == "publishFirst") { camInfo[infoIdx].publishFirst = (bool)val; }
+                    if (infoType == "lastPublished") { camInfo[infoIdx].lastPublished = (int)val; }
+                }
+
+            //}
 
         }
 
