@@ -1266,7 +1266,6 @@ namespace TeboCam
                     if (data.profileName == profile)
                     {
                         data.profileName = NewName;
-                        CameraRig.renameProfile(profile, NewName);
                         break;
                     }
                 }

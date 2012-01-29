@@ -2615,6 +2615,7 @@ namespace TeboCam
             if (tmpStr.Trim() != "")
             {
                 config.renameProfile(origName, tmpStr);
+                CameraRig.renameProfile(origName, tmpStr);
                 bubble.profileInUse = tmpStr;
                 profileListRefresh(bubble.profileInUse);
             }
