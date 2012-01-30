@@ -535,7 +535,7 @@ namespace TeboCam
                 nocam = true;
             }
 
-            //we have camera(s)attached so let's connect it/them
+            //we have camera(s) attached so let's connect it/them
             if (!nocam)
             {
 
