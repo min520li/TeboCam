@@ -19,6 +19,14 @@ using System.Net;
 namespace TeboCam
 {
 
+    public class Update_Version_Being_Used
+    {
+
+        public const string updateVersion = "201202022100";
+
+    }
+
+
     public class imageText
     {
 
