@@ -456,7 +456,7 @@ namespace TeboCam
                 imageText stampArgs = new imageText();
                 stampArgs.bitmap = (Bitmap)camera.pubFrame.Clone();
                 stampArgs.type = "Ping";
-                stampArgs.backingRectablgle = config.getProfile(bubble.profileInUse).pingTimeStampRect;
+                stampArgs.backingRectangle = config.getProfile(bubble.profileInUse).pingTimeStampRect;
                 stampArgs.stats = lst;
 
                 //saveBmp = bubble.timeStampImage((Bitmap)CameraRig.rig[CameraRig.activeCam].cam.pubFrame.Clone(), "Ping");

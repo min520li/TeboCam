@@ -15,6 +15,7 @@ using System.Management;
 using Tiger.Video.VFW;
 using Ionic.Zip;
 using System.Net;
+using System.Drawing.Drawing2D;
 
 namespace TeboCam
 {
@@ -32,7 +33,7 @@ namespace TeboCam
 
         public Bitmap bitmap;
         public string type;
-        public bool backingRectablgle;
+        public bool backingRectangle;
         public List<string> stats;
 
     }
@@ -3381,7 +3382,7 @@ namespace TeboCam
 
             Bitmap imageIn = imageTxt.bitmap;
             string type = imageTxt.type;
-            bool backingRectangle = imageTxt.backingRectablgle;
+            bool backingRectangle = imageTxt.backingRectangle;
 
             string position = "";
             string format = "";
@@ -3444,6 +3445,10 @@ namespace TeboCam
                         formatStr = DateTime.Now.ToString("dd-MMM-yy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                         textWidth = full;
                         break;
+                    case "analogue":
+                        formatStr = "";
+                        textWidth = 0;
+                        break;
                     default:
                         formatStr = DateTime.Now.ToString("dd-MMM-yy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                         textWidth = full;
@@ -3500,46 +3505,220 @@ namespace TeboCam
                         break;
                 }
 
-                Graphics graphicsObj;
-                graphicsObj = Graphics.FromImage(imageIn);
 
-                if (backingRectangle)
+                if (format == "analogue")
                 {
 
-                    graphicsObj.FillRectangle(rectBrush, x, y, textWidth, 20);
+                    imageIn = drawClock(imageIn,
+                                      Color.White,
+                                      Color.White,
+                                      Color.White,
+                                      Color.White,
+                                      Color.Black, true, false,
+                                      imageIn.Width-60,
+                                      imageIn.Height-60,
+                                      40,
+                                      imageIn.Width,
+                                      imageIn.Height);
 
                 }
-
-                graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y));
-
-                if ((type == "Publish" || type == "Ping") && imageTxt.stats.Count > 0)
+                else
                 {
+                    Graphics graphicsObj;
+                    graphicsObj = Graphics.FromImage(imageIn);
 
-
-                    formatStr = "";
-                    foreach (string str in imageTxt.stats)
+                    if (backingRectangle)
                     {
 
-                        formatStr += str + ", ";
+                        graphicsObj.FillRectangle(rectBrush, x, y, textWidth, 20);
 
                     }
 
-                    //remove that last comma and space
-                    formatStr = formatStr.Remove(formatStr.Length - 2);
+                    graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y));
 
-                    Graphics graphicsObjStats;
-                    graphicsObjStats = Graphics.FromImage(imageIn);
-                    graphicsObjStats.FillRectangle(rectBrush, x, y + 21, graphicsObjStats.MeasureString(formatStr, new Font("Arial", 12, FontStyle.Regular)).Width, 20);
-                    graphicsObjStats.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y + 21));
+                    if ((type == "Publish" || type == "Ping") && imageTxt.stats.Count > 0)
+                    {
 
+
+                        formatStr = "";
+                        foreach (string str in imageTxt.stats)
+                        {
+
+                            formatStr += str + ", ";
+
+                        }
+
+                        //remove that last comma and space
+                        formatStr = formatStr.Remove(formatStr.Length - 2);
+
+                        Graphics graphicsObjStats;
+                        graphicsObjStats = Graphics.FromImage(imageIn);
+                        graphicsObjStats.FillRectangle(rectBrush, x, y + 21, graphicsObjStats.MeasureString(formatStr, new Font("Arial", 12, FontStyle.Regular)).Width, 20);
+                        graphicsObjStats.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y + 21));
+
+                    }
                 }
 
                 return imageIn;
             }
             catch
             { return imageIn; }
+
         }
 
+
+
+        private static void DrawPolygon(float fThickness, float fLength, Color color, Graphics g)
+        {
+
+            PointF A = new PointF(fThickness * 2F, 0);
+            PointF B = new PointF(-fThickness * 2F, 0);
+            PointF C = new PointF(0, -fLength);
+            PointF D = new PointF(0, fThickness * 4F);
+            PointF[] points ={ A, D, B, C };
+            g.FillPolygon(new SolidBrush(color), points);
+
+        }
+
+
+
+        private static Bitmap drawClock(Bitmap i_clockBitmap,
+                          Color i_hourColour,
+                          Color i_minuteColour,
+                          Color i_secondColour,
+                          Color i_tickColour,
+                          Color i_innerDotColour,
+                          bool i_Draw5MinuteTicks,
+                          bool i_Draw1MinuteTicks,
+                          int i_xStart,
+                          int i_yStart,
+                          int i_radius,
+                          int i_width,
+                          int i_height)
+        {
+
+            try
+            {
+
+                float pos_correction;
+
+                float fCenterX;
+                float fCenterY;
+                float fHourThickness;
+                float fMinThickness;
+                float fSecThickness;
+
+                float fHourLength;
+                float fMinLength;
+                float fSecLength;
+
+                float fCenterCircleRadius;
+                float fRadius;
+                float fTicksThickness = 1;
+                bool bDraw5MinuteTicks = i_Draw5MinuteTicks;
+                bool bDraw1MinuteTicks = i_Draw1MinuteTicks;
+
+                DateTime dateTime;
+
+                Graphics clockObj = Graphics.FromImage(i_clockBitmap);
+
+                //Brush rectBrush = Brushes.Red;
+                //clockObj.FillRectangle(rectBrush, 0, 0, i_clockBitmap.Width, i_clockBitmap.Height);
+
+                //i_yStart = 80;
+                //i_xStart = 80;
+                //i_radius = 20;
+
+
+                //pos_correction = Math.Max(i_clockBitmap.Height - i_yStart, i_clockBitmap.Width - i_xStart);
+
+                if (i_clockBitmap.Width - i_xStart < i_clockBitmap.Height - i_yStart)
+                {
+
+                    pos_correction = ((float)i_clockBitmap.Width - (float)i_xStart) / 2F;
+
+                }
+                else
+                {
+
+                    pos_correction = ((float)i_clockBitmap.Height - (float)i_yStart) / 2F;
+
+                }
+
+                i_yStart = i_clockBitmap.Height - i_yStart;
+
+
+                dateTime = DateTime.Now;
+
+                //fHourLength = ((float)pos_correction * 2) / 3 / 1.65F;
+                //fMinLength = ((float)pos_correction * 2) / 3 / 1.20F;
+                //fSecLength = ((float)pos_correction * 2) / 3 / 1.15F;
+                //fHourThickness = ((float)i_clockBitmap.Height - (float)pos_correction) / 100;
+                //fMinThickness = ((float)i_clockBitmap.Height - (float)pos_correction) / 150;
+                //fSecThickness = ((float)i_clockBitmap.Height - (float)pos_correction) / 200;
+                fHourLength = ((float)i_radius * 2F) / 3F / 1.65F;
+                fMinLength = ((float)i_radius * 2F) / 3F / 1.20F;
+                fSecLength = ((float)i_radius * 2F) / 3F / 1.15F;
+                fHourThickness = (float)i_radius * 2 / 100;
+                fMinThickness = (float)i_radius * 2 / 100;
+                fSecThickness = (float)i_radius * 2 / 100;
+                fCenterX = (float)i_xStart;// +(float)i_radius;
+                fCenterY = (float)i_yStart;// -(float)i_radius;
+                //fCenterX = (float)i_xStart + (float)pos_correction;
+                //fCenterY = (float)i_yStart + (float)pos_correction;
+                fCenterCircleRadius = (fCenterY) / 150;
+                fRadius = i_radius;
+
+
+                clockObj.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+                clockObj.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                clockObj.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                clockObj.TranslateTransform(fCenterX, fCenterY);
+                Matrix m = clockObj.Transform;
+
+                clockObj.RotateTransform((dateTime.Hour % 12 + dateTime.Minute / 60F) * 30);
+                DrawPolygon(fHourThickness, fHourLength, i_hourColour, clockObj);
+
+                clockObj.Transform = m;
+                clockObj.RotateTransform(dateTime.Minute * 6 + dateTime.Second / 10F);
+                DrawPolygon(fMinThickness, fMinLength, i_minuteColour, clockObj);
+
+                clockObj.Transform = m;
+                clockObj.RotateTransform(dateTime.Second * 6);
+                clockObj.DrawLine(new Pen(i_secondColour, fSecThickness), 0, fSecLength / 9, 0, -fSecLength);
+
+                for (int i = 0; i < 60; i++)
+                {
+                    clockObj.Transform = m;
+                    clockObj.RotateTransform(i * 6);
+                    if (bDraw5MinuteTicks == true && i % 5 == 0) // Draw 5 minute ticks
+                    {
+                        clockObj.DrawLine(new Pen(i_tickColour, fTicksThickness),
+                            0, -fRadius / 1.50F,
+                            0, -fRadius / 1.65F);
+                    }
+                    else if (bDraw1MinuteTicks == true) // draw 1 minute ticks
+                    {
+                        clockObj.DrawLine(new Pen(i_tickColour, fTicksThickness),
+                              0, -fRadius / 1.50F,
+                              0, -fRadius / 1.55F);
+                    }
+                }
+
+
+                clockObj.FillEllipse(new SolidBrush(i_innerDotColour), -fCenterCircleRadius / 2, -fCenterCircleRadius / 2, fCenterCircleRadius, fCenterCircleRadius);
+
+                clockObj.Dispose();
+
+                return i_clockBitmap;
+
+            }
+            catch
+            {
+                return i_clockBitmap;
+            }
+
+        }
 
         public static Bitmap timeStampImageOLD(Bitmap imageIn, string type, bool backingRectangle)
         {
@@ -3881,7 +4060,7 @@ namespace TeboCam
                     imageText stampArgs = new imageText();
                     stampArgs.bitmap = (Bitmap)CameraRig.rig[e.cam].cam.pubFrame.Clone();
                     stampArgs.type = "Alert";
-                    stampArgs.backingRectablgle = config.getProfile(profileInUse).alertTimeStampRect;
+                    stampArgs.backingRectangle = config.getProfile(profileInUse).alertTimeStampRect;
 
                     saveBmp = timeStampImage(stampArgs);
 
@@ -3958,7 +4137,7 @@ namespace TeboCam
                     imageText stampArgs = new imageText();
                     stampArgs.bitmap = (Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone();
                     stampArgs.type = "Online";
-                    stampArgs.backingRectablgle = config.getProfile(profileInUse).onlineTimeStampRect;
+                    stampArgs.backingRectangle = config.getProfile(profileInUse).onlineTimeStampRect;
 
                     imgBmp = bubble.timeStampImage(stampArgs);
                     compression = config.getProfile(bubble.profileInUse).onlineCompression;
@@ -3971,7 +4150,7 @@ namespace TeboCam
                     imageText stampArgs = new imageText();
                     stampArgs.bitmap = (Bitmap)CameraRig.getCam(e.cam).pubFrame.Clone();
                     stampArgs.type = "Publish";
-                    stampArgs.backingRectablgle = config.getProfile(profileInUse).publishTimeStampRect;
+                    stampArgs.backingRectangle = config.getProfile(profileInUse).publishTimeStampRect;
                     stampArgs.stats = e.lst;
 
                     imgBmp = bubble.timeStampImage(stampArgs);

@@ -50,6 +50,7 @@ namespace TeboCam
             if (hhmm.Checked) i.Add("hhmm");
             if (ddmmyy.Checked) i.Add("ddmmyy");
             if (ddmmyyhhmm.Checked) i.Add("ddmmyyhhmm");
+            if (analogue.Checked) i.Add("analogue");
             //i[3]
             if (black.Checked) i.Add("black");
             if (white.Checked) i.Add("white");
@@ -89,6 +90,7 @@ namespace TeboCam
             hhmm.Checked = inFormat == "hhmm";
             ddmmyy.Checked = inFormat == "ddmmyy";
             ddmmyyhhmm.Checked = inFormat == "ddmmyyhhmm";
+            analogue.Checked = inFormat == "analogue";
 
             black.Checked = inColour == "black";
             red.Checked = inColour == "red";

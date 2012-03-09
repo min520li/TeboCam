@@ -35,24 +35,25 @@ namespace TeboCam
             this.cancel = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.addStamp = new System.Windows.Forms.CheckBox();
+            this.br = new System.Windows.Forms.RadioButton();
+            this.bl = new System.Windows.Forms.RadioButton();
+            this.tr = new System.Windows.Forms.RadioButton();
+            this.tl = new System.Windows.Forms.RadioButton();
+            this.white = new System.Windows.Forms.RadioButton();
+            this.black = new System.Windows.Forms.RadioButton();
+            this.red = new System.Windows.Forms.RadioButton();
+            this.drawRect = new System.Windows.Forms.CheckBox();
+            this.statsChk = new System.Windows.Forms.CheckBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.ddmmyyhhmm = new System.Windows.Forms.RadioButton();
             this.hhmm = new System.Windows.Forms.RadioButton();
             this.ddmmyy = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.br = new System.Windows.Forms.RadioButton();
-            this.bl = new System.Windows.Forms.RadioButton();
-            this.tr = new System.Windows.Forms.RadioButton();
-            this.tl = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.white = new System.Windows.Forms.RadioButton();
-            this.black = new System.Windows.Forms.RadioButton();
-            this.red = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.drawRect = new System.Windows.Forms.CheckBox();
             this.statsBox = new System.Windows.Forms.GroupBox();
-            this.statsChk = new System.Windows.Forms.CheckBox();
+            this.analogue = new System.Windows.Forms.RadioButton();
             this.groupBox16.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,9 +75,9 @@ namespace TeboCam
             // apply
             // 
             this.apply.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apply.Location = new System.Drawing.Point(169, 191);
+            this.apply.Location = new System.Drawing.Point(181, 191);
             this.apply.Name = "apply";
-            this.apply.Size = new System.Drawing.Size(111, 96);
+            this.apply.Size = new System.Drawing.Size(132, 107);
             this.apply.TabIndex = 64;
             this.apply.Text = "Apply";
             this.toolTip1.SetToolTip(this.apply, "Apply the changes");
@@ -86,9 +87,9 @@ namespace TeboCam
             // cancel
             // 
             this.cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancel.Location = new System.Drawing.Point(286, 191);
+            this.cancel.Location = new System.Drawing.Point(319, 191);
             this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(121, 96);
+            this.cancel.Size = new System.Drawing.Size(142, 107);
             this.cancel.TabIndex = 65;
             this.cancel.Text = "Cancel";
             this.toolTip1.SetToolTip(this.cancel, "Do not apply the changes");
@@ -117,14 +118,121 @@ namespace TeboCam
             this.addStamp.UseVisualStyleBackColor = false;
             this.addStamp.CheckedChanged += new System.EventHandler(this.addStamp_CheckedChanged);
             // 
+            // br
+            // 
+            this.br.AutoSize = true;
+            this.br.Location = new System.Drawing.Point(89, 75);
+            this.br.Name = "br";
+            this.br.Size = new System.Drawing.Size(14, 13);
+            this.br.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.br, "Text at lower right");
+            this.br.UseVisualStyleBackColor = true;
+            // 
+            // bl
+            // 
+            this.bl.AutoSize = true;
+            this.bl.Location = new System.Drawing.Point(21, 75);
+            this.bl.Name = "bl";
+            this.bl.Size = new System.Drawing.Size(14, 13);
+            this.bl.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.bl, "Text at lower left");
+            this.bl.UseVisualStyleBackColor = true;
+            // 
+            // tr
+            // 
+            this.tr.AutoSize = true;
+            this.tr.Location = new System.Drawing.Point(89, 36);
+            this.tr.Name = "tr";
+            this.tr.Size = new System.Drawing.Size(14, 13);
+            this.tr.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.tr, "Text at top right");
+            this.tr.UseVisualStyleBackColor = true;
+            // 
+            // tl
+            // 
+            this.tl.AutoSize = true;
+            this.tl.Checked = true;
+            this.tl.Location = new System.Drawing.Point(21, 36);
+            this.tl.Name = "tl";
+            this.tl.Size = new System.Drawing.Size(14, 13);
+            this.tl.TabIndex = 0;
+            this.tl.TabStop = true;
+            this.toolTip1.SetToolTip(this.tl, "Text at top left");
+            this.tl.UseVisualStyleBackColor = true;
+            // 
+            // white
+            // 
+            this.white.AutoSize = true;
+            this.white.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.white.ForeColor = System.Drawing.Color.White;
+            this.white.Location = new System.Drawing.Point(6, 66);
+            this.white.Name = "white";
+            this.white.Size = new System.Drawing.Size(58, 17);
+            this.white.TabIndex = 2;
+            this.white.TabStop = true;
+            this.white.Text = "White";
+            this.toolTip1.SetToolTip(this.white, "Text in white");
+            this.white.UseVisualStyleBackColor = true;
+            // 
+            // black
+            // 
+            this.black.AutoSize = true;
+            this.black.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.black.Location = new System.Drawing.Point(6, 43);
+            this.black.Name = "black";
+            this.black.Size = new System.Drawing.Size(57, 17);
+            this.black.TabIndex = 1;
+            this.black.TabStop = true;
+            this.black.Text = "Black";
+            this.toolTip1.SetToolTip(this.black, "Text in black");
+            this.black.UseVisualStyleBackColor = true;
+            // 
+            // red
+            // 
+            this.red.AutoSize = true;
+            this.red.Checked = true;
+            this.red.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.red.ForeColor = System.Drawing.Color.Red;
+            this.red.Location = new System.Drawing.Point(6, 19);
+            this.red.Name = "red";
+            this.red.Size = new System.Drawing.Size(48, 17);
+            this.red.TabIndex = 0;
+            this.red.TabStop = true;
+            this.red.Text = "Red";
+            this.toolTip1.SetToolTip(this.red, "Text in red");
+            this.red.UseVisualStyleBackColor = true;
+            // 
+            // drawRect
+            // 
+            this.drawRect.AutoSize = true;
+            this.drawRect.Location = new System.Drawing.Point(6, 19);
+            this.drawRect.Name = "drawRect";
+            this.drawRect.Size = new System.Drawing.Size(64, 17);
+            this.drawRect.TabIndex = 72;
+            this.drawRect.Text = "Opaque";
+            this.toolTip1.SetToolTip(this.drawRect, "Show an opaque box behind the text or clock.");
+            this.drawRect.UseVisualStyleBackColor = true;
+            // 
+            // statsChk
+            // 
+            this.statsChk.AutoSize = true;
+            this.statsChk.Location = new System.Drawing.Point(6, 19);
+            this.statsChk.Name = "statsChk";
+            this.statsChk.Size = new System.Drawing.Size(106, 17);
+            this.statsChk.TabIndex = 72;
+            this.statsChk.Text = "Include Statistics";
+            this.toolTip1.SetToolTip(this.statsChk, resources.GetString("statsChk.ToolTip"));
+            this.statsChk.UseVisualStyleBackColor = true;
+            // 
             // groupBox16
             // 
+            this.groupBox16.Controls.Add(this.analogue);
             this.groupBox16.Controls.Add(this.ddmmyyhhmm);
             this.groupBox16.Controls.Add(this.hhmm);
             this.groupBox16.Controls.Add(this.ddmmyy);
             this.groupBox16.Location = new System.Drawing.Point(12, 77);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(145, 102);
+            this.groupBox16.Size = new System.Drawing.Size(145, 113);
             this.groupBox16.TabIndex = 67;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Time Stamp";
@@ -169,54 +277,12 @@ namespace TeboCam
             this.groupBox1.Controls.Add(this.bl);
             this.groupBox1.Controls.Add(this.tr);
             this.groupBox1.Controls.Add(this.tl);
-            this.groupBox1.Location = new System.Drawing.Point(286, 77);
+            this.groupBox1.Location = new System.Drawing.Point(319, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(121, 102);
+            this.groupBox1.Size = new System.Drawing.Size(141, 102);
             this.groupBox1.TabIndex = 68;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Text Position";
-            // 
-            // br
-            // 
-            this.br.AutoSize = true;
-            this.br.Location = new System.Drawing.Point(86, 68);
-            this.br.Name = "br";
-            this.br.Size = new System.Drawing.Size(14, 13);
-            this.br.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.br, "Text at lower right");
-            this.br.UseVisualStyleBackColor = true;
-            // 
-            // bl
-            // 
-            this.bl.AutoSize = true;
-            this.bl.Location = new System.Drawing.Point(18, 68);
-            this.bl.Name = "bl";
-            this.bl.Size = new System.Drawing.Size(14, 13);
-            this.bl.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.bl, "Text at lower left");
-            this.bl.UseVisualStyleBackColor = true;
-            // 
-            // tr
-            // 
-            this.tr.AutoSize = true;
-            this.tr.Location = new System.Drawing.Point(86, 29);
-            this.tr.Name = "tr";
-            this.tr.Size = new System.Drawing.Size(14, 13);
-            this.tr.TabIndex = 1;
-            this.toolTip1.SetToolTip(this.tr, "Text at top right");
-            this.tr.UseVisualStyleBackColor = true;
-            // 
-            // tl
-            // 
-            this.tl.AutoSize = true;
-            this.tl.Checked = true;
-            this.tl.Location = new System.Drawing.Point(18, 29);
-            this.tl.Name = "tl";
-            this.tl.Size = new System.Drawing.Size(14, 13);
-            this.tl.TabIndex = 0;
-            this.tl.TabStop = true;
-            this.toolTip1.SetToolTip(this.tl, "Text at top left");
-            this.tl.UseVisualStyleBackColor = true;
+            this.groupBox1.Text = "Time Stamp Position";
             // 
             // groupBox2
             // 
@@ -225,52 +291,10 @@ namespace TeboCam
             this.groupBox2.Controls.Add(this.red);
             this.groupBox2.Location = new System.Drawing.Point(169, 77);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(111, 102);
+            this.groupBox2.Size = new System.Drawing.Size(144, 102);
             this.groupBox2.TabIndex = 68;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Text Colour";
-            // 
-            // white
-            // 
-            this.white.AutoSize = true;
-            this.white.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.white.ForeColor = System.Drawing.Color.White;
-            this.white.Location = new System.Drawing.Point(6, 66);
-            this.white.Name = "white";
-            this.white.Size = new System.Drawing.Size(58, 17);
-            this.white.TabIndex = 2;
-            this.white.TabStop = true;
-            this.white.Text = "White";
-            this.toolTip1.SetToolTip(this.white, "Text in white");
-            this.white.UseVisualStyleBackColor = true;
-            // 
-            // black
-            // 
-            this.black.AutoSize = true;
-            this.black.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.black.Location = new System.Drawing.Point(6, 43);
-            this.black.Name = "black";
-            this.black.Size = new System.Drawing.Size(57, 17);
-            this.black.TabIndex = 1;
-            this.black.TabStop = true;
-            this.black.Text = "Black";
-            this.toolTip1.SetToolTip(this.black, "Text in black");
-            this.black.UseVisualStyleBackColor = true;
-            // 
-            // red
-            // 
-            this.red.AutoSize = true;
-            this.red.Checked = true;
-            this.red.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.red.ForeColor = System.Drawing.Color.Red;
-            this.red.Location = new System.Drawing.Point(6, 19);
-            this.red.Name = "red";
-            this.red.Size = new System.Drawing.Size(48, 17);
-            this.red.TabIndex = 0;
-            this.red.TabStop = true;
-            this.red.Text = "Red";
-            this.toolTip1.SetToolTip(this.red, "Text in red");
-            this.red.UseVisualStyleBackColor = true;
+            this.groupBox2.Text = "Time Stamp Colour";
             // 
             // label1
             // 
@@ -286,50 +310,39 @@ namespace TeboCam
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.drawRect);
-            this.groupBox3.Location = new System.Drawing.Point(12, 185);
+            this.groupBox3.Location = new System.Drawing.Point(12, 196);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(145, 48);
             this.groupBox3.TabIndex = 71;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Text Background";
-            // 
-            // drawRect
-            // 
-            this.drawRect.AutoSize = true;
-            this.drawRect.Location = new System.Drawing.Point(6, 19);
-            this.drawRect.Name = "drawRect";
-            this.drawRect.Size = new System.Drawing.Size(103, 17);
-            this.drawRect.TabIndex = 72;
-            this.drawRect.Text = "Draw Rectangle";
-            this.toolTip1.SetToolTip(this.drawRect, "Draw rectangle behind text");
-            this.drawRect.UseVisualStyleBackColor = true;
+            this.groupBox3.Text = "Time Stamp Background";
             // 
             // statsBox
             // 
             this.statsBox.Controls.Add(this.statsChk);
-            this.statsBox.Location = new System.Drawing.Point(12, 239);
+            this.statsBox.Location = new System.Drawing.Point(12, 250);
             this.statsBox.Name = "statsBox";
             this.statsBox.Size = new System.Drawing.Size(145, 48);
             this.statsBox.TabIndex = 73;
             this.statsBox.TabStop = false;
             this.statsBox.Text = "Publish timestamp Stats";
             // 
-            // statsChk
+            // analogue
             // 
-            this.statsChk.AutoSize = true;
-            this.statsChk.Location = new System.Drawing.Point(6, 19);
-            this.statsChk.Name = "statsChk";
-            this.statsChk.Size = new System.Drawing.Size(106, 17);
-            this.statsChk.TabIndex = 72;
-            this.statsChk.Text = "Include Statistics";
-            this.toolTip1.SetToolTip(this.statsChk, resources.GetString("statsChk.ToolTip"));
-            this.statsChk.UseVisualStyleBackColor = true;
+            this.analogue.AutoSize = true;
+            this.analogue.Location = new System.Drawing.Point(6, 89);
+            this.analogue.Name = "analogue";
+            this.analogue.Size = new System.Drawing.Size(100, 17);
+            this.analogue.TabIndex = 3;
+            this.analogue.TabStop = true;
+            this.analogue.Text = "Analogue Clock";
+            this.analogue.UseVisualStyleBackColor = true;
             // 
             // timestamp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 298);
+            this.ClientSize = new System.Drawing.Size(466, 303);
             this.Controls.Add(this.statsBox);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label1);
@@ -386,5 +399,6 @@ namespace TeboCam
         private System.Windows.Forms.CheckBox drawRect;
         private System.Windows.Forms.GroupBox statsBox;
         private System.Windows.Forms.CheckBox statsChk;
+        private System.Windows.Forms.RadioButton analogue;
     }
 }
