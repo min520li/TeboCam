@@ -27,6 +27,8 @@ namespace TeboCam
 {
 
     public delegate void formDelegate(ArrayList i);
+    public delegate void formDelegateList(List<List<object>> i);
+
 
     public partial class preferences : Form
     {
@@ -367,7 +369,7 @@ namespace TeboCam
             updateDat = check_for_updates();
 
             string onlineVersion = Double.Parse(updateDat[1], new System.Globalization.CultureInfo("en-GB")).ToString();
-            
+
 
             if (decimal.Parse(onlineVersion) == 0)
             { lblVerAvail.Text = "Unable to determine the most up-to-date version."; }
@@ -2246,9 +2248,9 @@ namespace TeboCam
                 FileInfo[] xmlFilesApp = diApp.GetFiles("*.xml");
                 foreach (FileInfo fi in xmlFilesApp)
                 {
-                    if (fi.FullName!="Ionic.Zip.xml")
+                    if (fi.FullName != "Ionic.Zip.xml")
                     {
-                    File.Move(fi.FullName, bubble.xmlFolder + fi.Name);
+                        File.Move(fi.FullName, bubble.xmlFolder + fi.Name);
                     }
                 }
             }
@@ -3610,7 +3612,70 @@ namespace TeboCam
 
         }
 
-        private void timeStampMth(ArrayList i)
+        private void timeStampMth(List<List<object>> stampList)
+        {
+
+            foreach (List<object> item in stampList)
+            {
+
+                if (item[0].ToString() == "Online")
+                {
+
+                    config.getProfile(bubble.profileInUse).onlineTimeStamp = Convert.ToBoolean(item[1]);
+                    config.getProfile(bubble.profileInUse).onlineTimeStampFormat = item[2].ToString();
+                    config.getProfile(bubble.profileInUse).onlineTimeStampColour = item[3].ToString();
+                    config.getProfile(bubble.profileInUse).onlineTimeStampPosition = item[4].ToString();
+                    config.getProfile(bubble.profileInUse).onlineTimeStampRect = Convert.ToBoolean(item[5]);
+                    config.getProfile(bubble.profileInUse).onlineStatsStamp = Convert.ToBoolean(item[6]);
+
+                }
+
+                if (item[0].ToString() == "Publish")
+                {
+
+                    config.getProfile(bubble.profileInUse).publishTimeStamp = Convert.ToBoolean(item[1]);
+                    config.getProfile(bubble.profileInUse).publishTimeStampFormat = item[2].ToString();
+                    config.getProfile(bubble.profileInUse).publishTimeStampColour = item[3].ToString();
+                    config.getProfile(bubble.profileInUse).publishTimeStampPosition = item[4].ToString();
+                    config.getProfile(bubble.profileInUse).publishTimeStampRect = Convert.ToBoolean(item[5]);
+                    config.getProfile(bubble.profileInUse).publishStatsStamp = Convert.ToBoolean(item[6]);
+
+                }
+
+                if (item[0].ToString() == "Ping")
+                {
+
+                    config.getProfile(bubble.profileInUse).pingTimeStamp = Convert.ToBoolean(item[1]);
+                    config.getProfile(bubble.profileInUse).pingTimeStampFormat = item[2].ToString();
+                    config.getProfile(bubble.profileInUse).pingTimeStampColour = item[3].ToString();
+                    config.getProfile(bubble.profileInUse).pingTimeStampPosition = item[4].ToString();
+                    config.getProfile(bubble.profileInUse).pingTimeStampRect = Convert.ToBoolean(item[5]);
+                    config.getProfile(bubble.profileInUse).pingStatsStamp = Convert.ToBoolean(item[6]);
+
+                }
+
+
+                if (item[0].ToString() == "Alert")
+                {
+
+                    config.getProfile(bubble.profileInUse).alertTimeStamp = Convert.ToBoolean(item[1]);
+                    config.getProfile(bubble.profileInUse).alertTimeStampFormat = item[2].ToString();
+                    config.getProfile(bubble.profileInUse).alertTimeStampColour = item[3].ToString();
+                    config.getProfile(bubble.profileInUse).alertTimeStampPosition = item[4].ToString();
+                    config.getProfile(bubble.profileInUse).alertTimeStampRect = Convert.ToBoolean(item[5]);
+                    config.getProfile(bubble.profileInUse).alertStatsStamp = Convert.ToBoolean(item[6]);
+
+                }
+
+
+
+
+            }
+
+
+        }
+
+        private void timeStampMthOld(ArrayList i)
         {
 
             if (i[0].ToString() == "Online")
@@ -3693,7 +3758,7 @@ namespace TeboCam
         {
 
             List<List<object>> stampList = new List<List<object>>();
-            
+
             List<object> alertList = new List<object>();
             List<object> pingList = new List<object>();
             List<object> publishList = new List<object>();
@@ -3707,7 +3772,7 @@ namespace TeboCam
             alertList.Add(config.getProfile(bubble.profileInUse).alertTimeStampRect);
             alertList.Add(false);
             alertList.Add(config.getProfile(bubble.profileInUse).alertStatsStamp);
-            
+
             pingList.Add("Ping");
             pingList.Add(config.getProfile(bubble.profileInUse).pingTimeStamp);
             pingList.Add(config.getProfile(bubble.profileInUse).pingTimeStampFormat);
@@ -3739,58 +3804,59 @@ namespace TeboCam
             stampList.Add(pingList);
             stampList.Add(publishList);
             stampList.Add(onlineList);
-           
 
 
-            ArrayList i = new ArrayList();
 
-            if (rdAlertts.Checked)
-            {
-                i.Add("Alert");
-                i.Add(config.getProfile(bubble.profileInUse).alertTimeStamp);
-                i.Add(config.getProfile(bubble.profileInUse).alertTimeStampFormat);
-                i.Add(config.getProfile(bubble.profileInUse).alertTimeStampColour);
-                i.Add(config.getProfile(bubble.profileInUse).alertTimeStampPosition);
-                i.Add(config.getProfile(bubble.profileInUse).alertTimeStampRect);
-                i.Add(false);
-                i.Add(config.getProfile(bubble.profileInUse).alertStatsStamp);
-            }
-            if (rdPingts.Checked)
-            {
-                                i.Add("Ping");
-                i.Add(config.getProfile(bubble.profileInUse).pingTimeStamp);
-                i.Add(config.getProfile(bubble.profileInUse).pingTimeStampFormat);
-                i.Add(config.getProfile(bubble.profileInUse).pingTimeStampColour);
-                i.Add(config.getProfile(bubble.profileInUse).pingTimeStampPosition);
-                i.Add(config.getProfile(bubble.profileInUse).pingTimeStampRect);
-                i.Add(true);
-                i.Add(config.getProfile(bubble.profileInUse).pingStatsStamp);
-            }
-            if (rdPublishts.Checked)
-            {
-                i.Add("Publish");
-                i.Add(config.getProfile(bubble.profileInUse).publishTimeStamp);
-                i.Add(config.getProfile(bubble.profileInUse).publishTimeStampFormat);
-                i.Add(config.getProfile(bubble.profileInUse).publishTimeStampColour);
-                i.Add(config.getProfile(bubble.profileInUse).publishTimeStampPosition);
-                i.Add(config.getProfile(bubble.profileInUse).publishTimeStampRect);
-                i.Add(true);
-                i.Add(config.getProfile(bubble.profileInUse).publishStatsStamp);
-            }
-            if (rdOnlinets.Checked)
-            {
-                i.Add("Online");
-                i.Add(config.getProfile(bubble.profileInUse).onlineTimeStamp);
-                i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampFormat);
-                i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampColour);
-                i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampPosition);
-                i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampRect);
-                i.Add(false);
-                i.Add(config.getProfile(bubble.profileInUse).onlineStatsStamp);
-            }
+            //ArrayList i = new ArrayList();
 
-            i.Add(config.getProfile(bubble.profileInUse).toolTips);
-            timestamp timestamp = new timestamp(new formDelegate(timeStampMth), i);
+
+            //if (rdAlertts.Checked)
+            //{
+            //    i.Add("Alert");
+            //    i.Add(config.getProfile(bubble.profileInUse).alertTimeStamp);
+            //    i.Add(config.getProfile(bubble.profileInUse).alertTimeStampFormat);
+            //    i.Add(config.getProfile(bubble.profileInUse).alertTimeStampColour);
+            //    i.Add(config.getProfile(bubble.profileInUse).alertTimeStampPosition);
+            //    i.Add(config.getProfile(bubble.profileInUse).alertTimeStampRect);
+            //    i.Add(false);
+            //    i.Add(config.getProfile(bubble.profileInUse).alertStatsStamp);
+            //}
+            //if (rdPingts.Checked)
+            //{
+            //    i.Add("Ping");
+            //    i.Add(config.getProfile(bubble.profileInUse).pingTimeStamp);
+            //    i.Add(config.getProfile(bubble.profileInUse).pingTimeStampFormat);
+            //    i.Add(config.getProfile(bubble.profileInUse).pingTimeStampColour);
+            //    i.Add(config.getProfile(bubble.profileInUse).pingTimeStampPosition);
+            //    i.Add(config.getProfile(bubble.profileInUse).pingTimeStampRect);
+            //    i.Add(true);
+            //    i.Add(config.getProfile(bubble.profileInUse).pingStatsStamp);
+            //}
+            //if (rdPublishts.Checked)
+            //{
+            //    i.Add("Publish");
+            //    i.Add(config.getProfile(bubble.profileInUse).publishTimeStamp);
+            //    i.Add(config.getProfile(bubble.profileInUse).publishTimeStampFormat);
+            //    i.Add(config.getProfile(bubble.profileInUse).publishTimeStampColour);
+            //    i.Add(config.getProfile(bubble.profileInUse).publishTimeStampPosition);
+            //    i.Add(config.getProfile(bubble.profileInUse).publishTimeStampRect);
+            //    i.Add(true);
+            //    i.Add(config.getProfile(bubble.profileInUse).publishStatsStamp);
+            //}
+            //if (rdOnlinets.Checked)
+            //{
+            //    i.Add("Online");
+            //    i.Add(config.getProfile(bubble.profileInUse).onlineTimeStamp);
+            //    i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampFormat);
+            //    i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampColour);
+            //    i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampPosition);
+            //    i.Add(config.getProfile(bubble.profileInUse).onlineTimeStampRect);
+            //    i.Add(false);
+            //    i.Add(config.getProfile(bubble.profileInUse).onlineStatsStamp);
+            //}
+
+            //i.Add(config.getProfile(bubble.profileInUse).toolTips);
+            timestamp timestamp = new timestamp(new formDelegateList(timeStampMth), stampList);
             timestamp.StartPosition = FormStartPosition.CenterScreen;
             timestamp.ShowDialog();
 
