@@ -3509,17 +3509,53 @@ namespace TeboCam
                 if (format == "analogue")
                 {
 
+
+                    int Xpos = 0;
+                    int Ypos = 0;
+                    int radius = 0;
+                    int borderCorrection = 0;
+
+                    radius = (int)(Math.Min(imageIn.Height, imageIn.Width) / 12);
+                    borderCorrection = radius + 20;
+
+
+                    switch (position)
+                    {
+
+                        case "tl":
+                            Xpos = borderCorrection;
+                            Ypos = imageIn.Height - borderCorrection;
+                            break;
+                        case "tr":
+                            Xpos = imageIn.Width - borderCorrection;
+                            Ypos = imageIn.Height - borderCorrection;
+                            break;
+                        case "bl":
+                            Xpos = borderCorrection;
+                            Ypos = borderCorrection;
+                            break;
+                        case "br":
+                            Xpos = imageIn.Width - borderCorrection;
+                            Ypos = borderCorrection;
+                            break;
+                        default:
+                            Xpos = imageIn.Width - borderCorrection;
+                            Ypos = imageIn.Height - borderCorrection;
+                            break;
+                    }
+
+
                     imageIn = drawClock(imageIn,
-                                      Color.White,
-                                      Color.White,
-                                      Color.White,
-                                      Color.White,
-                                      Color.Black, true, false,
-                                      imageIn.Width-60,
-                                      imageIn.Height-60,
-                                      40,
-                                      imageIn.Width,
-                                      imageIn.Height);
+                                        Color.FromName(colour),
+                                        Color.FromName(colour),
+                                        Color.FromName(colour),
+                                        Color.FromName(colour),
+                                        Color.Black, true, false,
+                                        Xpos,
+                                        Ypos,
+                                        radius,
+                                        imageIn.Width,
+                                        imageIn.Height);
 
                 }
                 else

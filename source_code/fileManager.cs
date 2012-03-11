@@ -344,7 +344,7 @@ namespace TeboCam
             #endregion
             #region ::::::::::::::::::::::::Read Config::::::::::::::::::::::::
 
-            
+
             if (file == "config")
             {
                 string fileName = path;// bubble.xmlFolder + configFile + ".xml";
@@ -416,6 +416,7 @@ namespace TeboCam
                             {
 
                                 if (decimal.Parse(profileVer) <= 2.62m)//m forces number to be interpreted as decimal
+                                //if (decimal.Parse(profileVer, new System.Globalization.CultureInfo("en-GB")) <= 2.62m)//m forces number to be interpreted as decimal
                                 {
                                     CameraRig.addInfo("alarmActive", true);
                                     CameraRig.addInfo("publishActive", true);
@@ -497,7 +498,9 @@ namespace TeboCam
                                 CameraRig.addInfo("profileName", profileName.ToLower());
                             }
 
+
                             if (decimal.Parse(profileVer) > 2.62m)//m forces number to be interpreted as decimal
+                            //if (decimal.Parse(profileVer, new System.Globalization.CultureInfo("en-GB")) > 2.62m)
                             {
 
                                 if (configData.LocalName.Equals("alarmActive"))
@@ -554,6 +557,7 @@ namespace TeboCam
                                 if (configData.LocalName.Equals("movementVal"))
                                 {
                                     config.getProfile("##newProf##").movementVal = Convert.ToDouble(configData.ReadString());
+                                    //config.getProfile("##newProf##").movementVal = double.Parse(configData.ReadString(), new System.Globalization.CultureInfo("en-GB"));
                                     CameraRig.addInfo("movementVal", config.getProfile("##newProf##").movementVal);
                                 }
 
@@ -861,6 +865,8 @@ namespace TeboCam
                             if (configData.LocalName.Equals("imageSaveInterval"))
                             {
                                 config.getProfile("##newProf##").imageSaveInterval = Convert.ToDouble(configData.ReadString());
+                                //config.getProfile("##newProf##").imageSaveInterval = double.Parse(configData.ReadString(), new System.Globalization.CultureInfo("en-GB"));
+                                
                             }
 
 
@@ -1260,7 +1266,7 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").onlineStatsStamp = Convert.ToBoolean(configData.ReadString());
                             }
-                           if (configData.LocalName.Equals("onlineTimeStampColour"))
+                            if (configData.LocalName.Equals("onlineTimeStampColour"))
                             {
                                 config.getProfile("##newProf##").onlineTimeStampColour = configData.ReadString();
                             }
@@ -1603,7 +1609,7 @@ namespace TeboCam
 
 
             #region ::::::::::::::::::::::::Write Config::::::::::::::::::::::::
-                     
+
 
 
             if (file == "config")

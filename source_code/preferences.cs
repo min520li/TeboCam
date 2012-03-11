@@ -366,15 +366,18 @@ namespace TeboCam
 
             updateDat = check_for_updates();
 
-            if (decimal.Parse(updateDat[1]) == 0)
+            string onlineVersion = Double.Parse(updateDat[1], new System.Globalization.CultureInfo("en-GB")).ToString();
+            
+
+            if (decimal.Parse(onlineVersion) == 0)
             { lblVerAvail.Text = "Unable to determine the most up-to-date version."; }
             else
             {
-                if (decimal.Parse(bubble.version) >= decimal.Parse(updateDat[1]))
+                if (decimal.Parse(bubble.version) >= decimal.Parse(onlineVersion))
                 { lblVerAvail.Text = "You have the most up-to-date version."; }
                 else
                 {
-                    lblVerAvail.Text = "Most recent version available: " + updateDat[1];
+                    lblVerAvail.Text = "Most recent version available: " + onlineVersion;
                     bttInstallUpdateAdmin.Visible = true;
                     bttnUpdateFooter.Visible = true;
                 }
@@ -389,7 +392,7 @@ namespace TeboCam
             //pass the version of the update available to statusUpdate
             ListArgs a = new ListArgs();
             List<object> b = new List<object>();
-            b.Add(updateDat[1]);
+            b.Add(onlineVersion);
             a.list = b;
             statusUpdate(null, a);
 
@@ -399,14 +402,14 @@ namespace TeboCam
 
             if (!config.getProfile(bubble.profileInUse).AlertOnStartup && config.getProfile(bubble.profileInUse).updatesNotify
                 && bubble.connectedToInternet
-                && Convert.ToDecimal(updateDat[1]) > Convert.ToDecimal(bubble.version)
+                && Convert.ToDecimal(onlineVersion) > Convert.ToDecimal(bubble.version)
                 && !config.getProfile(bubble.profileInUse).startTeboCamMinimized
                               )
             {
                 string tmpStr = "";
                 tmpStr = "You do not have the most recent version available" + Environment.NewLine + Environment.NewLine;
                 tmpStr += "This version: " + bubble.version + Environment.NewLine;
-                tmpStr += "Most recent version available: " + updateDat[1] + Environment.NewLine + Environment.NewLine;
+                tmpStr += "Most recent version available: " + onlineVersion + Environment.NewLine + Environment.NewLine;
                 tmpStr += "The most recent version can installed automatically" + Environment.NewLine;
                 tmpStr += "by clicking on the update button at the bottom of the screen or on the Admin tab" + Environment.NewLine + Environment.NewLine + Environment.NewLine;
                 tmpStr += "To stop this message appearing in future" + Environment.NewLine;
@@ -3689,6 +3692,56 @@ namespace TeboCam
         private void button18_Click_1(object sender, EventArgs e)
         {
 
+            List<List<object>> stampList = new List<List<object>>();
+            
+            List<object> alertList = new List<object>();
+            List<object> pingList = new List<object>();
+            List<object> publishList = new List<object>();
+            List<object> onlineList = new List<object>();
+
+            alertList.Add("Alert");
+            alertList.Add(config.getProfile(bubble.profileInUse).alertTimeStamp);
+            alertList.Add(config.getProfile(bubble.profileInUse).alertTimeStampFormat);
+            alertList.Add(config.getProfile(bubble.profileInUse).alertTimeStampColour);
+            alertList.Add(config.getProfile(bubble.profileInUse).alertTimeStampPosition);
+            alertList.Add(config.getProfile(bubble.profileInUse).alertTimeStampRect);
+            alertList.Add(false);
+            alertList.Add(config.getProfile(bubble.profileInUse).alertStatsStamp);
+            
+            pingList.Add("Ping");
+            pingList.Add(config.getProfile(bubble.profileInUse).pingTimeStamp);
+            pingList.Add(config.getProfile(bubble.profileInUse).pingTimeStampFormat);
+            pingList.Add(config.getProfile(bubble.profileInUse).pingTimeStampColour);
+            pingList.Add(config.getProfile(bubble.profileInUse).pingTimeStampPosition);
+            pingList.Add(config.getProfile(bubble.profileInUse).pingTimeStampRect);
+            pingList.Add(true);
+            pingList.Add(config.getProfile(bubble.profileInUse).pingStatsStamp);
+
+            publishList.Add("Publish");
+            publishList.Add(config.getProfile(bubble.profileInUse).publishTimeStamp);
+            publishList.Add(config.getProfile(bubble.profileInUse).publishTimeStampFormat);
+            publishList.Add(config.getProfile(bubble.profileInUse).publishTimeStampColour);
+            publishList.Add(config.getProfile(bubble.profileInUse).publishTimeStampPosition);
+            publishList.Add(config.getProfile(bubble.profileInUse).publishTimeStampRect);
+            publishList.Add(true);
+            publishList.Add(config.getProfile(bubble.profileInUse).publishStatsStamp);
+
+            onlineList.Add("Online");
+            onlineList.Add(config.getProfile(bubble.profileInUse).onlineTimeStamp);
+            onlineList.Add(config.getProfile(bubble.profileInUse).onlineTimeStampFormat);
+            onlineList.Add(config.getProfile(bubble.profileInUse).onlineTimeStampColour);
+            onlineList.Add(config.getProfile(bubble.profileInUse).onlineTimeStampPosition);
+            onlineList.Add(config.getProfile(bubble.profileInUse).onlineTimeStampRect);
+            onlineList.Add(false);
+            onlineList.Add(config.getProfile(bubble.profileInUse).onlineStatsStamp);
+
+            stampList.Add(alertList);
+            stampList.Add(pingList);
+            stampList.Add(publishList);
+            stampList.Add(onlineList);
+           
+
+
             ArrayList i = new ArrayList();
 
             if (rdAlertts.Checked)
@@ -3704,7 +3757,7 @@ namespace TeboCam
             }
             if (rdPingts.Checked)
             {
-                i.Add("Ping");
+                                i.Add("Ping");
                 i.Add(config.getProfile(bubble.profileInUse).pingTimeStamp);
                 i.Add(config.getProfile(bubble.profileInUse).pingTimeStampFormat);
                 i.Add(config.getProfile(bubble.profileInUse).pingTimeStampColour);
