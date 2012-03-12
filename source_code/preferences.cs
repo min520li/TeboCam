@@ -3178,7 +3178,7 @@ namespace TeboCam
 
             onlineVal.Enabled = bubble.DatabaseCredentialsCorrect;
             rdOnlinejpg.Enabled = bubble.DatabaseCredentialsCorrect;
-            rdOnlinets.Enabled = bubble.DatabaseCredentialsCorrect;
+            //rdOnlinets.Enabled = bubble.DatabaseCredentialsCorrect;
             alertVal.Text = config.getProfile(bubble.profileInUse).alertCompression.ToString();
             pingVal.Text = config.getProfile(bubble.profileInUse).pingCompression.ToString();
             publishVal.Text = config.getProfile(bubble.profileInUse).publishCompression.ToString();
@@ -3453,12 +3453,12 @@ namespace TeboCam
         private void radioButton11_CheckedChanged(object sender, EventArgs e)
         {
             config.getProfile(bubble.profileInUse).imageLocCust = radioButton11.Checked;
-            button21.Enabled = true;
+            button21.Enabled = radioButton11.Checked;
 
             if (!radioButton11.Checked)
             {
 
-                button21.Enabled = false;
+                //button21.Enabled = false;
 
                 config.getProfile(bubble.profileInUse).imageParentFolderCust = bubble.imageParentFolder = Application.StartupPath + @"\images\";
                 config.getProfile(bubble.profileInUse).imageFolderCust = bubble.imageParentFolder + @"fullSize\";

@@ -118,6 +118,27 @@ namespace TeboCam
             groupBox2.Enabled = checkBox1.Checked;
         }
 
+        private void button21_Click(object sender, EventArgs e)
+        {
+
+
+             FolderBrowserDialog dialog = new FolderBrowserDialog();
+             dialog.SelectedPath = bubble.imageFolder;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = dialog.SelectedPath;
+            }
+
+        }
+
+        private void radioButton11_CheckedChanged(object sender, EventArgs e)
+        {
+
+            button21.Enabled = radioButton11.Checked;
+
+        }
+
 
     }
 }

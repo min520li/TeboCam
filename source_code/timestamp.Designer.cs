@@ -42,7 +42,6 @@ namespace TeboCam
             this.drawRect = new System.Windows.Forms.CheckBox();
             this.statsChk = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.statsBox = new System.Windows.Forms.GroupBox();
             this.stampType = new System.Windows.Forms.ComboBox();
@@ -189,17 +188,6 @@ namespace TeboCam
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Time Stamp Position";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(244, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 18);
-            this.label1.TabIndex = 70;
-            this.label1.Text = "Apply To...";
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.drawRect);
@@ -293,7 +281,6 @@ namespace TeboCam
             this.Controls.Add(this.stampType);
             this.Controls.Add(this.statsBox);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.addStamp);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cancel);
@@ -328,7 +315,6 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton tr;
         private System.Windows.Forms.RadioButton tl;
         private System.Windows.Forms.CheckBox addStamp;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox drawRect;
         private System.Windows.Forms.GroupBox statsBox;

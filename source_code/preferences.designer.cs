@@ -62,6 +62,7 @@ namespace TeboCam
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCameraName = new System.Windows.Forms.Label();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
@@ -96,11 +97,7 @@ namespace TeboCam
             this.Images = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.rdOnlinets = new System.Windows.Forms.RadioButton();
             this.button18 = new System.Windows.Forms.Button();
-            this.rdPublishts = new System.Windows.Forms.RadioButton();
-            this.rdAlertts = new System.Windows.Forms.RadioButton();
-            this.rdPingts = new System.Windows.Forms.RadioButton();
             this.panel6 = new System.Windows.Forms.Panel();
             this.onlineVal = new System.Windows.Forms.Label();
             this.rdOnlinejpg = new System.Windows.Forms.RadioButton();
@@ -341,7 +338,8 @@ namespace TeboCam
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cameraWindow = new TeboCam.CameraWindow();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -894,6 +892,17 @@ namespace TeboCam
             this.lblCameraName.Tag = "";
             this.lblCameraName.Text = "      ";
             // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            this.cameraWindow.Location = new System.Drawing.Point(3, 8);
+            this.cameraWindow.Name = "cameraWindow";
+            this.cameraWindow.Size = new System.Drawing.Size(322, 242);
+            this.cameraWindow.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.cameraWindow, "Image from the currently selected webcam.");
+            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
+            // 
             // newsInfo
             // 
             this.newsInfo.Location = new System.Drawing.Point(571, 312);
@@ -1332,30 +1341,16 @@ namespace TeboCam
             // panel7
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.rdOnlinets);
             this.panel7.Controls.Add(this.button18);
-            this.panel7.Controls.Add(this.rdPublishts);
-            this.panel7.Controls.Add(this.rdAlertts);
-            this.panel7.Controls.Add(this.rdPingts);
             this.panel7.Location = new System.Drawing.Point(776, 368);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(120, 148);
+            this.panel7.Size = new System.Drawing.Size(120, 50);
             this.panel7.TabIndex = 68;
-            // 
-            // rdOnlinets
-            // 
-            this.rdOnlinets.AutoSize = true;
-            this.rdOnlinets.Location = new System.Drawing.Point(6, 120);
-            this.rdOnlinets.Name = "rdOnlinets";
-            this.rdOnlinets.Size = new System.Drawing.Size(66, 17);
-            this.rdOnlinets.TabIndex = 68;
-            this.rdOnlinets.Text = "Online";
-            this.rdOnlinets.UseVisualStyleBackColor = true;
             // 
             // button18
             // 
             this.button18.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button18.Location = new System.Drawing.Point(8, 12);
+            this.button18.Location = new System.Drawing.Point(8, 7);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(96, 33);
             this.button18.TabIndex = 67;
@@ -1363,38 +1358,6 @@ namespace TeboCam
             this.toolTip1.SetToolTip(this.button18, "Add or remove a time stamp \r\nfrom images.");
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.button18_Click_1);
-            // 
-            // rdPublishts
-            // 
-            this.rdPublishts.AutoSize = true;
-            this.rdPublishts.Location = new System.Drawing.Point(6, 97);
-            this.rdPublishts.Name = "rdPublishts";
-            this.rdPublishts.Size = new System.Drawing.Size(72, 17);
-            this.rdPublishts.TabIndex = 2;
-            this.rdPublishts.Text = "Publish";
-            this.rdPublishts.UseVisualStyleBackColor = true;
-            // 
-            // rdAlertts
-            // 
-            this.rdAlertts.AutoSize = true;
-            this.rdAlertts.Checked = true;
-            this.rdAlertts.Location = new System.Drawing.Point(6, 51);
-            this.rdAlertts.Name = "rdAlertts";
-            this.rdAlertts.Size = new System.Drawing.Size(57, 17);
-            this.rdAlertts.TabIndex = 1;
-            this.rdAlertts.TabStop = true;
-            this.rdAlertts.Text = "Alert";
-            this.rdAlertts.UseVisualStyleBackColor = true;
-            // 
-            // rdPingts
-            // 
-            this.rdPingts.AutoSize = true;
-            this.rdPingts.Location = new System.Drawing.Point(6, 74);
-            this.rdPingts.Name = "rdPingts";
-            this.rdPingts.Size = new System.Drawing.Size(53, 17);
-            this.rdPingts.TabIndex = 0;
-            this.rdPingts.Text = "Ping";
-            this.rdPingts.UseVisualStyleBackColor = true;
             // 
             // panel6
             // 
@@ -3454,6 +3417,8 @@ namespace TeboCam
             // 
             // groupBox17
             // 
+            this.groupBox17.Controls.Add(this.button3);
+            this.groupBox17.Controls.Add(this.button8);
             this.groupBox17.Controls.Add(this.lblendpub);
             this.groupBox17.Controls.Add(this.lblstartpub);
             this.groupBox17.Controls.Add(this.button37);
@@ -3486,7 +3451,7 @@ namespace TeboCam
             this.groupBox17.Controls.Add(this.pubImage);
             this.groupBox17.Location = new System.Drawing.Point(3, 3);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(364, 439);
+            this.groupBox17.Size = new System.Drawing.Size(484, 439);
             this.groupBox17.TabIndex = 61;
             this.groupBox17.TabStop = false;
             // 
@@ -4256,16 +4221,23 @@ namespace TeboCam
             this.toolStripMenuItem3.Text = "Exit";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
-            // cameraWindow
+            // button3
             // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            this.cameraWindow.Location = new System.Drawing.Point(3, 8);
-            this.cameraWindow.Name = "cameraWindow";
-            this.cameraWindow.Size = new System.Drawing.Size(322, 242);
-            this.cameraWindow.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.cameraWindow, "Image from the currently selected webcam.");
-            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
+            this.button3.Location = new System.Drawing.Point(290, 125);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(185, 23);
+            this.button3.TabIndex = 100;
+            this.button3.Text = "Set Local File Location";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(290, 98);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(185, 23);
+            this.button8.TabIndex = 99;
+            this.button8.Text = "Set Web File Location";
+            this.button8.UseVisualStyleBackColor = true;
             // 
             // preferences
             // 
@@ -4308,7 +4280,6 @@ namespace TeboCam
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -4621,15 +4592,11 @@ namespace TeboCam
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.RadioButton rdPublishts;
-        private System.Windows.Forms.RadioButton rdAlertts;
-        private System.Windows.Forms.RadioButton rdPingts;
         private System.Windows.Forms.CheckBox pubToLocal;
         private System.Windows.Forms.Label publishVal;
         private System.Windows.Forms.Label alertVal;
         private System.Windows.Forms.Label pingVal;
         private System.Windows.Forms.CheckBox pubToWeb;
-        private System.Windows.Forms.RadioButton rdOnlinets;
         private System.Windows.Forms.Label onlineVal;
         private System.Windows.Forms.RadioButton rdOnlinejpg;
         private System.Windows.Forms.Button imageInFrame;
@@ -4707,5 +4674,7 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton EmailIntelMosaic;
         private System.Windows.Forms.RadioButton EmailIntelStop;
         private System.Windows.Forms.CheckBox freezeGuardWindow;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button8;
     }
 }

@@ -46,8 +46,13 @@ namespace TeboCam
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.radioButton11 = new System.Windows.Forms.RadioButton();
+            this.button21 = new System.Windows.Forms.Button();
+            this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox21.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolTip1
@@ -63,7 +68,7 @@ namespace TeboCam
             this.filenamePrefix.BackColor = System.Drawing.Color.LemonChiffon;
             this.filenamePrefix.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filenamePrefix.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.filenamePrefix.Location = new System.Drawing.Point(13, 45);
+            this.filenamePrefix.Location = new System.Drawing.Point(18, 128);
             this.filenamePrefix.Name = "filenamePrefix";
             this.filenamePrefix.Size = new System.Drawing.Size(401, 21);
             this.filenamePrefix.TabIndex = 67;
@@ -115,7 +120,7 @@ namespace TeboCam
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(13, 72);
+            this.checkBox1.Location = new System.Drawing.Point(18, 155);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(281, 17);
             this.checkBox1.TabIndex = 79;
@@ -149,7 +154,7 @@ namespace TeboCam
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(10, 26);
+            this.label13.Location = new System.Drawing.Point(15, 109);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(195, 13);
             this.label13.TabIndex = 72;
@@ -212,13 +217,14 @@ namespace TeboCam
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox21);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.filenamePrefix);
             this.groupBox1.Location = new System.Drawing.Point(8, 45);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(452, 212);
+            this.groupBox1.Size = new System.Drawing.Size(452, 288);
             this.groupBox1.TabIndex = 79;
             this.groupBox1.TabStop = false;
             // 
@@ -233,17 +239,67 @@ namespace TeboCam
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.cycleStamp);
             this.groupBox2.Controls.Add(this.currentCycle);
-            this.groupBox2.Location = new System.Drawing.Point(4, 95);
+            this.groupBox2.Location = new System.Drawing.Point(9, 178);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(437, 102);
             this.groupBox2.TabIndex = 80;
             this.groupBox2.TabStop = false;
             // 
+            // groupBox21
+            // 
+            this.groupBox21.Controls.Add(this.radioButton11);
+            this.groupBox21.Controls.Add(this.button21);
+            this.groupBox21.Controls.Add(this.radioButton10);
+            this.groupBox21.Location = new System.Drawing.Point(15, 19);
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.Size = new System.Drawing.Size(423, 81);
+            this.groupBox21.TabIndex = 81;
+            this.groupBox21.TabStop = false;
+            this.groupBox21.Text = "Images Saved Folder";
+            // 
+            // radioButton11
+            // 
+            this.radioButton11.AutoSize = true;
+            this.radioButton11.Location = new System.Drawing.Point(15, 46);
+            this.radioButton11.Name = "radioButton11";
+            this.radioButton11.Size = new System.Drawing.Size(100, 17);
+            this.radioButton11.TabIndex = 1;
+            this.radioButton11.Text = "Custom location";
+            this.toolTip1.SetToolTip(this.radioButton11, "If you do not have an FTP provider you can use this facility\r\nto save the image f" +
+                    "iles in a folder where an application such as\r\nDropbox can store the image files" +
+                    " online for you.");
+            this.radioButton11.UseVisualStyleBackColor = true;
+            this.radioButton11.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged);
+            // 
+            // button21
+            // 
+            this.button21.Enabled = false;
+            this.button21.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button21.Location = new System.Drawing.Point(156, 46);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(102, 21);
+            this.button21.TabIndex = 61;
+            this.button21.Text = "Select folder...";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // radioButton10
+            // 
+            this.radioButton10.AutoSize = true;
+            this.radioButton10.Checked = true;
+            this.radioButton10.Location = new System.Drawing.Point(15, 23);
+            this.radioButton10.Name = "radioButton10";
+            this.radioButton10.Size = new System.Drawing.Size(99, 17);
+            this.radioButton10.TabIndex = 0;
+            this.radioButton10.TabStop = true;
+            this.radioButton10.Text = "Default location";
+            this.radioButton10.UseVisualStyleBackColor = true;
+            // 
             // fileprefix
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 267);
+            this.ClientSize = new System.Drawing.Size(483, 340);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -257,6 +313,8 @@ namespace TeboCam
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,5 +338,9 @@ namespace TeboCam
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox21;
+        private System.Windows.Forms.RadioButton radioButton11;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.RadioButton radioButton10;
     }
 }

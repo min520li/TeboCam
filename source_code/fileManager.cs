@@ -35,6 +35,7 @@ namespace TeboCam
         public static bool publishLocal = false;
         public static bool timerOn = false;
 
+        public static string fileURLPubWeb = "";
         public static string filenamePrefixPubWeb = "webcamPublish";
         public static int cycleStampCheckedPubWeb = 1;
         public static int startCyclePubWeb = 1;
@@ -42,6 +43,8 @@ namespace TeboCam
         public static int currentCyclePubWeb = 1;
         public static bool stampAppendPubWeb = false;
 
+
+        public static string fileDirPubLoc = "";
         public static string filenamePrefixPubLoc = "webcamPublish";
         public static int cycleStampCheckedPubLoc = 1;
         public static int startCyclePubLoc = 1;
@@ -438,12 +441,14 @@ namespace TeboCam
                                     CameraRig.addInfo("publishWeb", pre262.publishWeb);
                                     CameraRig.addInfo("publishLocal", pre262.publishLocal);
                                     CameraRig.addInfo("timerOn", pre262.timerOn);
+                                    CameraRig.addInfo("fileURLPubWeb", pre262.fileURLPubWeb);
                                     CameraRig.addInfo("filenamePrefixPubWeb", pre262.filenamePrefixPubWeb);
                                     CameraRig.addInfo("cycleStampCheckedPubWeb", pre262.cycleStampCheckedPubWeb);
                                     CameraRig.addInfo("startCyclePubWeb", pre262.startCyclePubWeb);
                                     CameraRig.addInfo("endCyclePubWeb", pre262.endCyclePubWeb);
                                     CameraRig.addInfo("currentCyclePubWeb", pre262.currentCyclePubWeb);
                                     CameraRig.addInfo("stampAppendPubWeb", pre262.stampAppendPubWeb);
+                                    CameraRig.addInfo("fileDirPubLoc", pre262.fileDirPubLoc);
                                     CameraRig.addInfo("filenamePrefixPubLoc", pre262.filenamePrefixPubLoc);
                                     CameraRig.addInfo("cycleStampCheckedPubLoc", pre262.cycleStampCheckedPubLoc);
                                     CameraRig.addInfo("startCyclePubLoc", pre262.startCyclePubLoc);
@@ -595,6 +600,10 @@ namespace TeboCam
                                 {
                                     CameraRig.addInfo("timerOn", Convert.ToBoolean(configData.ReadString()));
                                 }
+                                if (configData.LocalName.Equals("fileURLPubWeb"))
+                                {
+                                    CameraRig.addInfo("fileURLPubWeb", configData.ReadString());
+                                }
                                 if (configData.LocalName.Equals("filenamePrefixPubWeb"))
                                 {
                                     CameraRig.addInfo("filenamePrefixPubWeb", configData.ReadString());
@@ -618,6 +627,10 @@ namespace TeboCam
                                 if (configData.LocalName.Equals("stampAppendPubWeb"))
                                 {
                                     CameraRig.addInfo("stampAppendPubWeb", Convert.ToBoolean(configData.ReadString()));
+                                }
+                                if (configData.LocalName.Equals("fileDirPubLoc"))
+                                {
+                                    CameraRig.addInfo("fileDirPubLoc", configData.ReadString());
                                 }
                                 if (configData.LocalName.Equals("filenamePrefixPubLoc"))
                                 {
@@ -728,6 +741,10 @@ namespace TeboCam
                                 {
                                     pre262.timerOn = Convert.ToBoolean(configData.ReadString());
                                 }
+                                if (configData.LocalName.Equals("fileURLPubWeb"))
+                                {
+                                    pre262.fileURLPubWeb = configData.ReadString();
+                                }
                                 if (configData.LocalName.Equals("filenamePrefixPubWeb"))
                                 {
                                     pre262.filenamePrefixPubWeb = configData.ReadString();
@@ -751,6 +768,10 @@ namespace TeboCam
                                 if (configData.LocalName.Equals("stampAppendPubWeb"))
                                 {
                                     pre262.stampAppendPubWeb = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("fileDirPubLoc"))
+                                {
+                                    pre262.fileDirPubLoc = configData.ReadString();
                                 }
                                 if (configData.LocalName.Equals("filenamePrefixPubLoc"))
                                 {
@@ -1762,6 +1783,10 @@ namespace TeboCam
                                 configData.WriteString(infoI.timerOn.ToString());
                                 configData.WriteEndElement();
 
+                                configData.WriteStartElement("", "fileURLPubWeb", "");
+                                configData.WriteString(infoI.fileURLPubWeb.ToString());
+                                configData.WriteEndElement();
+
                                 configData.WriteStartElement("", "filenamePrefixPubWeb", "");
                                 configData.WriteString(infoI.filenamePrefixPubWeb.ToString());
                                 configData.WriteEndElement();
@@ -1784,6 +1809,10 @@ namespace TeboCam
 
                                 configData.WriteStartElement("", "stampAppendPubWeb", "");
                                 configData.WriteString(infoI.stampAppendPubWeb.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "fileDirPubLoc", "");
+                                configData.WriteString(infoI.fileDirPubLoc.ToString());
                                 configData.WriteEndElement();
 
                                 configData.WriteStartElement("", "filenamePrefixPubLoc", "");
