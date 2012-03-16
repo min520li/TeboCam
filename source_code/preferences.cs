@@ -4439,6 +4439,10 @@ namespace TeboCam
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubWeb"));
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubWeb"));
                 i.Add(true);
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "fileURLPubWeb"));
+                i.Add(config.getProfile(bubble.profileInUse).pubFtpRoot);
+                i.Add(false);
+
 
                 fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
                 fileprefix.StartPosition = FormStartPosition.CenterScreen;
@@ -4478,6 +4482,9 @@ namespace TeboCam
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "endCyclePubLoc", Convert.ToInt32(i[4]));
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubLoc", Convert.ToInt32(i[5]));
                 CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc", Convert.ToBoolean(i[6]));
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "fileDirPubLoc", i[7].ToString());
+                CameraRig.updateInfo(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "fileDirPubCust", Convert.ToBoolean(i[8]));
+
 
             }
 
@@ -4516,6 +4523,12 @@ namespace TeboCam
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubLoc"));
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubLoc"));
                 i.Add(true);
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "fileDirPubLoc"));
+                i.Add(bubble.imageFolder);
+                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "fileDirPubCust"));
+                i.Add(true);
+
+
 
                 fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
                 fileprefix.StartPosition = FormStartPosition.CenterScreen;

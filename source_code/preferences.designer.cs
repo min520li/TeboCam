@@ -270,6 +270,7 @@ namespace TeboCam
             this.label35 = new System.Windows.Forms.Label();
             this.Publish = new System.Windows.Forms.TabPage();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.lblendpub = new System.Windows.Forms.Label();
             this.lblstartpub = new System.Windows.Forms.Label();
             this.button37 = new System.Windows.Forms.Button();
@@ -338,8 +339,6 @@ namespace TeboCam
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -3418,7 +3417,6 @@ namespace TeboCam
             // groupBox17
             // 
             this.groupBox17.Controls.Add(this.button3);
-            this.groupBox17.Controls.Add(this.button8);
             this.groupBox17.Controls.Add(this.lblendpub);
             this.groupBox17.Controls.Add(this.lblstartpub);
             this.groupBox17.Controls.Add(this.button37);
@@ -3454,6 +3452,15 @@ namespace TeboCam
             this.groupBox17.Size = new System.Drawing.Size(484, 439);
             this.groupBox17.TabIndex = 61;
             this.groupBox17.TabStop = false;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(290, 125);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(185, 23);
+            this.button3.TabIndex = 100;
+            this.button3.Text = "Set Local File Location";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // lblendpub
             // 
@@ -4221,24 +4228,6 @@ namespace TeboCam
             this.toolStripMenuItem3.Text = "Exit";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(290, 125);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(185, 23);
-            this.button3.TabIndex = 100;
-            this.button3.Text = "Set Local File Location";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(290, 98);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(185, 23);
-            this.button8.TabIndex = 99;
-            this.button8.Text = "Set Web File Location";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
             // preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4675,6 +4664,5 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton EmailIntelStop;
         private System.Windows.Forms.CheckBox freezeGuardWindow;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button8;
     }
 }

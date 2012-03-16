@@ -45,6 +45,7 @@ namespace TeboCam
 
 
         public static string fileDirPubLoc = "";
+        public static bool fileDirPubCust = false;
         public static string filenamePrefixPubLoc = "webcamPublish";
         public static int cycleStampCheckedPubLoc = 1;
         public static int startCyclePubLoc = 1;
@@ -449,6 +450,7 @@ namespace TeboCam
                                     CameraRig.addInfo("currentCyclePubWeb", pre262.currentCyclePubWeb);
                                     CameraRig.addInfo("stampAppendPubWeb", pre262.stampAppendPubWeb);
                                     CameraRig.addInfo("fileDirPubLoc", pre262.fileDirPubLoc);
+                                    CameraRig.addInfo("fileDirPubCust", pre262.fileDirPubCust);
                                     CameraRig.addInfo("filenamePrefixPubLoc", pre262.filenamePrefixPubLoc);
                                     CameraRig.addInfo("cycleStampCheckedPubLoc", pre262.cycleStampCheckedPubLoc);
                                     CameraRig.addInfo("startCyclePubLoc", pre262.startCyclePubLoc);
@@ -632,6 +634,10 @@ namespace TeboCam
                                 {
                                     CameraRig.addInfo("fileDirPubLoc", configData.ReadString());
                                 }
+                                if (configData.LocalName.Equals("fileDirPubCust"))
+                                {
+                                    CameraRig.addInfo("fileDirPubCust", Convert.ToBoolean(configData.ReadString()));
+                                }
                                 if (configData.LocalName.Equals("filenamePrefixPubLoc"))
                                 {
                                     CameraRig.addInfo("filenamePrefixPubLoc", configData.ReadString());
@@ -772,6 +778,10 @@ namespace TeboCam
                                 if (configData.LocalName.Equals("fileDirPubLoc"))
                                 {
                                     pre262.fileDirPubLoc = configData.ReadString();
+                                }
+                                if (configData.LocalName.Equals("fileDirPubCust"))
+                                {
+                                    pre262.fileDirPubCust = Convert.ToBoolean(configData.ReadString());
                                 }
                                 if (configData.LocalName.Equals("filenamePrefixPubLoc"))
                                 {
@@ -1813,6 +1823,10 @@ namespace TeboCam
 
                                 configData.WriteStartElement("", "fileDirPubLoc", "");
                                 configData.WriteString(infoI.fileDirPubLoc.ToString());
+                                configData.WriteEndElement();
+
+                                configData.WriteStartElement("", "fileDirPubCust", "");
+                                configData.WriteString(infoI.fileDirPubCust.ToString());
                                 configData.WriteEndElement();
 
                                 configData.WriteStartElement("", "filenamePrefixPubLoc", "");

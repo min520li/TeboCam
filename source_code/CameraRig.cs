@@ -54,7 +54,8 @@ namespace TeboCam
         public int currentCyclePubWeb = 1;
         public bool stampAppendPubWeb = false;
 
-        public  string fileDirPubLoc = "";
+        public  string fileDirPubLoc =bubble.imageFolder;
+        public bool fileDirPubCust = false;
         public string filenamePrefixPubLoc = "webcamPublish";
         public int cycleStampCheckedPubLoc = 1;
         public int startCyclePubLoc = 1;
@@ -211,6 +212,7 @@ namespace TeboCam
                         if (infoType == "stampAppendPubWeb") { infoI.stampAppendPubWeb = (bool)val; }
                         if (infoType == "fileDirPubLoc") { infoI.fileDirPubLoc = (string)val; }
                         if (infoType == "filenamePrefixPubLoc") { infoI.filenamePrefixPubLoc = (string)val; }
+                        if (infoType == "fileDirPubCust") { infoI.fileDirPubCust = (bool)val; }
                         if (infoType == "cycleStampCheckedPubLoc") { infoI.cycleStampCheckedPubLoc = (int)val; }
                         if (infoType == "startCyclePubLoc") { infoI.startCyclePubLoc = (int)val; }
                         if (infoType == "endCyclePubLoc") { infoI.endCyclePubLoc = (int)val; }
@@ -277,6 +279,7 @@ namespace TeboCam
                         if (infoType == "stampAppendPubWeb") { infoI.stampAppendPubWeb = (bool)val; }
                         if (infoType == "fileDirPubLoc") { infoI.fileDirPubLoc = (string)val; }
                         if (infoType == "filenamePrefixPubLoc") { infoI.filenamePrefixPubLoc = (string)val; }
+                        if (infoType == "fileDirPubCust") { infoI.fileDirPubCust = (bool)val; }
                         if (infoType == "cycleStampCheckedPubLoc") { infoI.cycleStampCheckedPubLoc = (int)val; }
                         if (infoType == "startCyclePubLoc") { infoI.startCyclePubLoc = (int)val; }
                         if (infoType == "endCyclePubLoc") { infoI.endCyclePubLoc = (int)val; }
@@ -357,6 +360,7 @@ namespace TeboCam
                     if (infoType == "stampAppendPubWeb") { camInfo[infoIdx].stampAppendPubWeb = (bool)val; }
                     if (infoType == "fileDirPubLoc") { camInfo[infoIdx].fileDirPubLoc = (string)val; }
                     if (infoType == "filenamePrefixPubLoc") { camInfo[infoIdx].filenamePrefixPubLoc = (string)val; }
+                    if (infoType == "fileDirPubCust") { camInfo[infoIdx].fileDirPubCust = (bool)val; }
                     if (infoType == "cycleStampCheckedPubLoc") { camInfo[infoIdx].cycleStampCheckedPubLoc = (int)val; }
                     if (infoType == "startCyclePubLoc") { camInfo[infoIdx].startCyclePubLoc = (int)val; }
                     if (infoType == "endCyclePubLoc") { camInfo[infoIdx].endCyclePubLoc = (int)val; }
@@ -590,6 +594,7 @@ namespace TeboCam
                     if (property == "stampAppendPubWeb") return infoI.stampAppendPubWeb;
                     if (property == "fileDirPubLoc") return infoI.fileDirPubLoc;
                     if (property == "filenamePrefixPubLoc") return infoI.filenamePrefixPubLoc;
+                    if (property == "fileDirPubCust") return infoI.fileDirPubCust;
                     if (property == "cycleStampCheckedPubLoc") return infoI.cycleStampCheckedPubLoc;
                     if (property == "startCyclePubLoc") return infoI.startCyclePubLoc;
                     if (property == "endCyclePubLoc") return infoI.endCyclePubLoc;
@@ -647,6 +652,7 @@ namespace TeboCam
                     if (property == "stampAppendPubWeb") return infoI.stampAppendPubWeb;
                     if (property == "fileDirPubLoc") return infoI.fileDirPubLoc;
                     if (property == "filenamePrefixPubLoc") return infoI.filenamePrefixPubLoc;
+                    if (property == "fileDirPubCust") return infoI.fileDirPubCust;
                     if (property == "cycleStampCheckedPubLoc") return infoI.cycleStampCheckedPubLoc;
                     if (property == "startCyclePubLoc") return infoI.startCyclePubLoc;
                     if (property == "endCyclePubLoc") return infoI.endCyclePubLoc;

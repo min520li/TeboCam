@@ -2899,7 +2899,10 @@ namespace TeboCam
                                         long tmpCycleLoc = new long();
                                         tmpCycleLoc = Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "currentCyclePubLoc").ToString());
 
-                                        locFile = bubble.imageFolder +
+                                        string cameraPubLoc = CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "fileDirPubLoc").ToString();
+
+                                        //locFile = bubble.imageFolder +
+                                        locFile = cameraPubLoc +
                                                   fileNameSet(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "filenamePrefixPubLoc").ToString(),
                                                                                    Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "cycleStampCheckedPubLoc").ToString()),
                                                                                    Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "startCyclePubLoc").ToString()),

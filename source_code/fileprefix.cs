@@ -20,10 +20,17 @@ namespace TeboCam
         private string i_endCycle;
         private string i_currentCycle;
         private bool i_includeStamp;
+        private string i_fileLoc;
+        private string i_fileLocDefault;
         private bool i_displayStamp;
+        //private bool i_pubcust;
+
+        private string fileLoc;
 
         public fileprefix(formDelegate sender, ArrayList from)
         {
+            InitializeComponent();
+
             prefixDelegate = sender;
             fromString = from[0].ToString();
             toolTip = Convert.ToBoolean(from[1]);
@@ -34,8 +41,11 @@ namespace TeboCam
             i_currentCycle = from[6].ToString();
             i_includeStamp = Convert.ToBoolean(from[7]);
             i_displayStamp = Convert.ToBoolean(from[8]);
+            i_fileLoc = from[9].ToString();
+            i_fileLocDefault = from[10].ToString();
+            //i_pubcust = Convert.ToBoolean(from[11]);
+            groupBox21.Visible = Convert.ToBoolean(from[12]);
 
-            InitializeComponent();
         }
 
         private void fileprefix_Load(object sender, EventArgs e)
@@ -51,6 +61,24 @@ namespace TeboCam
             checkBox1.Checked = i_includeStamp;
             checkBox1.Enabled = i_displayStamp;
             if (i_displayStamp) groupBox2.Enabled = checkBox1.Checked;
+            //radioButton10.Checked = !i_pubcust;
+            //radioButton11.Checked = i_pubcust;
+            fileLoc = i_fileLoc;
+
+            if (i_fileLoc.TrimEnd('\\') == i_fileLocDefault.TrimEnd('\\'))
+            {
+
+                radioButton10.Checked = true;
+                radioButton11.Checked = false;
+
+            }
+            else
+            {
+
+                radioButton10.Checked = false;
+                radioButton11.Checked = true;
+
+            }
 
             toolTip1.Active = toolTip;
 
@@ -93,6 +121,8 @@ namespace TeboCam
             i.Add(endCycle.Text);
             i.Add(currentCycle.Text);
             i.Add(checkBox1.Checked);
+            i.Add(fileLoc);
+            i.Add(radioButton11.Checked);
 
             prefixDelegate(i); // This will call ReturnMethod in form1 and pass it val.
 
@@ -121,14 +151,15 @@ namespace TeboCam
         private void button21_Click(object sender, EventArgs e)
         {
 
-
-             FolderBrowserDialog dialog = new FolderBrowserDialog();
-             dialog.SelectedPath = bubble.imageFolder;
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = fileLoc;
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                string path = dialog.SelectedPath;
+                fileLoc = dialog.SelectedPath;
             }
+
+            if (!fileLoc.EndsWith("\\"))fileLoc += "\\";
 
         }
 
@@ -136,6 +167,8 @@ namespace TeboCam
         {
 
             button21.Enabled = radioButton11.Checked;
+            if (radioButton10.Checked) fileLoc = i_fileLocDefault;
+
 
         }
 
