@@ -20,8 +20,8 @@ namespace TeboCam
         private string i_endCycle;
         private string i_currentCycle;
         private bool i_includeStamp;
-        private string i_fileLoc;
-        private string i_fileLocDefault;
+        private string i_fileLoc = "";
+        private string i_fileLocDefault = "";
         private bool i_displayStamp;
         //private bool i_pubcust;
 
@@ -41,10 +41,15 @@ namespace TeboCam
             i_currentCycle = from[6].ToString();
             i_includeStamp = Convert.ToBoolean(from[7]);
             i_displayStamp = Convert.ToBoolean(from[8]);
-            i_fileLoc = from[9].ToString();
-            i_fileLocDefault = from[10].ToString();
+            groupBox21.Enabled = Convert.ToBoolean(from[12]);
+
+            if (Convert.ToBoolean(from[12]))
+            {
+                i_fileLoc = from[9].ToString();
+                i_fileLocDefault = from[10].ToString();
+            }
             //i_pubcust = Convert.ToBoolean(from[11]);
-            groupBox21.Visible = Convert.ToBoolean(from[12]);
+
 
         }
 
@@ -159,7 +164,7 @@ namespace TeboCam
                 fileLoc = dialog.SelectedPath;
             }
 
-            if (!fileLoc.EndsWith("\\"))fileLoc += "\\";
+            if (!fileLoc.EndsWith("\\")) fileLoc += "\\";
 
         }
 

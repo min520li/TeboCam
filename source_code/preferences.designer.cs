@@ -270,7 +270,6 @@ namespace TeboCam
             this.label35 = new System.Windows.Forms.Label();
             this.Publish = new System.Windows.Forms.TabPage();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.lblendpub = new System.Windows.Forms.Label();
             this.lblstartpub = new System.Windows.Forms.Label();
             this.button37 = new System.Windows.Forms.Button();
@@ -3416,7 +3415,6 @@ namespace TeboCam
             // 
             // groupBox17
             // 
-            this.groupBox17.Controls.Add(this.button3);
             this.groupBox17.Controls.Add(this.lblendpub);
             this.groupBox17.Controls.Add(this.lblstartpub);
             this.groupBox17.Controls.Add(this.button37);
@@ -3449,18 +3447,9 @@ namespace TeboCam
             this.groupBox17.Controls.Add(this.pubImage);
             this.groupBox17.Location = new System.Drawing.Point(3, 3);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(484, 439);
+            this.groupBox17.Size = new System.Drawing.Size(375, 439);
             this.groupBox17.TabIndex = 61;
             this.groupBox17.TabStop = false;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(290, 125);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(185, 23);
-            this.button3.TabIndex = 100;
-            this.button3.Text = "Set Local File Location";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // lblendpub
             // 
@@ -4663,6 +4652,5 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton EmailIntelMosaic;
         private System.Windows.Forms.RadioButton EmailIntelStop;
         private System.Windows.Forms.CheckBox freezeGuardWindow;
-        private System.Windows.Forms.Button button3;
     }
 }

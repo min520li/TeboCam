@@ -277,7 +277,7 @@ namespace TeboCam
             if (!bubble.databaseConnect) tabControl1.TabPages.Remove(Online); ;
 
             //updaterUpdate();
-            update.updateMe(bubble.updaterPrefix, Application.StartupPath);
+            update.updateMe(bubble.updaterPrefix, Application.StartupPath + @"\");
 
             ThumbsPrepare();
 
@@ -4439,9 +4439,14 @@ namespace TeboCam
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "currentCyclePubWeb"));
                 i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "stampAppendPubWeb"));
                 i.Add(true);
-                i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "fileURLPubWeb"));
-                i.Add(config.getProfile(bubble.profileInUse).pubFtpRoot);
+                i.Add("");
+                i.Add("");
                 i.Add(false);
+                i.Add(false);
+
+                //i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[pubButton].cameraName, "fileURLPubWeb"));
+                //i.Add(config.getProfile(bubble.profileInUse).pubFtpRoot);
+                //i.Add(false);
 
 
                 fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
@@ -4552,6 +4557,10 @@ namespace TeboCam
             i.Add(config.getProfile(bubble.profileInUse).endCycle);
             i.Add(config.getProfile(bubble.profileInUse).currentCycle);
             i.Add(true);
+            i.Add(false);
+            i.Add("");
+            i.Add("");
+            i.Add(false);
             i.Add(false);
 
             fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
