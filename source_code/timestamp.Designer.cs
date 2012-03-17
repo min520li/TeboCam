@@ -215,7 +215,8 @@ namespace TeboCam
             "dd-mm-yy",
             "hh:mm:ss",
             "dd-mmm-yy hh:mm:ss",
-            "Analogue Clock"});
+            "Analogue Clock",
+            "Analogue Clock + date"});
             this.stampType.Location = new System.Drawing.Point(9, 98);
             this.stampType.Name = "stampType";
             this.stampType.Size = new System.Drawing.Size(145, 21);

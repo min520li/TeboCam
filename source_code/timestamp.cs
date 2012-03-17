@@ -39,6 +39,7 @@ namespace TeboCam
             populateFromList(comboBox1.Text);
             initializing = false;
 
+
         }
 
 
@@ -55,6 +56,7 @@ namespace TeboCam
                     stampColour.SelectedIndex = stampColoursetting(item[3].ToString());
                     drawRect.Checked = Convert.ToBoolean(item[5]);
                     statsBox.Enabled = Convert.ToBoolean(item[6]);
+
                     statsChk.Checked = Convert.ToBoolean(item[7]);
                     tl.Checked = item[4].ToString() == "tl";
                     tr.Checked = item[4].ToString() == "tr";
@@ -107,7 +109,7 @@ namespace TeboCam
                     //in main call
                     //stampList[i][6] = statsBox.Enabled;
                     stampList[i][7] = statsChk.Checked;
-                                      
+
 
                 }
 
@@ -217,6 +219,8 @@ namespace TeboCam
                     return "ddmmyyhhmm";
                 case 3:
                     return "analogue";
+                case 4:
+                    return "analoguedate";
                 default:
                     return "hhmm";
             }
@@ -237,6 +241,8 @@ namespace TeboCam
                     return 2;
                 case "analogue":
                     return 3;
+                case "analoguedate":
+                    return 4;
                 default:
                     return 1;
             }
@@ -348,7 +354,7 @@ namespace TeboCam
                 statsBox.Enabled = showStatsVal(comboBox1.Text);
 
             }
-            else 
+            else
             {
 
                 statsBox.Enabled = false;

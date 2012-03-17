@@ -3392,7 +3392,7 @@ namespace TeboCam
             string colour = "";
             string formatStr = "";
             Brush textBrush = Brushes.Black;
-            Brush rectBrush = Brushes.Black;
+            Brush opaqueBrush = Brushes.Black;
             int time = 70;
             int date = 80;
             int full = 150;
@@ -3452,6 +3452,10 @@ namespace TeboCam
                         formatStr = "";
                         textWidth = 0;
                         break;
+                    case "analoguedate":
+                        formatStr = DateTime.Now.ToString("dd-MMM-yy", System.Globalization.CultureInfo.InvariantCulture); ;
+                        textWidth = date;
+                        break;
                     default:
                         formatStr = DateTime.Now.ToString("dd-MMM-yy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                         textWidth = full;
@@ -3462,19 +3466,19 @@ namespace TeboCam
                 {
                     case "red":
                         textBrush = Brushes.Red;
-                        rectBrush = Brushes.White;
+                        opaqueBrush = Brushes.White;
                         break;
                     case "black":
                         textBrush = Brushes.Black;
-                        rectBrush = Brushes.White;
+                        opaqueBrush = Brushes.White;
                         break;
                     case "white":
                         textBrush = Brushes.White;
-                        rectBrush = Brushes.Black;
+                        opaqueBrush = Brushes.Black;
                         break;
                     default:
                         textBrush = Brushes.Black;
-                        rectBrush = Brushes.White;
+                        opaqueBrush = Brushes.White;
                         break;
                 }
 
@@ -3509,17 +3513,53 @@ namespace TeboCam
                 }
 
 
-                if (format == "analogue")
+                if (format == "analogue" || format == "analoguedate")
                 {
 
 
                     int Xpos = 0;
                     int Ypos = 0;
+                    int dtYpos = 0;
+                    int dtXpos = 0;
+                    int stYpos = 0;
+                    int stXpos = 0;
                     int radius = 0;
                     int borderCorrection = 0;
+                    int dateCorrection = 0;
+                    int dateOfffset = 20;
+                    int statsCorrection = 0;
+                    int statsOffset = 20;
 
+                    if (format == "analoguedate")
+                    {
+
+                        dateCorrection = -dateOfffset;
+                    }
+
+                    string stformatStr = "";
+
+                    if (imageTxt.stats.Count > 0)
+                    {
+
+                        stformatStr = "";
+                        foreach (string str in imageTxt.stats)
+                        {
+
+                            stformatStr += str + ", ";
+
+                        }
+
+                        //remove that last comma and space
+                        stformatStr = stformatStr.Remove(stformatStr.Length - 2);
+
+                        statsCorrection = -statsOffset;
+
+                    }
+
+                    Size stsize = TextRenderer.MeasureText(stformatStr, new Font("Arial", 12, FontStyle.Regular));
+                    Size dtsize = TextRenderer.MeasureText(formatStr, new Font("Arial", 12, FontStyle.Regular));
                     radius = (int)(Math.Min(imageIn.Height, imageIn.Width) / 12);
-                    borderCorrection = radius + 20;
+                    borderCorrection = radius;
 
 
                     switch (position)
@@ -3528,23 +3568,73 @@ namespace TeboCam
                         case "tl":
                             Xpos = borderCorrection;
                             Ypos = imageIn.Height - borderCorrection;
+                            dtXpos = 2;
+                            dtYpos = radius * 2 - statsCorrection;
+                            stXpos = 2;
+                            stYpos = radius * 2;
                             break;
                         case "tr":
                             Xpos = imageIn.Width - borderCorrection;
                             Ypos = imageIn.Height - borderCorrection;
+                            dtXpos = imageIn.Width - dtsize.Width - 2;
+                            dtYpos = radius * 2 - statsCorrection;
+                            stXpos = imageIn.Width - stsize.Width - 2;
+                            stYpos = radius * 2;
                             break;
                         case "bl":
                             Xpos = borderCorrection;
-                            Ypos = borderCorrection;
+                            Ypos = borderCorrection - dateCorrection - statsCorrection;
+                            dtXpos = 2;
+                            dtYpos = imageIn.Height - dateOfffset - 5;
+                            stXpos = 2;
+                            stYpos = imageIn.Height - dateOfffset - statsOffset - 5;
                             break;
                         case "br":
                             Xpos = imageIn.Width - borderCorrection;
-                            Ypos = borderCorrection;
+                            Ypos = borderCorrection - dateCorrection - statsCorrection;
+                            dtXpos = imageIn.Width - dtsize.Width - 2;
+                            dtYpos = imageIn.Height - dateOfffset - 5;
+                            stXpos = imageIn.Width - stsize.Width - 2;
+                            stYpos = imageIn.Height - dateOfffset - statsOffset - 5;
                             break;
-                        default:
+                        default://tr
                             Xpos = imageIn.Width - borderCorrection;
                             Ypos = imageIn.Height - borderCorrection;
+                            dtXpos = imageIn.Width - dtsize.Width - 2;
+                            dtYpos = radius * 2 - statsCorrection;
+                            stXpos = imageIn.Width - stsize.Width - 2;
+                            stYpos = radius * 2;
                             break;
+                    }
+
+                    if (format == "analoguedate")
+                    {
+
+                        Graphics graphicsObj;
+                        graphicsObj = Graphics.FromImage(imageIn);
+
+                        if (backingRectangle)
+                        {
+
+                            graphicsObj.FillRectangle(opaqueBrush, dtXpos, dtYpos, dtsize.Width, dtsize.Height);
+
+                        }
+
+                        graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(dtXpos, dtYpos));
+
+                        graphicsObj.Dispose();
+
+                    }
+
+                    if (imageTxt.stats.Count > 0)
+                    {
+
+                        Graphics graphicsObjStats;
+                        graphicsObjStats = Graphics.FromImage(imageIn);
+                        graphicsObjStats.FillRectangle(opaqueBrush, stXpos, stYpos, stsize.Width, stsize.Height);
+                        graphicsObjStats.DrawString(stformatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, stXpos, stYpos);
+                        graphicsObjStats.Dispose();
+
                     }
 
 
@@ -3558,7 +3648,9 @@ namespace TeboCam
                                         Ypos,
                                         radius,
                                         imageIn.Width,
-                                        imageIn.Height);
+                                        imageIn.Height,
+                                        backingRectangle,
+                                        opaqueBrush);
 
                 }
                 else
@@ -3569,11 +3661,12 @@ namespace TeboCam
                     if (backingRectangle)
                     {
 
-                        graphicsObj.FillRectangle(rectBrush, x, y, textWidth, 20);
+                        graphicsObj.FillRectangle(opaqueBrush, x, y, textWidth, 20);
 
                     }
 
                     graphicsObj.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y));
+                    graphicsObj.Dispose();
 
                     if ((type == "Publish" || type == "Ping") && imageTxt.stats.Count > 0)
                     {
@@ -3592,8 +3685,9 @@ namespace TeboCam
 
                         Graphics graphicsObjStats;
                         graphicsObjStats = Graphics.FromImage(imageIn);
-                        graphicsObjStats.FillRectangle(rectBrush, x, y + 21, graphicsObjStats.MeasureString(formatStr, new Font("Arial", 12, FontStyle.Regular)).Width, 20);
+                        graphicsObjStats.FillRectangle(opaqueBrush, x, y + 21, graphicsObjStats.MeasureString(formatStr, new Font("Arial", 12, FontStyle.Regular)).Width, graphicsObjStats.MeasureString(formatStr, new Font("Arial", 12, FontStyle.Regular)).Height);
                         graphicsObjStats.DrawString(formatStr, new Font("Arial", 12, FontStyle.Regular), textBrush, new PointF(x, y + 21));
+                        graphicsObjStats.Dispose();
 
                     }
                 }
@@ -3605,6 +3699,24 @@ namespace TeboCam
 
         }
 
+
+        //private static Font FindBestFitFont(String text, Font font, Size aimFor)
+        //{
+        //    // Compute actual size, shrink if needed
+        //    while (true)
+        //    {
+        //        Size size = TextRenderer.MeasureText(text, font);
+
+        //        // It fits, back out
+        //        if (size.Height <= aimFor.Height &&
+        //             size.Width <= aimFor.Width) { return font; }
+
+        //        // Try a smaller font (95% of old size)
+        //        Font oldFont = font;
+        //        font = new Font(font.FontFamily, (float)(font.Size * .95));
+        //        oldFont.Dispose();
+        //    }
+        //}
 
 
         private static void DrawPolygon(float fThickness, float fLength, Color color, Graphics g)
@@ -3633,13 +3745,15 @@ namespace TeboCam
                           int i_yStart,
                           int i_radius,
                           int i_width,
-                          int i_height)
+                          int i_height,
+                          bool i_opaque,
+                          Brush i_opaqueBrush)
         {
 
             try
             {
 
-                float pos_correction;
+                //float pos_correction;
 
                 float fCenterX;
                 float fCenterY;
@@ -3661,6 +3775,8 @@ namespace TeboCam
 
                 Graphics clockObj = Graphics.FromImage(i_clockBitmap);
 
+
+
                 //Brush rectBrush = Brushes.Red;
                 //clockObj.FillRectangle(rectBrush, 0, 0, i_clockBitmap.Width, i_clockBitmap.Height);
 
@@ -3671,18 +3787,18 @@ namespace TeboCam
 
                 //pos_correction = Math.Max(i_clockBitmap.Height - i_yStart, i_clockBitmap.Width - i_xStart);
 
-                if (i_clockBitmap.Width - i_xStart < i_clockBitmap.Height - i_yStart)
-                {
+                //if (i_clockBitmap.Width - i_xStart < i_clockBitmap.Height - i_yStart)
+                //{
 
-                    pos_correction = ((float)i_clockBitmap.Width - (float)i_xStart) / 2F;
+                //    pos_correction = ((float)i_clockBitmap.Width - (float)i_xStart) / 2F;
 
-                }
-                else
-                {
+                //}
+                //else
+                //{
 
-                    pos_correction = ((float)i_clockBitmap.Height - (float)i_yStart) / 2F;
+                //    pos_correction = ((float)i_clockBitmap.Height - (float)i_yStart) / 2F;
 
-                }
+                //}
 
                 i_yStart = i_clockBitmap.Height - i_yStart;
 
@@ -3708,10 +3824,17 @@ namespace TeboCam
                 fCenterCircleRadius = (fCenterY) / 150;
                 fRadius = i_radius;
 
-
                 clockObj.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                 clockObj.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 clockObj.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
+                if (i_opaque)
+                {
+
+                    clockObj.FillEllipse(i_opaqueBrush, fCenterX - (fRadius / 1.40F), fCenterY - (fRadius / 1.40F), (fRadius / 1.40F) * 2F, (fRadius / 1.40F) * 2F);
+
+                }
+
                 clockObj.TranslateTransform(fCenterX, fCenterY);
                 Matrix m = clockObj.Transform;
 
@@ -3743,7 +3866,6 @@ namespace TeboCam
                               0, -fRadius / 1.55F);
                     }
                 }
-
 
                 clockObj.FillEllipse(new SolidBrush(i_innerDotColour), -fCenterCircleRadius / 2, -fCenterCircleRadius / 2, fCenterCircleRadius, fCenterCircleRadius);
 

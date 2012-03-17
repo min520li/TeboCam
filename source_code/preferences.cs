@@ -3626,7 +3626,7 @@ namespace TeboCam
                     config.getProfile(bubble.profileInUse).onlineTimeStampColour = item[3].ToString();
                     config.getProfile(bubble.profileInUse).onlineTimeStampPosition = item[4].ToString();
                     config.getProfile(bubble.profileInUse).onlineTimeStampRect = Convert.ToBoolean(item[5]);
-                    config.getProfile(bubble.profileInUse).onlineStatsStamp = Convert.ToBoolean(item[6]);
+                    config.getProfile(bubble.profileInUse).onlineStatsStamp = Convert.ToBoolean(item[7]);
 
                 }
 
@@ -3638,7 +3638,7 @@ namespace TeboCam
                     config.getProfile(bubble.profileInUse).publishTimeStampColour = item[3].ToString();
                     config.getProfile(bubble.profileInUse).publishTimeStampPosition = item[4].ToString();
                     config.getProfile(bubble.profileInUse).publishTimeStampRect = Convert.ToBoolean(item[5]);
-                    config.getProfile(bubble.profileInUse).publishStatsStamp = Convert.ToBoolean(item[6]);
+                    config.getProfile(bubble.profileInUse).publishStatsStamp = Convert.ToBoolean(item[7]);
 
                 }
 
@@ -3650,7 +3650,7 @@ namespace TeboCam
                     config.getProfile(bubble.profileInUse).pingTimeStampColour = item[3].ToString();
                     config.getProfile(bubble.profileInUse).pingTimeStampPosition = item[4].ToString();
                     config.getProfile(bubble.profileInUse).pingTimeStampRect = Convert.ToBoolean(item[5]);
-                    config.getProfile(bubble.profileInUse).pingStatsStamp = Convert.ToBoolean(item[6]);
+                    config.getProfile(bubble.profileInUse).pingStatsStamp = Convert.ToBoolean(item[7]);
 
                 }
 
@@ -3663,7 +3663,7 @@ namespace TeboCam
                     config.getProfile(bubble.profileInUse).alertTimeStampColour = item[3].ToString();
                     config.getProfile(bubble.profileInUse).alertTimeStampPosition = item[4].ToString();
                     config.getProfile(bubble.profileInUse).alertTimeStampRect = Convert.ToBoolean(item[5]);
-                    config.getProfile(bubble.profileInUse).alertStatsStamp = Convert.ToBoolean(item[6]);
+                    config.getProfile(bubble.profileInUse).alertStatsStamp = Convert.ToBoolean(item[7]);
 
                 }
 
