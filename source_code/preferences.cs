@@ -2206,30 +2206,31 @@ namespace TeboCam
             }
 
 
+            //20120318 noopped 
             //Move files out of images folder to sub folders
-            DirectoryInfo diImg = new DirectoryInfo(bubble.imageParentFolder);
-            FileInfo[] imageFilesImg = diImg.GetFiles("*.*");
-            foreach (FileInfo fi in imageFilesImg)
-            {
+            //DirectoryInfo diImg = new DirectoryInfo(bubble.imageParentFolder);
+            //FileInfo[] imageFilesImg = diImg.GetFiles("*.*");
+            //foreach (FileInfo fi in imageFilesImg)
+            //{
 
-                if (LeftRightMid.Left(fi.Name, bubble.tmbPrefix.Length) == bubble.tmbPrefix)
-                {
-                    if (File.Exists(bubble.thumbFolder + fi.Name))
-                    {
-                        File.Delete(bubble.thumbFolder + fi.Name);
-                    }
-                    File.Move(fi.FullName, bubble.thumbFolder + fi.Name);
-                }
-                else
-                {
-                    if (File.Exists(bubble.imageFolder + fi.Name))
-                    {
-                        File.Delete(bubble.imageFolder + fi.Name);
-                    }
-                    File.Move(fi.FullName, bubble.imageFolder + fi.Name);
-                }
-            }
-
+            //    if (LeftRightMid.Left(fi.Name, bubble.tmbPrefix.Length) == bubble.tmbPrefix)
+            //    {
+            //        if (File.Exists(bubble.thumbFolder + fi.Name))
+            //        {
+            //            File.Delete(bubble.thumbFolder + fi.Name);
+            //        }
+            //        File.Move(fi.FullName, bubble.thumbFolder + fi.Name);
+            //    }
+            //    else
+            //    {
+            //        if (File.Exists(bubble.imageFolder + fi.Name))
+            //        {
+            //            File.Delete(bubble.imageFolder + fi.Name);
+            //        }
+            //        File.Move(fi.FullName, bubble.imageFolder + fi.Name);
+            //    }
+            //}
+            //20120318 noopped 
 
             if (!Directory.Exists(bubble.tmpFolder))
             {
