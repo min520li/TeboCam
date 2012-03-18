@@ -2205,6 +2205,7 @@ namespace TeboCam
                 }
             }
 
+
             //Move files out of images folder to sub folders
             DirectoryInfo diImg = new DirectoryInfo(bubble.imageParentFolder);
             FileInfo[] imageFilesImg = diImg.GetFiles("*.*");
@@ -2213,13 +2214,20 @@ namespace TeboCam
 
                 if (LeftRightMid.Left(fi.Name, bubble.tmbPrefix.Length) == bubble.tmbPrefix)
                 {
+                    if (File.Exists(bubble.thumbFolder + fi.Name))
+                    {
+                        File.Delete(bubble.thumbFolder + fi.Name);
+                    }
                     File.Move(fi.FullName, bubble.thumbFolder + fi.Name);
                 }
                 else
                 {
+                    if (File.Exists(bubble.imageFolder + fi.Name))
+                    {
+                        File.Delete(bubble.imageFolder + fi.Name);
+                    }
                     File.Move(fi.FullName, bubble.imageFolder + fi.Name);
                 }
-
             }
 
 
@@ -3724,52 +3732,52 @@ namespace TeboCam
         private void button16_Click_1(object sender, EventArgs e)
         {
 
-            List<List<object>> jpegList = new List<List<object>>();
+            //List<List<object>> jpegList = new List<List<object>>();
 
-            List<object> alertList = new List<object>();
-            List<object> pingList = new List<object>();
-            List<object> publishList = new List<object>();
-            List<object> onlineList = new List<object>();
+            //List<object> alertList = new List<object>();
+            //List<object> pingList = new List<object>();
+            //List<object> publishList = new List<object>();
+            //List<object> onlineList = new List<object>();
 
-            alertList.Add("Alert");
-            alertList.Add(config.getProfile(bubble.profileInUse).alertCompression);
-            pingList.Add("Ping");
-            pingList.Add(config.getProfile(bubble.profileInUse).pingCompression);
-            publishList.Add("Publish");
-            publishList.Add(config.getProfile(bubble.profileInUse).publishCompression);
-            onlineList.Add("Online");
-            onlineList.Add(config.getProfile(bubble.profileInUse).onlineCompression);
+            //alertList.Add("Alert");
+            //alertList.Add(config.getProfile(bubble.profileInUse).alertCompression);
+            //pingList.Add("Ping");
+            //pingList.Add(config.getProfile(bubble.profileInUse).pingCompression);
+            //publishList.Add("Publish");
+            //publishList.Add(config.getProfile(bubble.profileInUse).publishCompression);
+            //onlineList.Add("Online");
+            //onlineList.Add(config.getProfile(bubble.profileInUse).onlineCompression);
 
-            jpegList.Add(alertList);
-            jpegList.Add(pingList);
-            jpegList.Add(publishList);
-            jpegList.Add(onlineList);
+            //jpegList.Add(alertList);
+            //jpegList.Add(pingList);
+            //jpegList.Add(publishList);
+            //jpegList.Add(onlineList);
 
-            //ArrayList i = new ArrayList();
+            ArrayList i = new ArrayList();
 
-            //if (rdAlertjpg.Checked)
-            //{
-            //    i.Add("Alert");
-            //    i.Add(config.getProfile(bubble.profileInUse).alertCompression);
-            //}
-            //if (rdPingjpg.Checked)
-            //{
-            //    i.Add("Ping");
-            //    i.Add(config.getProfile(bubble.profileInUse).pingCompression);
-            //}
-            //if (rdPublishjpg.Checked)
-            //{
-            //    i.Add("Publish");
-            //    i.Add(config.getProfile(bubble.profileInUse).publishCompression);
-            //}
-            //if (rdOnlinejpg.Checked)
-            //{
-            //    i.Add("Online");
-            //    i.Add(config.getProfile(bubble.profileInUse).onlineCompression);
-            //}
+            if (rdAlertjpg.Checked)
+            {
+                i.Add("Alert");
+                i.Add(config.getProfile(bubble.profileInUse).alertCompression);
+            }
+            if (rdPingjpg.Checked)
+            {
+                i.Add("Ping");
+                i.Add(config.getProfile(bubble.profileInUse).pingCompression);
+            }
+            if (rdPublishjpg.Checked)
+            {
+                i.Add("Publish");
+                i.Add(config.getProfile(bubble.profileInUse).publishCompression);
+            }
+            if (rdOnlinejpg.Checked)
+            {
+                i.Add("Online");
+                i.Add(config.getProfile(bubble.profileInUse).onlineCompression);
+            }
 
             i.Add(config.getProfile(bubble.profileInUse).toolTips);
-            image image = new image(new formDelegateList(jPegSetCompression), jpegList);
+            image image = new image(new formDelegate(jPegSetCompression), i);
             image.StartPosition = FormStartPosition.CenterScreen;
             image.ShowDialog();
 
@@ -4566,7 +4574,7 @@ namespace TeboCam
         }
 
 
-        private void button35_Click(object sender, EventArgs e)
+        private void button35_ClickNEW(object sender, EventArgs e)
         {
 
             int alertButton = CameraRig.idxFromButton(camButtons.firstActiveButton());
@@ -4593,7 +4601,7 @@ namespace TeboCam
 
         }
 
-        private void button35_ClickOLD(object sender, EventArgs e)
+        private void button35_Click(object sender, EventArgs e)
         {
 
             ArrayList i = new ArrayList();
