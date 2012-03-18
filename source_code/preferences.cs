@@ -3723,31 +3723,53 @@ namespace TeboCam
 
         private void button16_Click_1(object sender, EventArgs e)
         {
-            ArrayList i = new ArrayList();
 
-            if (rdAlertjpg.Checked)
-            {
-                i.Add("Alert");
-                i.Add(config.getProfile(bubble.profileInUse).alertCompression);
-            }
-            if (rdPingjpg.Checked)
-            {
-                i.Add("Ping");
-                i.Add(config.getProfile(bubble.profileInUse).pingCompression);
-            }
-            if (rdPublishjpg.Checked)
-            {
-                i.Add("Publish");
-                i.Add(config.getProfile(bubble.profileInUse).publishCompression);
-            }
-            if (rdOnlinejpg.Checked)
-            {
-                i.Add("Online");
-                i.Add(config.getProfile(bubble.profileInUse).onlineCompression);
-            }
+            List<List<object>> jpegList = new List<List<object>>();
+
+            List<object> alertList = new List<object>();
+            List<object> pingList = new List<object>();
+            List<object> publishList = new List<object>();
+            List<object> onlineList = new List<object>();
+
+            alertList.Add("Alert");
+            alertList.Add(config.getProfile(bubble.profileInUse).alertCompression);
+            pingList.Add("Ping");
+            pingList.Add(config.getProfile(bubble.profileInUse).pingCompression);
+            publishList.Add("Publish");
+            publishList.Add(config.getProfile(bubble.profileInUse).publishCompression);
+            onlineList.Add("Online");
+            onlineList.Add(config.getProfile(bubble.profileInUse).onlineCompression);
+
+            jpegList.Add(alertList);
+            jpegList.Add(pingList);
+            jpegList.Add(publishList);
+            jpegList.Add(onlineList);
+
+            //ArrayList i = new ArrayList();
+
+            //if (rdAlertjpg.Checked)
+            //{
+            //    i.Add("Alert");
+            //    i.Add(config.getProfile(bubble.profileInUse).alertCompression);
+            //}
+            //if (rdPingjpg.Checked)
+            //{
+            //    i.Add("Ping");
+            //    i.Add(config.getProfile(bubble.profileInUse).pingCompression);
+            //}
+            //if (rdPublishjpg.Checked)
+            //{
+            //    i.Add("Publish");
+            //    i.Add(config.getProfile(bubble.profileInUse).publishCompression);
+            //}
+            //if (rdOnlinejpg.Checked)
+            //{
+            //    i.Add("Online");
+            //    i.Add(config.getProfile(bubble.profileInUse).onlineCompression);
+            //}
 
             i.Add(config.getProfile(bubble.profileInUse).toolTips);
-            image image = new image(new formDelegate(jPegSetCompression), i);
+            image image = new image(new formDelegateList(jPegSetCompression), jpegList);
             image.StartPosition = FormStartPosition.CenterScreen;
             image.ShowDialog();
 
@@ -4547,6 +4569,33 @@ namespace TeboCam
         private void button35_Click(object sender, EventArgs e)
         {
 
+            int alertButton = CameraRig.idxFromButton(camButtons.firstActiveButton());
+
+            ArrayList i = new ArrayList();
+
+            i.Add("Alert");
+            i.Add(config.getProfile(bubble.profileInUse).toolTips);
+            i.Add(config.getProfile(bubble.profileInUse).filenamePrefix);
+            i.Add(config.getProfile(bubble.profileInUse).cycleStampChecked);
+            i.Add(config.getProfile(bubble.profileInUse).startCycle);
+            i.Add(config.getProfile(bubble.profileInUse).endCycle);
+            i.Add(config.getProfile(bubble.profileInUse).currentCycle);
+            i.Add(true);
+            i.Add(true);
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[alertButton].cameraName, "fileDirAlertLoc"));
+            i.Add(bubble.imageFolder);
+            i.Add(CameraRig.rigInfoGet(bubble.profileInUse, CameraRig.rig[alertButton].cameraName, "fileDirAlertCust"));
+            i.Add(true);
+
+            fileprefix fileprefix = new fileprefix(new formDelegate(filePrefixSet), i);
+            fileprefix.StartPosition = FormStartPosition.CenterScreen;
+            fileprefix.ShowDialog();
+
+        }
+
+        private void button35_ClickOLD(object sender, EventArgs e)
+        {
+
             ArrayList i = new ArrayList();
 
             i.Add("Alert");
@@ -4568,8 +4617,6 @@ namespace TeboCam
             fileprefix.ShowDialog();
 
         }
-
-
 
 
 

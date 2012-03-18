@@ -25,6 +25,8 @@ namespace TeboCam
         public static int rectHeight = 0;
         public static int displayButton = 1;
         public static double movementVal = 0;
+        public static string fileDirAlertLoc = "";
+        public static bool fileDirAlertCust = false;
 
         public static bool pubImage = false;
         public static int pubTime = 2;
@@ -449,6 +451,8 @@ namespace TeboCam
                                     CameraRig.addInfo("endCyclePubWeb", pre262.endCyclePubWeb);
                                     CameraRig.addInfo("currentCyclePubWeb", pre262.currentCyclePubWeb);
                                     CameraRig.addInfo("stampAppendPubWeb", pre262.stampAppendPubWeb);
+                                    CameraRig.addInfo("fileDirAlertLoc", pre262.fileDirAlertLoc);
+                                    CameraRig.addInfo("fileDirAlertCust", pre262.fileDirAlertCust);
                                     CameraRig.addInfo("fileDirPubLoc", pre262.fileDirPubLoc);
                                     CameraRig.addInfo("fileDirPubCust", pre262.fileDirPubCust);
                                     CameraRig.addInfo("filenamePrefixPubLoc", pre262.filenamePrefixPubLoc);
@@ -630,6 +634,14 @@ namespace TeboCam
                                 {
                                     CameraRig.addInfo("stampAppendPubWeb", Convert.ToBoolean(configData.ReadString()));
                                 }
+                                if (configData.LocalName.Equals("fileAlertPubLoc"))
+                                {
+                                    CameraRig.addInfo("fileAlertPubLoc", configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("fileAlertPubCust"))
+                                {
+                                    CameraRig.addInfo("fileAlertPubCust", Convert.ToBoolean(configData.ReadString()));
+                                }
                                 if (configData.LocalName.Equals("fileDirPubLoc"))
                                 {
                                     CameraRig.addInfo("fileDirPubLoc", configData.ReadString());
@@ -774,6 +786,14 @@ namespace TeboCam
                                 if (configData.LocalName.Equals("stampAppendPubWeb"))
                                 {
                                     pre262.stampAppendPubWeb = Convert.ToBoolean(configData.ReadString());
+                                }
+                                if (configData.LocalName.Equals("fileDirAlertLoc"))
+                                {
+                                    pre262.fileDirAlertLoc = configData.ReadString();
+                                }
+                                if (configData.LocalName.Equals("fileDirAlertCust"))
+                                {
+                                    pre262.fileDirAlertCust = Convert.ToBoolean(configData.ReadString());
                                 }
                                 if (configData.LocalName.Equals("fileDirPubLoc"))
                                 {
@@ -1820,7 +1840,15 @@ namespace TeboCam
                                 configData.WriteStartElement("", "stampAppendPubWeb", "");
                                 configData.WriteString(infoI.stampAppendPubWeb.ToString());
                                 configData.WriteEndElement();
+                                
+                                configData.WriteStartElement("", "fileDirAlertLoc", "");
+                                configData.WriteString(infoI.fileDirAlertLoc.ToString());
+                                configData.WriteEndElement();
 
+                                configData.WriteStartElement("", "fileDirAlertCust", "");
+                                configData.WriteString(infoI.fileDirAlertCust.ToString());
+                                configData.WriteEndElement();
+                                
                                 configData.WriteStartElement("", "fileDirPubLoc", "");
                                 configData.WriteString(infoI.fileDirPubLoc.ToString());
                                 configData.WriteEndElement();

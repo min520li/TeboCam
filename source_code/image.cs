@@ -11,12 +11,12 @@ namespace TeboCam
 {
     public partial class image : Form
     {
-        private formDelegate jpegDelegate;
+        private formDelegateList jpegDelegate;
         private string fromString;
         private int initialVal;
         private bool toolTip;
 
-        public image(formDelegate sender, ArrayList from)
+        public image(formDelegateList sender, List<List<object>> from)
         {
             jpegDelegate = sender;
             fromString = from[0].ToString();

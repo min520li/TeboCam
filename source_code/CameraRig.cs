@@ -54,6 +54,8 @@ namespace TeboCam
         public int currentCyclePubWeb = 1;
         public bool stampAppendPubWeb = false;
 
+        public string fileDirAlertLoc = bubble.imageFolder;
+        public bool fileDirAlertCust = false;
         public  string fileDirPubLoc =bubble.imageFolder;
         public bool fileDirPubCust = false;
         public string filenamePrefixPubLoc = "webcamPublish";

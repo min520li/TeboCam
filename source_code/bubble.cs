@@ -790,6 +790,7 @@ namespace TeboCam
         public static int publishingButton()
         {
 
+
             for (int i = 0; i < pub.Count; i++)
             {
 
@@ -2900,6 +2901,11 @@ namespace TeboCam
                                         tmpCycleLoc = Convert.ToInt32(CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "currentCyclePubLoc").ToString());
 
                                         string cameraPubLoc = CameraRig.rigInfoGet(bubble.profileInUse, item.cameraName, "fileDirPubLoc").ToString();
+                                        if (!Directory.Exists(cameraPubLoc))
+                                        {
+                                            Directory.CreateDirectory(cameraPubLoc);
+                                        }
+
 
                                         //locFile = bubble.imageFolder +
                                         locFile = cameraPubLoc +
