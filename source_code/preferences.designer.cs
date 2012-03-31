@@ -62,7 +62,6 @@ namespace TeboCam
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCameraName = new System.Windows.Forms.Label();
-            this.cameraWindow = new TeboCam.CameraWindow();
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
@@ -302,6 +301,9 @@ namespace TeboCam
             this.pubImage = new System.Windows.Forms.CheckBox();
             this.Online = new System.Windows.Forms.TabPage();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.disCommOnlineSecs = new System.Windows.Forms.TextBox();
+            this.disCommOnline = new System.Windows.Forms.CheckBox();
             this.label51 = new System.Windows.Forms.Label();
             this.label58 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
@@ -338,6 +340,7 @@ namespace TeboCam
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraWindow = new TeboCam.CameraWindow();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -889,17 +892,6 @@ namespace TeboCam
             this.lblCameraName.TabIndex = 97;
             this.lblCameraName.Tag = "";
             this.lblCameraName.Text = "      ";
-            // 
-            // cameraWindow
-            // 
-            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
-            this.cameraWindow.Camera = null;
-            this.cameraWindow.Location = new System.Drawing.Point(3, 8);
-            this.cameraWindow.Name = "cameraWindow";
-            this.cameraWindow.Size = new System.Drawing.Size(322, 242);
-            this.cameraWindow.TabIndex = 2;
-            this.toolTip1.SetToolTip(this.cameraWindow, "Image from the currently selected webcam.");
-            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
             // newsInfo
             // 
@@ -3848,6 +3840,9 @@ namespace TeboCam
             // 
             // groupBox20
             // 
+            this.groupBox20.Controls.Add(this.label39);
+            this.groupBox20.Controls.Add(this.disCommOnlineSecs);
+            this.groupBox20.Controls.Add(this.disCommOnline);
             this.groupBox20.Controls.Add(this.label51);
             this.groupBox20.Controls.Add(this.label58);
             this.groupBox20.Controls.Add(this.label63);
@@ -3869,9 +3864,45 @@ namespace TeboCam
             this.groupBox20.Controls.Add(this.sqlImageRoot);
             this.groupBox20.Location = new System.Drawing.Point(12, 14);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(392, 348);
+            this.groupBox20.Size = new System.Drawing.Size(391, 539);
             this.groupBox20.TabIndex = 78;
             this.groupBox20.TabStop = false;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(87, 383);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(61, 13);
+            this.label39.TabIndex = 87;
+            this.label39.Text = "Seconds";
+            // 
+            // disCommOnlineSecs
+            // 
+            this.disCommOnlineSecs.BackColor = System.Drawing.Color.LemonChiffon;
+            this.disCommOnlineSecs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.disCommOnlineSecs.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.disCommOnlineSecs.Location = new System.Drawing.Point(16, 375);
+            this.disCommOnlineSecs.Name = "disCommOnlineSecs";
+            this.disCommOnlineSecs.Size = new System.Drawing.Size(65, 21);
+            this.disCommOnlineSecs.TabIndex = 86;
+            this.disCommOnlineSecs.Text = "10";
+            this.toolTip1.SetToolTip(this.disCommOnlineSecs, "The maximum number of movement images\r\nto include in each email.\r\n");
+            this.disCommOnlineSecs.Leave += new System.EventHandler(this.disCommOnlineSecs_Leave);
+            // 
+            // disCommOnline
+            // 
+            this.disCommOnline.AutoSize = true;
+            this.disCommOnline.BackColor = System.Drawing.SystemColors.Control;
+            this.disCommOnline.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
+            this.disCommOnline.Location = new System.Drawing.Point(16, 352);
+            this.disCommOnline.Name = "disCommOnline";
+            this.disCommOnline.Size = new System.Drawing.Size(236, 17);
+            this.disCommOnline.TabIndex = 85;
+            this.disCommOnline.Text = "Disregard Commands older than";
+            this.toolTip1.SetToolTip(this.disCommOnline, "Enable or disable webcam image publishing to webpage.");
+            this.disCommOnline.UseVisualStyleBackColor = false;
+            this.disCommOnline.CheckedChanged += new System.EventHandler(this.disCommOnline_CheckedChanged);
             // 
             // label51
             // 
@@ -4217,18 +4248,29 @@ namespace TeboCam
             this.toolStripMenuItem3.Text = "Exit";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // cameraWindow
+            // 
+            this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
+            this.cameraWindow.Camera = null;
+            this.cameraWindow.Location = new System.Drawing.Point(3, 8);
+            this.cameraWindow.Name = "cameraWindow";
+            this.cameraWindow.Size = new System.Drawing.Size(322, 242);
+            this.cameraWindow.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.cameraWindow, "Image from the currently selected webcam.");
+            this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
+            // 
             // preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(964, 662);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.bttnToolTips);
             this.Controls.Add(this.notConnected);
             this.Controls.Add(this.button24);
             this.Controls.Add(this.bttnUpdateFooter);
-            this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(980, 700);
             this.Name = "preferences";
@@ -4652,5 +4694,8 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton EmailIntelMosaic;
         private System.Windows.Forms.RadioButton EmailIntelStop;
         private System.Windows.Forms.CheckBox freezeGuardWindow;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.TextBox disCommOnlineSecs;
+        private System.Windows.Forms.CheckBox disCommOnline;
     }
 }

@@ -1459,6 +1459,9 @@ namespace TeboCam
         public int emailIntelEmails;
         public int emailIntelMins;
         public bool EmailIntelStop;
+        public bool disCommOnline;
+        public int disCommOnlineSecs;
+
 
 
         public object Clone()
@@ -1619,6 +1622,8 @@ namespace TeboCam
             emailIntelEmails = 2;
             emailIntelMins = 1;
             EmailIntelStop = false;
+            disCommOnline = false;
+            disCommOnlineSecs = 3600;
 
         }
 
@@ -2286,11 +2291,32 @@ namespace TeboCam
 
                     string user = config.getProfile(bubble.profileInUse).webUser;
                     string instance = config.getProfile(bubble.profileInUse).webInstance;
+                    ArrayList data_result = new ArrayList();
+                    string update_result = "";
 
-                    ArrayList data_result = database.database_get_data(bubble.mysqlDriver, user, instance, "online_request");
+                    //20120331 check for restriction on processing old commands
+                    //if a command has been sitting online for longer than a given number of seconds
+                    //clear the online command and do not act on it
+                    if (config.getProfile(bubble.profileInUse).disCommOnline)
+                    {
+
+                        data_result = database.database_get_data(bubble.mysqlDriver, user, instance, "online_request_dt");
+                        int timeSinceCommandIssued = time.secondsSinceStart((string)data_result[0]);
+
+                        if (timeSinceCommandIssued > config.getProfile(bubble.profileInUse).disCommOnlineSecs)
+                        {
+
+                            update_result = database.database_update_data(bubble.mysqlDriver, user, instance, "reset", time.currentDateTimeSql()) + " records affected.";
+
+                        }
+
+                    }
+
+
+                    data_result = database.database_get_data(bubble.mysqlDriver, user, instance, "online_request");
                     string tmpStr = "";
                     if (data_result.Count >= 1) tmpStr = data_result[0].ToString().Trim();
-                    string update_result = "";
+                  
 
                     bool securityCode = regex.match("111+$", tmpStr);
                     bool shutDownCmd = regex.match("^shutdown", tmpStr);
@@ -2303,6 +2329,7 @@ namespace TeboCam
                     bool logCmd = regex.match("^log$", tmpStr);
                     bool publishCmd = regex.match("^publish$", tmpStr);
                     bool publishoffCmd = regex.match(@"^publishoff$", tmpStr);
+
 
                     data_result = database.database_get_data(bubble.mysqlDriver, user, instance, "email");
                     string email = "";

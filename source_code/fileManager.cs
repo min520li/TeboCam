@@ -70,6 +70,8 @@ namespace TeboCam
         public static string testFile = "test";
 
 
+
+
         #region ::::::::::::::::::::::::backupFile::::::::::::::::::::::::
         public static void backupFile(string file)
         {
@@ -156,6 +158,7 @@ namespace TeboCam
         #endregion
         #region ::::::::::::::::::::::::clearFiles::::::::::::::::::::::::
 
+
         public static void clearFiles(string folder)
         {
 
@@ -189,6 +192,7 @@ namespace TeboCam
         {
             try
             {
+
                 bubble.logAddLine("Getting list of web files.");
                 ArrayList ftpFiles = ftp.GetFileList();
 
@@ -196,6 +200,8 @@ namespace TeboCam
                 int tmpInt = 0;
                 foreach (string img in ftpFiles)
                 {
+
+
                     if (img.Length > config.getProfile(bubble.profileInUse).filenamePrefix.Length + bubble.ImgSuffix.Length)
                     {
                         if (LeftRightMid.Left(img, config.getProfile(bubble.profileInUse).filenamePrefix.Length) == config.getProfile(bubble.profileInUse).filenamePrefix && LeftRightMid.Right(img, bubble.ImgSuffix.Length) == bubble.ImgSuffix)
@@ -210,6 +216,7 @@ namespace TeboCam
                 //List of all files on ftp site
                 foreach (string img in ftpFiles)
                 {
+
                     //if the prefix and suffix correspond to TeboCam image files then delete this file
                     if (img.Length > config.getProfile(bubble.profileInUse).filenamePrefix.Length + bubble.ImgSuffix.Length)
                     {
@@ -917,7 +924,7 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").imageSaveInterval = Convert.ToDouble(configData.ReadString());
                                 //config.getProfile("##newProf##").imageSaveInterval = double.Parse(configData.ReadString(), new System.Globalization.CultureInfo("en-GB"));
-                                
+
                             }
 
 
@@ -1372,6 +1379,14 @@ namespace TeboCam
                             if (configData.LocalName.Equals("EmailIntelStop"))
                             {
                                 config.getProfile("##newProf##").EmailIntelStop = Convert.ToBoolean(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("disCommOnline"))
+                            {
+                                config.getProfile("##newProf##").disCommOnline = Convert.ToBoolean(configData.ReadString());
+                            }
+                            if (configData.LocalName.Equals("disCommOnlineSecs"))
+                            {
+                                config.getProfile("##newProf##").disCommOnlineSecs = Convert.ToInt32(configData.ReadString());
                             }
 
 
@@ -1840,7 +1855,7 @@ namespace TeboCam
                                 configData.WriteStartElement("", "stampAppendPubWeb", "");
                                 configData.WriteString(infoI.stampAppendPubWeb.ToString());
                                 configData.WriteEndElement();
-                                
+
                                 configData.WriteStartElement("", "fileDirAlertLoc", "");
                                 configData.WriteString(infoI.fileDirAlertLoc.ToString());
                                 configData.WriteEndElement();
@@ -1848,7 +1863,7 @@ namespace TeboCam
                                 configData.WriteStartElement("", "fileDirAlertCust", "");
                                 configData.WriteString(infoI.fileDirAlertCust.ToString());
                                 configData.WriteEndElement();
-                                
+
                                 configData.WriteStartElement("", "fileDirPubLoc", "");
                                 configData.WriteString(infoI.fileDirPubLoc.ToString());
                                 configData.WriteEndElement();
@@ -2416,6 +2431,14 @@ namespace TeboCam
 
                         configData.WriteStartElement("", "EmailIntelStop", "");
                         configData.WriteString(config.getProfile().EmailIntelStop.ToString());
+                        configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "disCommOnline", "");
+                        configData.WriteString(config.getProfile().disCommOnline.ToString());
+                        configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "disCommOnlineSecs", "");
+                        configData.WriteString(config.getProfile().disCommOnlineSecs.ToString());
                         configData.WriteEndElement();
 
 

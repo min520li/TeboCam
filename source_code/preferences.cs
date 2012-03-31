@@ -2501,6 +2501,10 @@ namespace TeboCam
             EmailIntelStop.Checked = data.EmailIntelStop;
             EmailIntelMosaic.Checked = !data.EmailIntelStop;
 
+            disCommOnline.Checked = data.disCommOnline;
+            disCommOnlineSecs.Text = data.disCommOnlineSecs.ToString();
+            disCommOnlineSecs.Enabled = disCommOnline.Checked;
+
             plSnd.Checked = data.soundAlertOn;
             logsKeep.Text = data.logsKeep.ToString();
             logsKeepChk.Checked = data.logsKeepChk;
@@ -4765,6 +4769,25 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).EmailIntelStop = EmailIntelStop.Checked;
 
         }
+
+
+
+        private void disCommOnlineSecs_Leave(object sender, EventArgs e)
+        {
+
+            disCommOnlineSecs.Text = bubble.verifyInt(disCommOnlineSecs.Text, 1, 86400, "1");
+            config.getProfile(bubble.profileInUse).disCommOnlineSecs = Convert.ToInt32(disCommOnlineSecs.Text);
+
+        }
+
+        private void disCommOnline_CheckedChanged(object sender, EventArgs e)
+        {
+
+            disCommOnlineSecs.Enabled = disCommOnline.Checked;
+            config.getProfile(bubble.profileInUse).disCommOnline = disCommOnline.Checked;
+
+        }
+
 
 
 
