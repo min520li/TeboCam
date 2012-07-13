@@ -6,6 +6,7 @@ using System.IO;
 using Ionic.Zip;
 using teboweb;
 
+
 namespace teboweb
 {
 
@@ -118,7 +119,7 @@ namespace teboweb
         /// <param name="startupCommand">Command line to be passed to the process to restart</param>
         /// <param name="updater"></param>
         /// <returns>Void</returns>
-        public static void installUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, bool webUpdate)
+        public static void installUpdateRestart(string downloadsURL, string filename, string destinationFolder, string processToEnd, string postProcess, string startupCommand, string updater, bool webUpdate,string debugFile)
         {
 
             string cmdLn = "";
@@ -130,6 +131,7 @@ namespace teboweb
             cmdLn += "|processToEnd|" + processToEnd;
             cmdLn += "|postProcess|" + postProcess;
             cmdLn += "|command|" + @"/ " + startupCommand;
+            cmdLn += "|debugpath|" + debugFile;
 
             cmdLn = CommandLine.finaliseCommandLine(cmdLn);
 

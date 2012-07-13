@@ -1379,6 +1379,7 @@ namespace TeboCam
         //20101026 can be removed on 20110101
         public bool timerOn;
         public bool timerOnMov;
+        public bool activateAtEveryStartup;
         public string timerStartPub;
         public string timerEndPub;
         public string timerStartMov;
@@ -1542,6 +1543,7 @@ namespace TeboCam
             //20101026 can be removed on 20110101
             timerOn = false;
             timerOnMov = false;
+            activateAtEveryStartup = false;
             timerStartPub = "0500";
             timerEndPub = "2130";
             timerStartMov = "0500";

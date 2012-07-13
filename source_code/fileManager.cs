@@ -1132,6 +1132,10 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").timerOnMov = Convert.ToBoolean(configData.ReadString());
                             }
+                            if (configData.LocalName.Equals("activateAtEveryStartup"))
+                            {
+                                config.getProfile("##newProf##").activateAtEveryStartup = Convert.ToBoolean(configData.ReadString());
+                            }
                             if (configData.LocalName.Equals("timerStartMov"))
                             {
                                 config.getProfile("##newProf##").timerStartMov = configData.ReadString();
@@ -2183,6 +2187,10 @@ namespace TeboCam
 
                         configData.WriteStartElement("", "timerOnMov", "");
                         configData.WriteString(config.getProfile().timerOnMov.ToString());
+                        configData.WriteEndElement();
+
+                        configData.WriteStartElement("", "activateAtEveryStartup", "");
+                        configData.WriteString(config.getProfile().activateAtEveryStartup.ToString());
                         configData.WriteEndElement();
 
                         configData.WriteStartElement("", "timerStartMov", "");

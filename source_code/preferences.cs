@@ -129,7 +129,7 @@ namespace TeboCam
 
         }
 
-        private void commandLine()
+        private int commandLine()
         {
 
             //Example command line parameters
@@ -139,7 +139,7 @@ namespace TeboCam
             // /profile daytime_monitor  
             //Example command line parameters
 
-
+            int result = 9;
             string commandLine = "";
             bool activate = false;
             bool restart = false;
@@ -166,10 +166,21 @@ namespace TeboCam
                     //second time through pick up the profile to use
                     //profile must not contain any spaces within it
 
-                    if (commandLine == "/profile") { profile = true; }
-                    if (commandLine == "/alert") { activate = true; }
+
+
+                    if (commandLine == "/profile")
+                    {
+                        profile = true;
+                        result = 0;
+                    }
+                    if (commandLine == "/alert")
+                    {
+                        activate = true;
+                        result = 1;
+                    }
                     if (commandLine == "/restart")
                     {
+                        result = 2;
                         restart = true;
                         bubble.pulseRestart = true;
                     }
@@ -242,7 +253,7 @@ namespace TeboCam
                 bttnMotionActive.Checked = true;
             }
 
-
+            return result;
 
         }
 
@@ -325,9 +336,10 @@ namespace TeboCam
             notConnected.Visible = !bubble.connectedToInternet;
 
             //Apply command line values
-            commandLine();
+            int commlineResults = commandLine();
+            pnlStartupOptions.Visible = commlineResults <=1;
 
-            if (FileManager.readXmlFile("graph", false))
+             if (FileManager.readXmlFile("graph", false))
             {
                 FileManager.backupFile("graph");
             }
@@ -1906,7 +1918,8 @@ namespace TeboCam
                                                 bubble.postProcess,
                                                 bubble.postProcessCommand,
                                                 bubble.updater,
-                                                true);
+                                                true,
+                                                "");
 
 
                 }
@@ -2396,6 +2409,7 @@ namespace TeboCam
             }
 
             bttnMotionSchedule.Checked = data.timerOnMov;
+            bttnActivateAtEveryStartup.Checked = data.activateAtEveryStartup;
 
             if (bttnMotionSchedule.Checked)
             {
@@ -2699,10 +2713,6 @@ namespace TeboCam
 
         }
 
-        private void bttnMotionAtStartup_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void preferences_Resize(object sender, EventArgs e)
         {
@@ -2942,6 +2952,14 @@ namespace TeboCam
             }
 
         }
+
+        private void bttnActivateAtEveryStartup_CheckedChanged(object sender, EventArgs e)
+        {
+
+            config.getProfile(bubble.profileInUse).activateAtEveryStartup = bttnActivateAtEveryStartup.Checked;
+
+        }
+
 
 
         private void cameraReconnectIfLost()
@@ -4787,6 +4805,8 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).disCommOnline = disCommOnline.Checked;
 
         }
+
+
 
 
 

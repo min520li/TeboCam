@@ -340,7 +340,12 @@ namespace TeboCam
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bttnActivateAtEveryStartup = new System.Windows.Forms.CheckBox();
             this.cameraWindow = new TeboCam.CameraWindow();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.pnlStartupOptions = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.Webcam.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -413,6 +418,7 @@ namespace TeboCam
             ((System.ComponentModel.ISupportInitialize)(this.timer)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.pnlStartupOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -426,15 +432,16 @@ namespace TeboCam
             this.tabControl1.Controls.Add(this.Online);
             this.tabControl1.Controls.Add(this.Test);
             this.tabControl1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.tabControl1.Location = new System.Drawing.Point(12, 8);
+            this.tabControl1.Location = new System.Drawing.Point(7, 8);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(940, 595);
+            this.tabControl1.Size = new System.Drawing.Size(952, 595);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged_1);
             // 
             // Webcam
             // 
+            this.Webcam.Controls.Add(this.pnlStartupOptions);
             this.Webcam.Controls.Add(this.button23);
             this.Webcam.Controls.Add(this.lblCamAlert);
             this.Webcam.Controls.Add(this.bttncam9sel);
@@ -479,7 +486,7 @@ namespace TeboCam
             this.Webcam.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
             this.Webcam.Location = new System.Drawing.Point(4, 22);
             this.Webcam.Name = "Webcam";
-            this.Webcam.Size = new System.Drawing.Size(932, 569);
+            this.Webcam.Size = new System.Drawing.Size(944, 569);
             this.Webcam.TabIndex = 0;
             this.Webcam.Text = "Webcam";
             this.Webcam.UseVisualStyleBackColor = true;
@@ -895,9 +902,9 @@ namespace TeboCam
             // 
             // newsInfo
             // 
-            this.newsInfo.Location = new System.Drawing.Point(571, 312);
+            this.newsInfo.Location = new System.Drawing.Point(609, 312);
             this.newsInfo.Name = "newsInfo";
-            this.newsInfo.Size = new System.Drawing.Size(129, 25);
+            this.newsInfo.Size = new System.Drawing.Size(91, 25);
             this.newsInfo.TabIndex = 66;
             this.newsInfo.Text = "News/Info";
             this.toolTip1.SetToolTip(this.newsInfo, "Get the latest news and information on TeboCam");
@@ -917,9 +924,9 @@ namespace TeboCam
             // 
             // hideLog
             // 
-            this.hideLog.Location = new System.Drawing.Point(431, 312);
+            this.hideLog.Location = new System.Drawing.Point(511, 312);
             this.hideLog.Name = "hideLog";
-            this.hideLog.Size = new System.Drawing.Size(134, 25);
+            this.hideLog.Size = new System.Drawing.Size(92, 25);
             this.hideLog.TabIndex = 63;
             this.hideLog.Text = "Hide Log";
             this.toolTip1.SetToolTip(this.hideLog, "Show/hide the log.");
@@ -1001,10 +1008,10 @@ namespace TeboCam
             // 
             this.txtLog.BackColor = System.Drawing.Color.LemonChiffon;
             this.txtLog.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.txtLog.Location = new System.Drawing.Point(431, 343);
+            this.txtLog.Location = new System.Drawing.Point(511, 343);
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
-            this.txtLog.Size = new System.Drawing.Size(488, 217);
+            this.txtLog.Size = new System.Drawing.Size(405, 217);
             this.txtLog.TabIndex = 36;
             this.txtLog.Text = "";
             this.toolTip1.SetToolTip(this.txtLog, "This is the current log, of activity, for this session.");
@@ -1035,6 +1042,7 @@ namespace TeboCam
             // 
             // MotionAlarm
             // 
+            this.MotionAlarm.Controls.Add(this.bttnActivateAtEveryStartup);
             this.MotionAlarm.Controls.Add(this.bttnMotionSchedule);
             this.MotionAlarm.Controls.Add(this.button38);
             this.MotionAlarm.Controls.Add(this.lblendmov);
@@ -1043,9 +1051,9 @@ namespace TeboCam
             this.MotionAlarm.Controls.Add(this.groupBox5);
             this.MotionAlarm.Controls.Add(this.bttnMotionInactive);
             this.MotionAlarm.Controls.Add(this.bttnMotionActive);
-            this.MotionAlarm.Location = new System.Drawing.Point(44, 411);
+            this.MotionAlarm.Location = new System.Drawing.Point(6, 398);
             this.MotionAlarm.Name = "MotionAlarm";
-            this.MotionAlarm.Size = new System.Drawing.Size(381, 152);
+            this.MotionAlarm.Size = new System.Drawing.Size(499, 165);
             this.MotionAlarm.TabIndex = 32;
             this.MotionAlarm.TabStop = false;
             this.MotionAlarm.Text = "Motion Alarm";
@@ -1053,7 +1061,7 @@ namespace TeboCam
             // bttnMotionSchedule
             // 
             this.bttnMotionSchedule.AutoSize = true;
-            this.bttnMotionSchedule.Location = new System.Drawing.Point(281, 20);
+            this.bttnMotionSchedule.Location = new System.Drawing.Point(281, 58);
             this.bttnMotionSchedule.Name = "bttnMotionSchedule";
             this.bttnMotionSchedule.Size = new System.Drawing.Size(85, 17);
             this.bttnMotionSchedule.TabIndex = 97;
@@ -1064,9 +1072,9 @@ namespace TeboCam
             // 
             // button38
             // 
-            this.button38.Location = new System.Drawing.Point(281, 48);
+            this.button38.Location = new System.Drawing.Point(281, 80);
             this.button38.Name = "button38";
-            this.button38.Size = new System.Drawing.Size(90, 50);
+            this.button38.Size = new System.Drawing.Size(90, 38);
             this.button38.TabIndex = 101;
             this.button38.Text = "Set Schedule";
             this.toolTip1.SetToolTip(this.button38, "Set time schedule for when to start and end\r\nactive motion detection.");
@@ -1078,7 +1086,7 @@ namespace TeboCam
             this.lblendmov.AutoSize = true;
             this.lblendmov.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblendmov.ForeColor = System.Drawing.Color.Black;
-            this.lblendmov.Location = new System.Drawing.Point(278, 122);
+            this.lblendmov.Location = new System.Drawing.Point(278, 142);
             this.lblendmov.Name = "lblendmov";
             this.lblendmov.Size = new System.Drawing.Size(35, 13);
             this.lblendmov.TabIndex = 100;
@@ -1089,7 +1097,7 @@ namespace TeboCam
             this.lblstartmov.AutoSize = true;
             this.lblstartmov.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblstartmov.ForeColor = System.Drawing.Color.Black;
-            this.lblstartmov.Location = new System.Drawing.Point(278, 101);
+            this.lblstartmov.Location = new System.Drawing.Point(278, 121);
             this.lblstartmov.Name = "lblstartmov";
             this.lblstartmov.Size = new System.Drawing.Size(47, 13);
             this.lblstartmov.TabIndex = 99;
@@ -1103,10 +1111,9 @@ namespace TeboCam
             this.bttnMotionAtStartup.Size = new System.Drawing.Size(91, 17);
             this.bttnMotionAtStartup.TabIndex = 59;
             this.bttnMotionAtStartup.Text = "At Startup";
-            this.toolTip1.SetToolTip(this.bttnMotionAtStartup, "At Startup: Activate motion detection on next TeboCam startup.\r\nActivating follow" +
-                    "ing the selection below.");
+            this.toolTip1.SetToolTip(this.bttnMotionAtStartup, "At Startup: Activate motion detection on next TeboCam startup.\r\nIn accordance wit" +
+                    "h settings within the \"Activate in/at\" area. ");
             this.bttnMotionAtStartup.UseVisualStyleBackColor = true;
-            this.bttnMotionAtStartup.CheckedChanged += new System.EventHandler(this.bttnMotionAtStartup_CheckedChanged);
             // 
             // groupBox5
             // 
@@ -1118,7 +1125,7 @@ namespace TeboCam
             this.groupBox5.Controls.Add(this.bttnSeconds);
             this.groupBox5.Controls.Add(this.actCountdown);
             this.groupBox5.Controls.Add(this.numericUpDown1);
-            this.groupBox5.Location = new System.Drawing.Point(7, 39);
+            this.groupBox5.Location = new System.Drawing.Point(7, 54);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(265, 100);
             this.groupBox5.TabIndex = 58;
@@ -1261,7 +1268,8 @@ namespace TeboCam
             this.bttnMotionActive.Size = new System.Drawing.Size(66, 17);
             this.bttnMotionActive.TabIndex = 0;
             this.bttnMotionActive.Text = "Active";
-            this.toolTip1.SetToolTip(this.bttnMotionActive, "Active: Set motion detection on.\r\nActivating following the selection below.");
+            this.toolTip1.SetToolTip(this.bttnMotionActive, "Active: Set motion detection on.\r\nIn accordance with settings within the \"Activat" +
+                    "e in/at\" area. ");
             this.bttnMotionActive.UseVisualStyleBackColor = true;
             this.bttnMotionActive.CheckedChanged += new System.EventHandler(this.bttnMotionActive_CheckedChanged);
             // 
@@ -1281,7 +1289,7 @@ namespace TeboCam
             this.Images.Controls.Add(this.groupBox8);
             this.Images.Location = new System.Drawing.Point(4, 22);
             this.Images.Name = "Images";
-            this.Images.Size = new System.Drawing.Size(932, 569);
+            this.Images.Size = new System.Drawing.Size(944, 569);
             this.Images.TabIndex = 4;
             this.Images.Text = "Images";
             this.Images.UseVisualStyleBackColor = true;
@@ -1823,7 +1831,7 @@ namespace TeboCam
             this.Alerts.Location = new System.Drawing.Point(4, 22);
             this.Alerts.Name = "Alerts";
             this.Alerts.Padding = new System.Windows.Forms.Padding(3);
-            this.Alerts.Size = new System.Drawing.Size(932, 569);
+            this.Alerts.Size = new System.Drawing.Size(944, 569);
             this.Alerts.TabIndex = 2;
             this.Alerts.Text = "Alerts";
             this.Alerts.UseVisualStyleBackColor = true;
@@ -2428,7 +2436,7 @@ namespace TeboCam
             this.Email_Ftp.Location = new System.Drawing.Point(4, 22);
             this.Email_Ftp.Name = "Email_Ftp";
             this.Email_Ftp.Padding = new System.Windows.Forms.Padding(3);
-            this.Email_Ftp.Size = new System.Drawing.Size(932, 569);
+            this.Email_Ftp.Size = new System.Drawing.Size(944, 569);
             this.Email_Ftp.TabIndex = 1;
             this.Email_Ftp.Text = "Email and Ftp";
             this.Email_Ftp.UseVisualStyleBackColor = true;
@@ -2910,7 +2918,7 @@ namespace TeboCam
             this.Admin.Controls.Add(this.label35);
             this.Admin.Location = new System.Drawing.Point(4, 22);
             this.Admin.Name = "Admin";
-            this.Admin.Size = new System.Drawing.Size(932, 569);
+            this.Admin.Size = new System.Drawing.Size(944, 569);
             this.Admin.TabIndex = 3;
             this.Admin.Text = "Admin";
             this.Admin.UseVisualStyleBackColor = true;
@@ -3400,7 +3408,7 @@ namespace TeboCam
             this.Publish.Controls.Add(this.groupBox17);
             this.Publish.Location = new System.Drawing.Point(4, 22);
             this.Publish.Name = "Publish";
-            this.Publish.Size = new System.Drawing.Size(932, 569);
+            this.Publish.Size = new System.Drawing.Size(944, 569);
             this.Publish.TabIndex = 5;
             this.Publish.Text = "Publish Settings";
             this.Publish.UseVisualStyleBackColor = true;
@@ -3833,7 +3841,7 @@ namespace TeboCam
             this.Online.Controls.Add(this.groupBox20);
             this.Online.Location = new System.Drawing.Point(4, 22);
             this.Online.Name = "Online";
-            this.Online.Size = new System.Drawing.Size(932, 569);
+            this.Online.Size = new System.Drawing.Size(944, 569);
             this.Online.TabIndex = 6;
             this.Online.Text = "Online";
             this.Online.UseVisualStyleBackColor = true;
@@ -4095,7 +4103,7 @@ namespace TeboCam
             // 
             this.Test.Location = new System.Drawing.Point(4, 22);
             this.Test.Name = "Test";
-            this.Test.Size = new System.Drawing.Size(932, 569);
+            this.Test.Size = new System.Drawing.Size(944, 569);
             this.Test.TabIndex = 7;
             this.Test.Text = "Test";
             this.Test.UseVisualStyleBackColor = true;
@@ -4248,6 +4256,19 @@ namespace TeboCam
             this.toolStripMenuItem3.Text = "Exit";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // bttnActivateAtEveryStartup
+            // 
+            this.bttnActivateAtEveryStartup.AutoSize = true;
+            this.bttnActivateAtEveryStartup.Location = new System.Drawing.Point(273, 21);
+            this.bttnActivateAtEveryStartup.Name = "bttnActivateAtEveryStartup";
+            this.bttnActivateAtEveryStartup.Size = new System.Drawing.Size(190, 17);
+            this.bttnActivateAtEveryStartup.TabIndex = 102;
+            this.bttnActivateAtEveryStartup.Text = "Activate at every startup";
+            this.toolTip1.SetToolTip(this.bttnActivateAtEveryStartup, "Activate at every startup: Activate detection at every startup.\r\nIn accordance wi" +
+                    "th settings within the \"Activate in/at\" area.");
+            this.bttnActivateAtEveryStartup.UseVisualStyleBackColor = true;
+            this.bttnActivateAtEveryStartup.CheckedChanged += new System.EventHandler(this.bttnActivateAtEveryStartup_CheckedChanged);
+            // 
             // cameraWindow
             // 
             this.cameraWindow.BackColor = System.Drawing.SystemColors.Control;
@@ -4259,14 +4280,58 @@ namespace TeboCam
             this.toolTip1.SetToolTip(this.cameraWindow, "Image from the currently selected webcam.");
             this.cameraWindow.DoubleClick += new System.EventHandler(this.cameraWindow_DoubleClick);
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label41.Location = new System.Drawing.Point(8, 28);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(97, 13);
+            this.label41.TabIndex = 103;
+            this.label41.Text = "command line";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label47.Location = new System.Drawing.Point(8, 9);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(86, 13);
+            this.label47.TabIndex = 104;
+            this.label47.Text = "Started with";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Verdana", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label62.Location = new System.Drawing.Point(8, 47);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(79, 13);
+            this.label62.TabIndex = 105;
+            this.label62.Text = "options set";
+            // 
+            // pnlStartupOptions
+            // 
+            this.pnlStartupOptions.Controls.Add(this.label47);
+            this.pnlStartupOptions.Controls.Add(this.label62);
+            this.pnlStartupOptions.Controls.Add(this.label41);
+            this.pnlStartupOptions.Location = new System.Drawing.Point(389, 325);
+            this.pnlStartupOptions.Name = "pnlStartupOptions";
+            this.pnlStartupOptions.Size = new System.Drawing.Size(116, 67);
+            this.pnlStartupOptions.TabIndex = 106;
+            this.pnlStartupOptions.Visible = false;
+            // 
             // preferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(964, 662);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.bttnToolTips);
             this.Controls.Add(this.notConnected);
             this.Controls.Add(this.button24);
@@ -4379,6 +4444,8 @@ namespace TeboCam
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.pnlStartupOptions.ResumeLayout(false);
+            this.pnlStartupOptions.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4697,5 +4764,10 @@ namespace TeboCam
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox disCommOnlineSecs;
         private System.Windows.Forms.CheckBox disCommOnline;
+        private System.Windows.Forms.CheckBox bttnActivateAtEveryStartup;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Panel pnlStartupOptions;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label62;
     }
 }
