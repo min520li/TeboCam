@@ -22,15 +22,22 @@ namespace TeboCam
         public static int webUpdateVal = 4000;
         public static int movementPublishVal = 5000;
 
+        private static StringBuilder Outline = new StringBuilder();
+
 
         public static void openFile()
         {
+            
             debugWriter = new StreamWriter(filePath + fileName, true);
+            Outline.Length = 0;
+
         }
 
         public static void closeFile()
         {
+
             debugWriter.Close();
+
         }
 
         public static void writeline(string val)
@@ -51,11 +58,13 @@ namespace TeboCam
         private static void write(string line)
         {
 
-            string tmpStr = DateTime.Now.ToString("yyyy/MM/dd-HH:mm:ss:fff", System.Globalization.CultureInfo.InvariantCulture);
-            string Outline = tmpStr + " | " + line;
-
+            Outline.Length=0;
+            Outline.Append(DateTime.Now.ToString("yyyy/MM/dd-HH:mm:ss:fff", System.Globalization.CultureInfo.InvariantCulture));
+            Outline.Append(" | " + line);
+            
             if (debugOn) Debug.WriteLine(Outline);
             if (debugToFile) debugWriter.WriteLine(Outline);
+
 
         }
 

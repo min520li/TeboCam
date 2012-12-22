@@ -21,7 +21,13 @@ using TeboWeb;
 //using AForge.Video;
 using AForge.Video.DirectShow;
 
-
+enum enumCommandLine
+{
+    profile = 0,
+    alert = 1,
+    restart = 2,
+    none = 9
+};
 
 namespace TeboCam
 {
@@ -107,6 +113,71 @@ namespace TeboCam
         }
 
 
+        private void workerProcess(object sender, DoWorkEventArgs e)
+        {
+
+            pulseEvent -= new EventHandler(pulseProcess);
+            pulseEvent += new EventHandler(pulseProcess);
+            bubble.pulseEvent -= new EventHandler(pulseProcess);
+            bubble.pulseEvent += new EventHandler(pulseProcess);
+
+            pulseStopEvent -= new EventHandler(pulseStop);
+            pulseStopEvent += new EventHandler(pulseStop);
+            pulseStartEvent -= new EventHandler(pulseStart);
+            pulseStartEvent += new EventHandler(pulseStart);
+
+            pulseEvent(null, new EventArgs());
+
+            bubble.pingLast = time.secondsSinceStart();
+
+            //bubble.logAddLine("Work process started.");
+            //bubble.logAddLine("KeepWorking value: " + bubble.keepWorking.ToString());
+
+            teboDebug.filePath = bubble.logFolder;
+            teboDebug.fileName = "debug.txt";
+
+            teboDebug.debugToFile = true;
+            teboDebug.openFile();
+
+            teboDebug.writeline("workerProcess starting");
+
+            while (bubble.keepWorking)
+            {
+                try
+                {
+
+                    pulseEvent(null, new EventArgs());
+                    bubble.changeTheTime();
+
+                    if (!CameraRig.reconfiguring)
+                    {
+                        cameraReconnectIfLost();//need to work on this for multicam
+                    }
+
+                    teboDebug.writeline("workerProcess calling scheduler()");
+                    scheduler();
+                    teboDebug.writeline("workerProcess calling ping");
+                    bubble.ping();
+                    teboDebug.writeline("workerProcess calling movementAddImages");
+                    bubble.movementAddImages();
+                    teboDebug.writeline("workerProcess calling publishImage");
+                    bubble.publishImage();
+                    teboDebug.writeline("workerProcess calling webUpdate");
+                    bubble.webUpdate();
+                    teboDebug.writeline("workerProcess calling movementPublish");
+                    bubble.movementPublish();
+
+                    teboDebug.writeline("workerProcess sleeping");
+                    Thread.Sleep(250);
+
+                }
+                catch { }
+            }
+
+            e.Cancel = true;
+
+        }
+
         private void filesInit()
         {
 
@@ -129,7 +200,7 @@ namespace TeboCam
 
         }
 
-        private int commandLine()
+        private enumCommandLine commandLine()
         {
 
             //Example command line parameters
@@ -139,7 +210,7 @@ namespace TeboCam
             // /profile daytime_monitor  
             //Example command line parameters
 
-            int result = 9;
+            enumCommandLine result = enumCommandLine.none;
             string commandLine = "";
             bool activate = false;
             bool restart = false;
@@ -171,16 +242,16 @@ namespace TeboCam
                     if (commandLine == "/profile")
                     {
                         profile = true;
-                        result = 0;
+                        result = enumCommandLine.profile;
                     }
                     if (commandLine == "/alert")
                     {
                         activate = true;
-                        result = 1;
+                        result = enumCommandLine.alert;
                     }
                     if (commandLine == "/restart")
                     {
-                        result = 2;
+                        result = enumCommandLine.restart;
                         restart = true;
                         bubble.pulseRestart = true;
                     }
@@ -336,10 +407,10 @@ namespace TeboCam
             notConnected.Visible = !bubble.connectedToInternet;
 
             //Apply command line values
-            int commlineResults = commandLine();
-            pnlStartupOptions.Visible = commlineResults <=1;
+            enumCommandLine commlineResults = commandLine();
+            pnlStartupOptions.Visible = commlineResults <= enumCommandLine.alert;
 
-             if (FileManager.readXmlFile("graph", false))
+            if (FileManager.readXmlFile("graph", false))
             {
                 FileManager.backupFile("graph");
             }
@@ -3122,71 +3193,7 @@ namespace TeboCam
 
         }
 
-
-        private void workerProcess(object sender, DoWorkEventArgs e)
-        {
-
-            pulseEvent -= new EventHandler(pulseProcess);
-            pulseEvent += new EventHandler(pulseProcess);
-            bubble.pulseEvent -= new EventHandler(pulseProcess);
-            bubble.pulseEvent += new EventHandler(pulseProcess);
-
-            pulseStopEvent -= new EventHandler(pulseStop);
-            pulseStopEvent += new EventHandler(pulseStop);
-            pulseStartEvent -= new EventHandler(pulseStart);
-            pulseStartEvent += new EventHandler(pulseStart);
-
-            pulseEvent(null, new EventArgs());
-
-            bubble.pingLast = time.secondsSinceStart();
-
-            bubble.logAddLine("Work process started.");
-            bubble.logAddLine("KeepWorking value: " + bubble.keepWorking.ToString());
-
-            teboDebug.filePath = bubble.logFolder;
-            teboDebug.fileName = "debug.txt";
-
-            teboDebug.debugToFile = true;
-            teboDebug.openFile();
-
-            teboDebug.writeline("workerProcess starting");
-
-            while (bubble.keepWorking)
-            {
-                try
-                {
-
-                    pulseEvent(null, new EventArgs());
-                    bubble.changeTheTime();
-
-                    if (!CameraRig.reconfiguring)
-                    {
-                        cameraReconnectIfLost();//need to work on this for multicam
-                    }
-
-                    teboDebug.writeline("workerProcess calling scheduler()");
-                    scheduler();
-                    teboDebug.writeline("workerProcess calling ping");
-                    bubble.ping();
-                    teboDebug.writeline("workerProcess calling movementAddImages");
-                    bubble.movementAddImages();
-                    teboDebug.writeline("workerProcess calling publishImage");
-                    bubble.publishImage();
-                    teboDebug.writeline("workerProcess calling webUpdate");
-                    bubble.webUpdate();
-                    teboDebug.writeline("workerProcess calling movementPublish");
-                    bubble.movementPublish();
-
-                    teboDebug.writeline("workerProcess sleeping");
-                    Thread.Sleep(250);
-
-                }
-                catch { }
-            }
-
-            e.Cancel = true;
-
-        }
+            
 
         private void publish_switch(object sender, System.EventArgs e)
         {

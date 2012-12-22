@@ -5,7 +5,7 @@
     <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>bubble.cs</FileName>
-      <HashCode>AAAABAAAAgQAAABQJAEABAAIAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <HashCode>AAAADAAGCgQAAARQJAEABAAIAAAAAABAggAAAAQIAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.publishCams" Collapsed="true">
@@ -26,7 +26,7 @@
     <Position X="4" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>bubble.cs</FileName>
-      <HashCode>AAAABAAAAAAAAAAIAAAAAAAIAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAABAAAAAAAAAAIIAAAAAAIAgAAAAAAAAIAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.config" Collapsed="true">
@@ -40,15 +40,15 @@
     <Position X="11" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>bubble.cs</FileName>
-      <HashCode>P2cnChY3ICC4e1CCFA1Zx9p3Cc4GgYKCLEYwCsWCc1I=</HashCode>
+      <HashCode>f2cnChY3oCC4+1GSFo1Zx9p3Kc4GhYKGLEYwCsWCc1Y=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="TeboCam.bubble">
+  <Class Name="TeboCam.bubble" Collapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>bubble.cs</FileName>
-      <HashCode>v+cNOCkq7wwLlMOihqbwG9hgPVXn61bjXZe3rS86Oqs=</HashCode>
+      <HashCode>u+cNOCkq7wwJtMOihqawG9hBNRXjKVbLXZenrTU6Ois=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.calibrate" Collapsed="true">
@@ -97,7 +97,7 @@
     <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>Camera.cs</FileName>
-      <HashCode>gAEQBgQABCASAAwAQBAAAEgSAAAAAAAIoQBAAsAAAQI=</HashCode>
+      <HashCode>gAEQBgQIBCASAAwAQBAAAEgSAAAAAAAIoQAAAsAAAQI=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.rigItem" Collapsed="true">
@@ -111,21 +111,21 @@
     <Position X="9.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>CameraRig.cs</FileName>
-      <HashCode>AAQAABAAAAAxAAAAAABAAAgQAAAAAJAAAAAAAEEAAgA=</HashCode>
+      <HashCode>BGQBChMIICAxAQAAAARAAQgQAAAEAJCACBQACEeAAgA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.CameraRig" Collapsed="true">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>CameraRig.cs</FileName>
-      <HashCode>QEAiAEAgAEQAg0gYCAAYggAAwAAYYACICAAAQgQAABA=</HashCode>
+      <HashCode>QEAqAEAmAEQAg0gYCAAYggAAwAAYYACICAAAQgQAABA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.CameraWindow" Collapsed="true">
     <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>CameraWindow.cs</FileName>
-      <HashCode>AiDqoAACAiQAGCAAGVIggBIKQAACQGAaAAECEQAIAAA=</HashCode>
+      <HashCode>AiDqoAACAiQAGCAAGVIggBIKQAACQGAaAAECEQAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.ImageSavedArgs" Collapsed="true">
@@ -160,7 +160,7 @@
     <Position X="0.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>fileManager.cs</FileName>
-      <HashCode>AAAAAAAAAAAxAAAAAABAAAgQAAAAAJAAAAAAAEEAAgA=</HashCode>
+      <HashCode>BGABCgMIICAxAQAAAARAAAgQAAAEAJCACBQACEeAAgA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.FileManager" Collapsed="true">
@@ -174,7 +174,7 @@
     <Position X="5.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>fileprefix.cs</FileName>
-      <HashCode>p6AMAAABACAQEAEACADAAUgDggBAAAEAICAAAAlBIEA=</HashCode>
+      <HashCode>t6AMABABACAQEAECCADAAUgDwghgAAEEICAAAAlBIEA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.News" Collapsed="true">
@@ -258,14 +258,14 @@
     <Position X="4" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>licence.cs</FileName>
-      <HashCode>AIACYgAAAIIAEAAAAAAAAAAAAAABAAAEBAQAAUgAAAA=</HashCode>
+      <HashCode>AIAAYAAAAAIAAAAAAAAAAAAAAAABAAAEBAAAAQAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.mail" Collapsed="true">
     <Position X="5.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>mail.cs</FileName>
-      <HashCode>AAAAAAAgAQAAAAAAAQAAAAAAABAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAQAAAAAAAQAAABAIABAAAAIAgAAAAAgAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.MotionDetector3Optimized" Collapsed="true" BaseTypeListCollapsed="true">
@@ -280,7 +280,7 @@
     <Position X="2.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>preferences.cs</FileName>
-      <HashCode>/3/9Z/9/svsf937fXvv7n9/73v2/////+/3f//z1xf8=</HashCode>
+      <HashCode>/3/8b/t/svs/t37fX/vbn8///v2/v//7///b//zfxf8=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.regex" Collapsed="true">
@@ -308,7 +308,7 @@
     <Position X="2.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>timestamp.cs</FileName>
-      <HashCode>QEJAEAABACgQABAACAKEkQICAEQQAIAAgCAIAAYwBCA=</HashCode>
+      <HashCode>QVBAEABBACgwAFIQCAKAgQICAEQQIMIAACCIAEawgDA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.train" Collapsed="true">
@@ -329,7 +329,7 @@
     <Position X="12.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>webcamConfig.cs</FileName>
-      <HashCode>uBBKEkmVAChUA4CCbAKIAhUTQgw8JCAIgbhAkRRQgLI=</HashCode>
+      <HashCode>uBBKEkmVAChUA4CCbAKIAhUTQsw8JCAIgbhMkRRQgLI=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="TeboCam.webPage" Collapsed="true">
@@ -431,7 +431,7 @@
     <Position X="0.5" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Camera.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAoAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Delegate>
   <Delegate Name="TeboCam.motionLevelEventHandler" Collapsed="true">
