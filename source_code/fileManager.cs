@@ -225,17 +225,14 @@ namespace TeboCam
                             ftp.DeleteFTP(img, config.getProfile(bubble.profileInUse).ftpRoot, config.getProfile(bubble.profileInUse).ftpUser, config.getProfile(bubble.profileInUse).ftpPass);
                             tmpInt--;
                             bubble.logAddLine(tmpInt.ToString() + " web files left to delete via ftp.");
-                            //System.Diagnostics.Debug.WriteLine(img);
                         }
                     }
                 }
                 bubble.logAddLine("Deletion of web files via ftp completed.");
-                //bubble.messageInform("TeboCam image files on web site deleted.", "Files Deleted");
             }
             catch
             {
                 bubble.logAddLine("Error in deleting web files.");
-                //MessageBox.Show(e.ToString());
             }
         }
 
@@ -395,7 +392,6 @@ namespace TeboCam
                 }
 
                 config.addProfile();
-                //config.getProfile("##newProf##").profileVersion = profileVer;
                 bool firstProfile = true;
                 XmlTextReader configData = new XmlTextReader(fileName);
                 string profileName = "";
@@ -417,7 +413,6 @@ namespace TeboCam
                                 if (!firstProfile)
                                 {
                                     config.addProfile();
-                                    //config.getProfile("##newProf##").profileVersion = profileVer;
                                 }
                                 profileName = configData.ReadString().ToLower();
 
@@ -429,7 +424,6 @@ namespace TeboCam
                             {
 
                                 if (decimal.Parse(profileVer) <= 2.62m)//m forces number to be interpreted as decimal
-                                //if (decimal.Parse(profileVer, new System.Globalization.CultureInfo("en-GB")) <= 2.62m)//m forces number to be interpreted as decimal
                                 {
                                     CameraRig.addInfo("alarmActive", true);
                                     CameraRig.addInfo("publishActive", true);
@@ -472,8 +466,6 @@ namespace TeboCam
 
                                 }
 
-                                //config.getProfile("##newProf##").newsSeq = bubble.newsSeq;
-                                //config.getProfile("##newProf##").mysqlDriver = bubble.mysqlDriver;
                                 config.getProfile("##newProf##").profileVersion = profileVer;
                                 config.getProfile("##newProf##").profileName = profileName.ToLower();
                                 firstProfile = false;
@@ -518,7 +510,6 @@ namespace TeboCam
 
 
                             if (decimal.Parse(profileVer) > 2.62m)//m forces number to be interpreted as decimal
-                            //if (decimal.Parse(profileVer, new System.Globalization.CultureInfo("en-GB")) > 2.62m)
                             {
 
                                 if (configData.LocalName.Equals("alarmActive"))
@@ -575,16 +566,11 @@ namespace TeboCam
                                 if (configData.LocalName.Equals("movementVal"))
                                 {
                                     config.getProfile("##newProf##").movementVal = Convert.ToDouble(configData.ReadString());
-                                    //config.getProfile("##newProf##").movementVal = double.Parse(configData.ReadString(), new System.Globalization.CultureInfo("en-GB"));
                                     CameraRig.addInfo("movementVal", config.getProfile("##newProf##").movementVal);
                                 }
 
 
 
-                                //if (configData.LocalName.Equals("pubImage"))
-                                //{
-                                //    CameraRig.addInfo("pubImage", Convert.ToBoolean(configData.ReadString()));
-                                //}
                                 if (configData.LocalName.Equals("pubTime"))
                                 {
                                     CameraRig.addInfo("pubTime", Convert.ToInt32(configData.ReadString()));
@@ -734,10 +720,6 @@ namespace TeboCam
                                 }
 
 
-                                //if (configData.LocalName.Equals("pubImage"))
-                                //{
-                                //    pre262.pubImage = Convert.ToBoolean(configData.ReadString());
-                                //}
                                 if (configData.LocalName.Equals("pubTime"))
                                 {
                                     pre262.pubTime = Convert.ToInt32(configData.ReadString());
@@ -923,8 +905,6 @@ namespace TeboCam
                             if (configData.LocalName.Equals("imageSaveInterval"))
                             {
                                 config.getProfile("##newProf##").imageSaveInterval = Convert.ToDouble(configData.ReadString());
-                                //config.getProfile("##newProf##").imageSaveInterval = double.Parse(configData.ReadString(), new System.Globalization.CultureInfo("en-GB"));
-
                             }
 
 
@@ -948,58 +928,6 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").currentCycle = Convert.ToInt64(configData.ReadString());
                             }
-
-
-                            //if (configData.LocalName.Equals("filenamePrefixPubWeb"))
-                            //{
-                            //    config.getProfile("##newProf##").filenamePrefixPubWeb = configData.ReadString();
-                            //}
-                            //if (configData.LocalName.Equals("cycleStampCheckedPubWeb"))
-                            //{
-                            //    config.getProfile("##newProf##").cycleStampCheckedPubWeb = Convert.ToInt32(configData.ReadString());
-                            //}
-                            //if (configData.LocalName.Equals("startCyclePubWeb"))
-                            //{
-                            //    config.getProfile("##newProf##").startCyclePubWeb = Convert.ToInt64(configData.ReadString());
-                            //}
-                            //if (configData.LocalName.Equals("endCyclePubWeb"))
-                            //{
-                            //    config.getProfile("##newProf##").endCyclePubWeb = Convert.ToInt32(configData.ReadString());
-                            //}
-                            //if (configData.LocalName.Equals("currentCyclePubWeb"))
-                            //{
-                            //    config.getProfile("##newProf##").currentCyclePubWeb = Convert.ToInt64(configData.ReadString());
-                            //}
-                            //if (configData.LocalName.Equals("stampAppendPubWeb"))
-                            //{
-                            //    config.getProfile("##newProf##").stampAppendPubWeb = Convert.ToBoolean(configData.ReadString());
-                            //}
-
-
-                            //if (configData.LocalName.Equals("filenamePrefixPubLoc"))
-                            //{
-                            //    config.getProfile("##newProf##").filenamePrefixPubLoc = configData.ReadString();
-                            //}
-                            //if (configData.LocalName.Equals("cycleStampCheckedPubLoc"))
-                            //{
-                            //    config.getProfile("##newProf##").cycleStampCheckedPubLoc = Convert.ToInt32(configData.ReadString());
-                            //}
-                            //if (configData.LocalName.Equals("startCyclePubLoc"))
-                            //{
-                            //    config.getProfile("##newProf##").startCyclePubLoc = Convert.ToInt64(configData.ReadString());
-                            //}
-                            //if (configData.LocalName.Equals("endCyclePubLoc"))
-                            //{
-                            //    config.getProfile("##newProf##").endCyclePubLoc = Convert.ToInt64(configData.ReadString());
-                            //}
-                            //if (configData.LocalName.Equals("currentCyclePubLoc"))
-                            //{
-                            //    config.getProfile("##newProf##").currentCyclePubLoc = Convert.ToInt64(configData.ReadString());
-                            //}
-                            //if (configData.LocalName.Equals("stampAppendPubLoc"))
-                            //{
-                            //    config.getProfile("##newProf##").stampAppendPubLoc = Convert.ToBoolean(configData.ReadString());
-                            //}
 
 
                             if (configData.LocalName.Equals("emailNotifyInterval"))
@@ -1064,21 +992,6 @@ namespace TeboCam
                                 config.getProfile("##newProf##").pubImage = Convert.ToBoolean(configData.ReadString());
                             }
 
-                            //if (configData.LocalName.Equals("pubHours"))
-                            //{
-                            //    config.getProfile("##newProf##").pubHours = Convert.ToBoolean(configData.ReadString());
-                            //}
-
-                            //if (configData.LocalName.Equals("pubMins"))
-                            //{
-                            //    config.getProfile("##newProf##").pubMins = Convert.ToBoolean(configData.ReadString());
-                            //}
-
-                            //if (configData.LocalName.Equals("pubSecs"))
-                            //{
-                            //    config.getProfile("##newProf##").pubSecs = Convert.ToBoolean(configData.ReadString());
-                            //}
-
 
                             if (configData.LocalName.Equals("pubFtpUser"))
                             {
@@ -1092,11 +1005,6 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").pubFtpRoot = configData.ReadString();
                             }
-
-                            //if (configData.LocalName.Equals("pubTime"))
-                            //{
-                            //    config.getProfile("##newProf##").pubTime = Convert.ToInt32(configData.ReadString());
-                            //}
 
                             //20101026 can be dropped after 201101 as variables should no longer be present
                             if (configData.LocalName.Equals("pubStamp"))
@@ -1115,11 +1023,6 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").pubStampDateTime = Convert.ToBoolean(configData.ReadString());
                             }
-                            //20101026 can be dropped after 201101 as variables should no longer be present
-                            //if (configData.LocalName.Equals("timerOn"))
-                            //{
-                            //    config.getProfile("##newProf##").timerOn = Convert.ToBoolean(configData.ReadString());
-                            //}
                             if (configData.LocalName.Equals("timerStartPub"))
                             {
                                 config.getProfile("##newProf##").timerStartPub = configData.ReadString();
@@ -1188,10 +1091,6 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").soundAlertOn = Convert.ToBoolean(configData.ReadString());
                             }
-                            //if (configData.LocalName.Equals("newsSeq"))
-                            //{
-                            //    config.getProfile("##newProf##").newsSeq = Convert.ToInt32(configData.ReadString());
-                            //}
                             if (configData.LocalName.Equals("logsKeep"))
                             {
                                 config.getProfile("##newProf##").logsKeep = Convert.ToInt32(configData.ReadString());
@@ -1340,14 +1239,6 @@ namespace TeboCam
                             {
                                 config.getProfile("##newProf##").onlineTimeStampRect = Convert.ToBoolean(configData.ReadString());
                             }
-                            //if (configData.LocalName.Equals("publishLocal"))
-                            //{
-                            //    config.getProfile("##newProf##").publishLocal = Convert.ToBoolean(configData.ReadString());
-                            //}
-                            //if (configData.LocalName.Equals("publishWeb"))
-                            //{
-                            //    config.getProfile("##newProf##").publishWeb = Convert.ToBoolean(configData.ReadString());
-                            //}
                             if (configData.LocalName.Equals("imageToframe"))
                             {
                                 config.getProfile("##newProf##").imageToframe = Convert.ToBoolean(configData.ReadString());
@@ -1407,16 +1298,11 @@ namespace TeboCam
 
                     configData.Close();
 
-                    //System.Diagnostics.Debug.WriteLine(config.getProfile("main").profileName);
 
                 }
                 catch (Exception e)
                 {
                     configData.Close();
-                    //bubble.configDataInit();
-                    //20110425 noopped 
-                    //WriteFile("config");
-                    //20110425 noopped 
                     MessageBox.Show(e.ToString());
                     return 0;
                 }
@@ -1466,9 +1352,8 @@ namespace TeboCam
                     graphData.Close();
 
                 }
-                catch (Exception e)
+                catch
                 {
-                    //MessageBox.Show(e.ToString());
                 }
             }
 
@@ -1534,7 +1419,6 @@ namespace TeboCam
                 }
                 catch
                 {
-                    //MessageBox.Show(e.ToString());
                 }
             }
             #endregion
@@ -1561,9 +1445,8 @@ namespace TeboCam
                     logData.Close();
 
                 }
-                catch (Exception e)
+                catch
                 {
-                    //MessageBox.Show(e.ToString());
                 }
             }
             if (file == "log")
@@ -1594,9 +1477,8 @@ namespace TeboCam
                     logData.Close();
 
                 }
-                catch (Exception e)
+                catch
                 {
-                    //MessageBox.Show(e.ToString());
                 }
             }
             #endregion
@@ -1629,9 +1511,9 @@ namespace TeboCam
                     trainingData.Close();
 
                 }
-                catch (Exception e)
+                catch
                 {
-                    //MessageBox.Show(e.ToString());
+
                 }
             }
             #endregion
@@ -1670,9 +1552,8 @@ namespace TeboCam
                     testData.Close();
 
                 }
-                catch (Exception e)
+                catch
                 {
-                    //MessageBox.Show(e.ToString());
                 }
             }
             #endregion
@@ -1930,12 +1811,6 @@ namespace TeboCam
                         configData.WriteString(config.getProfile().countdownNow.ToString());
                         configData.WriteEndElement();
 
-                        //20101023 legacy code - replaced by cycleStampChecked
-                        //configData.WriteStartElement("", "cycleStamp", "");
-                        //configData.WriteString(config.getProfile().cycleStamp.ToString());
-                        //configData.WriteEndElement();
-                        //20101023 legacy code - replaced by cycleStampChecked
-
                         configData.WriteStartElement("", "activatecountdown", "");
                         configData.WriteString(config.getProfile().activatecountdown.ToString());
                         configData.WriteEndElement();
@@ -2019,56 +1894,6 @@ namespace TeboCam
                         configData.WriteEndElement();
 
 
-                        //configData.WriteStartElement("", "filenamePrefixPubWeb", "");
-                        //configData.WriteString(config.getProfile().filenamePrefixPubWeb);
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "cycleStampCheckedPubWeb", "");
-                        //configData.WriteString(config.getProfile().cycleStampCheckedPubWeb.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "startCyclePubWeb", "");
-                        //configData.WriteString(config.getProfile().startCyclePubWeb.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "endCyclePubWeb", "");
-                        //configData.WriteString(config.getProfile().endCyclePubWeb.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "currentCyclePubWeb", "");
-                        //configData.WriteString(config.getProfile().currentCyclePubWeb.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "stampAppendPubWeb", "");
-                        //configData.WriteString(config.getProfile().stampAppendPubWeb.ToString());
-                        //configData.WriteEndElement();
-
-
-                        //configData.WriteStartElement("", "filenamePrefixPubLoc", "");
-                        //configData.WriteString(config.getProfile().filenamePrefixPubLoc);
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "cycleStampCheckedPubLoc", "");
-                        //configData.WriteString(config.getProfile().cycleStampCheckedPubLoc.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "startCyclePubLoc", "");
-                        //configData.WriteString(config.getProfile().startCyclePubLoc.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "endCyclePubLoc", "");
-                        //configData.WriteString(config.getProfile().endCyclePubLoc.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "currentCyclePubLoc", "");
-                        //configData.WriteString(config.getProfile().currentCyclePubLoc.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "stampAppendPubLoc", "");
-                        //configData.WriteString(config.getProfile().stampAppendPubLoc.ToString());
-                        //configData.WriteEndElement();
-
-
                         configData.WriteStartElement("", "emailNotifyInterval", "");
                         configData.WriteString(config.getProfile().emailNotifyInterval.ToString());
                         configData.WriteEndElement();
@@ -2129,18 +1954,6 @@ namespace TeboCam
                         configData.WriteString(config.getProfile().pubImage.ToString());
                         configData.WriteEndElement();
 
-                        //configData.WriteStartElement("", "pubHours", "");
-                        //configData.WriteString(config.getProfile().pubHours.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "pubMins", "");
-                        //configData.WriteString(config.getProfile().pubMins.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "pubSecs", "");
-                        //configData.WriteString(config.getProfile().pubSecs.ToString());
-                        //configData.WriteEndElement();
-
                         configData.WriteStartElement("", "pubFtpUser", "");
                         configData.WriteString(config.getProfile().pubFtpUser);
                         configData.WriteEndElement();
@@ -2152,26 +1965,6 @@ namespace TeboCam
                         configData.WriteStartElement("", "pubFtpRoot", "");
                         configData.WriteString(config.getProfile().pubFtpRoot);
                         configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "pubTime", "");
-                        //configData.WriteString(config.getProfile().pubTime.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "pubStamp", "");
-                        //configData.WriteString(config.getProfile().pubStamp.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "pubStampDate", "");
-                        //configData.WriteString(config.getProfile().pubStampDate.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "pubStampTime", "");
-                        //configData.WriteString(config.getProfile().pubStampTime.ToString());
-                        //configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "pubStampDateTime", "");
-                        //configData.WriteString(config.getProfile().pubStampDateTime.ToString());
-                        //configData.WriteEndElement();
 
                         configData.WriteStartElement("", "timerOn", "");
                         configData.WriteString(config.getProfile().timerOn.ToString());
@@ -2244,10 +2037,6 @@ namespace TeboCam
                         configData.WriteStartElement("", "soundAlertOn", "");
                         configData.WriteString(config.getProfile().soundAlertOn.ToString());
                         configData.WriteEndElement();
-
-                        //configData.WriteStartElement("", "newsSeq", "");
-                        //configData.WriteString(config.getProfile().newsSeq.ToString());
-                        //configData.WriteEndElement();
 
                         configData.WriteStartElement("", "logsKeep", "");
                         configData.WriteString(config.getProfile().logsKeep.ToString());

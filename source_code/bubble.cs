@@ -657,10 +657,10 @@ namespace TeboCam
         /// Test if sense motion button is available - 1 set to green, 0 set to grey, 2 means not available.
         /// </summary>
         /// <returns>int</returns>
-        public static int motionSenseClick(int i_bttn)
+        public static int motionSenseClick(int p_bttn)
         {
 
-            int bttn = i_bttn - 1;
+            int bttn = p_bttn - 1;
 
             //camera button is green or blue
             if (cam[bttn] != 0)
@@ -697,10 +697,10 @@ namespace TeboCam
         /// Test if sense publish button is available - 1 set to green, 0 set to grey, 2 means not available.
         /// </summary>
         /// <returns>int</returns>
-        public static int publishClick(int i_bttn)
+        public static int publishClick(int p_bttn)
         {
 
-            int bttn = i_bttn - 1;
+            int bttn = p_bttn - 1;
 
             //camera button is green or blue
             if (cam[bttn] != 0)
@@ -741,10 +741,10 @@ namespace TeboCam
         /// If button is grey nothing happens and false is returned
         /// </summary>
         /// <returns>bool</returns>
-        public static bool camClick(int i_bttn)
+        public static bool camClick(int p_bttn)
         {
 
-            int bttn = i_bttn - 1;
+            int bttn = p_bttn - 1;
 
             if (cam[bttn] == 2)
             {
@@ -766,10 +766,10 @@ namespace TeboCam
         /// <summary>
         /// clear publish cams other than selected cam
         /// </summary>
-        public static void publishClearExcept(int i_bttn)
+        public static void publishClearExcept(int p_bttn)
         {
 
-            int bttn = i_bttn - 1;
+            int bttn = p_bttn - 1;
 
             for (int i = 0; i < pub.Count; i++)
             {
@@ -866,15 +866,15 @@ namespace TeboCam
             return tmpArr;
         }
 
-        public static bool removeCam(int i_bttn)
+        public static bool removeCam(int p_bttn)
         {
 
-            int bttn = i_bttn - 1;
+            int bttn = p_bttn - 1;
 
             List<int> clickable = clickableButtons();
 
 
-            if (clickable.Contains(i_bttn))
+            if (clickable.Contains(p_bttn))
             {
                 cam[bttn] = 0;
                 return true;
@@ -925,10 +925,10 @@ namespace TeboCam
         /// returns an int for the next available button if the selected button is not available
         /// </summary>
         /// <returns>int</returns>
-        public static int availForClick(int i_bttn, bool update)
+        public static int availForClick(int p_bttn, bool update)
         {
 
-            int bttn = i_bttn - 1;
+            int bttn = p_bttn - 1;
 
 
             bool camTaken = true;
@@ -939,7 +939,7 @@ namespace TeboCam
 
                 cam[bttn] = 2;
                 camTaken = false;
-                return i_bttn;
+                return p_bttn;
 
             }
 
@@ -968,11 +968,11 @@ namespace TeboCam
         /// swap the colouring of camera buttons
         /// </summary>
         /// <returns>void</returns>
-        public static void changeDisplayButton(int i_from, int i_to)
+        public static void changeDisplayButton(int p_from, int p_to)
         {
 
-            int from = i_from - 1;
-            int to = i_to - 1;
+            int from = p_from - 1;
+            int to = p_to - 1;
 
             int tmpMov = mov[from];
             int tmpPub = pub[from];
@@ -3768,21 +3768,21 @@ namespace TeboCam
 
 
 
-        private static Bitmap drawClock(Bitmap i_clockBitmap,
-                          Color i_hourColour,
-                          Color i_minuteColour,
-                          Color i_secondColour,
-                          Color i_tickColour,
-                          Color i_innerDotColour,
-                          bool i_Draw5MinuteTicks,
-                          bool i_Draw1MinuteTicks,
-                          int i_xStart,
-                          int i_yStart,
-                          int i_radius,
-                          int i_width,
-                          int i_height,
-                          bool i_opaque,
-                          Brush i_opaqueBrush)
+        private static Bitmap drawClock(Bitmap p_clockBitmap,
+                          Color p_hourColour,
+                          Color p_minuteColour,
+                          Color p_secondColour,
+                          Color p_tickColour,
+                          Color p_innerDotColour,
+                          bool p_Draw5MinuteTicks,
+                          bool p_Draw1MinuteTicks,
+                          int p_xStart,
+                          int p_yStart,
+                          int p_radius,
+                          int p_width,
+                          int p_height,
+                          bool p_opaque,
+                          Brush p_opaqueBrush)
         {
 
             try
@@ -3803,70 +3803,38 @@ namespace TeboCam
                 float fCenterCircleRadius;
                 float fRadius;
                 float fTicksThickness = 1;
-                bool bDraw5MinuteTicks = i_Draw5MinuteTicks;
-                bool bDraw1MinuteTicks = i_Draw1MinuteTicks;
+                bool bDraw5MinuteTicks = p_Draw5MinuteTicks;
+                bool bDraw1MinuteTicks = p_Draw1MinuteTicks;
 
                 DateTime dateTime;
 
-                Graphics clockObj = Graphics.FromImage(i_clockBitmap);
-
-
-
-                //Brush rectBrush = Brushes.Red;
-                //clockObj.FillRectangle(rectBrush, 0, 0, i_clockBitmap.Width, i_clockBitmap.Height);
-
-                //i_yStart = 80;
-                //i_xStart = 80;
-                //i_radius = 20;
-
-
-                //pos_correction = Math.Max(i_clockBitmap.Height - i_yStart, i_clockBitmap.Width - i_xStart);
-
-                //if (i_clockBitmap.Width - i_xStart < i_clockBitmap.Height - i_yStart)
-                //{
-
-                //    pos_correction = ((float)i_clockBitmap.Width - (float)i_xStart) / 2F;
-
-                //}
-                //else
-                //{
-
-                //    pos_correction = ((float)i_clockBitmap.Height - (float)i_yStart) / 2F;
-
-                //}
-
-                i_yStart = i_clockBitmap.Height - i_yStart;
+                Graphics clockObj = Graphics.FromImage(p_clockBitmap);
+                             
+                p_yStart = p_clockBitmap.Height - p_yStart;
 
 
                 dateTime = DateTime.Now;
 
-                //fHourLength = ((float)pos_correction * 2) / 3 / 1.65F;
-                //fMinLength = ((float)pos_correction * 2) / 3 / 1.20F;
-                //fSecLength = ((float)pos_correction * 2) / 3 / 1.15F;
-                //fHourThickness = ((float)i_clockBitmap.Height - (float)pos_correction) / 100;
-                //fMinThickness = ((float)i_clockBitmap.Height - (float)pos_correction) / 150;
-                //fSecThickness = ((float)i_clockBitmap.Height - (float)pos_correction) / 200;
-                fHourLength = ((float)i_radius * 2F) / 3F / 1.65F;
-                fMinLength = ((float)i_radius * 2F) / 3F / 1.20F;
-                fSecLength = ((float)i_radius * 2F) / 3F / 1.15F;
-                fHourThickness = (float)i_radius * 2 / 100;
-                fMinThickness = (float)i_radius * 2 / 100;
-                fSecThickness = (float)i_radius * 2 / 100;
-                fCenterX = (float)i_xStart;// +(float)i_radius;
-                fCenterY = (float)i_yStart;// -(float)i_radius;
-                //fCenterX = (float)i_xStart + (float)pos_correction;
-                //fCenterY = (float)i_yStart + (float)pos_correction;
+
+                fHourLength = ((float)p_radius * 2F) / 3F / 1.65F;
+                fMinLength = ((float)p_radius * 2F) / 3F / 1.20F;
+                fSecLength = ((float)p_radius * 2F) / 3F / 1.15F;
+                fHourThickness = (float)p_radius * 2 / 100;
+                fMinThickness = (float)p_radius * 2 / 100;
+                fSecThickness = (float)p_radius * 2 / 100;
+                fCenterX = (float)p_xStart;// +(float)p_radius;
+                fCenterY = (float)p_yStart;// -(float)p_radius;
                 fCenterCircleRadius = (fCenterY) / 150;
-                fRadius = i_radius;
+                fRadius = p_radius;
 
                 clockObj.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                 clockObj.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 clockObj.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
 
-                if (i_opaque)
+                if (p_opaque)
                 {
 
-                    clockObj.FillEllipse(i_opaqueBrush, fCenterX - (fRadius / 1.40F), fCenterY - (fRadius / 1.40F), (fRadius / 1.40F) * 2F, (fRadius / 1.40F) * 2F);
+                    clockObj.FillEllipse(p_opaqueBrush, fCenterX - (fRadius / 1.40F), fCenterY - (fRadius / 1.40F), (fRadius / 1.40F) * 2F, (fRadius / 1.40F) * 2F);
 
                 }
 
@@ -3874,15 +3842,15 @@ namespace TeboCam
                 Matrix m = clockObj.Transform;
 
                 clockObj.RotateTransform((dateTime.Hour % 12 + dateTime.Minute / 60F) * 30);
-                DrawPolygon(fHourThickness, fHourLength, i_hourColour, clockObj);
+                DrawPolygon(fHourThickness, fHourLength, p_hourColour, clockObj);
 
                 clockObj.Transform = m;
                 clockObj.RotateTransform(dateTime.Minute * 6 + dateTime.Second / 10F);
-                DrawPolygon(fMinThickness, fMinLength, i_minuteColour, clockObj);
+                DrawPolygon(fMinThickness, fMinLength, p_minuteColour, clockObj);
 
                 clockObj.Transform = m;
                 clockObj.RotateTransform(dateTime.Second * 6);
-                clockObj.DrawLine(new Pen(i_secondColour, fSecThickness), 0, fSecLength / 9, 0, -fSecLength);
+                clockObj.DrawLine(new Pen(p_secondColour, fSecThickness), 0, fSecLength / 9, 0, -fSecLength);
 
                 for (int i = 0; i < 60; i++)
                 {
@@ -3890,28 +3858,28 @@ namespace TeboCam
                     clockObj.RotateTransform(i * 6);
                     if (bDraw5MinuteTicks == true && i % 5 == 0) // Draw 5 minute ticks
                     {
-                        clockObj.DrawLine(new Pen(i_tickColour, fTicksThickness),
+                        clockObj.DrawLine(new Pen(p_tickColour, fTicksThickness),
                             0, -fRadius / 1.50F,
                             0, -fRadius / 1.65F);
                     }
                     else if (bDraw1MinuteTicks == true) // draw 1 minute ticks
                     {
-                        clockObj.DrawLine(new Pen(i_tickColour, fTicksThickness),
+                        clockObj.DrawLine(new Pen(p_tickColour, fTicksThickness),
                               0, -fRadius / 1.50F,
                               0, -fRadius / 1.55F);
                     }
                 }
 
-                clockObj.FillEllipse(new SolidBrush(i_innerDotColour), -fCenterCircleRadius / 2, -fCenterCircleRadius / 2, fCenterCircleRadius, fCenterCircleRadius);
+                clockObj.FillEllipse(new SolidBrush(p_innerDotColour), -fCenterCircleRadius / 2, -fCenterCircleRadius / 2, fCenterCircleRadius, fCenterCircleRadius);
 
                 clockObj.Dispose();
 
-                return i_clockBitmap;
+                return p_clockBitmap;
 
             }
             catch
             {
-                return i_clockBitmap;
+                return p_clockBitmap;
             }
 
         }

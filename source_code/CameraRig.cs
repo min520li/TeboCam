@@ -9,7 +9,6 @@ namespace TeboCam
     class rigItem
     {
 
-        //private bool motionOn;
         public string cameraName;
         public string friendlyName;
         public int displayButton;
@@ -34,8 +33,6 @@ namespace TeboCam
         public int rectHeight = 80;
         public int displayButton = 1;
         public double movementVal = 0.99;
-
-        //20111111 new publish additions
 
         public bool pubImage = false;
         public int pubTime = 2;
@@ -65,9 +62,6 @@ namespace TeboCam
         public int currentCyclePubLoc = 1;
         public bool stampAppendPubLoc = false;
 
-        //20111111 new publish additions
-
-
         //for monitoring publishing - does not need to be saved to xml file
         public bool publishFirst = true;
         public int lastPublished = 0;
@@ -89,12 +83,6 @@ namespace TeboCam
         public static List<bool> camSel = new List<bool>();
         private const int camLicense = 9;
         public static bool reconfiguring = false;
-
-
-        //private CameraRig()
-        //{
-        //    addCamera(null);
-        //}+++
 
 
         public static void camSelInit()
@@ -126,16 +114,14 @@ namespace TeboCam
 
         }
 
-        public static void cameraRemove(int cam)
+        public static void cameraRemove(int camId)
         {
 
-            Camera camera = rig[cam].cam;
+            rig[camId].cam.motionLevelEvent -= new motionLevelEventHandler(bubble.motionEvent);
+            rig[camId].cam.SignalToStop();
+            rig[camId].cam.WaitForStop();
 
-            camera.motionLevelEvent -= new motionLevelEventHandler(bubble.motionEvent);
-            camera.SignalToStop();
-            camera.WaitForStop();
-
-            rig.RemoveAt(cam);
+            rig.RemoveAt(camId);
 
         }
 
@@ -302,18 +288,12 @@ namespace TeboCam
         public static void addInfo(string infoType, object val)
         {
 
-            //20120128 not saving confix attempt at fix
-            //if (camerasAttached())
-            //20120128 not saving confix attempt at fix
-            //{
-
-
                 if (infoType == "webcam")
                 {
 
                     infoIdx++;
-                    info i_item = new info();
-                    camInfo.Add(i_item);
+                    info p_item = new info();
+                    camInfo.Add(p_item);
                     camInfo[infoIdx].webcam = (string)val;
 
                 }
@@ -439,7 +419,6 @@ namespace TeboCam
         public static void changeDisplayButton(string profileName, string camName, int id, int newBttn)
         {
 
-            //newBttn--;
             int swapId = 0;
             string swappingCamName = "";
 
@@ -464,7 +443,6 @@ namespace TeboCam
                 if (profileName == infoI.profileName && infoI.webcam == camName)
                 {
 
-                    //infoI.displayButton = newBttn + 1;
                     infoI.displayButton = newBttn;
 
                 }
@@ -526,16 +504,7 @@ namespace TeboCam
                 info infoI = new info();
 
                 infoI.profileName = profileName;
-                //infoI.friendlyName = "";
                 infoI.webcam = rig[id].cameraName;
-                //infoI.areaDetectionWithin = false;
-                //infoI.areaDetection = false;
-                //infoI.rectX = 20;
-                //infoI.rectY = 20;
-                //infoI.rectHeight = 80;
-                //infoI.rectWidth = 80;
-                //infoI.movementVal = 0.99;
-                //infoI.displayButton = 1;
                 camInfo.Add(infoI);
 
                 rig[id].displayButton = infoI.displayButton;
@@ -566,7 +535,6 @@ namespace TeboCam
                 if (infoI.profileName == profile && infoI.webcam == rig[activeCam].cameraName)
                 {
 
-                    //if (property == "webcam") return infoI.webcam;
                     if (property == "friendlyName") return infoI.friendlyName;
                     if (property == "areaDetection") return infoI.areaDetection;
                     if (property == "areaDetectionWithin") return infoI.areaDetectionWithin;
@@ -624,7 +592,6 @@ namespace TeboCam
                 if (infoI.profileName == profile && infoI.webcam == webcam)
                 {
 
-                    //if (property == "webcam") return infoI.webcam;
                     if (property == "friendlyName") return infoI.friendlyName;
                     if (property == "areaDetection") return infoI.areaDetection;
                     if (property == "areaDetectionWithin") return infoI.areaDetectionWithin;
@@ -692,10 +659,10 @@ namespace TeboCam
             return CameraRig.rig[cam].cam;
         }
 
-        public static void addCamera(rigItem i_cam)
+        public static void addCamera(rigItem p_cam)
         {
             rigItem r_item = new rigItem();
-            r_item = i_cam;
+            r_item = p_cam;
 
             rig.Add(r_item);
         }
@@ -709,8 +676,6 @@ namespace TeboCam
 
         public static bool cameraExists(int id)
         {
-
-            //return rig.Count >= id + 1;
 
             foreach (rigItem item in rig)
             {

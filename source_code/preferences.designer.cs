@@ -70,11 +70,11 @@ namespace TeboCam
             this.newsInfo = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.hideLog = new System.Windows.Forms.Button();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lbl0Perc = new System.Windows.Forms.Label();
+            this.lbl100Perc = new System.Windows.Forms.Label();
+            this.lbl75Perc = new System.Windows.Forms.Label();
+            this.lbl25Perc = new System.Windows.Forms.Label();
+            this.lbl50Perc = new System.Windows.Forms.Label();
             this.levelbox = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.RichTextBox();
@@ -472,11 +472,11 @@ namespace TeboCam
             this.Webcam.Controls.Add(this.newsInfo);
             this.Webcam.Controls.Add(this.button5);
             this.Webcam.Controls.Add(this.hideLog);
-            this.Webcam.Controls.Add(this.label38);
-            this.Webcam.Controls.Add(this.label37);
-            this.Webcam.Controls.Add(this.label31);
-            this.Webcam.Controls.Add(this.label30);
-            this.Webcam.Controls.Add(this.label29);
+            this.Webcam.Controls.Add(this.lbl0Perc);
+            this.Webcam.Controls.Add(this.lbl100Perc);
+            this.Webcam.Controls.Add(this.lbl75Perc);
+            this.Webcam.Controls.Add(this.lbl25Perc);
+            this.Webcam.Controls.Add(this.lbl50Perc);
             this.Webcam.Controls.Add(this.levelbox);
             this.Webcam.Controls.Add(this.button6);
             this.Webcam.Controls.Add(this.txtLog);
@@ -988,55 +988,55 @@ namespace TeboCam
             this.hideLog.UseVisualStyleBackColor = true;
             this.hideLog.Click += new System.EventHandler(this.hideLog_Click);
             // 
-            // label38
+            // lbl0Perc
             // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(20, 278);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(14, 14);
-            this.label38.TabIndex = 47;
-            this.label38.Text = "0";
+            this.lbl0Perc.AutoSize = true;
+            this.lbl0Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl0Perc.Location = new System.Drawing.Point(20, 278);
+            this.lbl0Perc.Name = "lbl0Perc";
+            this.lbl0Perc.Size = new System.Drawing.Size(14, 14);
+            this.lbl0Perc.TabIndex = 47;
+            this.lbl0Perc.Text = "0";
             // 
-            // label37
+            // lbl100Perc
             // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(6, 35);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(28, 14);
-            this.label37.TabIndex = 46;
-            this.label37.Text = "100";
+            this.lbl100Perc.AutoSize = true;
+            this.lbl100Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl100Perc.Location = new System.Drawing.Point(6, 35);
+            this.lbl100Perc.Name = "lbl100Perc";
+            this.lbl100Perc.Size = new System.Drawing.Size(28, 14);
+            this.lbl100Perc.TabIndex = 46;
+            this.lbl100Perc.Text = "100";
             // 
-            // label31
+            // lbl75Perc
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(13, 95);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(21, 14);
-            this.label31.TabIndex = 45;
-            this.label31.Text = "75";
+            this.lbl75Perc.AutoSize = true;
+            this.lbl75Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl75Perc.Location = new System.Drawing.Point(13, 95);
+            this.lbl75Perc.Name = "lbl75Perc";
+            this.lbl75Perc.Size = new System.Drawing.Size(21, 14);
+            this.lbl75Perc.TabIndex = 45;
+            this.lbl75Perc.Text = "75";
             // 
-            // label30
+            // lbl25Perc
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(13, 215);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(21, 14);
-            this.label30.TabIndex = 44;
-            this.label30.Text = "25";
+            this.lbl25Perc.AutoSize = true;
+            this.lbl25Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl25Perc.Location = new System.Drawing.Point(13, 215);
+            this.lbl25Perc.Name = "lbl25Perc";
+            this.lbl25Perc.Size = new System.Drawing.Size(21, 14);
+            this.lbl25Perc.TabIndex = 44;
+            this.lbl25Perc.Text = "25";
             // 
-            // label29
+            // lbl50Perc
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(13, 156);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(21, 14);
-            this.label29.TabIndex = 43;
-            this.label29.Text = "50";
+            this.lbl50Perc.AutoSize = true;
+            this.lbl50Perc.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl50Perc.Location = new System.Drawing.Point(13, 156);
+            this.lbl50Perc.Name = "lbl50Perc";
+            this.lbl50Perc.Size = new System.Drawing.Size(21, 14);
+            this.lbl50Perc.TabIndex = 43;
+            this.lbl50Perc.Text = "50";
             // 
             // levelbox
             // 
@@ -4516,10 +4516,10 @@ namespace TeboCam
         private System.Windows.Forms.MonthCalendar calendar;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.PictureBox levelbox;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label lbl50Perc;
+        private System.Windows.Forms.Label lbl0Perc;
+        private System.Windows.Forms.Label lbl100Perc;
+        private System.Windows.Forms.Label lbl75Perc;
         private System.Windows.Forms.CheckBox ping;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox pingMins;
@@ -4532,7 +4532,7 @@ namespace TeboCam
         private System.Windows.Forms.RadioButton bttnSeconds;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label lbl25Perc;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.RadioButton bttnNow;
         private System.Windows.Forms.RadioButton bttnMotionAtStartup;

@@ -14,16 +14,15 @@ namespace TeboCam
         private formDelegate prefixDelegate;
         private string fromString;
         private bool toolTip;
-        private string i_fname;
-        private string i_cycleStampChecked;
-        private string i_startCycle;
-        private string i_endCycle;
-        private string i_currentCycle;
-        private bool i_includeStamp;
-        private string i_fileLoc = "";
-        private string i_fileLocDefault = "";
-        private bool i_displayStamp;
-        //private bool i_pubcust;
+        private string p_fname;
+        private string p_cycleStampChecked;
+        private string p_startCycle;
+        private string p_endCycle;
+        private string p_currentCycle;
+        private bool p_includeStamp;
+        private string p_fileLoc = "";
+        private string p_fileLocDefault = "";
+        private bool p_displayStamp;
 
         private string fileLoc;
 
@@ -34,21 +33,20 @@ namespace TeboCam
             prefixDelegate = sender;
             fromString = from[0].ToString();
             toolTip = Convert.ToBoolean(from[1]);
-            i_fname = from[2].ToString();
-            i_cycleStampChecked = from[3].ToString();
-            i_startCycle = from[4].ToString();
-            i_endCycle = from[5].ToString();
-            i_currentCycle = from[6].ToString();
-            i_includeStamp = Convert.ToBoolean(from[7]);
-            i_displayStamp = Convert.ToBoolean(from[8]);
+            p_fname = from[2].ToString();
+            p_cycleStampChecked = from[3].ToString();
+            p_startCycle = from[4].ToString();
+            p_endCycle = from[5].ToString();
+            p_currentCycle = from[6].ToString();
+            p_includeStamp = Convert.ToBoolean(from[7]);
+            p_displayStamp = Convert.ToBoolean(from[8]);
             groupBox21.Enabled = Convert.ToBoolean(from[12]);
 
             if (Convert.ToBoolean(from[12]))
             {
-                i_fileLoc = from[9].ToString();
-                i_fileLocDefault = from[10].ToString();
+                p_fileLoc = from[9].ToString();
+                p_fileLocDefault = from[10].ToString();
             }
-            //i_pubcust = Convert.ToBoolean(from[11]);
 
 
         }
@@ -57,20 +55,18 @@ namespace TeboCam
         {
 
             lblTitle.Text = fromString + " Filename Prefix";
-            filenamePrefix.Text = i_fname;
-            cycleStamp.Checked = i_cycleStampChecked == "1";
+            filenamePrefix.Text = p_fname;
+            cycleStamp.Checked = p_cycleStampChecked == "1";
             timeStamp.Checked = !cycleStamp.Checked;
-            startCycle.Text = i_startCycle;
-            endCycle.Text = i_endCycle;
-            currentCycle.Text = i_currentCycle;
-            checkBox1.Checked = i_includeStamp;
-            checkBox1.Enabled = i_displayStamp;
-            if (i_displayStamp) groupBox2.Enabled = checkBox1.Checked;
-            //radioButton10.Checked = !i_pubcust;
-            //radioButton11.Checked = i_pubcust;
-            fileLoc = i_fileLoc;
+            startCycle.Text = p_startCycle;
+            endCycle.Text = p_endCycle;
+            currentCycle.Text = p_currentCycle;
+            checkBox1.Checked = p_includeStamp;
+            checkBox1.Enabled = p_displayStamp;
+            if (p_displayStamp) groupBox2.Enabled = checkBox1.Checked;
+            fileLoc = p_fileLoc;
 
-            if (i_fileLoc.TrimEnd('\\') == i_fileLocDefault.TrimEnd('\\'))
+            if (p_fileLoc.TrimEnd('\\') == p_fileLocDefault.TrimEnd('\\'))
             {
 
                 radioButton10.Checked = true;
@@ -172,7 +168,7 @@ namespace TeboCam
         {
 
             button21.Enabled = radioButton11.Checked;
-            if (radioButton10.Checked) fileLoc = i_fileLocDefault;
+            if (radioButton10.Checked) fileLoc = p_fileLocDefault;
 
 
         }

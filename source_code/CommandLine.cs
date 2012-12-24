@@ -7,7 +7,7 @@ namespace teboweb
     class CommandLine
     {
 
-        private static string i_spaceCode = "";
+        private static string p_spaceCode = "";
 
         private static Random rand = new Random();
         protected static int GetRandInt(int min, int max)
@@ -22,8 +22,8 @@ namespace teboweb
 
             spaceCode(val);
 
-            string tmpStr = val + i_spaceCode;
-            return tmpStr.Replace(" ", i_spaceCode);
+            string tmpStr = val + p_spaceCode;
+            return tmpStr.Replace(" ", p_spaceCode);
 
         }
 
@@ -33,7 +33,7 @@ namespace teboweb
             if (val.Length > 3)
             {
 
-                i_spaceCode = val.Substring(val.Length - 3, 3);
+                p_spaceCode = val.Substring(val.Length - 3, 3);
                 val.Remove(val.Length - 3, 3);
                 val = replaceCodeWithSpaces(val);
 
@@ -48,7 +48,7 @@ namespace teboweb
         {
 
             string tmpStr = val;
-            return tmpStr.Replace(i_spaceCode, " ");
+            return tmpStr.Replace(p_spaceCode, " ");
 
         }
 
@@ -78,7 +78,7 @@ namespace teboweb
 
             } while (commandStr.IndexOf(buildStr) != -1);
 
-            i_spaceCode = buildStr;
+            p_spaceCode = buildStr;
 
         }
 

@@ -29,26 +29,26 @@ namespace TeboWeb
 
         public bool restarted = false;
 
-        public Pulse(decimal i_beatsPerMinute,
-                     decimal i_checksPerMinute,
-                     string i_directory,
-                     string i_filename,
+        public Pulse(decimal p_beatsPerMinute,
+                     decimal p_checksPerMinute,
+                     string p_directory,
+                     string p_filename,
                      string processToEnd,
                      string appToStart,
-                     string i_pulseAppLocation,
-                     string i_pulseMessageDirectory,
-                     string i_restartCommand,
-                     bool i_restarted)
+                     string p_pulseAppLocation,
+                     string p_pulseMessageDirectory,
+                     string p_restartCommand,
+                     bool p_restarted)
         {
 
-            beatsPerMinute = i_beatsPerMinute;
-            checksPerMinute = i_checksPerMinute;
-            directory = i_directory;
-            filename = i_filename;
-            restarted = i_restarted;
-            pulseAppLocation = i_pulseAppLocation;
-            pulseMessageDirectory = i_pulseMessageDirectory;
-            restartCommand = i_restartCommand;
+            beatsPerMinute = p_beatsPerMinute;
+            checksPerMinute = p_checksPerMinute;
+            directory = p_directory;
+            filename = p_filename;
+            restarted = p_restarted;
+            pulseAppLocation = p_pulseAppLocation;
+            pulseMessageDirectory = p_pulseMessageDirectory;
+            restartCommand = p_restartCommand;
 
             if (checksPerMinute == 0 || checksPerMinute > beatsPerMinute) checksPerMinute = beatsPerMinute;
 
@@ -145,10 +145,10 @@ namespace TeboWeb
         }
 
 
-        public void Beat(string i_restartCommand)
+        public void Beat(string p_restartCommand)
         {
 
-            restartCommand = i_restartCommand;
+            restartCommand = p_restartCommand;
 
             if (!stopPulse && secondsSinceStart() - lastPls >= (int)Math.Floor((60 / beatsPerMinute)))
             {

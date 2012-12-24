@@ -14,8 +14,8 @@ namespace TeboCam
         private formDelegate scheduleDelegate;
         private string fromString;
         private bool toolTip;
-        private string i_start;
-        private string i_stop;
+        private string p_start;
+        private string p_stop;
         private string o_start;
         private string o_stop;
 
@@ -24,8 +24,8 @@ namespace TeboCam
             scheduleDelegate = sender;
             fromString = from[0].ToString();
             toolTip = Convert.ToBoolean(from[1]);
-            i_start = from[2].ToString();
-            i_stop = from[3].ToString();
+            p_start = from[2].ToString();
+            p_stop = from[3].ToString();
 
             InitializeComponent();
         }
@@ -34,10 +34,10 @@ namespace TeboCam
         {
 
             lblTitle.Text = fromString + " Schedule";
-            numericUpDown6.Value = Convert.ToDecimal(LeftRightMid.Left(i_start, 2));
-            numericUpDown5.Value = Convert.ToDecimal(LeftRightMid.Right(i_start, 2));
-            numericUpDown8.Value = Convert.ToDecimal(LeftRightMid.Left(i_stop, 2));
-            numericUpDown7.Value = Convert.ToDecimal(LeftRightMid.Right(i_stop, 2));
+            numericUpDown6.Value = Convert.ToDecimal(LeftRightMid.Left(p_start, 2));
+            numericUpDown5.Value = Convert.ToDecimal(LeftRightMid.Right(p_start, 2));
+            numericUpDown8.Value = Convert.ToDecimal(LeftRightMid.Left(p_stop, 2));
+            numericUpDown7.Value = Convert.ToDecimal(LeftRightMid.Right(p_stop, 2));
 
             toolTip1.Active = toolTip;
 

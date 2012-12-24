@@ -58,12 +58,6 @@ namespace TeboCam
                                      string emailUser, string emailPass, string smtpHost,
                                      int smtpPort, bool EnableSsl)
         {
-            //string emailUser = config.getProfile(bubble.profileInUse).emailUser;
-            //string emailPass = config.getProfile(bubble.profileInUse).emailPass;
-            //string smtpHost = config.getProfile(bubble.profileInUse).smtpHost;
-            //int smtpPort = config.getProfile(bubble.profileInUse).smtpPort;
-            //bool EnableSsl = config.getProfile(bubble.profileInUse).EnableSsl;
-
 
             System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
             string msgBody = string.Empty;
@@ -80,16 +74,14 @@ namespace TeboCam
 
             }
 
-            // mail.To.Add(to);
-
             mail.Subject = subj;
             mail.Body = body;
             if (!hasAttachments && bubble.emailTestOk != 9)
             {
                 mail.Body += Environment.NewLine + "No images attached option selected.";
             }
-            mail.IsBodyHtml = true;// This is to enable HTML in your email body
-            mail.ReplyTo = new MailAddress(replyTo); // This is optional, it allows you to add Reply To email address.
+            mail.IsBodyHtml = true;
+            mail.ReplyTo = new MailAddress(replyTo); 
 
 
 
@@ -137,7 +129,7 @@ namespace TeboCam
             }
         }
 
-        private static int mailsSentOverTime(int i_timeSpan, int i_currTime)
+        private static int mailsSentOverTime(int p_timeSpan, int p_currTime)
         {
 
             int emailsSent = 0;
@@ -145,7 +137,7 @@ namespace TeboCam
             foreach (int time in mail.emailTimeSent)
             {
 
-                if (i_currTime - time <= i_timeSpan)
+                if (p_currTime - time <= p_timeSpan)
                 {
 
                     emailsSent++;
@@ -154,57 +146,27 @@ namespace TeboCam
 
             }
 
-            //****************************
-            //20111225 this has been nooped as the user may
-            //change the time paremeter during a session and 
-            //information may consequently be lost
-            //****************************
-            ////just a little bit of housekeeping
-            ////clear out email time records that are no longer relevant
-            //if (mail.emailTimeSent.Count > 20)
-            //{
-
-            //    for (int i = 0; i < mail.emailTimeSent.Count; i++)
-            //    {
-
-            //        if (mail.emailTimeSent[i] < i_currTime - i_timeSpan)
-            //        {
-
-            //            mail.emailTimeSent.RemoveAt(i);
-
-            //        }
-
-            //    }
-
-            //}
-            //****************************
-            //20111225 this has been nooped as the user may
-            //change the time paremeter during a session and 
-            //information may consequently be lost
-            //****************************
-
-
             return emailsSent;
 
         }
 
 
-        public static bool SpamAlert(int i_emails, int i_mins, bool i_deSpamify, int i_currTime)
+        public static bool SpamAlert(int p_emails, int p_mins, bool p_deSpamify, int p_currTime)
         {
 
-            if (i_deSpamify)
+            if (p_deSpamify)
             {
 
-                int emailsSent = mailsSentOverTime(i_mins * 60, i_currTime);
+                int emailsSent = mailsSentOverTime(p_mins * 60, p_currTime);
 
-                if (emailsSent >= i_emails)
+                if (emailsSent >= p_emails)
                 {
 
                     spamStopped = true;
 
                 }
 
-                return emailsSent >= i_emails;
+                return emailsSent >= p_emails;
 
             }
 

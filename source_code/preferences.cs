@@ -1929,7 +1929,9 @@ namespace TeboCam
                 bubble.keepWorking = false;
                 bubble.logAddLine("Stopping TeboCam");
                 Invalidate();
-                if (bttnMotionActive.Checked || bttnMotionAtStartup.Checked)
+                if (bttnMotionActive.Checked
+                    || bttnMotionAtStartup.Checked
+                    || bttnActivateAtEveryStartup.Checked)
                 {
                     bubble.Alert.on = true;
                 }
@@ -2556,7 +2558,11 @@ namespace TeboCam
                 levelDraw(0);
             }
 
-
+            lbl0Perc.Visible = showLevel;
+            lbl25Perc.Visible = showLevel;
+            lbl50Perc.Visible = showLevel;
+            lbl75Perc.Visible = showLevel;
+            lbl100Perc.Visible = showLevel;
 
             webUpd.Checked = data.webUpd;
             sqlUser.Text = data.webUser;
@@ -3074,15 +3080,15 @@ namespace TeboCam
             framePrevious = frameCount;
         }
 
-        private int scheduleStart(string i_start, string i_end, bool currentlyActive)
+        private int scheduleStart(string p_start, string p_end, bool currentlyActive)
         {
 
             //0 - do nothing
             //1 - start
             //2 - end
 
-            int startTime = time.timeInSeconds(i_start);
-            int endTime = time.timeInSeconds(i_end);
+            int startTime = time.timeInSeconds(p_start);
+            int endTime = time.timeInSeconds(p_end);
             int CurrTime = time.secondsSinceMidnight();
             int returnVal = 0;
             bool zeroPassed = false;
@@ -3193,7 +3199,7 @@ namespace TeboCam
 
         }
 
-            
+
 
         private void publish_switch(object sender, System.EventArgs e)
         {
@@ -3972,18 +3978,31 @@ namespace TeboCam
 
         private void levelShow_Click(object sender, EventArgs e)
         {
+
             if (!showLevel)
             {
+
                 showLevel = true;
                 levelShow.Image = TeboCam.Properties.Resources.nolevel;
+
             }
             else
             {
+                
                 showLevel = false;
                 levelShow.Image = TeboCam.Properties.Resources.level;
                 levelDraw(0);
+
             }
+
             config.getProfile(bubble.profileInUse).motionLevel = showLevel;
+            
+            lbl0Perc.Visible = showLevel;
+            lbl25Perc.Visible = showLevel;
+            lbl50Perc.Visible = showLevel;
+            lbl75Perc.Visible = showLevel;
+            lbl100Perc.Visible = showLevel;
+
         }
 
 
@@ -4812,6 +4831,10 @@ namespace TeboCam
             config.getProfile(bubble.profileInUse).disCommOnline = disCommOnline.Checked;
 
         }
+
+
+
+
 
 
 

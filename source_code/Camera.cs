@@ -140,7 +140,6 @@ namespace TeboCam
         private int width = -1, height = -1;
 
         // alarm level
-        //public double alarmLevel = 1;//Original value 0.005;
         public int cam = 0;
         public double movementVal = 1;
 
@@ -284,29 +283,18 @@ namespace TeboCam
                 pubFrame = (Bitmap)e.Frame.Clone();
 
 
-                //Debug.WriteLine(cam + " " + motionDetecotor.MotionLevel.ToString());
-
                 // apply motion detector
                 if (motionDetecotor != null)
                 {
 
                     motionDetecotor.ProcessFrame(ref lastFrame);
-                    //20090627 test change
-
-                    //motionDetecotor.ProcessFrame(ref pubFrame);
-                    //20090627 test change
-
-
 
 
                     MotionLevelArgs a = new MotionLevelArgs();
                     CamIdArgs b = new CamIdArgs();
                     a.lvl = motionDetecotor.MotionLevel;
                     b.cam = cam;
-                    //bubble.levelLine(motionDetecotor.MotionLevel);
                     motionLevelEvent(null, a, b);
-
-                    //Debug.WriteLine(cam + " " + motionDetecotor.MotionLevel.ToString());
 
 
                     // check motion level
@@ -316,7 +304,6 @@ namespace TeboCam
                     }
                     else
                     {
-                        //if (bubble.Alert && motionDetecotor.MotionLevel >= config.getProfile(bubble.profileInUse).movementVal && Alarm != null)
                         if (alarmActive && alert && motionDetecotor.MotionLevel >= movementVal && motionAlarm != null)
                         {
 
@@ -326,9 +313,6 @@ namespace TeboCam
                             l.lvl = Convert.ToInt32(100 * motionDetecotor.MotionLevel);
 
                             motionAlarm(null, c, l);
-
-
-                            //Alarm(this, new EventArgs()); 
 
                         }
                     }
@@ -354,7 +338,6 @@ namespace TeboCam
             // notify client
             if (NewFrame != null)
             {
-                //System.Diagnostics.Debug.WriteLine(cam.ToString());
                 NewFrame(this, new EventArgs());
             }
         }
